@@ -28,7 +28,6 @@
 	<link rel="feed" href="{{ .RelPermalink }}" type="application/rss+xml" title="{{ $.Site.Title }}">
 	{{- end -}} */}}
 
-
 	{{ "<!-- Favicon -->" | safeHTML }}
 	<link rel="icon" href="{{ .Site.Params.assets.favicon | default "favicon/favicon.ico" | relURL }}">
 	<link rel="icon" type="image/png" sizes="16x16"
@@ -53,7 +52,7 @@
 	{{ $style = slice $style | resources.Concat "all.css" | toCSS | minify | fingerprint }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-
+	<link href="css/all.css" rel="stylesheet">
 
 	{{/*  <link rel="stylesheet" type="text/css" href="{{"fontawesome/css/all.css" | absURL}}"> */}}
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -64,7 +63,7 @@
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/solid.css" | absURL }}"> */}}
 	<script src="https://kit.fontawesome.com/43e283368b.js" crossorigin="anonymous"></script>
 
-	{{/*  <link rel="stylesheet" type="text/css" href="{{"gfonts/font.08e909e5f3d4.css" | absURL}}">  */}}
+	<link rel="stylesheet" type="text/css" href="{{"gfonts/font.08e909e5f3d4.css" | absURL}}">
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/glightbox.css" | absURL }}">  */}}
 
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "lib/bootstrap/bootstrap.min.css" | absURL }}"> */}}
@@ -91,19 +90,7 @@
 	media='all' />
 
 	<link href="https://realpython.com/atom.xml" rel="alternate" title="{{ .Title }}" type="application/atom+xml">
-	{{/*  <link rel="manifest" href="https://realpython.com/manifest.json">  */}}
-
-	{{/*  <script type="text/plain" src="{{ "lib/main/main.js" | relURL }}"></script> */}}
-	{{/*  <script type="text/javascript" src="{{ "lib/vendor/vendor.js" | relURL }}"></script> */}}
-	{{/*  <script type="text/javascript" src="{{ "lib/analytics/analytics.js" | relURL }}" async=""></script> */}}
-	{{/*  <script type="text/javascript" src="{{ "lib/invisible/invisible.js" | relURL }}"></script> */}}
-
-	{{/*  {{ "<!-- CustomJS -->" | safeHTML }}
-	{{ range site.Params.plugins.customJS }}
-	<script type="text/javascript" src="{{ .link | absURL }}"></script>
-	{{ end }} */}}
-
-
+	<link rel="manifest" href="https://realpython.com/manifest.json"> */}}
 
 	{{ "<!-- OpenGraph + Twitter + Analytics + Disqus -->" | safeHTML }}
 	{{- if hugo.IsProduction | or (eq .Site.Params.env "production") }}
