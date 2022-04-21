@@ -1,0 +1,489 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>CPython Internals Book – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="Unlock the inner workings of the Python language, compile the Python interpreter from source code, and participate in the development of CPython. The &quot;CPython Internals&quot; book shows you exactly how.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/products/cpython-internals-book/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/cpython-book-3d-shadow.d83200cc6e84.png">
+<meta property="og:image" content="https://files.realpython.com/media/cpython-book-3d-shadow.d83200cc6e84.png">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="CPython Internals Book – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/products/cpython-internals-book/">
+<meta property="og:description" content="Unlock the inner workings of the Python language, compile the Python interpreter from source code, and participate in the development of CPython. The &quot;CPython Internals&quot; book shows you exactly how.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar  navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-10 col-lg-8 article">
+<div class="article-body page-body">
+<style>
+  .page-body  h2, .subhead {
+    text-align: center;
+    margin-top: 3.375rem;
+    margin-bottom: 1.6875rem;
+  }
+
+.page-body mark, .mark {
+  padding: .2em;
+  background-color: transparent;
+  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(-100deg,rgba(255,224,0,.3),rgba(255,224,0,.7) 95%,rgba(255,224,0,.1));
+}
+</style>
+<h2 class="text-center text-muted h3" id="anthony-shaws-cpython-internals-book-is">Anthony Shaw&rsquo;s <strong>CPython Internals</strong> Book Is&hellip;<a class="headerlink" href="#anthony-shaws-cpython-internals-book-is" title="Permanent link"></a></h2>
+<h1 class="text-center my-4" id="your-guided-tour-through-the-python39-interpreter"><u>Your Guided Tour</u> Through the Python&nbsp;3.9 Interpreter<a class="headerlink" href="#your-guided-tour-through-the-python39-interpreter" title="Permanent link"></a></h1>
+<h2 class="text-muted mt-0 mb-5 h3 text-center" id="unlock-the-inner-workings-of-the-python-language-compile-the-python-interpreter-fromsource-codeand-participate-in-the-development-of-cpython"><strong>Unlock the Inner Workings</strong> of the Python Language, Compile the Python Interpreter <strong>From&nbsp;Source &nbsp;Code</strong>,<br>And <strong>Participate in the Development</strong> of CPython:<a class="headerlink" href="#unlock-the-inner-workings-of-the-python-language-compile-the-python-interpreter-fromsource-codeand-participate-in-the-development-of-cpython" title="Permanent link"></a></h2>
+<figure class=""><img loading="lazy" class="img-fluid w-33 float-right ml-4" src="https://files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png" width="1000" height="1589" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png&amp;w=250&amp;sig=54ee21a9d6d2fde5a8c8fce3c2cbbfabcbc42ec2 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png&amp;w=500&amp;sig=0d277f585215bb439fa60ca38d0a06ed330c2afe 500w, https://files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png 1000w" sizes="75vw" alt="CPython Internals: Your Guide to the Python 3 Interpreter" data-asset="2660" /></figure>
+<p><mark>Are there certain parts of Python that <strong>just seem like&nbsp;magic?</strong></mark></p>
+<p>Like, how <em>dictionaries</em> are so much faster than looping over a list to find an item&hellip;</p>
+<p>How does a <em>generator</em> remember the state of the variables each time it yields a value&mdash;and why do you never have to allocate memory like in other languages?</p>
+<h2 class="text-muted my-4 h3" id="it-turns-out-cpython-the-mostpopular-python-runtime-is-written-in-human-readable-c-and-python-code">It turns out, <em>CPython</em>, the <strong>most&nbsp;popular Python runtime</strong> is written in human-readable C and Python code&hellip;<a class="headerlink" href="#it-turns-out-cpython-the-mostpopular-python-runtime-is-written-in-human-readable-c-and-python-code" title="Permanent link"></a></h2>
+<p>The CPython interpreter abstracts away the complexities of the underlying C platform and your operating system. </p>
+<p>It makes threading cross-platform and straightforward. </p>
+<p>It takes the pain of memory management in C and makes it simple.</p>
+<p>In short, CPython gives you the platform to write scalable and performant applications using the comfortable and powerful syntax of Python&hellip;</p>
+<h2 class="text-muted my-4 h3" id="however-these-abstractions-arent-perfectand-theyre-often-leaky">However, <strong>these abstractions aren&rsquo;t perfect</strong>,<br>and they&rsquo;re often <strong>leaky</strong>:<a class="headerlink" href="#however-these-abstractions-arent-perfectand-theyre-often-leaky" title="Permanent link"></a></h2>
+<p><mark>That&rsquo;s why at some stage in your progression as a Python developer, you can <strong>benefit greatly from understanding how CPython works internally.</strong></mark></p>
+<p>By &ldquo;peeking behind the scenes&rdquo; of the Python runtime, you&rsquo;ll deepen your skills and become a true Pythonista&hellip;</p>
+<p>You&rsquo;ll get one step closer to truly mastering Python, enabling you to write beautiful &amp; idiomatic code that&rsquo;s also <em>fast and efficient.</em></p>
+<h2 class="text-muted my-4 h3" id="once-you-see-how-python-works-at-the-interpreter-level-you-can-optimize-your-applications-and-fully-leverage-the-powerofpython">Once you see how Python works at the interpreter level, you can <strong>optimize your applications</strong> and <strong>fully leverage the power&nbsp;of&nbsp;Python</strong><a class="headerlink" href="#once-you-see-how-python-works-at-the-interpreter-level-you-can-optimize-your-applications-and-fully-leverage-the-powerofpython" title="Permanent link"></a></h2>
+<p>Few developers take the time to understand their tools at such a deep level&mdash;it&rsquo;s a surefire way to impress colleagues and interviewers alike.</p>
+<p><mark><strong>This book explains</strong> the concepts, ideas, and technicalities of CPython in an <strong>approachable and hands-on fashion:</strong></mark></p>
+<h2 id="goalsby-the-end-of-the-book-youll-be-able-to">Goals&mdash;<br>By the End of the Book You&rsquo;ll Be Able To:<a class="headerlink" href="#goalsby-the-end-of-the-book-youll-be-able-to" title="Permanent link"></a></h2>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Read and navigate the CPython 3.9 interpreter source code.</strong> You&rsquo;ll deeply comprehend and appreciate the inner workings of concepts like lists, dictionaries, and generators.</p>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Make changes to the Python syntax and compile your own version of CPython, from scratch.</strong> You&rsquo;ll customize the Python core data types with new functionality and run CPython&rsquo;s automated test suite.</p>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Master CPython&rsquo;s memory management capabilities</strong> and scale your Python code with parallelism and concurrency.</p>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Debug C and Python code like a true professional.</strong> Profile and benchmark the performance of your Python code and the runtime.</p>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Participate in the development of CPython</strong> and know how to contribute to future versions of the Python interpreter and standard library. How great would it feel to give back to the community as a &ldquo;Python Core Developer?&rdquo;</p>
+<figure class=""><img loading="lazy" class="img-fluid mx-auto d-block w-66 mt-5" src="https://files.realpython.com/media/cpython-book-3d-shadow-trimmed.574c614751c3.png" width="1750" height="1439" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-book-3d-shadow-trimmed.574c614751c3.png&amp;w=437&amp;sig=8bf96e9fbe3b2b64f988f9afa094f18f62915eb8 437w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-book-3d-shadow-trimmed.574c614751c3.png&amp;w=875&amp;sig=2c1862b8c9c4ae91798e40715910dd09775ad430 875w, https://files.realpython.com/media/cpython-book-3d-shadow-trimmed.574c614751c3.png 1750w" sizes="75vw" alt="CPython Internals: Your Guide to the Python 3 Interpreter" data-asset="2663" /></figure>
+<h2 class="h1 text-center mb-3 mt-0" id="cpython-internalsyour-guide-to-the-python-3-interpreter"><em>CPython Internals:</em><br><strong>Your Guide to the Python 3 Interpreter</strong><a class="headerlink" href="#cpython-internalsyour-guide-to-the-python-3-interpreter" title="Permanent link"></a></h2>
+<p>With this book you&rsquo;ll cover the critical concepts behind the internals of CPython and how they work with visual explanations as you go along.</p>
+<p>Each page in the book has been carefully laid out with beautiful typography, syntax highlighting for code examples, and instructional illustrations so you can process and memorize the information effectively:</p>
+<figure class=""><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/cpython-internals-pages-compiler.6d542266713c.png" width="2156" height="1622" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-internals-pages-compiler.6d542266713c.png&amp;w=539&amp;sig=264ed1f2015d376bcbc0e8d4a3430c49b0c9238c 539w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-internals-pages-compiler.6d542266713c.png&amp;w=1078&amp;sig=d66339f2c08a54ed99db3b171fdd543fa3c79f5b 1078w, https://files.realpython.com/media/cpython-internals-pages-compiler.6d542266713c.png 2156w" sizes="75vw" alt="CPython Internals: Compiler" data-asset="2667" /><figcaption class="figure-caption text-center">Term Definitions and Sidebar Discussions</figcaption></figure>
+<figure class=""><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/cpython-internals-pages-allocator.cd4514c67f91.png" width="2152" height="1620" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-internals-pages-allocator.cd4514c67f91.png&amp;w=538&amp;sig=596b4f4252a929f14b14548568f216288a1700e4 538w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-internals-pages-allocator.cd4514c67f91.png&amp;w=1076&amp;sig=f47995258eda47239a25ca1ff376e355b0a32dfb 1076w, https://files.realpython.com/media/cpython-internals-pages-allocator.cd4514c67f91.png 2152w" sizes="75vw" alt="CPython Internals: Memory Allocator" data-asset="2666" /><figcaption class="figure-caption text-center">Code Examples and Illustrations</figcaption></figure>
+<p>Take your time for each chapter and make sure you try out the examples and hands-on &ldquo;code along&rdquo; sections. Once you&rsquo;ve completed the book, you&rsquo;ll be able to use your newfound knowledge to:</p>
+<ol>
+<li>
+<p><i class="fa fa-lightbulb-o text-warning mr-2"></i><strong>Write custom extensions for Python, written in the C programming language (the book includes an &ldquo;Intro to C for Pythonistas&rdquo; chapter)</strong></p>
+</li>
+<li>
+<p><i class="fa fa-lightbulb-o text-warning mr-2"></i><strong>Use your deep knowledge of the CPython interpreter to improve your own Python applications</strong></p>
+</li>
+<li>
+<p><i class="fa fa-lightbulb-o text-warning mr-2"></i><strong>Contribute to the CPython project and start your journey towards becoming a Python Core Developer</strong></p>
+</li>
+</ol>
+<p>Moreover, you&rsquo;ll feel a sense of achievement that you fully grasp the core concepts of Python that make you a better and more effective Python programmer.</p>
+<div class="border my-5 mx-sm-0 mx-md-5" style="border: 2px dashed #dee2e6 !important;">
+<p class="h3 text-center mt-3">CPython Internals Book</p>
+<p class="h3 text-center font-weight-normal"> <span style="color:red;">$54.99</span></p>
+<button class="btn btn-primary d-block mt-3  mx-auto w-66 btn-lg jsPurchaseButton" id="bbd6d96420-1f6f-46ac-ad06-3d2a4274bd2e-1" data-product-group="d6d96420-1f6f-46ac-ad06-3d2a4274bd2e">Add To Cart »</button>
+<div class="my-3 w-66 mx-auto text-center">
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/visa.49cf14da27bb.png" alt="Visa" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/mastercard.9a31c90b38c7.png" alt="Mastercard" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/amex.c593b222a8ab.png" alt="American Express" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/paypal.b9ea80c6ddec.png" alt="PayPal" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/applepay-sm.4567c887e9e6.png" alt="Apple Pay" style="width: 15%;" />
+</div>
+</div>
+<p class="text-center mt-n4"><a href="/cpython-internals-amazon">[ Or, get a print copy on Amazon. ]</a></p>
+<h2 id="about-the-author">About the Author<a class="headerlink" href="#about-the-author" title="Permanent link"></a></h2>
+<div class="container p-0">
+<div class="row">
+<div class="col-12 col-md-3 align-self-center mb-3">
+<img loading="lazy" src="https://files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg&amp;w=137&amp;sig=fc50fa3228501b53232b43463b244b8a3a8a6261 137w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg&amp;w=275&amp;sig=6cda05a52506f400a80e5d30890a69eead859df5 275w, https://files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg 551w" sizes="25vw" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto" alt="Anthony Shaw">
+<img loading="lazy" src="https://files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg&amp;w=137&amp;sig=fc50fa3228501b53232b43463b244b8a3a8a6261 137w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg&amp;w=275&amp;sig=6cda05a52506f400a80e5d30890a69eead859df5 275w, https://files.realpython.com/media/10995490_10152772557676353_1442757472697890998_n.e88e3d7b17c7.jpg 551w" sizes="25vw" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0" alt="Anthony Shaw">
+</div>
+<div class="col align-self-center mb-3">
+<p class="my-0"><strong>Anthony Shaw</strong> is a CPython contributor and a PyCon speaker. He has a B.Sc. in Computer Science and over 8 years of experience working with Python. Anthony is also a Fellow of the Python Software Foundation and member of the Open-Source Apache Foundation.</p>
+</div>
+</div>
+</div>
+<h2 id="table-of-contents-sample-chapters">Table of Contents<br>&amp; Sample Chapters<a class="headerlink" href="#table-of-contents-sample-chapters" title="Permanent link"></a></h2>
+<p>All of the material is completely up to date for Python 3.9, the latest version of the Python programming language. </p>
+<p>In a nutshell, here&rsquo;s what you’ll learn with <em>CPython Internals: Your Guide to the Python Interpreter</em>:</p>
+<p><strong>Chapter 1: Introduction</strong> How to make the most of this book so you can learn effectively and quickly get up to speed with CPython development.</p>
+<p><strong>Chapter 2: Getting the CPython Source Code</strong> The CPython source distribution comes with a whole range of tools, libraries, and components. You&rsquo;ll start exploring them in this chapter.</p>
+<p><strong>Chapter 3: Setting Up Your Development Environment</strong> Throughout this book, you&rsquo;ll be working with C and Python code. In this chapter you&rsquo;ll see how to configure your development environment to support both languages.</p>
+<p><strong>Chapter 4: Compiling CPython</strong> Now that you have CPython downloaded, set up a development environment and configured it, you can compile the CPython source code into an executable interpreter.</p>
+<p><strong>Chapter 5: The Python Language and Grammar</strong> Understand why CPython is written in C and not Python and then dig into the Python Language Specification and it&rsquo;s Parser Generator setup.</p>
+<p><strong>Chapter 6: Configuration and Input</strong> Now that you&rsquo;ve seen the Python grammar, its time to explore how code gets input into a state that can be executed.</p>
+<p><strong>Chapter 7: Lexing and Parsing With Syntax Trees</strong> In the previous chapter, you explored how Python text is read from various sources. It needs to be converted into a structure that the compiler can use. This stage is &ldquo;parsing.&rdquo; In this chapter, you will explore how the text is parsed into logical structures that can be compiled.</p>
+<p><strong>Chapter 8: The Python Compiler</strong> In this chapter, you will focus on the compilation of an AST module into a code object that the CPython interpreter can execute. These code objects contain lists of discrete operations in the form of bytecode.</p>
+<p><strong>Chapter 9: The Evaluation Loop</strong> Execution of code in CPython happens within a central loop, called the &ldquo;evaluation loop.&rdquo; In this chapter you&rsquo;ll get familiar with the evaluation loop as the &ldquo;brain&rdquo; of CPython.</p>
+<p><strong>Chapter 10: Memory Management</strong> By the end of this chapter, you will understand how CPython allocates memory on the Operating System, how object memory is allocated and freed, and how CPython manages memory leaks.</p>
+<p><strong>Chapter 11: Parallelism and Concurrency</strong> CPython offers many approaches to Parallelism and Concurrency. Your choice depends on several factors. There are also overlapping use cases across models as CPython has evolved. This major chapter of the book will make you familiar with the relevant concepts.</p>
+<p><strong>Chapter 12: Objects and Types</strong> Learn how common built-in types like strings, lists, tuples, and dictionaries are implemented in CPython. You&rsquo;ll also implement a custom built-in operator on Python strings in this chapter.</p>
+<p><strong>Chapter 13: The Python Standard Library</strong> There are two types of modules in the CPython standard library: those written in pure Python that provide a utility, and those written in C with Python wrappers. You will explore both types in this chapter.</p>
+<p><strong>Chapter 14: The CPython Test Suite</strong> Learn how to run CPython&rsquo;s extensive test suite covering the core interpreter, the standard library, the tooling, and distribution on Windows, Linux, and macOS. If you
+want to get involved in the CPython project, writing or extending unit tests is a great place to start.</p>
+<p><strong>Chapter 15: Debugging</strong> In this chapter, you will learn how to attach a debugger to the CPython interpreter and how to use the debugger to see inside a running CPython process.</p>
+<p><strong>Chapter 16: Benchmarking, Profiling, and Tracing</strong> In this chapter, you have explored benchmarking, profiling, and tracing using a number of tools designed for CPython. With the right tooling, you can find bottlenecks, compare performance of multiple builds and identify improvements.</p>
+<p><strong>Chapter 17: Conclusion &amp; Further Reading</strong> How you can use your newfound knowledge to extend the functionality of Python and to contribute to the CPython project.</p>
+<p><strong>Appendix: Introduction to C for Python Programmers</strong> This introduction is intended to get an experienced Python programmer up to speed with the basics of the C language and how it&rsquo;s used in the CPython source code.</p>
+<h2 class="text-center" id="heres-whats-in-the-box">Here&rsquo;s What&rsquo;s &ldquo;In The Box&rdquo;<a class="headerlink" href="#heres-whats-in-the-box" title="Permanent link"></a></h2>
+<p>To recap, let&rsquo;s take another look at what you&rsquo;ll receive with this offer:</p>
+<figure class=""><img loading="lazy" class="img-fluid mx-auto d-block w-25 float-right pl-3" src="https://files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png" width="1000" height="1589" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png&amp;w=250&amp;sig=54ee21a9d6d2fde5a8c8fce3c2cbbfabcbc42ec2 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png&amp;w=500&amp;sig=0d277f585215bb439fa60ca38d0a06ed330c2afe 500w, https://files.realpython.com/media/cpython-book-3d-no-shadow-trimmed.ff54fb267b79.png 1000w" sizes="75vw" alt="CPython Internals: Your Guide to the Python 3 Interpreter" data-asset="2660" /></figure>
+<ul>
+<li>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>DRM-free PDF book,</strong> optimized for reading on tablets and computers (383 pages)</p>
+</li>
+<li>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>DRM-free ePub book</strong></p>
+</li>
+<li>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>DRM-free Kindle book</strong></p>
+</li>
+<li>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Downloadable sample code &amp; examples</strong></p>
+</li>
+<li>
+<p><i class="fa fa-check-circle text-success mr-2"></i><strong>Free updates</strong></p>
+</li>
+</ul>
+<div class="border my-5 mx-sm-0 mx-md-5" style="border: 2px dashed #dee2e6 !important;">
+<p class="h3 text-center mt-3">CPython Internals Book</p>
+<p class="h3 text-center font-weight-normal"> <span style="color:red;">$54.99</span></p>
+<button class="btn btn-primary d-block mt-3  mx-auto w-66 btn-lg jsPurchaseButton" id="bbd6d96420-1f6f-46ac-ad06-3d2a4274bd2e-2" data-product-group="d6d96420-1f6f-46ac-ad06-3d2a4274bd2e">Add To Cart »</button>
+<div class="my-3 w-66 mx-auto text-center">
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/visa.49cf14da27bb.png" alt="Visa" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/mastercard.9a31c90b38c7.png" alt="Mastercard" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/amex.c593b222a8ab.png" alt="American Express" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/paypal.b9ea80c6ddec.png" alt="PayPal" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/applepay-sm.4567c887e9e6.png" alt="Apple Pay" style="width: 15%;" />
+</div>
+</div>
+<p class="text-center mt-n4"><a href="/cpython-internals-amazon">[ Or, get a print copy on Amazon. ]</a></p>
+<h2 id="what-pythonistas-say-about-the-book">What Pythonistas Say About the Book<a class="headerlink" href="#what-pythonistas-say-about-the-book" title="Permanent link"></a></h2>
+<div class="container mb-4 bg-light rounded border">
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+<img loading="lazy" src="https://files.realpython.com/media/cpython-testimonial-cw.c6c2c5499cb1.jpg" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto mt-3">
+<img loading="lazy" src="https://files.realpython.com/media/cpython-testimonial-cw.c6c2c5499cb1.jpg" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0 mt-3">
+</div>
+<div class="col mt-3">
+<p>“Why do I want to share Anthony’s <em>CPython Internals</em> with you? <mark class="marker-highlight">It’s the book that I wish existed years ago when I started my Python journey.</mark></p>
+<p>More importantly, I believe we, as members of the Python community, have a unique opportunity – to put our expertise to work to help solve the complex real-world problems facing us. </p>
+<p>Python’s strengths include its readability and a welcoming community dedicated to education. </p>
+<p>Anthony embraces these strengths when explaining CPython, encouraging you to read the source, and sharing the building blocks of the language with you.</p>
+<p><mark class="marker-highlight">I’m confident after reading this book your skills will grow and you will be able solve even more complex problems that can improve our world.”</mark></p>
+</div>
+</div>
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+</div>
+<div class="col">
+<p><strong>— Carol Willing</strong>, CPython Core Developer &amp; Member of the CPython Steering Council</p>
+</div>
+</div>
+</div>
+<div class="container mb-4 bg-light rounded border">
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+<img loading="lazy" src="https://files.realpython.com/media/cpython-testimonial-as.a5b46072524b.jpeg" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto mt-3">
+<img loading="lazy" src="https://files.realpython.com/media/cpython-testimonial-as.a5b46072524b.jpeg" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0 mt-3">
+</div>
+<div class="col mt-3">
+<p>“<mark class="marker-highlight">A comprehensive walkthrough of the Python internals,</mark> a topic which surprisingly has almost no good resource, in an easy-to-understand manner for both beginners as well as advanced Python users.”</p>
+</div>
+</div>
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+</div>
+<div class="col">
+<p><strong>— Abhishek Sharma</strong>, Data Scientist</p>
+</div>
+</div>
+</div>
+<div class="container mb-4 bg-light rounded border">
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+<img loading="lazy" src="https://files.realpython.com/media/daniel-square.d58bf4388750.jpg" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto mt-3">
+<img loading="lazy" src="https://files.realpython.com/media/daniel-square.d58bf4388750.jpg" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0 mt-3">
+</div>
+<div class="col mt-3">
+<p>“What impresses me the most about Anthony’s book is how it puts all the steps for making changes to the CPython code base in an easy to follow sequence. <mark class="marker-highlight">It really feels like a ‘missing manual’ of sorts.</mark></p>
+<p>Diving into the C underpinnings of Python was a lot of fun and it cleared up some longstanding questions marks for me. I found the chapter about CPython’s memory allocator especially enlightening.</p>
+<p><mark class="marker-highlight"><em>CPython Internals</em> is a great (and unique) resource for anybody looking to take their knowledge of Python to a deeper level.</mark>”</p>
+</div>
+</div>
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+</div>
+<div class="col">
+<p><strong>— Dan Bader</strong>, Author of <em>Python Tricks</em> &amp; Editor-in-Chief at Real&nbsp;Python</p>
+</div>
+</div>
+</div>
+<div class="container mb-4 bg-light rounded border">
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+<img loading="lazy" src="https://files.realpython.com/media/cpython-testimonial-mp.45006771e23b.jpg" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto mt-3">
+<img loading="lazy" src="https://files.realpython.com/media/cpython-testimonial-mp.45006771e23b.jpg" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0 mt-3">
+</div>
+<div class="col mt-3">
+<p>“The <mark class="marker-highlight">‘Parallelism and Concurrency’ chapter is one of my favorites. I had been looking to get an in depth understanding around this topic and I found your book extremely helpful.</mark></p>
+<p>Of course, after going over that chapter I couldn’t resist the rest. I am eagerly looking forward to have my own printed copy once it's out! </p>
+<p>I had gone through your ‘Guide to CPython Source code’ article previously which got me interested in finding out more about the internals. </p>
+<p><mark class="marker-highlight">There are a ton of books on Python which teach the language, but I haven’t really come across anything that would go about explaining the internals to those curious minded.</mark></p>
+<p>And while I teach Python to my daughter currently, I have this book added in her must-read list. She’s currently studying Information Systems at Georgia State University.”</p>
+</div>
+</div>
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+</div>
+<div class="col">
+<p><strong>— Milan Patel</strong>, Vice President at (a major investment bank)</p>
+</div>
+</div>
+</div>
+<div class="container mb-4 bg-light rounded border">
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+<img loading="lazy" src="https://files.realpython.com/media/guido.ce7f54174cc9.jpg" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto mt-3">
+<img loading="lazy" src="https://files.realpython.com/media/guido.ce7f54174cc9.jpg" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0 mt-3">
+</div>
+<div class="col mt-3">
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/556300076" frameborder="0" allowfullscreen></iframe>
+</div>
+<p><mark class="marker-highlight">“I can recommend <em>CPython Internals</em> to anyone who wants to get going with hacking on CPython”</mark></p>
+</div>
+</div>
+<div class="row">
+<div class="col-12 col-md-2 align-self-center">
+</div>
+<div class="col">
+<p><strong>— Guido van Rossum</strong>, Creator of Python</p>
+</div>
+</div>
+</div>
+<div class="alert alert-warning mt-4">
+<h2 class="mt-3 text-center" style="color: red"><em>1 Year “Try It Yourself” Guarantee—</em><br>100% Money-Back Refund Policy</h2>
+<hr>
+<p class="mt-4">The last thing we want is for you to pass on this book because you’re not sure it’ll work for you. We know it will, so here’s our offer to you:</p>
+<p>Put us to the test. Take “CPython Internals: Your Guide to the Python 3 Interpreter” for a spin today.</p>
+<p>Spend just a few days with the material and start building your Python skills.</p>
+<p>Then take up to a full year to grow them…</p>
+<p>And if for some reason you don’t agree that we’ve given you a faster, easier way to absorb the knowledge you need to rise head-and-shoulders above other developers, <strong>we’ll cheerfully refund your money, no questions and no hassles, any time within the next year.</strong></p>
+<p>Either way, all the risk is on us.</p>
+<div class="text-center">
+<img class="w-25 mb-0" src="https://files.realpython.com/media/money-back-guarantee.15ae6fd6874e.png">
+</div>
+</div>
+<div class="border my-5 mx-sm-0 mx-md-5" style="border: 2px dashed #dee2e6 !important;">
+<p class="h3 text-center mt-3">CPython Internals Book</p>
+<p class="h3 text-center font-weight-normal"> <span style="color:red;">$54.99</span></p>
+<button class="btn btn-primary d-block mt-3  mx-auto w-66 btn-lg jsPurchaseButton" id="bbd6d96420-1f6f-46ac-ad06-3d2a4274bd2e-3" data-product-group="d6d96420-1f6f-46ac-ad06-3d2a4274bd2e">Add To Cart »</button>
+<div class="my-3 w-66 mx-auto text-center">
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/visa.49cf14da27bb.png" alt="Visa" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/mastercard.9a31c90b38c7.png" alt="Mastercard" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/amex.c593b222a8ab.png" alt="American Express" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/paypal.b9ea80c6ddec.png" alt="PayPal" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/applepay-sm.4567c887e9e6.png" alt="Apple Pay" style="width: 15%;" />
+</div>
+</div>
+<p class="text-center mt-n4"><a href="/cpython-internals-amazon">[ Or, get a print copy on Amazon. ]</a></p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link"></a></h2>
+<p><strong>Got any sample chapters?</strong> Sure do! <a href="https://static.realpython.com/cpython-internals-sample-chapters.pdf">Click here to download a PDF sample.</a> Enjoy!</p>
+<p><strong>What if I don&rsquo;t like the book?</strong> We want happy customers only. If you&rsquo;re not happy with the digital version of the book, send us an email and tell us where it left you hanging. We&rsquo;ll refund you in full&mdash;even 12 months later.</p>
+<p><strong>Can I order a print version?</strong> Yes, CPython Internals is available on Amazon as a printed book (paperback). <a href="/cpython-internals-amazon">Click here to order a printed copy.</a></p>
+<p><strong>How skilled do I need to be in Python to use this book?</strong> This book is aimed at intermediate to advanced Python developers. Every effort has been taken to break down code examples, but some intermediate Python techniques will be used throughout the book. If you&rsquo;re not sure you&rsquo;re ready, making your way through the chapters of the book is a great way to challenge yourself and identify and fix weak spots in your Python knowledge.</p>
+<p><strong>Do I need to know C to use this book?</strong> You do not need to be proficient in C to use this book. If you are new to C, check out <em>Appendix 1: Introduction to C for Python Programmers</em> at the back of the book for a quick introduction.</p>
+<p><strong>How long will it take to finish this book?</strong> &ldquo;I don&rsquo;t recommend rushing this book, try reading a chapter at a time, trying the examples after each chapter and exploring the code simultaneously. Once you&rsquo;ve finished the book, it will make a great reference guide for you to come back to in time. The chapters are fairly self-contained too, so you&rsquo;ll be able to jump around and focus on the sections that interest you the most.&rdquo; (Anthony Shaw)</p>
+<p><strong>Won&rsquo;t the CPython specifics I&rsquo;ll learn be out of date quickly?</strong> &ldquo;Python has been around for over 30 years. Some parts of the CPython code haven&rsquo;t been touched since they were originally written. Many of the principles in this book have been the same for ten or more years. In fact, whilst writing this book, I discovered many lines of code written by Guido van Rossum (the author of Python) and untouched since CPython version 1.0. </p>
+<p>The skills you&rsquo;ll learn in this book will help you read and understand current and future versions of CPython. Change is constant, and your expertise is something you can develop along the way. Some of the concepts in this book are brand-new; some are even experimental. </p>
+<p>While writing this book, I came across issues in the source code and bugs in CPython. Then, they got <a href="https://github.com/python/cpython/pulls?q=is%3Apr+author%3Atonybaloney+is%3Amerged+">fixed or improved</a>. That&rsquo;s part of the wonder of CPython as a flourishing open-source project.&rdquo; (Anthony Shaw)</p>
+<p><strong>How will I receive updates?</strong> We announce updates via email as they come out. Plus, you&rsquo;ll always find the latest version of the book available for download in your realpython.com account.</p>
+<p><strong>I have another question!</strong> Please email us at info@realpython.com and we&rsquo;ll get back to you as soon as possible.</p>
+<div class="border my-5 mx-sm-0 mx-md-5" style="border: 2px dashed #dee2e6 !important;">
+<p class="h3 text-center mt-3">CPython Internals Book</p>
+<p class="h3 text-center font-weight-normal"> <span style="color:red;">$54.99</span></p>
+<button class="btn btn-primary d-block mt-3  mx-auto w-66 btn-lg jsPurchaseButton" id="bbd6d96420-1f6f-46ac-ad06-3d2a4274bd2e-4" data-product-group="d6d96420-1f6f-46ac-ad06-3d2a4274bd2e">Add To Cart »</button>
+<div class="my-3 w-66 mx-auto text-center">
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/visa.49cf14da27bb.png" alt="Visa" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/mastercard.9a31c90b38c7.png" alt="Mastercard" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/amex.c593b222a8ab.png" alt="American Express" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/paypal.b9ea80c6ddec.png" alt="PayPal" style="width: 15%;" />
+<img class="my-0" src="https://cdn.realpython.com/static/payment-icons/applepay-sm.4567c887e9e6.png" alt="Apple Pay" style="width: 15%;" />
+</div>
+</div>
+<p class="text-center mt-n4"><a href="/cpython-internals-amazon">[ Or, get a print copy on Amazon. ]</a></p>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted">© 2012–2021 Real Python ⋅ <a style="text-decoration: none;" href="/privacy-policy/">Privacy Policy</a>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+<script src="https://cdn.realpython.com/static/frontend/store/checkout.a45db2a9a232.js"></script>
+<script>
+  StoreCheckout.init({
+    debug: false,
+    paddleVendorId: 39840,
+    fetchPaylinkUrl: "/store/api/v1/paylink/"
+  });
+</script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a41f11af70dfe',m:'WOfTdYfHfMiKdju20mWdm4Z9B2aEh7mOXG4IXN2GdAo-1632635876-0-ATJFSgzZu2hRXY8VF6jAMeIUp6FSu8li4+xzSjALjnEDvfztfQ3/wvE7TKa7jPH7+baPjCG8rkG8vJTZF9Uqj0I+290YLCwN9K/o4seiUj5VSU5BNmOzvysii7n+rtIoU5Gw/IFJ6Samu+B3/MVZUbwdtXixijE3ngJD4cr62FKy',s:[0x2202ce4468,0x588cc154f3],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

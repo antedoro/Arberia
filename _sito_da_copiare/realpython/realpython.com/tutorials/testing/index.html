@@ -1,0 +1,850 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Python Testing Tutorials – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="On this page, you will find tutorials on how to test different types of Python applications, from command-line apps all the way up to web applications. You’ll learn about the best practices and techniques to follow when testing your Python applications.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/tutorials/testing/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Python-Testing-Tutorials_Watermarked.c65f5f59a723.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Python-Testing-Tutorials_Watermarked.c65f5f59a723.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Python Testing Tutorials – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/tutorials/testing/">
+<meta property="og:description" content="On this page, you will find tutorials on how to test different types of Python applications, from command-line apps all the way up to web applications. You’ll learn about the best practices and techniques to follow when testing your Python applications.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+ <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Ftutorials%2Ftesting%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article ">
+<nav aria-label="breadcrumb" role="navigation">
+<ol class="breadcrumb border-bottom rounded-0">
+<li class="breadcrumb-item"><a href="/">Tutorials</a></li>
+<li class="breadcrumb-item"><a href="/tutorials/all/">Topics</a></li>
+<li class="breadcrumb-item active" aria-current="page">Python Testing Tutorials</li>
+</ol>
+</nav>
+<div class="mt-4 mb-5"><h1 id="python-testing-tutorials">Python Testing Tutorials<a class="headerlink" href="#python-testing-tutorials" title="Permanent link"></a></h1>
+<p>On this page, you will find tutorials on how to test different types of Python applications, from commandline apps all the way up to web applications. You’ll learn about the best practices and techniques to follow when testing your Python applications.</p>
+<h2 id="why-is-testing-important">Why Is Testing Important?<a class="headerlink" href="#why-is-testing-important" title="Permanent link"></a></h2>
+<p>We all make mistakes and if left unchecked, some of these mistakes can lead to failures or bugs that can be very expensive to recover from. Testing our code helps to catch these mistakes or avoid getting them into production in the first place. Testing therefore is very important in software development. Used effectively, tests help to identify bugs, ensure the quality of the product and to verify that the software does what it is meant to do.</p></div>
+<div class="d-flex mb-5">
+<form class="form-inline col pl-0" action="/search" method="GET" id="home-search-form">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="form-control form-control-lg w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search&hellip;" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="home">
+</form>
+<button class="btn btn-primary col-3 px-2" type="submit" form="home-search-form">Search&nbsp;»</button>
+</div>
+<div class="row">
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/installable-django-app/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Write an Installable Django App" src="https://files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg&amp;w=480&amp;sig=5a1e6ccfd4b05aec4697274e92f45c203481983c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg&amp;w=960&amp;sig=acde84cf4be56593180bb3898291d743019a0980 960w, https://files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/installable-django-app/">
+<h2 class="card-title h4 my-0 py-0">How to Write an Installable Django App</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-mock-object-library/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Understanding the Python Mock Object Library" src="https://files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg&amp;w=480&amp;sig=c63b69b6490e76068d262039e8c12b5d16b0f49b 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg&amp;w=960&amp;sig=247ad84d8727e52d96ae488ba70a8687f2680291 960w, https://files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-mock-object-library/">
+<h2 class="card-title h4 my-0 py-0">Improve Your Tests With the Python Mock Object Library</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/pytest-python-testing/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Effective Python Testing With Pytest" src="https://files.realpython.com/media/Intermediate-Advanced-PyTest-Features_Watermarked.2d8ace6b71be.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Intermediate-Advanced-PyTest-Features_Watermarked.2d8ace6b71be.jpg&amp;w=480&amp;sig=75d216f5135ca169120c7e9c7b76886bad907fa2 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Intermediate-Advanced-PyTest-Features_Watermarked.2d8ace6b71be.jpg&amp;w=960&amp;sig=d537773ec257e58a113bcaed2a1c4a21b1a1a3e7 960w, https://files.realpython.com/media/Intermediate-Advanced-PyTest-Features_Watermarked.2d8ace6b71be.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/pytest-python-testing/">
+<h2 class="card-title h4 my-0 py-0">Effective Python Testing With Pytest</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/django-pytest-fixtures/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Provide Test Fixtures for Django Models in Pytest" src="https://files.realpython.com/media/How-to-Provide-Fixtures-for-Django-Models-in-Pytest_Watermarked.4d13d34bf9e8.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Provide-Fixtures-for-Django-Models-in-Pytest_Watermarked.4d13d34bf9e8.jpg&amp;w=480&amp;sig=df14a7fbf0e4ec9ea7d86fb5aba83e57e99f8763 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Provide-Fixtures-for-Django-Models-in-Pytest_Watermarked.4d13d34bf9e8.jpg&amp;w=960&amp;sig=1286a96720994ea11ec9955800893d9e358f57bb 960w, https://files.realpython.com/media/How-to-Provide-Fixtures-for-Django-Models-in-Pytest_Watermarked.4d13d34bf9e8.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/django-pytest-fixtures/">
+<h2 class="card-title h4 my-0 py-0">How to Provide Test Fixtures for Django Models in Pytest</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-continuous-integration/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Continuous Integration with Python: An Introduction" src="https://files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg&amp;w=480&amp;sig=fa89b3b139293b8cecbb33b426dcaf92a30c50cd 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg&amp;w=960&amp;sig=7210a32c08a0b9cb9da3c4e45a17424d8f43ca41 960w, https://files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-continuous-integration/">
+<h2 class="card-title h4 my-0 py-0">Continuous Integration With Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-mock-library/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Understanding the Python Mock Object Library" src="https://files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg&amp;w=480&amp;sig=c63b69b6490e76068d262039e8c12b5d16b0f49b 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg&amp;w=960&amp;sig=247ad84d8727e52d96ae488ba70a8687f2680291 960w, https://files.realpython.com/media/unittest.mock-Tutorial_Watermarked.8e92b54478af.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-mock-library/">
+<h2 class="card-title h4 my-0 py-0">Understanding the Python Mock Object Library</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/test-driven-development-pytest/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Getting Started With Testing in Python" src="https://files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg&amp;w=480&amp;sig=de5103ef26a8b5db348d5f9b3291ec8a4102ec05 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg&amp;w=960&amp;sig=fa3b60dea368384a60b520489dad35bbadfac12e 960w, https://files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/test-driven-development-pytest/">
+<h2 class="card-title h4 my-0 py-0">Test-Driven Development With PyTest</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-continuous-integration/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Continuous Integration with Python: An Introduction" src="https://files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg&amp;w=480&amp;sig=fa89b3b139293b8cecbb33b426dcaf92a30c50cd 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg&amp;w=960&amp;sig=7210a32c08a0b9cb9da3c4e45a17424d8f43ca41 960w, https://files.realpython.com/media/Continuous-Integration-for-Python_Watermarked.6716094db5fe.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-continuous-integration/">
+<h2 class="card-title h4 my-0 py-0">Continuous Integration With Python: An Introduction</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-testing/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Getting Started With Testing in Python" src="https://files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg&amp;w=480&amp;sig=de5103ef26a8b5db348d5f9b3291ec8a4102ec05 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg&amp;w=960&amp;sig=fa3b60dea368384a60b520489dad35bbadfac12e 960w, https://files.realpython.com/media/Getting-Started-with-Testing-in-Python_Watermarked.9f22be97343d.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-testing/">
+<h2 class="card-title h4 my-0 py-0">Getting Started With Testing in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-cli-testing/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Testing Python Command-Line Apps" src="https://files.realpython.com/media/4-Techniques-for-Testing-Python-Command-Line-CLI-Apps_Watermarked_1.9cea17de073b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/4-Techniques-for-Testing-Python-Command-Line-CLI-Apps_Watermarked_1.9cea17de073b.jpg&amp;w=480&amp;sig=8fa3982ce3f9e51f20958792c7664771f1a825ca 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/4-Techniques-for-Testing-Python-Command-Line-CLI-Apps_Watermarked_1.9cea17de073b.jpg&amp;w=960&amp;sig=122d23e7cdce5ee22e9aa8ee328f7c27efbfec08 960w, https://files.realpython.com/media/4-Techniques-for-Testing-Python-Command-Line-CLI-Apps_Watermarked_1.9cea17de073b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-cli-testing/">
+<h2 class="card-title h4 my-0 py-0">4 Techniques for Testing Python Command-Line (CLI) Apps</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/modern-web-automation-with-python-and-selenium/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Modern Web Automation with Python and Selenium" src="https://files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg&amp;w=480&amp;sig=50e2b9f78d747f0a28c26bc708d0c38d5b13bb99 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg&amp;w=960&amp;sig=6641a261f44b7875ab6281555c8fa0f3aa9434b8 960w, https://files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/modern-web-automation-with-python-and-selenium/">
+<h2 class="card-title h4 my-0 py-0">Modern Web Automation With Python and Selenium</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/test-driven-development-of-a-django-restful-api/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django REST Framework logo" src="https://files.realpython.com/media/drf-logo.37921ea75c09.png" width="600" height="265" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-logo.37921ea75c09.png&amp;w=150&amp;sig=a50eb9db450bf9e3f8a6ac0f3cfe736936780c51 150w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-logo.37921ea75c09.png&amp;w=300&amp;sig=f05e59174b1e19a70406ec6125ab6a96ac9a81c5 300w, https://files.realpython.com/media/drf-logo.37921ea75c09.png 600w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/test-driven-development-of-a-django-restful-api/">
+<h2 class="card-title h4 my-0 py-0">Test Driven Development of a Django RESTful API</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/testing-third-party-apis-with-mock-servers/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Mocking in Python part two" src="https://files.realpython.com/media/python-mocks-part-two.2a6068853b01.png" width="460" height="194" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks-part-two.2a6068853b01.png&amp;w=115&amp;sig=3b903e3062b3b2c5c24732614462dc5ed4874154 115w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks-part-two.2a6068853b01.png&amp;w=230&amp;sig=52144ca07114872bfe8c6b0b8f8732c22290ce52 230w, https://files.realpython.com/media/python-mocks-part-two.2a6068853b01.png 460w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/testing-third-party-apis-with-mock-servers/">
+<h2 class="card-title h4 my-0 py-0">Testing External APIs With Mock Servers</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/testing-third-party-apis-with-mocks/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Mocking in Python part one" src="https://files.realpython.com/media/python-mocks.5791c54daf2b.png" width="460" height="194" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks.5791c54daf2b.png&amp;w=115&amp;sig=cc5b67d97a50cd36ae0a5484753c692a4e71bd89 115w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks.5791c54daf2b.png&amp;w=230&amp;sig=ab4aa6fe447819e7216d5a1c45292ac6fb1b69b0 230w, https://files.realpython.com/media/python-mocks.5791c54daf2b.png 460w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/testing-third-party-apis-with-mocks/">
+<h2 class="card-title h4 my-0 py-0">Mocking External APIs in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/the-minimum-viable-test-suite/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="&#x27;Minimum viable test&#x27;" src="https://files.realpython.com/media/minimum-viable-test.41818af722b4.png" width="413" height="206" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/minimum-viable-test.41818af722b4.png&amp;w=103&amp;sig=fca4d1ba1fd7c3fe1c33d0631fb033b0730cd5ff 103w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/minimum-viable-test.41818af722b4.png&amp;w=206&amp;sig=7714bf0a060b69669590b09d42231f832ffb54b2 206w, https://files.realpython.com/media/minimum-viable-test.41818af722b4.png 413w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/the-minimum-viable-test-suite/">
+<h2 class="card-title h4 my-0 py-0">The Minimum Viable Test Suite</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/django-1-6-test-driven-development/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Test driven development process" src="https://files.realpython.com/media/tdd.0904607f8ec9.png" width="407" height="401" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/tdd.0904607f8ec9.png&amp;w=101&amp;sig=400bfc00778dd9758509536747a44be82fad16e6 101w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/tdd.0904607f8ec9.png&amp;w=203&amp;sig=4da0ed6c955ac14f89ef4a2d6ca622af05bcb77f 203w, https://files.realpython.com/media/tdd.0904607f8ec9.png 407w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/django-1-6-test-driven-development/">
+<h2 class="card-title h4 my-0 py-0">Django 1.6 Test Driven Development</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/integration-testing-with-pyvows-and-django/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Integration Testing with pyVows and Django" src="https://cdn.realpython.com/static/real-python-placeholder-5.9970e12c8cf0.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-5.9970e12c8cf0.jpg&amp;w=480&amp;sig=8d392181f208f24deaf4db0ed1bbca2588d710aa 480w, https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-5.9970e12c8cf0.jpg&amp;w=960&amp;sig=15fae15e4f06b53bdeda0b8c5cc8986387d6e5d7 960w, https://cdn.realpython.com/static/real-python-placeholder-5.9970e12c8cf0.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/integration-testing-with-pyvows-and-django/">
+<h2 class="card-title h4 my-0 py-0">Integration Testing with pyVows and Django</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/unit-testing-with-pyvows-and-django/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Unit Testing with pyVows and Django" src="https://cdn.realpython.com/static/real-python-placeholder-3.5082db8a1a4d.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-3.5082db8a1a4d.jpg&amp;w=480&amp;sig=c121fbbfdf614cc5ea1272f360dcca37f52a621c 480w, https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-3.5082db8a1a4d.jpg&amp;w=960&amp;sig=5fce0c64e808c601b4f8072c9e56e8c98a8029f0 960w, https://cdn.realpython.com/static/real-python-placeholder-3.5082db8a1a4d.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/unit-testing-with-pyvows-and-django/">
+<h2 class="card-title h4 my-0 py-0">Unit Testing with pyVows and Django</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/asynchronous-testing-with-django-and-pyvows/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Asynchronous Testing with Django and pyVows" src="https://cdn.realpython.com/static/real-python-placeholder-2.bccfadebd073.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-2.bccfadebd073.jpg&amp;w=480&amp;sig=3fedb3e42948b49ca3f9ba50d1e06379ab0a5cf8 480w, https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-2.bccfadebd073.jpg&amp;w=960&amp;sig=ca870967afec1be4aebbc080941cc7e49287ad82 960w, https://cdn.realpython.com/static/real-python-placeholder-2.bccfadebd073.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/asynchronous-testing-with-django-and-pyvows/">
+<h2 class="card-title h4 my-0 py-0">Asynchronous Testing with Django and pyVows</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Testing in Django (Part 2) – Model Mommy vs Django Testing Fixtures" src="https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg&amp;w=480&amp;sig=81c4a126c536fc7171a42cff81535e6f45a90d28 480w, https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg&amp;w=960&amp;sig=dea21f887b9bd9d8e821392e5ffde90545abb9b1 960w, https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/testing-in-django-part-2-model-mommy-vs-django-testing-fixtures/">
+<h2 class="card-title h4 my-0 py-0">Testing in Django (Part 2) – Model Mommy vs Django Testing Fixtures</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/testing-in-django-part-1-best-practices-and-examples/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django Pony" src="https://files.realpython.com/media/django-pony.c61d43c33ab3.png" width="300" height="346" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/django-pony.c61d43c33ab3.png&amp;w=75&amp;sig=38c6ab50dee6916c977bacdff9bd392774ab7bac 75w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/django-pony.c61d43c33ab3.png&amp;w=150&amp;sig=3e76dd8633b0a8fc84db5ac12f12f1050f805940 150w, https://files.realpython.com/media/django-pony.c61d43c33ab3.png 300w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/testing-in-django-part-1-best-practices-and-examples/">
+<h2 class="card-title h4 my-0 py-0">Testing in Django (Part 1) – Best Practices and Examples</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/headless-selenium-testing-with-python-and-phantomjs/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Modern Web Automation with Python and Selenium" src="https://files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg&amp;w=480&amp;sig=50e2b9f78d747f0a28c26bc708d0c38d5b13bb99 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg&amp;w=960&amp;sig=6641a261f44b7875ab6281555c8fa0f3aa9434b8 960w, https://files.realpython.com/media/Modern-Web-Automation-With-Python-and-Selenium_Watermarked.08e8e08b976d.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/headless-selenium-testing-with-python-and-phantomjs/">
+<h2 class="card-title h4 my-0 py-0">Headless Selenium Testing with Python and PhantomJS</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="aLvJ4Iw8KatnMSksWeWYiqpY3M4NZcVKgQaWFhI65FoxWLZa50o8IvoUjH9HcKpz">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a42324b043755',m:'jAa3in6bVhWbpvLXu_JJODh5EbPVdmUbRqZ3OLbd1ZY-1632635886-0-AcN2khtsf7+aLl8M2VZQH0+vBc+7jVwsMFatUiLv08xBGoAUjrR3lfzSP3MY2xFe9D/MO3VXCM7nIS6235in6/PpFIUZVy932UGNOJCJD7w2gMZLhL+nSFsn3J2hGkjHV5klhsiyPzKhDYZ8GGnq0Kc=',s:[0x1c15cbff57,0x80ebe86f09],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

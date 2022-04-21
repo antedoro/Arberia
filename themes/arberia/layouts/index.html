@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="container main-content"> {{/*  Aggiunte da me ma non funge  */}}
+	<div class="row">
+		<div class="col-12">
+
+			{{/*  Featured article  */}}
+			{{ partial "featured.html" . }}
+
+			{{ partial "explore.html" . }} <!-- Explore Real Python -->
+
+			{{/*  Grid Layout 3x3  */}}
+			{{ partial "grid-layout-3x.html" . }}
+
+			{{/*  Grid Layout 2x2  */}}
+			{{ partial "grid-layout-2x.html" . }}
+
+			{{/*  List with search  */}}
+			<!-- {{ partial "list-with-search.html" . }} -->
+
+			{{ partial "lista.html" . }}
+
+			<!-- <main>
+				{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+				{{ range $paginator.Pages }}
+				{{ .Render "summary" }}
+				{{ end }}
+				{{ partial "pagination.html" . }}
+			</main> -->
+			{{/*  {{ partial "sidebar.html" . }}  */}}
+
+		</div>
+	</div>
+</div>
+{{ end }}

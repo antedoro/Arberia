@@ -1,0 +1,1502 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Advanced Python Tutorials – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="Here you&#x27;ll find Python tutorials that teach you advanced concepts so you can be on your way to become a master of the Python programming language.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/tutorials/advanced/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Advance_Watermarked.7780b18d1990.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Advance_Watermarked.7780b18d1990.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Advanced Python Tutorials – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/tutorials/advanced/">
+<meta property="og:description" content="Here you&#x27;ll find Python tutorials that teach you advanced concepts so you can be on your way to become a master of the Python programming language.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Ftutorials%2Fadvanced%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article ">
+<nav aria-label="breadcrumb" role="navigation">
+<ol class="breadcrumb border-bottom rounded-0">
+<li class="breadcrumb-item"><a href="/">Tutorials</a></li>
+<li class="breadcrumb-item"><a href="/tutorials/all/">Topics</a></li>
+<li class="breadcrumb-item active" aria-current="page">Advanced Python Tutorials</li>
+</ol>
+</nav>
+<div class="mt-4 mb-5"><h1 id="advanced-python-tutorials">Advanced Python Tutorials<a class="headerlink" href="#advanced-python-tutorials" title="Permanent link"></a></h1>
+<p>In this section you&rsquo;ll find Python tutorials that teach you advanced concepts so you can be on your way to become a master of the Python programming language. Once you&rsquo;re past the <a href="/tutorials/intermediate/">intermediate-level</a> you can start digging into these tutorials that will teach you advanced Python concepts and patterns.</p>
+<p>Becoming a Python expert takes time, but over time you&rsquo;ll master this beautiful programming language. It&rsquo;s worth it!</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Free Bonus:</strong> <a href="https://realpython.com/bonus/python-mastery-course/" class="alert-link" data-toggle="modal" data-target="#modal-python-mastery-course" data-focus="false" markdown="1">5 Thoughts On Python Mastery</a>, a free course for Python developers that shows you the roadmap and the mindset you&rsquo;ll need to take your Python skills to the next level.</p>
+</div></div>
+<div class="d-flex mb-5">
+<form class="form-inline col pl-0" action="/search" method="GET" id="home-search-form">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="form-control form-control-lg w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search&hellip;" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="home">
+</form>
+<button class="btn btn-primary col-3 px-2" type="submit" form="home-search-form">Search&nbsp;»</button>
+</div>
+<div class="row">
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/speech-recognition-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Speech Recognition" src="https://files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg&amp;w=480&amp;sig=9c3dbe8b9e5c0a05b993b7908bd6063b12664c1f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg&amp;w=960&amp;sig=c9fcc84aebc4f9e27842f9955fde304104c0ef3e 960w, https://files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/speech-recognition-python/">
+<h2 class="card-title h4 my-0 py-0">Speech Recognition With Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 20, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/cpython-internals-paperback/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="CPython Internals: Paperback Now Available!" src="https://files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg&amp;w=480&amp;sig=d6a3f8c9838e849519137c3955acb0d71d323e8e 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg&amp;w=960&amp;sig=f3cbbc22ca35ee1eb6da3a79e501914e13bcfb53 960w, https://files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/cpython-internals-paperback/">
+<h2 class="card-title h4 my-0 py-0">CPython Internals: Paperback Now Available!</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 23, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/gradebook-using-pandas-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Pandas Project: Make a Gradebook With Pandas" src="https://files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg&amp;w=480&amp;sig=75cf2ff3c945ce2a150c0ce590bf50b8b8b7559c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg&amp;w=960&amp;sig=f416d4b0c0d60a51940c443c769e1a12c30ca1ff 960w, https://files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/gradebook-using-pandas-python/">
+<h2 class="card-title h4 my-0 py-0">Using Pandas to Make a Gradebook in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 15, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-django-blog/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Build a Blog Using Django, Vue, and GraphQL" src="https://files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg&amp;w=480&amp;sig=7f5963a1ad25e2f8c391138e285fc5c9fc7436ef 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg&amp;w=960&amp;sig=91c7ebf812095ae17f92474b00df534e091ad4c3 960w, https://files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-django-blog/">
+<h2 class="card-title h4 my-0 py-0">Build a Blog Using Django, Vue, and GraphQL</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">May 24, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/text-classification-with-keras/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Practical Text Classification With Python and Keras" src="https://files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg&amp;w=480&amp;sig=48053911551f83ffdf687517b063eb61c50871ce 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg&amp;w=960&amp;sig=ce191ecc93737bc51b13b532dbbfb322ddcd6f10 960w, https://files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+ <span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/text-classification-with-keras/">
+<h2 class="card-title h4 my-0 py-0">Learn Text Classification With Python and Keras</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Apr 20, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/start-with-pyenv/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Managing Multiple Python Versions With pyenv" src="https://files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg&amp;w=480&amp;sig=99d1c42427be2baa8e412ff3f69d07a7f77dff3f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg&amp;w=960&amp;sig=fc14a2002ec0dda300bd3bdcdd32d75a12f1a851 960w, https://files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/start-with-pyenv/">
+<h2 class="card-title h4 my-0 py-0">Start Managing Multiple Python Versions With pyenv</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Apr 13, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/gradient-descent-algorithm-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Stochastic Gradient Descent Algorithm With Python and NumPy" src="https://files.realpython.com/media/Learning-How-Neural-Networks-Learn-Stochastic-Gradient-Descent-Algorithm-With-Python-and-NumPy_Watermarked.7aaa9d53d47e.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Learning-How-Neural-Networks-Learn-Stochastic-Gradient-Descent-Algorithm-With-Python-and-NumPy_Watermarked.7aaa9d53d47e.jpg&amp;w=480&amp;sig=ac464ff552e74b7b5303c1d507dcd0c79a22e22c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Learning-How-Neural-Networks-Learn-Stochastic-Gradient-Descent-Algorithm-With-Python-and-NumPy_Watermarked.7aaa9d53d47e.jpg&amp;w=960&amp;sig=d99ab1e6cee8fb9062dea164098df24d9c258aea 960w, https://files.realpython.com/media/Learning-How-Neural-Networks-Learn-Stochastic-Gradient-Descent-Algorithm-With-Python-and-NumPy_Watermarked.7aaa9d53d47e.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/gradient-descent-algorithm-python/">
+<h2 class="card-title h4 my-0 py-0">Stochastic Gradient Descent Algorithm With Python and NumPy</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 27, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/django-rest-framework/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Django Tutorials Artwork" src="https://files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg&amp;w=480&amp;sig=1ade3ce6287a30e706a46ebea7b21fcdbba42cec 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg&amp;w=960&amp;sig=501298010fbcc094e4548992989db1eefabdd5a3 960w, https://files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/django-rest-framework/">
+<h2 class="card-title h4 my-0 py-0">Building HTTP APIs With Django REST Framework</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 05, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/django-admin-customization/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Customize the Django Admin With Python" src="https://files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg&amp;w=480&amp;sig=c3b27499c651ee1bd4c0920ff070a5dad0970497 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg&amp;w=960&amp;sig=f24d3a21757afae4b0d939d1274458a493f4f2cf 960w, https://files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+ <span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/django-admin-customization/">
+<h2 class="card-title h4 my-0 py-0">Django Admin Customization</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Dec 29, 2020</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/speed-python-concurrency/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Speed Up Your Python Program With Concurrency" src="https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg&amp;w=480&amp;sig=951434601681effac959968bb3c640fe0e6593e6 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg&amp;w=960&amp;sig=0701db0cc734f9c07d183a51587bc671fff999c0 960w, https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/speed-python-concurrency/">
+<h2 class="card-title h4 my-0 py-0">Speed Up Python With Concurrency</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Dec 08, 2020</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-scipy-fft/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Fourier Transforms With scipy.fft: Python Signal Processing" src="https://files.realpython.com/media/Fourier-Transforms-With-scipyfft_Watermarked.964d2e02b5a6.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Fourier-Transforms-With-scipyfft_Watermarked.964d2e02b5a6.jpg&amp;w=480&amp;sig=7e852a2b94340ddd3c40df830eecbee000089c35 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Fourier-Transforms-With-scipyfft_Watermarked.964d2e02b5a6.jpg&amp;w=960&amp;sig=81c40cb047d1064a627e856ccbd850790a728411 960w, https://files.realpython.com/media/Fourier-Transforms-With-scipyfft_Watermarked.964d2e02b5a6.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-scipy-fft/">
+<h2 class="card-title h4 my-0 py-0">Fourier Transforms With scipy.fft: Python Signal Processing</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Nov 02, 2020</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/pytorch-vs-tensorflow/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="PyTorch vs Tensorflow for Your Python Deep Learning Project" src="https://files.realpython.com/media/Pytorch-vs-Tensorflow_Watermarked.efd16a6514e0.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pytorch-vs-Tensorflow_Watermarked.efd16a6514e0.jpg&amp;w=480&amp;sig=7e48cb5a0d4f912f14fda1e1b0e2c04387fb0d8f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pytorch-vs-Tensorflow_Watermarked.efd16a6514e0.jpg&amp;w=960&amp;sig=df6e24a62ad67bc39e113d8815ea6fa26ae0376d 960w, https://files.realpython.com/media/Pytorch-vs-Tensorflow_Watermarked.efd16a6514e0.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/pytorch-vs-tensorflow/">
+<h2 class="card-title h4 my-0 py-0">PyTorch vs TensorFlow for Your Python Deep Learning Project</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/customize-django-admin-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Customize the Django Admin With Python" src="https://files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg&amp;w=480&amp;sig=c3b27499c651ee1bd4c0920ff070a5dad0970497 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg&amp;w=960&amp;sig=f24d3a21757afae4b0d939d1274458a493f4f2cf 960w, https://files.realpython.com/media/Customizing-the-Django-Admin_Watermarked.f824debae521.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/customize-django-admin-python/">
+<h2 class="card-title h4 my-0 py-0">Customize the Django Admin With Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/generative-adversarial-networks/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Generative Adversarial Networks: Build Your First Models" src="https://files.realpython.com/media/An-Introduction-to-Generative-Adversarial-Networks-GANs_Watermarked.6b71bfd66fda.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Introduction-to-Generative-Adversarial-Networks-GANs_Watermarked.6b71bfd66fda.jpg&amp;w=480&amp;sig=3077aa10239cfdffc3b7ef57f8656be9e2f187f8 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Introduction-to-Generative-Adversarial-Networks-GANs_Watermarked.6b71bfd66fda.jpg&amp;w=960&amp;sig=b3bd3fbbe6377d9ffeb173545eaaa5d5fc9b1211 960w, https://files.realpython.com/media/An-Introduction-to-Generative-Adversarial-Networks-GANs_Watermarked.6b71bfd66fda.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/generative-adversarial-networks/">
+<h2 class="card-title h4 my-0 py-0">Generative Adversarial Networks: Build Your First Models</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/k-means-clustering-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="K-Means Clustering in Python: A Practical Guide" src="https://files.realpython.com/media/K-Means-Clustering-in-Python_Watermarked.14dc56523461.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/K-Means-Clustering-in-Python_Watermarked.14dc56523461.jpg&amp;w=480&amp;sig=70052724a56176bf419e27b48434b68900900ae0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/K-Means-Clustering-in-Python_Watermarked.14dc56523461.jpg&amp;w=960&amp;sig=f8078405eb6cf42e8cddc6349f592f0ce2a3d15b 960w, https://files.realpython.com/media/K-Means-Clustering-in-Python_Watermarked.14dc56523461.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/k-means-clustering-python/">
+<h2 class="card-title h4 my-0 py-0">K-Means Clustering in Python: A Practical Guide</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/pandas-project-gradebook/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Pandas Project: Make a Gradebook With Pandas" src="https://files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg&amp;w=480&amp;sig=75cf2ff3c945ce2a150c0ce590bf50b8b8b7559c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg&amp;w=960&amp;sig=f416d4b0c0d60a51940c443c769e1a12c30ca1ff 960w, https://files.realpython.com/media/Pandas-Project-Make-a-Gradebook-With-Pandas_Watermarked.a9392abb8afa.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/pandas-project-gradebook/">
+<h2 class="card-title h4 my-0 py-0">Pandas Project: Make a Gradebook With Python &amp; Pandas</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-unicode/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Unicode &amp; Character Encodings in Python: A Painless Guide" src="https://files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg&amp;w=480&amp;sig=65052a65c3787dcfe2072dbd11a20782b854bfd7 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg&amp;w=960&amp;sig=296da1874963f0b9c6bc2af8b963413c42525cf2 960w, https://files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-unicode/">
+<h2 class="card-title h4 my-0 py-0">Unicode in Python: Working With Character Encodings</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/pandas-settingwithcopywarning/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="SettingWithCopyWarning in Pandas: Views vs Copies" src="https://files.realpython.com/media/Understanding-SettingWithCopyWarning-and-Other-Pandas-Concepts_Watermarked.07c4f5d8a305.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Understanding-SettingWithCopyWarning-and-Other-Pandas-Concepts_Watermarked.07c4f5d8a305.jpg&amp;w=480&amp;sig=1e9b1c382c5edc90404258fdea40220cd8f601d4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Understanding-SettingWithCopyWarning-and-Other-Pandas-Concepts_Watermarked.07c4f5d8a305.jpg&amp;w=960&amp;sig=03810d0d5fbb105a196071a31896fdaa7c4b3ed7 960w, https://files.realpython.com/media/Understanding-SettingWithCopyWarning-and-Other-Pandas-Concepts_Watermarked.07c4f5d8a305.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/pandas-settingwithcopywarning/">
+<h2 class="card-title h4 my-0 py-0">SettingWithCopyWarning in Pandas: Views vs Copies</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/installable-django-app/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Write an Installable Django App" src="https://files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg&amp;w=480&amp;sig=5a1e6ccfd4b05aec4697274e92f45c203481983c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg&amp;w=960&amp;sig=acde84cf4be56593180bb3898291d743019a0980 960w, https://files.realpython.com/media/Writing-an-Installable-Django-App_Watermarked.82e05c23db7b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/installable-django-app/">
+<h2 class="card-title h4 my-0 py-0">How to Write an Installable Django App</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/move-django-model/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Move a Django Model to Another App" src="https://files.realpython.com/media/How-to-Move-a-Django-Model-to-Another-App_Watermarked.2377394ae39b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Move-a-Django-Model-to-Another-App_Watermarked.2377394ae39b.jpg&amp;w=480&amp;sig=7cf0ba36fb3dbb7f6b2e084f346d13a480d45957 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Move-a-Django-Model-to-Another-App_Watermarked.2377394ae39b.jpg&amp;w=960&amp;sig=c06eab775ec9a52ebf534b1ef4a5f74cf5617599 960w, https://files.realpython.com/media/How-to-Move-a-Django-Model-to-Another-App_Watermarked.2377394ae39b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/move-django-model/">
+<h2 class="card-title h4 my-0 py-0">How to Move a Django Model to Another App</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/alexa-python-skill/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Alexa Python Development: Build and Deploy an Alexa Skill" src="https://files.realpython.com/media/How-to-Build-Alexa-Skill-With-Python_NO-LOGO_Watermarked.37b99b0f17e7.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Build-Alexa-Skill-With-Python_NO-LOGO_Watermarked.37b99b0f17e7.jpg&amp;w=480&amp;sig=201e930608ef4c6f7f2697dec41b1cd06f2b787d 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Build-Alexa-Skill-With-Python_NO-LOGO_Watermarked.37b99b0f17e7.jpg&amp;w=960&amp;sig=1f616b44801fa49c90f8e1cb6c61a100342b4556 960w, https://files.realpython.com/media/How-to-Build-Alexa-Skill-With-Python_NO-LOGO_Watermarked.37b99b0f17e7.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/alexa-python-skill/">
+<h2 class="card-title h4 my-0 py-0">Alexa Python Development: Build and Deploy an Alexa Skill</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-bindings-overview/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Bindings: Calling C or C++ From Python" src="https://files.realpython.com/media/Python-Bindings-Overview_Watermarked.d6645cf64bca.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Bindings-Overview_Watermarked.d6645cf64bca.jpg&amp;w=480&amp;sig=7407ecdee41a68121dab13bdb99b2cd9564b06b5 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Bindings-Overview_Watermarked.d6645cf64bca.jpg&amp;w=960&amp;sig=167bee953e313117764d17984a59467b50ca5837 960w, https://files.realpython.com/media/Python-Bindings-Overview_Watermarked.d6645cf64bca.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-bindings-overview/">
+<h2 class="card-title h4 my-0 py-0">Python Bindings: Calling C or C++ From Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-interface/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Implementing an Interface in Python" src="https://files.realpython.com/media/Interfaces-in-Python_Watermarked.f9ce5bda238c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Interfaces-in-Python_Watermarked.f9ce5bda238c.jpg&amp;w=480&amp;sig=04ee32a1dd9ba53b36d1c5092f778c42627a7738 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Interfaces-in-Python_Watermarked.f9ce5bda238c.jpg&amp;w=960&amp;sig=7e61f7c3a91eb150a262bb519827506a0ceef654 960w, https://files.realpython.com/media/Interfaces-in-Python_Watermarked.f9ce5bda238c.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-interface/">
+<h2 class="card-title h4 my-0 py-0">Implementing an Interface in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/build-python-c-extension-module/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Building a Python C Extension Module" src="https://files.realpython.com/media/Extending-Python-With-C_Watermarked.c15d6edd2d82.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Extending-Python-With-C_Watermarked.c15d6edd2d82.jpg&amp;w=480&amp;sig=6c32a42edde4008ee09e9e0cf357f90f54206ebe 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Extending-Python-With-C_Watermarked.c15d6edd2d82.jpg&amp;w=960&amp;sig=83a3798c0bd387482df1785660450ff9bdbf36b9 960w, https://files.realpython.com/media/Extending-Python-With-C_Watermarked.c15d6edd2d82.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/build-python-c-extension-module/">
+<h2 class="card-title h4 my-0 py-0">Building a Python C Extension Module</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/cpython-source-code-guide/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Your Guide to the CPython Source Code" src="https://files.realpython.com/media/A-Tourist-Guide-to-the-CPython-Source-Code_Watermarked.5f05a87331ac.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/A-Tourist-Guide-to-the-CPython-Source-Code_Watermarked.5f05a87331ac.jpg&amp;w=480&amp;sig=96b8dae849a0d709af66b6b3a62c6851559ffe58 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/A-Tourist-Guide-to-the-CPython-Source-Code_Watermarked.5f05a87331ac.jpg&amp;w=960&amp;sig=245b94a3e730127741da1c7716a22f3da28bb915 960w, https://files.realpython.com/media/A-Tourist-Guide-to-the-CPython-Source-Code_Watermarked.5f05a87331ac.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/cpython-source-code-guide/">
+<h2 class="card-title h4 my-0 py-0">Your Guide to the CPython Source Code</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/manage-users-in-django-admin/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="What You Need to Know to Manage Users in Django Admin" src="https://files.realpython.com/media/Things-You-Need-to-Know-If-You-Manage-Users-in-Django-Admin_Watermarked.c7617b02ec94.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Things-You-Need-to-Know-If-You-Manage-Users-in-Django-Admin_Watermarked.c7617b02ec94.jpg&amp;w=480&amp;sig=4c6e19261038cff603e26e54228c1c867ef6da4f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Things-You-Need-to-Know-If-You-Manage-Users-in-Django-Admin_Watermarked.c7617b02ec94.jpg&amp;w=960&amp;sig=a11e77d9e91a4cd6902f130fb4d2d6544116cba4 960w, https://files.realpython.com/media/Things-You-Need-to-Know-If-You-Manage-Users-in-Django-Admin_Watermarked.c7617b02ec94.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/manage-users-in-django-admin/">
+<h2 class="card-title h4 my-0 py-0">What You Need to Know to Manage Users in Django Admin</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/functional-programming-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Core Python Tutorials Artwork" src="https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg&amp;w=480&amp;sig=360a2ddc0864f581f35398bddf046eb8ff973cf4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg&amp;w=960&amp;sig=7775f7d38f3b1e317b73d70a0a28d568253b6562 960w, https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+ <a class=" " href="/courses/functional-programming-python/">
+<h2 class="card-title h4 my-0 py-0">Functional Programming in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-encodings-guide/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Unicode &amp; Character Encodings in Python: A Painless Guide" src="https://files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg&amp;w=480&amp;sig=65052a65c3787dcfe2072dbd11a20782b854bfd7 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg&amp;w=960&amp;sig=296da1874963f0b9c6bc2af8b963413c42525cf2 960w, https://files.realpython.com/media/Encodings--Number-Systems_Watermarked.906d62e907dc.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-encodings-guide/">
+<h2 class="card-title h4 my-0 py-0">Unicode &amp; Character Encodings in Python: A Painless Guide</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-3-concurrency-asyncio-module/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Async IO in Python: A Complete Walkthrough" src="https://files.realpython.com/media/A-Complete-Walkthrough-of-Pythons-Asyncio_Watermarked.5b6b9a01fdc9.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/A-Complete-Walkthrough-of-Pythons-Asyncio_Watermarked.5b6b9a01fdc9.jpg&amp;w=480&amp;sig=beeb7c397c709f5377f2d2324cd89ae31858a527 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/A-Complete-Walkthrough-of-Pythons-Asyncio_Watermarked.5b6b9a01fdc9.jpg&amp;w=960&amp;sig=26fb56806480cebf392b54b2a7214bd8aee1db72 960w, https://files.realpython.com/media/A-Complete-Walkthrough-of-Pythons-Asyncio_Watermarked.5b6b9a01fdc9.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-3-concurrency-asyncio-module/">
+<h2 class="card-title h4 my-0 py-0">Hands-On Python 3 Concurrency With the asyncio Module</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/create-django-index-without-downtime/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Create an Index in Django Without Downtime" src="https://files.realpython.com/media/How-to-Create-An-Index-Concurrently-in-Django_Watermarked.943163f9806b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Create-An-Index-Concurrently-in-Django_Watermarked.943163f9806b.jpg&amp;w=480&amp;sig=7706bfb9dcb024d2540b1c9a20b55e0f555f73e6 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Create-An-Index-Concurrently-in-Django_Watermarked.943163f9806b.jpg&amp;w=960&amp;sig=198548ee34a2d702597a5cda33a941bf5fdee54e 960w, https://files.realpython.com/media/How-to-Create-An-Index-Concurrently-in-Django_Watermarked.943163f9806b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/create-django-index-without-downtime/">
+<h2 class="card-title h4 my-0 py-0">How to Create an Index in Django Without Downtime</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/intro-to-pyenv/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Managing Multiple Python Versions With pyenv" src="https://files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg&amp;w=480&amp;sig=99d1c42427be2baa8e412ff3f69d07a7f77dff3f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg&amp;w=960&amp;sig=fc14a2002ec0dda300bd3bdcdd32d75a12f1a851 960w, https://files.realpython.com/media/Getting-Started-With-pyenv_Watermarked.7b1dd55b32a1.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/intro-to-pyenv/">
+<h2 class="card-title h4 my-0 py-0">Managing Multiple Python Versions With pyenv</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/migrating-applications-python-2-python-3/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Advanced Python" src="https://files.realpython.com/media/Advance_Watermarked.7780b18d1990.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Advance_Watermarked.7780b18d1990.jpg&amp;w=480&amp;sig=0aa0bc1db5af1c5cbe8231af9b479c36b9ffebae 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Advance_Watermarked.7780b18d1990.jpg&amp;w=960&amp;sig=e8e868917e01e8ed15adaf7366fd7f3e52430df8 960w, https://files.realpython.com/media/Advance_Watermarked.7780b18d1990.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/migrating-applications-python-2-python-3/">
+<h2 class="card-title h4 my-0 py-0">Migrating Applications From Python 2 to Python 3</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-concurrency/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Speed Up Your Python Program With Concurrency" src="https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg&amp;w=480&amp;sig=951434601681effac959968bb3c640fe0e6593e6 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg&amp;w=960&amp;sig=0701db0cc734f9c07d183a51587bc671fff999c0 960w, https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-concurrency/">
+<h2 class="card-title h4 my-0 py-0">Speed Up Your Python Program With Concurrency</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/modeling-polymorphism-django-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Modeling Polymorphism in Django With Python" src="https://files.realpython.com/media/Implementing-A-Shopping-Cart-in-Django_Watermarked.5b79e80aee4f.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Implementing-A-Shopping-Cart-in-Django_Watermarked.5b79e80aee4f.jpg&amp;w=480&amp;sig=32a394e67c13f4c2fa940e562fd6d141862b60de 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Implementing-A-Shopping-Cart-in-Django_Watermarked.5b79e80aee4f.jpg&amp;w=960&amp;sig=912b4cb2d78543ec32af8e21aa0175b99dc0d88d 960w, https://files.realpython.com/media/Implementing-A-Shopping-Cart-in-Django_Watermarked.5b79e80aee4f.jpg 1920w" sizes="25vw">
+
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/modeling-polymorphism-django-python/">
+<h2 class="card-title h4 my-0 py-0">Modeling Polymorphism in Django With Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-keras-text-classification/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Practical Text Classification With Python and Keras" src="https://files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg&amp;w=480&amp;sig=48053911551f83ffdf687517b063eb61c50871ce 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg&amp;w=960&amp;sig=ce191ecc93737bc51b13b532dbbfb322ddcd6f10 960w, https://files.realpython.com/media/Practical-Text-Classification-with-Keras-and-Python_Watermark.fe326bd75146.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-keras-text-classification/">
+<h2 class="card-title h4 my-0 py-0">Practical Text Classification With Python and Keras</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/advanced-git-for-pythonistas/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Git Tips for Python Developers" src="https://files.realpython.com/media/Advanced-Git-for-Python-Developers_Watermarked.2b24c6a6fe45.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Advanced-Git-for-Python-Developers_Watermarked.2b24c6a6fe45.jpg&amp;w=480&amp;sig=e01eb2372e15b3bcd5126eb8db9026712281ee53 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Advanced-Git-for-Python-Developers_Watermarked.2b24c6a6fe45.jpg&amp;w=960&amp;sig=07a0d9c82a44267a9b347cab53060fc5e66b6ff6 960w, https://files.realpython.com/media/Advanced-Git-for-Python-Developers_Watermarked.2b24c6a6fe45.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/advanced-git-for-pythonistas/">
+<h2 class="card-title h4 my-0 py-0">Advanced Git Tips for Python Developers</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-sockets/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Socket Programming" src="https://files.realpython.com/media/Python-Sockets-Tutorial_Watermarked.815ce6c85789.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Sockets-Tutorial_Watermarked.815ce6c85789.jpg&amp;w=480&amp;sig=8ab0403d1d279933d2871e90f350c0c6a7814047 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Sockets-Tutorial_Watermarked.815ce6c85789.jpg&amp;w=960&amp;sig=63a279f0a3d22e185b687081fa04cd7f1106df33 960w, https://files.realpython.com/media/Python-Sockets-Tutorial_Watermarked.815ce6c85789.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-sockets/">
+<h2 class="card-title h4 my-0 py-0">Socket Programming in Python (Guide)</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-itertools/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Itertools" src="https://files.realpython.com/media/Itertools-in-Python-3-By-Example_Watermarked.28292955f88b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Itertools-in-Python-3-By-Example_Watermarked.28292955f88b.jpg&amp;w=480&amp;sig=3cf689c08083bbf39dd63f7f02b48fe63b9f3ccc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Itertools-in-Python-3-By-Example_Watermarked.28292955f88b.jpg&amp;w=960&amp;sig=69902644d725213bdda71763bbe50d9895a7c86a 960w, https://files.realpython.com/media/Itertools-in-Python-3-By-Example_Watermarked.28292955f88b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-itertools/">
+<h2 class="card-title h4 my-0 py-0">Itertools in Python 3, By Example</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/numpy-tensorflow-performance/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Pure Python vs NumPy vs TensorFlow performance comparison" src="https://files.realpython.com/media/Pure-Python-vs-NumPy-vs-TensorFlow-Performance-Comparison_Watermarked.14abf555e213.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pure-Python-vs-NumPy-vs-TensorFlow-Performance-Comparison_Watermarked.14abf555e213.jpg&amp;w=480&amp;sig=86a54b70ee26affd4f9ba7f502c18e222b3aa13f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pure-Python-vs-NumPy-vs-TensorFlow-Performance-Comparison_Watermarked.14abf555e213.jpg&amp;w=960&amp;sig=e080585c485b2337f95002fde0a05c888e496255 960w, https://files.realpython.com/media/Pure-Python-vs-NumPy-vs-TensorFlow-Performance-Comparison_Watermarked.14abf555e213.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/numpy-tensorflow-performance/">
+<h2 class="card-title h4 my-0 py-0">Pure Python vs NumPy vs TensorFlow Performance Comparison</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-metaclasses/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Metaclasses and Metaprogramming" src="https://files.realpython.com/media/Python-Metaclasses_Watermarked.67e351592b05.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Metaclasses_Watermarked.67e351592b05.jpg&amp;w=480&amp;sig=b94b467dddcda4c9f34f25c8b43fa1f5fe23f7a4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Metaclasses_Watermarked.67e351592b05.jpg&amp;w=960&amp;sig=6bf6266107d3b13a656ada0886d985fc7822d36e 960w, https://files.realpython.com/media/Python-Metaclasses_Watermarked.67e351592b05.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-metaclasses/">
+<h2 class="card-title h4 my-0 py-0">Python Metaclasses</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-speech-recognition/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Speech Recognition" src="https://files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg&amp;w=480&amp;sig=9c3dbe8b9e5c0a05b993b7908bd6063b12664c1f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg&amp;w=960&amp;sig=c9fcc84aebc4f9e27842f9955fde304104c0ef3e 960w, https://files.realpython.com/media/The-Ultimate-Guide-To-Speech-Recognition-With-Python_Watermarked.c0511baf27ba.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-speech-recognition/">
+<h2 class="card-title h4 my-0 py-0">The Ultimate Guide To Speech Recognition With Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-gil/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="What is the Python Global Interpreter Lock (GIL)?" src="https://files.realpython.com/media/What-is-the-Python-Global-Interpreter-Lock-GIL_Watermarked.e8bdd22f0b09.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/What-is-the-Python-Global-Interpreter-Lock-GIL_Watermarked.e8bdd22f0b09.jpg&amp;w=480&amp;sig=970e341e4b426c0a552cc4b9adcc4c97bade8c28 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/What-is-the-Python-Global-Interpreter-Lock-GIL_Watermarked.e8bdd22f0b09.jpg&amp;w=960&amp;sig=45756d2e8f4fec253379e8ed50314d00259fe32c 960w, https://files.realpython.com/media/What-is-the-Python-Global-Interpreter-Lock-GIL_Watermarked.e8bdd22f0b09.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-gil/">
+<h2 class="card-title h4 my-0 py-0">What Is the Python Global Interpreter Lock (GIL)?</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/copying-python-objects/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Shallow vs Deep Copying of Python Objects" src="https://files.realpython.com/media/Shallow-vs-Deep-Copying-of-Python-Objects_Watermarked.11b9b4323d35.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Shallow-vs-Deep-Copying-of-Python-Objects_Watermarked.11b9b4323d35.jpg&amp;w=480&amp;sig=65d6c433bab9f88d4b51a7d2579cf17edf862bf5 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Shallow-vs-Deep-Copying-of-Python-Objects_Watermarked.11b9b4323d35.jpg&amp;w=960&amp;sig=6dc8a2fdcf08a0a3e1163eb903d1ace0f28491fa 960w, https://files.realpython.com/media/Shallow-vs-Deep-Copying-of-Python-Objects_Watermarked.11b9b4323d35.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/copying-python-objects/">
+<h2 class="card-title h4 my-0 py-0">Shallow vs Deep Copying of Python Objects</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/code-evaluation-with-aws-lambda-and-api-gateway/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="AWS Lambda,  API gateway and Python logos" src="https://files.realpython.com/media/aws-lambda-api-gateway-python-logos.a12cf4dc33bf.png" width="284" height="197" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/aws-lambda-api-gateway-python-logos.a12cf4dc33bf.png&amp;w=71&amp;sig=8ebe128f202b27fdbc6219717d34eaff7c654484 71w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/aws-lambda-api-gateway-python-logos.a12cf4dc33bf.png&amp;w=142&amp;sig=915e2cbfad83be6d72da38934ea2991d6da439bb 142w, https://files.realpython.com/media/aws-lambda-api-gateway-python-logos.a12cf4dc33bf.png 284w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/code-evaluation-with-aws-lambda-and-api-gateway/">
+<h2 class="card-title h4 my-0 py-0">Code Evaluation With AWS Lambda and API Gateway</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/user-authentication-with-angular-4-and-flask/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Angular, Flask logos" src="https://files.realpython.com/media/angular4-auth.763a4a5f6e8a.png" width="383" height="190" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/angular4-auth.763a4a5f6e8a.png&amp;w=95&amp;sig=b82f4ba831b10904796e442de62ff12d5cfaae7b 95w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/angular4-auth.763a4a5f6e8a.png&amp;w=191&amp;sig=1d4c792811172dcc48cd10bbef5f6922f09aeaf6 191w, https://files.realpython.com/media/angular4-auth.763a4a5f6e8a.png 383w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/user-authentication-with-angular-4-and-flask/">
+<h2 class="card-title h4 my-0 py-0">User Authentication With Angular 4 and Flask</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/test-driven-development-of-a-django-restful-api/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django REST Framework logo" src="https://files.realpython.com/media/drf-logo.37921ea75c09.png" width="600" height="265" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-logo.37921ea75c09.png&amp;w=150&amp;sig=a50eb9db450bf9e3f8a6ac0f3cfe736936780c51 150w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-logo.37921ea75c09.png&amp;w=300&amp;sig=f05e59174b1e19a70406ec6125ab6a96ac9a81c5 300w, https://files.realpython.com/media/drf-logo.37921ea75c09.png 600w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/test-driven-development-of-a-django-restful-api/">
+<h2 class="card-title h4 my-0 py-0">Test Driven Development of a Django RESTful API</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/getting-started-with-django-channels/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django channels logo" src="https://files.realpython.com/media/django-channels-logo.51138674da28.png" width="500" height="195" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/django-channels-logo.51138674da28.png&amp;w=125&amp;sig=13e244ad52bda25120c5c179b511113606b3d22a 125w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/django-channels-logo.51138674da28.png&amp;w=250&amp;sig=a6d98ad2855a778f670165b8989ff07bff446788 250w, https://files.realpython.com/media/django-channels-logo.51138674da28.png 500w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/getting-started-with-django-channels/">
+<h2 class="card-title h4 my-0 py-0">Getting Started with Django Channels</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/token-based-authentication-with-flask/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Token-Based Authentication With Flask" src="https://files.realpython.com/media/Token-Based-Authentication-With-Flask_Watermarked.4922ba687156.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Token-Based-Authentication-With-Flask_Watermarked.4922ba687156.jpg&amp;w=480&amp;sig=834c63118e16f3c6b99a73e39764eb9f4a523554 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Token-Based-Authentication-With-Flask_Watermarked.4922ba687156.jpg&amp;w=960&amp;sig=b7dcd242e4356de0fe1011ac6d96146260eb4661 960w, https://files.realpython.com/media/Token-Based-Authentication-With-Flask_Watermarked.4922ba687156.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/token-based-authentication-with-flask/">
+<h2 class="card-title h4 my-0 py-0">Token-Based Authentication With Flask</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+</div>
+<nav aria-label="Page Navigation">
+<ul class="pagination pagination-lg justify-content-center">
+<li class="page-item disabled"><a class="page-link">«</a></li>
+<li class="page-item active"><a class="page-link">1</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/advanced/page/2/">2</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/advanced/page/2/">»</a></li>
+</ul>
+</nav>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="WClERP6h1XIpwVrwykR69Oitl4eYzTh82H0RsoifmsDzGO6eH6jgzThpBZjSMrLX">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-python-mastery-course" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+ <img class="img-fluid rounded" src="https://files.realpython.com/media/python-logo.8eb72ea6927b.png" width="1000" height="1000" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-logo.8eb72ea6927b.png&amp;w=250&amp;sig=3922247197a4a17add6954dd288123a4df30e55a 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-logo.8eb72ea6927b.png&amp;w=500&amp;sig=40c3b1b474ae94aec528188714ba5878a77362ea 500w, https://files.realpython.com/media/python-logo.8eb72ea6927b.png 1000w" sizes="50vw" alt="Python Logo">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">5 Thoughts On Python Mastery</p>
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="WClERP6h1XIpwVrwykR69Oitl4eYzTh82H0RsoifmsDzGO6eH6jgzThpBZjSMrLX">
+<input type="hidden" name="slug" value="python-mastery-course">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Start the Class »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a420fddcb3755',m:'OaggnH_ejZ8mNAaJsKtz7oy4onWKDCP7OBs282lSyFk-1632635881-0-AZPu3B4acslusRkJRvtkcehhsXIQ8kXbQ5RTNn9Iq8u0mfKeZsqmDFmcKX1x2ZIOHKmu4t/vS1b6gU941YnCyr8puQME+p6UUefK4wlLVr7ubeyHBSCAqrUW9FmQjpUBMk6IlQj8BBRx4GO1M3V5FMs=',s:[0x02a7a0f039,0x3423020ce8],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

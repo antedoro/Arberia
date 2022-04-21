@@ -1,0 +1,562 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Python Learning Paths – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="Take your coding skills to the next level with our Python roadmap including learning paths and study plans for beginner, intermediate, and advanced Python developers.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/learning-paths/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Python Learning Paths – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/learning-paths/">
+<meta property="og:description" content="Take your coding skills to the next level with our Python roadmap including learning paths and study plans for beginner, intermediate, and advanced Python developers.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Flearning-paths%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-10 col-lg-8 article">
+<div class="article-body page-body">
+<h1 class="text-center" id="python-learning-paths">Python Learning Paths<a class="headerlink" href="#python-learning-paths" title="Permanent link"></a></h1>
+<p class="text-center text-muted">Take your coding skills to the next level with Real Python&rsquo;s accelerated study plans for beginner, intermediate, and advanced Python developers.</p>
+<figure class=""><img loading="lazy" class="img-fluid mx-auto d-block rounded" src="https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg&amp;w=480&amp;sig=38c72a75dd9153f7459da5b6a588ca517a6cd5e2 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg&amp;w=960&amp;sig=ca5eedb3a732b54deb7151b21c5d90f043541904 960w, https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg 1920w" sizes="75vw" alt="Real Python Learning Paths" data-asset="1092" /></figure>
+<p>At <strong>Real Python</strong> you can learn all things Python from the ground up. Everything from the absolute basics of Python, to web development and web scraping, to data visualization, and beyond.</p>
+<p>Whether you&rsquo;re a beginner, intermediate or advanced Pythonista, our custom-made <em>Learning Paths</em> will take your skills to the next level with an accelerated, hands-on study plan.</p>
+<p>All of the resources in our learning paths were created by professional Python developers with years of experience to ensure you&rsquo;re learning the skills and techniques that really matter.</p>
+<p>You&rsquo;ll find your way through the entire Python curriculum, so you&rsquo;ll always know what to focus on next.</p>
+<h2 class="text-center" id="browse-learning-paths">Browse Learning Paths<a class="headerlink" href="#browse-learning-paths" title="Permanent link"></a></h2>
+<p class="text-center">Ready to continue your Python journey? Pick your Learning Path below and jump right in, or <a href="https://realpython.com/search?kind=path">search &amp; filter learning paths by topic and skill level</a>.</p>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python-interview/"><img src="https://files.realpython.com/media/Python-Interview-Questions_Watermarked.5c5245ea8638.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Interview-Questions_Watermarked.5c5245ea8638.jpg&amp;w=480&amp;sig=f410e58f736a16bf13e5fab912893780c434a847 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Interview-Questions_Watermarked.5c5245ea8638.jpg&amp;w=960&amp;sig=495594dad0dbbb6359ea2a0d5e31adaa73eaf275 960w, https://files.realpython.com/media/Python-Interview-Questions_Watermarked.5c5245ea8638.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="How to Stand Out in a Python Coding Interview" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python-interview/"><h2 class="my-0 h3">Ace Your Python Coding Interview</h2></a>
+<p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Python, Coding Problems, Algorithms</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/become-python-web-developer/"><img src="https://files.realpython.com/media/Python-Web-Development-Tutorials_Watermarked.52e99d14c99e.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Web-Development-Tutorials_Watermarked.52e99d14c99e.jpg&amp;w=480&amp;sig=bd7f16d5833c58f65387a5f7a4f0fc6f0f6f218e 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Web-Development-Tutorials_Watermarked.52e99d14c99e.jpg&amp;w=960&amp;sig=456f155c990a226778ee14d6c5eac50c1f722677 960w, https://files.realpython.com/media/Python-Web-Development-Tutorials_Watermarked.52e99d14c99e.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Web Development Tutorials Artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/become-python-web-developer/"><h2 class="my-0 h3">Become a Python Web Developer</h2></a>
+<p class="text-muted mb-0 small">14 Resources ⋅ <strong>Skills:</strong> Web Development, Django, Flask, APIs</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/data-collection-storage/"><img src="https://files.realpython.com/media/Data-Engineer-Interview-Questions-With-Python_Watermarked.6d30e181f8ae.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Data-Engineer-Interview-Questions-With-Python_Watermarked.6d30e181f8ae.jpg&amp;w=480&amp;sig=325bc920c96ce2e70657df37b8af9fcf9a3b0504 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Data-Engineer-Interview-Questions-With-Python_Watermarked.6d30e181f8ae.jpg&amp;w=960&amp;sig=69aef7f3ee7d74771f3c2c31a15fc0adce8289e4 960w, https://files.realpython.com/media/Data-Engineer-Interview-Questions-With-Python_Watermarked.6d30e181f8ae.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Data Engineer Interview Questions With Python" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/data-collection-storage/"><h2 class="my-0 h3">Data Collection &amp; Storage</h2></a>
+<p class="text-muted mb-0 small">9 Resources ⋅ <strong>Skills:</strong> Data Science, Databases</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/data-science-python-core-skills/"><img src="https://files.realpython.com/media/Python-Data-Science_Watermarked.2789459dd138.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Data-Science_Watermarked.2789459dd138.jpg&amp;w=480&amp;sig=f899f2a79cb8bf877f4738170216b5117586c851 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Data-Science_Watermarked.2789459dd138.jpg&amp;w=960&amp;sig=470f608e9adc25142652c0f7be409de969604b6b 960w, https://files.realpython.com/media/Python-Data-Science_Watermarked.2789459dd138.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Data Science Artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/data-science-python-core-skills/"><h2 class="my-0 h3">Data Science With Python Core Skills</h2></a>
+<p class="text-muted mb-0 small">15 Resources ⋅ <strong>Skills:</strong> Pandas, NumPy, Data Cleaning, Data Visualization</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/data-visualization-python/"><img src="https://files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg&amp;w=480&amp;sig=783b873487def2aea3fdfe35ab6dc5bfdb85bbde 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg&amp;w=960&amp;sig=b12228170000458357a92f522c8541245d0c5599 960w, https://files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Histogram Plots" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/data-visualization-python/"><h2 class="my-0 h3">Data Visualization With Python</h2></a>
+<p class="text-muted mb-0 small">6 Resources ⋅ <strong>Skills:</strong> NumPy, Matplotlib, Bokeh, Seaborn, pandas</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python-devops/"><img src="https://files.realpython.com/media/Python-DevOps-Tutorials_Watermarked.fd1f42e7d3a9.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-DevOps-Tutorials_Watermarked.fd1f42e7d3a9.jpg&amp;w=480&amp;sig=2d420b2ccfa5c300620fced61ef8a827b6ff6b19 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-DevOps-Tutorials_Watermarked.fd1f42e7d3a9.jpg&amp;w=960&amp;sig=35a318f958674698cb6d80564b4cb2362547f714 960w, https://files.realpython.com/media/Python-DevOps-Tutorials_Watermarked.fd1f42e7d3a9.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Dev-Ops artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python-devops/"><h2 class="my-0 h3">DevOps With Python</h2></a>
+<p class="text-muted mb-0 small">7 Resources ⋅ <strong>Skills:</strong> Packaging &amp; Deployment, AWS, Docker</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/django-web-development/"><img src="https://files.realpython.com/media/Get-Started-With-Django_Watermarked.15a1e05597bc.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Get-Started-With-Django_Watermarked.15a1e05597bc.jpg&amp;w=480&amp;sig=cbd839bf24243b2a9516bf261704d4cb091e9b1c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Get-Started-With-Django_Watermarked.15a1e05597bc.jpg&amp;w=960&amp;sig=47517922684a7a60556f5b210b739dfc2361c25c 960w, https://files.realpython.com/media/Get-Started-With-Django_Watermarked.15a1e05597bc.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Get Started With Django Part 1: Build a Portfolio App" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/django-web-development/"><h2 class="my-0 h3">Django for Web Development</h2></a>
+<p class="text-muted mb-0 small">16 Resources ⋅ <strong>Skills:</strong> Django, Web Development, Projects</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/flask-by-example/"><img src="https://files.realpython.com/media/Flask-Tutorials_Watermarked.9b20ecc307e0.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Flask-Tutorials_Watermarked.9b20ecc307e0.jpg&amp;w=480&amp;sig=a6c6099d3a288f8e1353cb624bd58cfa6fa469ea 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Flask-Tutorials_Watermarked.9b20ecc307e0.jpg&amp;w=960&amp;sig=8cd4cff8535986fd5ff2f3769f1db09326f80d16 960w, https://files.realpython.com/media/Flask-Tutorials_Watermarked.9b20ecc307e0.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Flask Tutorials Artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/flask-by-example/"><h2 class="my-0 h3">Flask by Example</h2></a>
+<p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Web Development, Flask Framework</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+ <a href="/learning-paths/functional-programming/"><img src="https://files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg&amp;w=480&amp;sig=3e8e0133e0aa066efd295c5cbd404c14bbe556cb 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg&amp;w=960&amp;sig=cbf1418462d7ffffbff4e951f83b134fbe6f442c 960w, https://files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Functional Programming in Python: When and How to Use It" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/functional-programming/"><h2 class="my-0 h3">Functional Programming With Python</h2></a>
+<p class="text-muted mb-0 small">7 Resources ⋅ <strong>Skills:</strong> Functional Programming Fundamentals</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/pyqt-gui-programming/"><img src="https://files.realpython.com/media/PyQt-Menus-and-Toolbars_Watermarked.11db4bbcce7a.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/PyQt-Menus-and-Toolbars_Watermarked.11db4bbcce7a.jpg&amp;w=480&amp;sig=00b481059e771bd55ea4f456260b670efc37f16b 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/PyQt-Menus-and-Toolbars_Watermarked.11db4bbcce7a.jpg&amp;w=960&amp;sig=310bb1fe2d3666c5ddd87690fa223ccda569af25 960w, https://files.realpython.com/media/PyQt-Menus-and-Toolbars_Watermarked.11db4bbcce7a.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python and PyQt: Creating Menus, Toolbars, and Status Bars" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/pyqt-gui-programming/"><h2 class="my-0 h3">GUI Programming With PyQt</h2></a>
+<p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Graphical User Interfaces (GUIs), Databases</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python3-introduction/"><img src="https://files.realpython.com/media/Newbie_Watermarked.a9319218252a.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Newbie_Watermarked.a9319218252a.jpg&amp;w=480&amp;sig=2bf95740b521f7ed95d383e23c126212b4e861dc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Newbie_Watermarked.a9319218252a.jpg&amp;w=960&amp;sig=d48331e331006f58f94f267ff1a53c9c64d624e9 960w, https://files.realpython.com/media/Newbie_Watermarked.a9319218252a.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Basics" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python3-introduction/"><h2 class="my-0 h3">Introduction to Python</h2></a>
+<p class="text-muted mb-0 small">29 Resources ⋅ <strong>Skills:</strong> Core Python 3, Python Syntax</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/machine-learning-python/"><img src="https://files.realpython.com/media/Python-Machine-Learning_Watermarked.c9684236cea2.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Machine-Learning_Watermarked.c9684236cea2.jpg&amp;w=480&amp;sig=21801f84b213656075b00ed7cde0ea278ff24b04 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Machine-Learning_Watermarked.c9684236cea2.jpg&amp;w=960&amp;sig=2d8551a4357ccee4d077e4742fa42c5666a951f1 960w, https://files.realpython.com/media/Python-Machine-Learning_Watermarked.c9684236cea2.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Machine Learning Artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/machine-learning-python/"><h2 class="my-0 h3">Machine Learning With Python</h2></a>
+<p class="text-muted mb-0 small">12 Resources ⋅ <strong>Skills:</strong> Image Processing, Text Classification, Speech Recognition</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/math-data-science/"><img src="https://files.realpython.com/media/Linear-Regression-in-Python_Watermarked.479f82188ace.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Linear-Regression-in-Python_Watermarked.479f82188ace.jpg&amp;w=480&amp;sig=3be4751287a71577f0b247ddeb74eca56610f78d 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Linear-Regression-in-Python_Watermarked.479f82188ace.jpg&amp;w=960&amp;sig=e30f8718b654654a64fdd74e39a62aa507f06595 960w, https://files.realpython.com/media/Linear-Regression-in-Python_Watermarked.479f82188ace.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Linear Regression in Python" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/math-data-science/"><h2 class="my-0 h3">Math for Data Science</h2></a>
+<p class="text-muted mb-0 small">5 Resources ⋅ <strong>Skills:</strong> Statistics, Correlation, Linear Regression, Logistic Regression</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/object-oriented-programming-oop-python/"><img src="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg&amp;w=480&amp;sig=de2e7c1e545e53d220fc57dcf8c1c43906e6c997 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg&amp;w=960&amp;sig=b47969c1efe592512c6b037f04417bdc92e791d1 960w, https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="OOP in Python 3" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/object-oriented-programming-oop-python/"><h2 class="my-0 h3">Object-Oriented Programming (OOP) With Python</h2></a>
+<p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> OOP Fundamentals, Classes &amp; Objects, Methods</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/pandas-data-science/"><img src="https://files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg&amp;w=480&amp;sig=04c14b4948a5b98eb558b1789ef348e9b038d749 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg&amp;w=960&amp;sig=ecc3a818a495a55eb361092f4d345469431f631a 960w, https://files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Pandas Tricks" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/pandas-data-science/"><h2 class="my-0 h3">Pandas for Data Science</h2></a>
+<p class="text-muted mb-0 small">13 Resources ⋅ <strong>Skills:</strong> Pandas, Data Science, Data Visualization</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/perfect-your-python-development-setup/"><img src="https://files.realpython.com/media/editors_art.ecb35ec44fce.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/editors_art.ecb35ec44fce.jpg&amp;w=480&amp;sig=babe28db3fcceff7d8bee5ef379d2560d011dacc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/editors_art.ecb35ec44fce.jpg&amp;w=960&amp;sig=689c1b4abad40dacba4c4563466c9ac5b3e8c24f 960w, https://files.realpython.com/media/editors_art.ecb35ec44fce.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python IDEs and Code Editors: The Complete Guide" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/perfect-your-python-development-setup/"><h2 class="my-0 h3">Perfect Your Python Development Setup</h2></a>
+<p class="text-muted mb-0 small">12 Resources ⋅ <strong>Skills:</strong> Python Setup, Code Editors &amp; IDEs, Running Apps</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python-basics-book/"><img src="https://files.realpython.com/media/python-basics-3d-transparent-centered-wide.eeaa9110a4a9.png" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-basics-3d-transparent-centered-wide.eeaa9110a4a9.png&amp;w=480&amp;sig=774df820eced26d6ec8ad9418d89cf718c60543a 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-basics-3d-transparent-centered-wide.eeaa9110a4a9.png&amp;w=960&amp;sig=32532aca0463178ef15a9e9ab12db2536c35678d 960w, https://files.realpython.com/media/python-basics-3d-transparent-centered-wide.eeaa9110a4a9.png 1920w" class="rounded img-fluid w-100 my-0" alt="Python Basics Book" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python-basics-book/"><h2 class="my-0 h3">Python Basics Book</h2></a>
+<p class="text-muted mb-0 small">19 Resources ⋅ <strong>Skills:</strong> Python 3 Fundamentals, Real-World Projects</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python-concurrency-parallel-programming/"><img src="https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg&amp;w=480&amp;sig=951434601681effac959968bb3c640fe0e6593e6 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg&amp;w=960&amp;sig=0701db0cc734f9c07d183a51587bc671fff999c0 960w, https://files.realpython.com/media/An-Overview-of-Concurrency-in-Python_Watermarked.c54c399ccb32.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Speed Up Your Python Program With Concurrency" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python-concurrency-parallel-programming/"><h2 class="my-0 h3">Python Concurrency &amp; Parallel Programming</h2></a>
+<p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Multithreading, Multiprocessing, Async IO</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python-gui-programming/"><img src="https://files.realpython.com/media/Building-a-Python-Calculator-With-PyQt_Watermarked.e4c1a5cf2018.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-a-Python-Calculator-With-PyQt_Watermarked.e4c1a5cf2018.jpg&amp;w=480&amp;sig=8767407ba409966b2f5a53b3a4cf251a57d31e9e 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-a-Python-Calculator-With-PyQt_Watermarked.e4c1a5cf2018.jpg&amp;w=960&amp;sig=cb2449bc471607f1cc5c91350cf58be819f4be48 960w, https://files.realpython.com/media/Building-a-Python-Calculator-With-PyQt_Watermarked.e4c1a5cf2018.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python and PyQt: Building a GUI Desktop Calculator" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python-gui-programming/"><h2 class="my-0 h3">Python GUI Programming</h2></a>
+<p class="text-muted mb-0 small">5 Resources ⋅ <strong>Skills:</strong> Graphical User Interfaces (GUIs)</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/python-web-scraping/"><img src="https://files.realpython.com/media/Python-Web-Scraping-Tutorials_Watermarked.7485bc476527.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Web-Scraping-Tutorials_Watermarked.7485bc476527.jpg&amp;w=480&amp;sig=3b48f0399df3a7c5ed44ee2f1823fbf0248a7f4c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Web-Scraping-Tutorials_Watermarked.7485bc476527.jpg&amp;w=960&amp;sig=51760944fc582c996e459567135078677a13e7bc 960w, https://files.realpython.com/media/Python-Web-Scraping-Tutorials_Watermarked.7485bc476527.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Web Scraping Category Artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/python-web-scraping/"><h2 class="my-0 h3">Python Web Scraping</h2></a>
+<p class="text-muted mb-0 small">6 Resources ⋅ <strong>Skills:</strong> Web Scraping, HTTP Requests, Data Parsing</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/test-your-python-apps/"><img src="https://files.realpython.com/media/Python-Testing-Tutorials_Watermarked.c65f5f59a723.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Testing-Tutorials_Watermarked.c65f5f59a723.jpg&amp;w=480&amp;sig=c07d31061d5464a6586e552ca441e7e930cb6724 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Testing-Tutorials_Watermarked.c65f5f59a723.jpg&amp;w=960&amp;sig=2446474c088295b2298ce74d6ea76832ddc942f2 960w, https://files.realpython.com/media/Python-Testing-Tutorials_Watermarked.c65f5f59a723.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Testing" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/test-your-python-apps/"><h2 class="my-0 h3">Test Your Python Apps</h2></a>
+<p class="text-muted mb-0 small">6 Resources ⋅ <strong>Skills:</strong> Testing Python Code, PyTest, Mocking</p>
+</div>
+</div>
+</div>
+<div class="container border rounded my-4">
+<div class="row my-3">
+<div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+<a href="/learning-paths/writing-pythonic-code/"><img src="https://files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg&amp;w=480&amp;sig=0e759ea0b1b64df4459d4fd3269617adde32c010 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg&amp;w=960&amp;sig=c740c36abd2ef75a62c6dcd274f40eec1bafe9ea 960w, https://files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg 1920w" class="rounded img-fluid w-100 my-0" alt="Python Best Practices Artwork" sizes="25vw"></a>
+</div>
+<div class="col">
+<div class="mt-3 d-md-none"></div>
+<p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+<a class="stretched-link" href="/learning-paths/writing-pythonic-code/"><h2 class="my-0 h3">Write More Pythonic Code</h2></a>
+<p class="text-muted mb-0 small">14 Resources ⋅ <strong>Skills:</strong> Best Practices, Writing Idiomatic Python</p>
+</div>
+</div>
+</div>
+<p class="text-center small my-4"><a href="https://feedback.realpython.com/realpython-com/?d=eyJwIjoicmVhbHB5dGhvbi1jb20iLCJzaWciOiJWMCM9emFMZUwjN15tRStKejw5bzx3ZGZ6M30pTClTaTtufl5sdClrIiwidCI6IlB5dGhvbiBMZWFybmluZyBQYXRocyIsInUiOiJodHRwczovL3JlYWxweXRob24uY29tL2xlYXJuaW5nLXBhdGhzLyJ9" target="_blank"><i class="fa fa-commenting-o" aria-hidden="true"></i> Got feedback on our learning paths?</a></p>
+<div class="alert alert-dark my-4">
+<p class="mb-0">Looking for real-time conversation? Visit the <a href="/community/" target="_blank">Real Python Community Chat</a> or join the next <a href="/office-hours/" target="_blank">&ldquo;Office&nbsp;Hours&rdquo; Live Q&amp;A Session</a>. Happy Pythoning!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a41e58fbf0dfe',m:'jBg4AZyi9hgzfynyX9ipFRxWgNIspEHB1O9cGb3eExo-1632635874-0-Af9XBK2wiSkhhO+QuWya3xidCrEieI7Fr32HqeK6N2iAp/fh17hWgbFRzUMg6jH+96TmMCmvG5xbNTOD+L5m1lhfPOfBX3n3Y6bU4FAQ1ROhzHDF0rwWBzKih2mj4446WA==',s:[0x6957798dc4,0x3474bbcf39],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

@@ -1,0 +1,1551 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Core Python Tutorials – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="This page features all of our &quot;pure Python&quot; tutorials that focus on the core language features.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/tutorials/python/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Core Python Tutorials – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/tutorials/python/">
+<meta property="og:description" content="This page features all of our &quot;pure Python&quot; tutorials that focus on the core language features.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Ftutorials%2Fpython%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article ">
+<nav aria-label="breadcrumb" role="navigation">
+<ol class="breadcrumb border-bottom rounded-0">
+<li class="breadcrumb-item"><a href="/">Tutorials</a></li>
+<li class="breadcrumb-item"><a href="/tutorials/all/">Topics</a></li>
+<li class="breadcrumb-item active" aria-current="page">Core Python Tutorials</li>
+</ol>
+</nav>
+<div class="mt-4 mb-5"><h1 id="core-python-language-tutorials">Core Python Language Tutorials<a class="headerlink" href="#core-python-language-tutorials" title="Permanent link"></a></h1>
+<p>This page features all of our &ldquo;pure Python&rdquo; tutorials that focus on the core language features.</p>
+<h2 id="what-is-python">What is Python?<a class="headerlink" href="#what-is-python" title="Permanent link"></a></h2>
+<p>Python, named after the British comedy group Monty Python, is an interpreted, interactive, object-oriented programming language. Its flexibility allows it to do many things, both big and small. Python can be used to write simple programs, but it also possesses the full power required to create complex, large-scale enterprise solutions. Some of the ways in which Python is used includes:</p>
+<ul>
+<li>Desktop graphical application development, including games;</li>
+<li>Mathematical and scientific analysis of data; and</li>
+<li>Web and internet development.</li>
+</ul>
+<p>Python&rsquo;s presence in the world of computer programming can be found everywhere. For example, Python is used in some of the largest internet sites on earth - like Reddit, Dropbox, and Youtube, to name a few. The popular Python web framework Django powers both Instagram and Pinterest. LucasFilms&rsquo;s award winning visual effects company, Industrial Light &amp; Magic, uses Python to make help make their magic come to life.</p>
+<p><em>It&rsquo;s easy to forget just how powerful Python is because it&rsquo;s so easy to learn.</em></p>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">Free Bonus: <strong>Python Cheat Sheet</strong></p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a <strong>Python Cheat Sheet (PDF)</strong> and learn the basics of Python 3, like working with data types, dictionaries, lists, and Python functions:</p>
+</div>
+<div class="col-xs-12 col-sm-5 text-center">
+<img class="img-fluid rounded mb-3 w-66" src="https://files.realpython.com/media/python-logo.8eb72ea6927b.png" alt="Python Cheat Sheet">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="slug" value="python-cheat-sheet-fancy">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send My Python Cheat Sheet »</button>
+</form>
+</div>
+</div>
+</div>
+</div></div>
+<div class="d-flex mb-5">
+<form class="form-inline col pl-0" action="/search" method="GET" id="home-search-form">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="form-control form-control-lg w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search&hellip;" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="home">
+</form>
+<button class="btn btn-primary col-3 px-2" type="submit" form="home-search-form">Search&nbsp;»</button>
+</div>
+<div class="row">
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-property/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s property(): Add Managed Attributes to Your Classes" src="https://files.realpython.com/media/Pythons-property_Watermarked.b0ccfdca7a54.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-property_Watermarked.b0ccfdca7a54.jpeg&amp;w=480&amp;sig=3ad63e4c1909d3c4b59ca21f1381aa4f322370e0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-property_Watermarked.b0ccfdca7a54.jpeg&amp;w=960&amp;sig=ef628ac83ab97fabd4b2b5f0a5bdca03e187f891 960w, https://files.realpython.com/media/Pythons-property_Watermarked.b0ccfdca7a54.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-property/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s property(): Add Managed Attributes to Your Classes</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<a href="/account/join/" class="mr-2"><i class="fa fa-star text-muted" aria-hidden="true"></i></a>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-fractions/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Representing Rational Numbers With Python Fractions" src="https://files.realpython.com/media/Working-With-Fractions-in-Python_Watermarked.0f6876a0e5b7.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Working-With-Fractions-in-Python_Watermarked.0f6876a0e5b7.jpeg&amp;w=480&amp;sig=b546d64998e47fb78907283f6a99eb7495bdf332 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Working-With-Fractions-in-Python_Watermarked.0f6876a0e5b7.jpeg&amp;w=960&amp;sig=7047d9bf3389ffd0c4d3e3b8e912a9ddf7f8a2b4 960w, https://files.realpython.com/media/Working-With-Fractions-in-Python_Watermarked.0f6876a0e5b7.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-fractions/">
+<h2 class="card-title h4 my-0 py-0">Representing Rational Numbers With Python Fractions</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<a href="/account/join/" class="mr-2"><i class="fa fa-star text-muted" aria-hidden="true"></i></a>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-sum-function/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s sum(): The Pythonic Way to Sum Values" src="https://files.realpython.com/media/Pythons-sum-with-Examples_Watermarked.7c31dab24d0e.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-sum-with-Examples_Watermarked.7c31dab24d0e.jpeg&amp;w=480&amp;sig=72e216acbf2db481782a229f3da2604bcecb7c89 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-sum-with-Examples_Watermarked.7c31dab24d0e.jpeg&amp;w=960&amp;sig=a74999722c4c45c4861d5fe9703f748c98bf1051 960w, https://files.realpython.com/media/Pythons-sum-with-Examples_Watermarked.7c31dab24d0e.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-sum-function/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s sum(): The Pythonic Way to Sum Values</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<a href="/account/join/" class="mr-2"><i class="fa fa-star text-muted" aria-hidden="true"></i></a>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python310-new-features/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python 3.10: Cool New Features for You to Try" src="https://files.realpython.com/media/Python-3.10-Cool-New-Features-for-You-to-Try_Watermarked.0e2e41a776c0.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-3.10-Cool-New-Features-for-You-to-Try_Watermarked.0e2e41a776c0.jpg&amp;w=480&amp;sig=781575adc94ec860ca05a194ae7a3a020c6f35a0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-3.10-Cool-New-Features-for-You-to-Try_Watermarked.0e2e41a776c0.jpg&amp;w=960&amp;sig=5edbead00d4e628a8bc3f6448d27c36ca6feeeff 960w, https://files.realpython.com/media/Python-3.10-Cool-New-Features-for-You-to-Try_Watermarked.0e2e41a776c0.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python310-new-features/">
+<h2 class="card-title h4 my-0 py-0">Python 3.10: Cool New Features for You to Try</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<a href="/account/join/" class="mr-2"><i class="fa fa-star text-muted" aria-hidden="true"></i></a>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/reverse-string-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Reverse Strings in Python: reversed(), Slicing, and More" src="https://files.realpython.com/media/Reverse-a-String-in-Python_Watermarked.12a880bd86ba.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Reverse-a-String-in-Python_Watermarked.12a880bd86ba.jpeg&amp;w=480&amp;sig=f978afb3d4ffa400ad83f8a4252209e43cd0c5a5 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Reverse-a-String-in-Python_Watermarked.12a880bd86ba.jpeg&amp;w=960&amp;sig=d8740d511c297cf99e503b99e9ef68cfacc76a57 960w, https://files.realpython.com/media/Reverse-a-String-in-Python_Watermarked.12a880bd86ba.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/reverse-string-python/">
+<h2 class="card-title h4 my-0 py-0">Reverse Strings in Python: reversed(), Slicing, and More</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<a href="/account/join/" class="mr-2"><i class="fa fa-star text-muted" aria-hidden="true"></i></a>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+ </small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/pass-by-reference-python-best-practices/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Pass by Reference in Python: Background and Best Practices" src="https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=480&amp;sig=b14ca080ad6077fb0d7bea085792161830eb15e0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=960&amp;sig=5a418c32bd4939ed23f45c62f83397282f085b18 960w, https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/pass-by-reference-python-best-practices/">
+<h2 class="card-title h4 my-0 py-0">Pass by Reference in Python: Best Practices</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Sep 21, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-and-operator/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Using the &quot;and&quot; Boolean Operator in Python" src="https://files.realpython.com/media/The-Python-and-Operator_Watermarked.dc3509449788.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-and-Operator_Watermarked.dc3509449788.jpeg&amp;w=480&amp;sig=66795cc8d50efd2c89afa211cef6d2fc8ec4655c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-and-Operator_Watermarked.dc3509449788.jpeg&amp;w=960&amp;sig=aeddabdd1868526bd6be346670560c536a72dabd 960w, https://files.realpython.com/media/The-Python-and-Operator_Watermarked.dc3509449788.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-and-operator/">
+<h2 class="card-title h4 my-0 py-0">Using the &quot;and&quot; Boolean Operator in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Sep 20, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-data-classes/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Data Classes in Python 3.7 (And Above)" src="https://files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg&amp;w=480&amp;sig=f90360ebf52a9ed604c464d9693ef4eda2d4b7e7 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg&amp;w=960&amp;sig=66bbdca5c7941e2abb3a554e5540934046f41a8f 960w, https://files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-data-classes/">
+<h2 class="card-title h4 my-0 py-0">Using Data Classes in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Sep 14, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/fibonacci-sequence-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="A Python Guide to the Fibonacci Sequence" src="https://files.realpython.com/media/Fibonacci-Sequence-in-Python_Watermarked.72d70998d712.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Fibonacci-Sequence-in-Python_Watermarked.72d70998d712.jpeg&amp;w=480&amp;sig=e6e7851d64a7f466d9dc6d1f3dfe86afcf8fbd97 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Fibonacci-Sequence-in-Python_Watermarked.72d70998d712.jpeg&amp;w=960&amp;sig=252caa0e1d1db05a26c0ebd9e99998137ab24c9e 960w, https://files.realpython.com/media/Fibonacci-Sequence-in-Python_Watermarked.72d70998d712.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/fibonacci-sequence-python/">
+<h2 class="card-title h4 my-0 py-0">A Python Guide to the Fibonacci Sequence</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Sep 08, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/how-long-does-it-take-to-learn-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How Long Does It Take to Learn Python" src="https://files.realpython.com/media/How-Long-Does-It-Take-to-Learn-Python_Watermarked.c85a6c016399.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-Long-Does-It-Take-to-Learn-Python_Watermarked.c85a6c016399.jpeg&amp;w=480&amp;sig=4aaa92d6ebba6bc007d4ba5521fb5802d965bfda 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-Long-Does-It-Take-to-Learn-Python_Watermarked.c85a6c016399.jpeg&amp;w=960&amp;sig=f23ebb0d3af1687a4eca6306376f3012c235d038 960w, https://files.realpython.com/media/How-Long-Does-It-Take-to-Learn-Python_Watermarked.c85a6c016399.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/how-long-does-it-take-to-learn-python/">
+<h2 class="card-title h4 my-0 py-0">How Long Does It Take to Learn Python?</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Sep 06, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-optional-arguments/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Using Python Optional Arguments When Defining Functions" src="https://files.realpython.com/media/How-to-Create-Python-Functions-with-Optional-Arguments_Watermarked.44a392a2f8cb.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Create-Python-Functions-with-Optional-Arguments_Watermarked.44a392a2f8cb.jpeg&amp;w=480&amp;sig=f4f44b41ba54cae248739ad2cd1ff98af071172c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Create-Python-Functions-with-Optional-Arguments_Watermarked.44a392a2f8cb.jpeg&amp;w=960&amp;sig=55ee70212c5ea677c8ed4f224e0fdf056f42db97 960w, https://files.realpython.com/media/How-to-Create-Python-Functions-with-Optional-Arguments_Watermarked.44a392a2f8cb.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-optional-arguments/">
+<h2 class="card-title h4 my-0 py-0">Using Python Optional Arguments When Defining Functions</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Aug 30, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/exploring-python-math-module/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="The Python math Module: Everything You Need to Know" src="https://files.realpython.com/media/Pythons-Math-Module-Guide_Watermarked.c882e267cbd0.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-Math-Module-Guide_Watermarked.c882e267cbd0.jpg&amp;w=480&amp;sig=d1e48425016943c8b1e8c34bd75b3472271cfe37 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-Math-Module-Guide_Watermarked.c882e267cbd0.jpg&amp;w=960&amp;sig=cf3c4e4284c8a41b96a8957663e926044e8b834f 960w, https://files.realpython.com/media/Pythons-Math-Module-Guide_Watermarked.c882e267cbd0.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/exploring-python-math-module/">
+<h2 class="card-title h4 my-0 py-0">Exploring the Python math Module</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Aug 24, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-deque/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s deque: Implement Efficient Queues and Stacks" src="https://files.realpython.com/media/Collections.deque_Watermarked.745551967e6b.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Collections.deque_Watermarked.745551967e6b.jpg&amp;w=480&amp;sig=ac970553e48dfe37670262af3f598e4226dfa741 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Collections.deque_Watermarked.745551967e6b.jpg&amp;w=960&amp;sig=938d96fa49981ff5c515e3e32b3707754e512378 960w, https://files.realpython.com/media/Collections.deque_Watermarked.745551967e6b.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-deque/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s deque: Implement Efficient Queues and Stacks</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Aug 23, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/effective-python-return-statement/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="The Python return Statement: Usage and Best Practices" src="https://files.realpython.com/media/The-Python-return-Statement_Watermarked.70065ef12032.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-return-Statement_Watermarked.70065ef12032.jpg&amp;w=480&amp;sig=019fe76824dc7ee3aee2f863aa28cf0c0d0a0bf4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-return-Statement_Watermarked.70065ef12032.jpg&amp;w=960&amp;sig=916c9a9ffed438c0626026f5ef4ac605d57fbe48 960w, https://files.realpython.com/media/The-Python-return-Statement_Watermarked.70065ef12032.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/effective-python-return-statement/">
+<h2 class="card-title h4 my-0 py-0">Using the Python return Statement Effectively</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Aug 10, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-sleep-uptime-bot/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python sleep(): How to Add Time Delays to Your Code" src="https://files.realpython.com/media/Python-wait-sleep-time-delays-in-Python_Watermarked.f486144e9c69.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-wait-sleep-time-delays-in-Python_Watermarked.f486144e9c69.jpg&amp;w=480&amp;sig=30b616f17b2bacca595352b43af30507efaba8bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-wait-sleep-time-delays-in-Python_Watermarked.f486144e9c69.jpg&amp;w=960&amp;sig=bb3b5b11f5a9fe01f0ce44d919bdfafcdb4de837 960w, https://files.realpython.com/media/Python-wait-sleep-time-delays-in-Python_Watermarked.f486144e9c69.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-sleep-uptime-bot/">
+<h2 class="card-title h4 my-0 py-0">Using sleep() to Code a Python Uptime Bot</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Aug 03, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-chainmap/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s ChainMap: Manage Multiple Contexts Effectively" src="https://files.realpython.com/media/Python-ChainMap_Watermarked.1c14e4ddc5e1.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-ChainMap_Watermarked.1c14e4ddc5e1.jpeg&amp;w=480&amp;sig=e2429185375ebbecd0ae6b1789ac75e121e877a3 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-ChainMap_Watermarked.1c14e4ddc5e1.jpeg&amp;w=960&amp;sig=2346548772b229e28758446065dccc590731b884 960w, https://files.realpython.com/media/Python-ChainMap_Watermarked.1c14e4ddc5e1.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-chainmap/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s ChainMap: Manage Multiple Contexts Effectively</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Aug 02, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-collections-module/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s collections: A Buffet of Specialized Data Types" src="https://files.realpython.com/media/Pythons-Collections-Module_Watermarked.31248400c167.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-Collections-Module_Watermarked.31248400c167.jpg&amp;w=480&amp;sig=09d36e43223c16bb90efd892c6de9f9c0960ed0f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pythons-Collections-Module_Watermarked.31248400c167.jpg&amp;w=960&amp;sig=ebba0fbe5bcf37d4962faa0d4bde503504bd22cb 960w, https://files.realpython.com/media/Pythons-Collections-Module_Watermarked.31248400c167.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-collections-module/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s collections: A Buffet of Specialized Data Types</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 26, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/what-can-i-do-with-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="What Can I Build With Python?" src="https://files.realpython.com/media/building_with_python_watermark.2ebe5beb5b1e.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/building_with_python_watermark.2ebe5beb5b1e.jpg&amp;w=480&amp;sig=c5db7f638be64966dd8593aa7fe3c410b80a7c00 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/building_with_python_watermark.2ebe5beb5b1e.jpg&amp;w=960&amp;sig=e730341c7c988f8a5116b9a9c689aedef9da1836 960w, https://files.realpython.com/media/building_with_python_watermark.2ebe5beb5b1e.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/what-can-i-do-with-python/">
+<h2 class="card-title h4 my-0 py-0">What Can I Do With Python?</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 07, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/defining-and-calling-functions/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Defining Your Own Python Function" src="https://files.realpython.com/media/Defining-Your-Own-Python-Function_Watermarked.d5b07e88ece4.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Defining-Your-Own-Python-Function_Watermarked.d5b07e88ece4.jpg&amp;w=480&amp;sig=1509d0cf1ac622d2cd814a29571ee7e1f8179887 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Defining-Your-Own-Python-Function_Watermarked.d5b07e88ece4.jpg&amp;w=960&amp;sig=6dfda94778f36738998b862d316fe9e91ae34f64 960w, https://files.realpython.com/media/Defining-Your-Own-Python-Function_Watermarked.d5b07e88ece4.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/defining-and-calling-functions/">
+<h2 class="card-title h4 my-0 py-0">Defining and Calling Python Functions</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 06, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-counter/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s Counter: The Pythonic Way to Count Objects" src="https://files.realpython.com/media/How-to-Use-Counter-in-Pythons-Collections-Module_Watermarked.e1831682657c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Counter-in-Pythons-Collections-Module_Watermarked.e1831682657c.jpg&amp;w=480&amp;sig=c5b326c67fcf5f619aed7becb13a23ea57c349db 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Counter-in-Pythons-Collections-Module_Watermarked.e1831682657c.jpg&amp;w=960&amp;sig=3835ed850088b061d76e5284ae6674455ca7fafc 960w, https://files.realpython.com/media/How-to-Use-Counter-in-Pythons-Collections-Module_Watermarked.e1831682657c.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-counter/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s Counter: The Pythonic Way to Count Objects</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 05, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-inner-functions/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Inner Functions" src="https://files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg&amp;w=480&amp;sig=0376ec85cd3ce91b9e3e7a0d764c6b3b93400892 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg&amp;w=960&amp;sig=9c0b848757700f7591c1bf4340618e00ac584e02 960w, https://files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-inner-functions/">
+<h2 class="card-title h4 my-0 py-0">Python Inner Functions</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 29, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-reverse-list/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Reverse Python Lists: Beyond .reverse() and reversed()" src="https://files.realpython.com/media/Reverse-a-List-in-Python_Watermarked.7002d78bbb86.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Reverse-a-List-in-Python_Watermarked.7002d78bbb86.jpg&amp;w=480&amp;sig=2e0ae77b630deba05fb8956c466769c98d991949 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Reverse-a-List-in-Python_Watermarked.7002d78bbb86.jpg&amp;w=960&amp;sig=7f80da96d817a2c05c5444ed683cb77373f92f40 960w, https://files.realpython.com/media/Reverse-a-List-in-Python_Watermarked.7002d78bbb86.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-reverse-list/">
+<h2 class="card-title h4 my-0 py-0">Reverse Python Lists: Beyond .reverse() and reversed()</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 28, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/cpython-internals-paperback/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="CPython Internals: Paperback Now Available!" src="https://files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg&amp;w=480&amp;sig=d6a3f8c9838e849519137c3955acb0d71d323e8e 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg&amp;w=960&amp;sig=f3cbbc22ca35ee1eb6da3a79e501914e13bcfb53 960w, https://files.realpython.com/media/CPython-Internals-Paperback-Announcement_Watermarked.825221cb36dc.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/cpython-internals-paperback/">
+<h2 class="card-title h4 my-0 py-0">CPython Internals: Paperback Now Available!</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 23, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-vs-javascript-for-python-devs/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python vs JavaScript for Pythonistas" src="https://files.realpython.com/media/Javascript-for-Python-Developers_Watermarked.109e4deda68a.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Javascript-for-Python-Developers_Watermarked.109e4deda68a.jpg&amp;w=480&amp;sig=bd96b1b79d649fbb6486d9b8d684086cfdd5c1e4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Javascript-for-Python-Developers_Watermarked.109e4deda68a.jpg&amp;w=960&amp;sig=3350f7d1024a9f42fb46ac1e8ee0c66bc734bc31 960w, https://files.realpython.com/media/Javascript-for-Python-Developers_Watermarked.109e4deda68a.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-vs-javascript-for-python-devs/">
+<h2 class="card-title h4 my-0 py-0">Python vs JavaScript for Python Developers</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 22, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-complex-numbers/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Simplify Complex Numbers With Python" src="https://files.realpython.com/media/Complex-Numbers-in-Python_Watermarked.a9803f9abcfd.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Complex-Numbers-in-Python_Watermarked.a9803f9abcfd.jpg&amp;w=480&amp;sig=b91038b3f8860eb0dc79ce706581a7480604bb17 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Complex-Numbers-in-Python_Watermarked.a9803f9abcfd.jpg&amp;w=960&amp;sig=85bbb1e63467870ef18f387f7f6d7e0af6ffe82a 960w, https://files.realpython.com/media/Complex-Numbers-in-Python_Watermarked.a9803f9abcfd.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-complex-numbers/">
+<h2 class="card-title h4 my-0 py-0">Simplify Complex Numbers With Python</h2>
+</a>
+<p class="card-text">
+ <small class="text-muted">
+<span class="mr-2">Jun 21, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-scipy-linalg/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Working With Linear Systems in Python With scipy.linalg" src="https://files.realpython.com/media/Linear-Algebra-With-SciPy-How-to-Use-scipy.linalg_Watermarked.2c70c2bf2eb5.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Linear-Algebra-With-SciPy-How-to-Use-scipy.linalg_Watermarked.2c70c2bf2eb5.jpg&amp;w=480&amp;sig=df2409e62601f1f66db8335667480a8583ccbce8 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Linear-Algebra-With-SciPy-How-to-Use-scipy.linalg_Watermarked.2c70c2bf2eb5.jpg&amp;w=960&amp;sig=700de7ccd7a4c11afcbaafee4b9dd00a70451fc7 960w, https://files.realpython.com/media/Linear-Algebra-With-SciPy-How-to-Use-scipy.linalg_Watermarked.2c70c2bf2eb5.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-scipy-linalg/">
+<h2 class="card-title h4 my-0 py-0">Working With Linear Systems in Python With scipy.linalg</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 16, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-filter-function/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s filter(): Extract Values From Iterables" src="https://files.realpython.com/media/How-to-Use-Pythons-filter__Watermarked.de0ab33d1dbe.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Pythons-filter__Watermarked.de0ab33d1dbe.jpg&amp;w=480&amp;sig=51c3dc69e3429636891b197812a5822115aca5e1 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Pythons-filter__Watermarked.de0ab33d1dbe.jpg&amp;w=960&amp;sig=545244729410e12da9b34480ca14f40e09c5762b 960w, https://files.realpython.com/media/How-to-Use-Pythons-filter__Watermarked.de0ab33d1dbe.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-filter-function/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s filter(): Extract Values From Iterables</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 09, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+ </div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/setting-up-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Basics Video Course Setup Artwork" src="https://files.realpython.com/media/Python-Basics-Video-Course_Watermarked.fb361d09beb9.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Basics-Video-Course_Watermarked.fb361d09beb9.jpg&amp;w=480&amp;sig=a7c8df4c2134707fc4e73a3fb60798c09a29000c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Basics-Video-Course_Watermarked.fb361d09beb9.jpg&amp;w=960&amp;sig=64abe964b42aab8a08c340e7f16736ac7f151cdd 960w, https://files.realpython.com/media/Python-Basics-Video-Course_Watermarked.fb361d09beb9.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/setting-up-python/">
+<h2 class="card-title h4 my-0 py-0">Python Basics: Setting Up Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 08, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-with-statement/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Context Managers and Python&#x27;s with Statement" src="https://files.realpython.com/media/Context-Managers--the-Python-with-Statement_Watermarked.5ddbde72923c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Context-Managers--the-Python-with-Statement_Watermarked.5ddbde72923c.jpg&amp;w=480&amp;sig=1f8915e1d9008b4c225cabcd41ca5bb033163ab1 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Context-Managers--the-Python-with-Statement_Watermarked.5ddbde72923c.jpg&amp;w=960&amp;sig=6eb4b1f3f6db389e2faec37e6367d84b601bda91 960w, https://files.realpython.com/media/Context-Managers--the-Python-with-Statement_Watermarked.5ddbde72923c.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-with-statement/">
+<h2 class="card-title h4 my-0 py-0">Context Managers and Python&#x27;s with Statement</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jun 02, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/using-python-or-operator/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Use the Python or Operator" src="https://files.realpython.com/media/The-Python-OR-Keyword_Watermarked.18e16a4721d8.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-OR-Keyword_Watermarked.18e16a4721d8.jpg&amp;w=480&amp;sig=a951451fafa68cd7674a2b933b256fb3277f39fa 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-OR-Keyword_Watermarked.18e16a4721d8.jpg&amp;w=960&amp;sig=b39aa1fff2ab364a669576da7087af197f537d20 960w, https://files.realpython.com/media/The-Python-OR-Keyword_Watermarked.18e16a4721d8.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/using-python-or-operator/">
+<h2 class="card-title h4 my-0 py-0">Using the Python or Operator</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">May 18, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-namedtuple/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Write Pythonic and Clean Code With namedtuple" src="https://files.realpython.com/media/Clean-Up-Your-Python-Code-With-namedtuple_Watermarked.04fbdec07d99.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Clean-Up-Your-Python-Code-With-namedtuple_Watermarked.04fbdec07d99.jpg&amp;w=480&amp;sig=4ac8c724dd6c00e62ba6a404e72b95a7ce8ecb94 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Clean-Up-Your-Python-Code-With-namedtuple_Watermarked.04fbdec07d99.jpg&amp;w=960&amp;sig=4ea1dc9eb021664c3f378eb963d3bc2d73cf50b4 960w, https://files.realpython.com/media/Clean-Up-Your-Python-Code-With-namedtuple_Watermarked.04fbdec07d99.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-namedtuple/">
+<h2 class="card-title h4 my-0 py-0">Write Pythonic and Clean Code With namedtuple</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">May 12, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/stacks-queues-ideal-data-structure/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Common Python Data Structures (Guide)" src="https://files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg&amp;w=480&amp;sig=bcbfb27594c396198a72a6e7a159c5ecd78e2ae4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg&amp;w=960&amp;sig=27e77510dc371d0b933baf7347d7310d7cc0616c 960w, https://files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/stacks-queues-ideal-data-structure/">
+<h2 class="card-title h4 my-0 py-0">Stacks and Queues: Selecting the Ideal Data Structure</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">May 11, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-recursion/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Recursion in Python: An Introduction" src="https://files.realpython.com/media/TUT20-Recursion-in-Python_Watermarked.692052217920.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/TUT20-Recursion-in-Python_Watermarked.692052217920.jpg&amp;w=480&amp;sig=852e9f8c070b5aac85f3a16749be36ef05736971 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/TUT20-Recursion-in-Python_Watermarked.692052217920.jpg&amp;w=960&amp;sig=47641e3698ca9dabc0e46695adcd93474f5fb8a5 960w, https://files.realpython.com/media/TUT20-Recursion-in-Python_Watermarked.692052217920.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-recursion/">
+<h2 class="card-title h4 my-0 py-0">Recursion in Python: An Introduction</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">May 10, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/map-function-transform-iterables/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s map(): Processing Iterables Without a Loop" src="https://files.realpython.com/media/The-Python-map-Function-Guide_Watermarked.fb03f3b28ccf.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-map-Function-Guide_Watermarked.fb03f3b28ccf.jpg&amp;w=480&amp;sig=cfd368d27ef15a7c3bd54ad448b9c00f240f679d 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Python-map-Function-Guide_Watermarked.fb03f3b28ccf.jpg&amp;w=960&amp;sig=5e69be27fd98a4751c4fc072aa176703c35dff34 960w, https://files.realpython.com/media/The-Python-map-Function-Guide_Watermarked.fb03f3b28ccf.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/map-function-transform-iterables/">
+<h2 class="card-title h4 my-0 py-0">Python&#x27;s map() Function: Transforming Iterables</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Apr 27, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/start-contributing-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Start Contributing to Python: Your First Steps" src="https://files.realpython.com/media/Start-Contributing-to-Python-Your-First-Steps_Watermarked.98cdc2378c89.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Start-Contributing-to-Python-Your-First-Steps_Watermarked.98cdc2378c89.jpg&amp;w=480&amp;sig=b053ab52a9037af1eeb2bbf8f4a0936bf9c57015 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Start-Contributing-to-Python-Your-First-Steps_Watermarked.98cdc2378c89.jpg&amp;w=960&amp;sig=33317a52fe1abd9427ee9df7c134e4788eeb341c 960w, https://files.realpython.com/media/Start-Contributing-to-Python-Your-First-Steps_Watermarked.98cdc2378c89.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/start-contributing-python/">
+<h2 class="card-title h4 my-0 py-0">Start Contributing to Python: Your First Steps</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Apr 12, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-vs-java-object-oriented-programming/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Object-Oriented Programming in Python vs Java" src="https://files.realpython.com/media/OOP-in-Python-vs-Java_Watermarked.d2a9a70a3455.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/OOP-in-Python-vs-Java_Watermarked.d2a9a70a3455.jpg&amp;w=480&amp;sig=b0e9140008528f2dc522a2b472af2353f9ceb9b0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/OOP-in-Python-vs-Java_Watermarked.d2a9a70a3455.jpg&amp;w=960&amp;sig=5502a2d2fd12ed049b7a53a0506e47b4de21094b 960w, https://files.realpython.com/media/OOP-in-Python-vs-Java_Watermarked.d2a9a70a3455.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-vs-java-object-oriented-programming/">
+<h2 class="card-title h4 my-0 py-0">Python vs Java: Object Oriented Programming</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Apr 06, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/understand-list-comprehensions/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="When to Use a List Comprehension in Python" src="https://files.realpython.com/media/List-Comprehensions-in-Python_Watermarked.39cf85bdd5d0.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/List-Comprehensions-in-Python_Watermarked.39cf85bdd5d0.jpg&amp;w=480&amp;sig=d6f388a4d22157e2af3f99fb7ee7858baf785ac5 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/List-Comprehensions-in-Python_Watermarked.39cf85bdd5d0.jpg&amp;w=960&amp;sig=e01982a1a4bf8061e09dafab0f0044421c33f188 960w, https://files.realpython.com/media/List-Comprehensions-in-Python_Watermarked.39cf85bdd5d0.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/understand-list-comprehensions/">
+<h2 class="card-title h4 my-0 py-0">Understanding Python List Comprehensions</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Mar 30, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-ordereddict/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="OrderedDict vs dict in Python: The Right Tool for the Job" src="https://files.realpython.com/media/How-to-Use-Python-ordereddict_Watermarked.c72eb348190d.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Python-ordereddict_Watermarked.c72eb348190d.jpg&amp;w=480&amp;sig=0e9747cd4b057bb1618561d04caf6a7ea211f7e7 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Python-ordereddict_Watermarked.c72eb348190d.jpg&amp;w=960&amp;sig=ca762fec64026b5312ef32b6649efa474b50ea0e 960w, https://files.realpython.com/media/How-to-Use-Python-ordereddict_Watermarked.c72eb348190d.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-ordereddict/">
+<h2 class="card-title h4 my-0 py-0">OrderedDict vs dict in Python: The Right Tool for the Job</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Mar 29, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/records-sets-ideal-data-structure/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Common Python Data Structures (Guide)" src="https://files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg&amp;w=480&amp;sig=bcbfb27594c396198a72a6e7a159c5ecd78e2ae4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg&amp;w=960&amp;sig=27e77510dc371d0b933baf7347d7310d7cc0616c 960w, https://files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/records-sets-ideal-data-structure/">
+<h2 class="card-title h4 my-0 py-0">Records and Sets: Selecting the Ideal Data Structure</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Mar 23, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/navigate-namespaces-scope/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Introduction to Python 3" src="https://files.realpython.com/media/Introduction-to-Python_Watermarked.48eeee4e1109.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Introduction-to-Python_Watermarked.48eeee4e1109.jpg&amp;w=480&amp;sig=8e6fc55d7acbeeb8087f33339eec0bd908d18f8a 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Introduction-to-Python_Watermarked.48eeee4e1109.jpg&amp;w=960&amp;sig=745658e80f1b110fe056bed3266de4e8b976089d 960w, https://files.realpython.com/media/Introduction-to-Python_Watermarked.48eeee4e1109.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/navigate-namespaces-scope/">
+<h2 class="card-title h4 my-0 py-0">Navigating Namespaces and Scope in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Mar 02, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/dicts-arrays-ideal-data-structure/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Common Python Data Structures (Guide)" src="https://files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg&amp;w=480&amp;sig=bcbfb27594c396198a72a6e7a159c5ecd78e2ae4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg&amp;w=960&amp;sig=27e77510dc371d0b933baf7347d7310d7cc0616c 960w, https://files.realpython.com/media/Python-Tricks-Chapter-on-Data-Structures_Watermarked.bafeb804a9db.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/dicts-arrays-ideal-data-structure/">
+<h2 class="card-title h4 my-0 py-0">Dictionaries and Arrays: Selecting the Ideal Data Structure</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Feb 23, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-functional-programming/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Functional Programming in Python: When and How to Use It" src="https://files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg&amp;w=480&amp;sig=3e8e0133e0aa066efd295c5cbd404c14bbe556cb 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg&amp;w=960&amp;sig=cbf1418462d7ffffbff4e951f83b134fbe6f442c 960w, https://files.realpython.com/media/TUT19---Functional-Programming_Watermarked.3bb16c6198a2.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-functional-programming/">
+<h2 class="card-title h4 my-0 py-0">Functional Programming in Python: When and How to Use It</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Feb 17, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/python-modulo-operator/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Modulo in Practice: How to Use the % Operator" src="https://files.realpython.com/media/Python-Modulo-in-Practice-How-to-Use-the--Operator_Watermarked.9ff8779304f0.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Modulo-in-Practice-How-to-Use-the--Operator_Watermarked.9ff8779304f0.jpg&amp;w=480&amp;sig=9e3fe67a23849a7e4b1d90960e8d99392de76fa4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Modulo-in-Practice-How-to-Use-the--Operator_Watermarked.9ff8779304f0.jpg&amp;w=960&amp;sig=57ca84ec1c3593f8546726d025f77ce32d429145 960w, https://files.realpython.com/media/Python-Modulo-in-Practice-How-to-Use-the--Operator_Watermarked.9ff8779304f0.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/python-modulo-operator/">
+<h2 class="card-title h4 my-0 py-0">Python Modulo: Using the % Operator</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Feb 09, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/inner-functions-what-are-they-good-for/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Inner Functions" src="https://files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg&amp;w=480&amp;sig=0376ec85cd3ce91b9e3e7a0d764c6b3b93400892 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg&amp;w=960&amp;sig=9c0b848757700f7591c1bf4340618e00ac584e02 960w, https://files.realpython.com/media/Inner-Functions-What-Are-They-Good-For_Watermarked.995d44a06cdd.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/inner-functions-what-are-they-good-for/">
+<h2 class="card-title h4 my-0 py-0">Python Inner Functions: What Are They Good For?</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Feb 08, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/evaluate-expressions-dynamically-python-eval/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python&#x27;s eval(): Evaluating Expressions Dynamically" src="https://files.realpython.com/media/A_Guide_to_Python_eval_With_Examples_Watermarked.ee49fab08904.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/A_Guide_to_Python_eval_With_Examples_Watermarked.ee49fab08904.jpg&amp;w=480&amp;sig=332116802809cb7f342ab5ffe3458c16d3e2d69c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/A_Guide_to_Python_eval_With_Examples_Watermarked.ee49fab08904.jpg&amp;w=960&amp;sig=0f222ed054add8dc25ded325e607fc0f58e1b1b7 960w, https://files.realpython.com/media/A_Guide_to_Python_eval_With_Examples_Watermarked.ee49fab08904.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/evaluate-expressions-dynamically-python-eval/">
+<h2 class="card-title h4 my-0 py-0">Evaluate Expressions Dynamically With Python eval()</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 26, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-first-steps/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Use Python: Your First Steps" src="https://files.realpython.com/media/UPDATE-First-Steps-With-Python_Watermarked.256721df5607.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/UPDATE-First-Steps-With-Python_Watermarked.256721df5607.jpg&amp;w=480&amp;sig=f6c63171285f07ac65721fa6e25394d6354174fa 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/UPDATE-First-Steps-With-Python_Watermarked.256721df5607.jpg&amp;w=960&amp;sig=c319c17000cee12db69153da7be43e09cbad6a0d 960w, https://files.realpython.com/media/UPDATE-First-Steps-With-Python_Watermarked.256721df5607.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-first-steps/">
+<h2 class="card-title h4 my-0 py-0">How to Use Python: Your First Steps</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 25, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/c-for-python-programmers/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="C for Python Programmers" src="https://files.realpython.com/media/Introduction-to-C-for-Python-Programmers_Watermarked.94e5e6d8e7cb.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Introduction-to-C-for-Python-Programmers_Watermarked.94e5e6d8e7cb.jpg&amp;w=480&amp;sig=a04f7f824d14ee558f48fd4b28280048b2db2573 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Introduction-to-C-for-Python-Programmers_Watermarked.94e5e6d8e7cb.jpg&amp;w=960&amp;sig=4ac77aaa2eced6e725561b7bcd35cd2ded3f2746 960w, https://files.realpython.com/media/Introduction-to-C-for-Python-Programmers_Watermarked.94e5e6d8e7cb.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/c-for-python-programmers/">
+<h2 class="card-title h4 my-0 py-0">C for Python Programmers</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 20, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/intro-sorting-algorithms/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Sorting Algorithms in Python" src="https://files.realpython.com/media/Sorting-Algorithms-in-Python-Merge-Sort-vs-Bubble-Sort_Watermarked.1d6c89c80883.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Sorting-Algorithms-in-Python-Merge-Sort-vs-Bubble-Sort_Watermarked.1d6c89c80883.jpg&amp;w=480&amp;sig=0cc149e972ff5c714c7fed670b2db5e0daddcc2b 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Sorting-Algorithms-in-Python-Merge-Sort-vs-Bubble-Sort_Watermarked.1d6c89c80883.jpg&amp;w=960&amp;sig=bb6677f24bdd405863b984f3882a9aaf7b5aaed6 960w, https://files.realpython.com/media/Sorting-Algorithms-in-Python-Merge-Sort-vs-Bubble-Sort_Watermarked.1d6c89c80883.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/intro-sorting-algorithms/">
+<h2 class="card-title h4 my-0 py-0">Introduction to Sorting Algorithms in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 19, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+</div>
+<nav aria-label="Page Navigation">
+<ul class="pagination pagination-lg justify-content-center">
+<li class="page-item disabled"><a class="page-link">«</a></li>
+<li class="page-item active"><a class="page-link">1</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/python/page/2/">2</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/python/page/3/">3</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/python/page/4/">4</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/python/page/5/">5</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/python/page/6/">6</a></li>
+<li class="page-item"><a class="page-link" href="/tutorials/python/page/2/">»</a></li>
+</ul>
+</nav>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="LtIL84CKEzb1rS9bhZhVeTtzJl3MHWzFRynYJDOIZ46bBLOTqLJ5EYsvZg8GUu3u">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a423068db3755',m:'myTNPPoGABNuvG7tE7neUJak.p8bmMWuFa_j7bT2OfA-1632635886-0-AQp1hkmPC5y7HAf5aQJAc4sUJyZOFd4/dCzeqj5NnSZ/3h2MNz/QAlAKwDQszhWmMnz08KzHeHhdngBbDmxh9lxtroSLquZyW3E+6j2qOhtkSkIV/DayTN7H0rf8HDWcUunqZp5EQo1cvWiM/NLfnwY=',s:[0xf5b1f6aad7,0x2f965e9959],}})();</script></body>
+</html>

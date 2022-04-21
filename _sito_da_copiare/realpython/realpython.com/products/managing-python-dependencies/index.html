@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, viewport-fit=cover">
+<meta name="description" content="Get up to speed with Python dependency management quickly and go from “writing scripts” to “building applications” with this complete course.">
+<meta name="keywords" content="">
+<title>Managing Python Dependencies – Real Python</title>
+<link rel="canonical" href="https://realpython.com/products/managing-python-dependencies/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/header.468cf1593feb.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/header.468cf1593feb.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Managing Python Dependencies – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/products/managing-python-dependencies/">
+<meta property="og:description" content="Get up to speed with Python dependency management quickly and go from “writing scripts” to “building applications” with this complete course.">
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900,400italic|Ubuntu+Mono" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/landing-legacy.bad0fdbf2071.css">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<div class="main-container">
+<div class="main wrapper clearfix">
+<div class="content">
+<h2 class="crosshead thin" id="to-every-python-developer-whos-tired-ofconstantly-reinventing-the-wheeland-found-him-or-herself-wondering">To Every Python Developer Who&rsquo;s <u>Tired of</u><br><span Style="color:red;">Constantly Reinventing the Wheel</span><br>and Found Him or Herself Wondering:<a class="headerlink" href="#to-every-python-developer-whos-tired-ofconstantly-reinventing-the-wheeland-found-him-or-herself-wondering" title="Permanent link"></a></h2>
+<h1 class="crosshead" id="which-frameworks-and-libraries-are-the-most-important-to-know-to-be-considered-an-effective-python-dev">&ldquo;Which frameworks and libraries are the <u>most important to know</u> to be considered an <u>effective</u> Python dev?&rdquo;<a class="headerlink" href="#which-frameworks-and-libraries-are-the-most-important-to-know-to-be-considered-an-effective-python-dev" title="Permanent link"></a></h1>
+<h2 class="crosshead thin" id="heres-how-to-go-from-writing-scripts-tobuilding-applications-with-pythonmaster-the-tools-of-the-trade-for-dependency-management-and-become-an-expert-atpicking-quality-python-libraries">Here&rsquo;s How to Go From <strong>&ldquo;Writing Scripts&rdquo;</strong> to<br><strong>&ldquo;Building Applications&rdquo;</strong> With Python,<br><u>Master</u> the <strong>Tools of the Trade</strong> for Dependency Management, and <u>Become an Expert</u> At<br>Picking <strong>Quality Python Libraries</strong>:<a class="headerlink" href="#heres-how-to-go-from-writing-scripts-tobuilding-applications-with-pythonmaster-the-tools-of-the-trade-for-dependency-management-and-become-an-expert-atpicking-quality-python-libraries" title="Permanent link"></a></h2>
+<p>Dear Fellow Python Developer,</p>
+<p>Not too long ago PyPI, the Python packaging repository, crossed <em>100,000</em> available third-party packages in total.</p>
+<p>That&rsquo;s an <em>overwhelming</em> number of packages to choose from&mdash;</p>
+<p>And this feeling of overwhelm and &ldquo;choice paralysis&rdquo; is exactly what held me back earlier on in my Python career.</p>
+<p>Here, let me explain:</p>
+<h2 class="crosshead thin" id="back-when-i-got-serious-about-building-my-python-skills-mastering-the-syntax-of-the-language-was-not-the-hardest-part">Back when I got &ldquo;serious&rdquo; about building my Python skills, mastering the syntax of the language was <u>not</u> the hardest part<a class="headerlink" href="#back-when-i-got-serious-about-building-my-python-skills-mastering-the-syntax-of-the-language-was-not-the-hardest-part" title="Permanent link"></a></h2>
+<p>Python&rsquo;s syntax seemed quite clear and intuitive by comparison, and I saw a (relatively) obvious path to learning it.</p>
+<p>But when it came to Python&rsquo;s 100k+ libraries and frameworks&mdash;</p>
+<p>That was simply an OVERWHELMING amount of information to digest.</p>
+<p>Even when I <em>knew there had to be</em> a library out there that already solved a problem I was facing&mdash;I drew a blank when it came to researching it.</p>
+<p>I didn&rsquo;t know what made a Python library or framework worthwhile.</p>
+<h2 class="crosshead thin" id="everything-blended-together-into-a-sea-of-modules-and-i-couldnt-winnow-out-the-useless-or-obsolete">Everything blended together into a &ldquo;sea of modules&rdquo; and I <u>couldn&rsquo;t winnow out</u> the useless or obsolete&mdash;<a class="headerlink" href="#everything-blended-together-into-a-sea-of-modules-and-i-couldnt-winnow-out-the-useless-or-obsolete" title="Permanent link"></a></h2>
+<p>In short, I was <em>lost</em> when it came to finding and judging the quality of Python libraries.</p>
+<p>And so I spun my wheels&hellip;</p>
+<div class="flex-grid">
+<div class="col">
+<p style="margin-top: 0;">Hi, my name is Dan Bader.</p>
+<p>Today I&rsquo;m an independent software engineer, book author, and speaker. I&rsquo;ve been writing code for more than 15 years.</p>
+<p>Python is my favorite programming language and these days I&rsquo;m fortunate to get to use Python almost every day in my work.</p>
+<p>What tripped me up as a fledgling Pythonista was this&mdash;</p>
+<p>I had the basics of Python under my belt, but:</p>
+</div>
+<div class="col" style="margin-left: 5%; margin-right: 5%">
+<div class="mugshot"><img src="https://files.realpython.com/media/daniel-square.d58bf4388750.jpg" alt="Oh hey!"></div>
+<h2 id="_1"><a class="headerlink" href="#_1" title="Permanent link"></a></h2>
+<strong>Dan Bader</strong> <em>helps Python developers take their coding skills and productivity to the next level. He's an independent software engineer, book author, and speaker and has been shipping software for more than a decade.</em>
+</div>
+</div>
+<h2 class="crosshead thin" id="i-struggled-when-it-came-to-adopting-the-right-workflows-and-tools-of-the-ecosystem-surrounding-the-core-language">I struggled when it came to adopting the right workflows and tools of the &ldquo;ecosystem&rdquo; surrounding the core language<a class="headerlink" href="#i-struggled-when-it-came-to-adopting-the-right-workflows-and-tools-of-the-ecosystem-surrounding-the-core-language" title="Permanent link"></a></h2>
+<p>Thus, I <u>wasted my time</u> reinventing existing solutions left and right&mdash;</p>
+<p>Sometimes I spent DAYS writing my own (crappy) versions of common building blocks like config file parsers, data validators, or visualization tools.</p>
+<p>Now, sure I learned quite a bit from doing that&hellip;</p>
+<p>But I <u>kept repeating</u> the same mistake and was &ldquo;reinventing the wheel&rdquo; even when under a tight deadline.</p>
+<p>In hindsight, my ignorance caused me a ton of undue stress and sleep deprivation.</p>
+<p>Part of it was overconfidence in my abilities&mdash;and another part was that</p>
+<h2 class="crosshead thin" id="i-lacked-experience-using-bread-and-butter-tools-like-the-pip-package-manager-virtual-environments-and-requirements-files">I lacked experience using &ldquo;bread and butter&rdquo; tools like the pip package manager, virtual environments, and requirements files.<a class="headerlink" href="#i-lacked-experience-using-bread-and-butter-tools-like-the-pip-package-manager-virtual-environments-and-requirements-files" title="Permanent link"></a></h2>
+<p>And it prevented me from breaking through to the next phase of developing code in Python.</p>
+<p>You see, languages such as C++ that I used before didn&rsquo;t have an advanced package management system like Python.</p>
+<p>Because I was used to &ldquo;copy-pasting&rdquo; third-party code into my own projects I missed out on the versioning features in Python packages.</p>
+<p>And instead of building applications that combined the power of several specialized building blocks</p>
+<h2 class="crosshead thin" id="i-strung-together-messy-copypasta-globs-of-code-that-i-couldnt-get-to-run-on-anyone-elses-computer">I strung together messy &ldquo;copypasta&rdquo; globs of code that I couldn&rsquo;t get to run on anyone else&rsquo;s computer<a class="headerlink" href="#i-strung-together-messy-copypasta-globs-of-code-that-i-couldnt-get-to-run-on-anyone-elses-computer" title="Permanent link"></a></h2>
+<p>Today I know I&rsquo;m not the only developer who had to overcome &ldquo;reinventing the wheel disease.&rdquo;</p>
+<p>Tragically, it is a <u>hidden roadblock</u> to many aspiring Pythonistas:</p>
+<p>What separates experienced Python programmers from learners is that they create new functionality with building blocks they already know.</p>
+<p>And leveraging these building blocks requires a vast set of inter-related pieces of knowledge&mdash;from packages to deployment:</p>
+<p><img alt="" src="https://files.realpython.com/media/questions-annotated.1828eaa9544f.png" /></p>
+<p>Now, most &ldquo;stuck&rdquo; Python developers are <u>aware</u> of the tools that could help them ascend from &ldquo;dependency hell&rdquo;&mdash;</p>
+<p>But they don&rsquo;t see how to use them to their advantage.</p>
+<p>If you ask a group of junior or intermediate Python developers about their experience you&rsquo;ll hear things like:</p>
+<h2 class="crosshead thin" id="ive-heard-people-say-you-should-always-use-a-virtualenv-but-i-dont-really-see-why-seems-like-an-additional-step-i-dont-really-need">&ldquo;I&rsquo;ve heard people say &lsquo;you should always use a virtualenv&rsquo; but I don&rsquo;t really see why. <strong>Seems like an additional step I don&rsquo;t really need&hellip;</strong>&ldquo;<a class="headerlink" href="#ive-heard-people-say-you-should-always-use-a-virtualenv-but-i-dont-really-see-why-seems-like-an-additional-step-i-dont-really-need" title="Permanent link"></a></h2>
+<p>You see, the problem is this:</p>
+<p>Too many Python developers know these tools <u>exist</u>, but they don&rsquo;t see <u>why</u> they&rsquo;re important and what makes them so powerful.</p>
+<p>And tragically, by ignoring the help that tools like pip, virtualenv, and PyPI provide these developers <u>sabotage</u> their own productivity.</p>
+<p>Ask yourself this:</p>
+<p>If you use Python and you&rsquo;re wondering how to go from &ldquo;writing scripts&rdquo; to &ldquo;building applications&rdquo;&mdash;</p>
+<p>Then there&rsquo;s a good chance that</p>
+<h2 class="crosshead thin" id="missing-dependency-management-skills-are-holding-you-back-from-your-full-potential-as-a-python-developer">Missing Dependency Management skills are holding you back from <u>your full potential</u> as a Python developer<a class="headerlink" href="#missing-dependency-management-skills-are-holding-you-back-from-your-full-potential-as-a-python-developer" title="Permanent link"></a></h2>
+<p>If you can fill in those gaps in your knowledge your productivity and efficiency as a Python developer will benefit greatly.</p>
+<p>That&rsquo;s what happened to me&mdash;</p>
+<p>Once I got the hang of Python&rsquo;s dependency management tools and workflows I was quickly able to shake off my &ldquo;reinventing the wheel disease.&rdquo;</p>
+<p>I can see now how removing this roadblock triggered a &ldquo;quantum leap&rdquo; in my productivity as a software developer.</p>
+<p>Here&rsquo;s the secret:</p>
+<h2 class="crosshead thin" id="by-leveraging-pythons-packaging-ecosystem-you-will-be-coding-at-a-higher-level-of-abstraction">By leveraging Python&rsquo;s packaging ecosystem you will be <strong>coding at a higher level</strong> of abstraction&mdash;<a class="headerlink" href="#by-leveraging-pythons-packaging-ecosystem-you-will-be-coding-at-a-higher-level-of-abstraction" title="Permanent link"></a></h2>
+<p>Instead of wasting time re-coding tools and functionality that already existed, I was able focus on the business goals.</p>
+<p>Figuring this out had a MASSIVE impact on my productivity and efficiency as a Python developer.</p>
+<p>Saying it allowed me to &ldquo;10X&rdquo; my output wouldn&rsquo;t be too far off.</p>
+<p>Within a month my peers and superiors had noticed my improved productivity&mdash;because they saw me tearing through sprint tickets left and right.</p>
+<h2 class="crosshead thin" id="its-one-of-the-easiest-and-quickest-wins-you-can-get-in-your-python-career">It&rsquo;s one of the easiest and quickest &ldquo;wins&rdquo; you can get in your Python career<a class="headerlink" href="#its-one-of-the-easiest-and-quickest-wins-you-can-get-in-your-python-career" title="Permanent link"></a></h2>
+<p>I&rsquo;ve seen it happen several times with 1:1 coaching clients and during workshops.</p>
+<p>But this kind of training can only reach so many people.</p>
+<p>And I wanted every Python developer to be able to take advantage of modern dependency management workflows and tools.</p>
+<p>So I got to work&hellip;</p>
+<p>And now, after months of recording and editing I&rsquo;m proud to introduce:</p>
+<h1 class="crosshead highlight" id="managing-python-dependencieswith-pip-and-virtual-environments"><em>Managing Python Dependencies</em><br>With Pip and Virtual Environments<a class="headerlink" href="#managing-python-dependencieswith-pip-and-virtual-environments" title="Permanent link"></a></h1>
+<p><img alt="Managing Python Dependencies Course" src="https://files.realpython.com/media/boxset-crop.dc1cb874c7a9.jpg" /></p>
+<h2 class="crosshead thin" id="master-the-tools-of-the-trade-for-dependency-management-and-start-leveragingpythons-packaging-ecosystem">Master the &ldquo;tools of the trade&rdquo; for dependency management and start leveraging<br>Python&rsquo;s packaging ecosystem<a class="headerlink" href="#master-the-tools-of-the-trade-for-dependency-management-and-start-leveragingpythons-packaging-ecosystem" title="Permanent link"></a></h2>
+<p><em>Managing Python Dependencies</em> is an organized, step-by-step system for mastering the tools and workflows that will help you reach the next level of productivity as a Python developer.</p>
+<p>It is a course consisting of 32 bite-sized video lessons, each focusing on a single concept.</p>
+<p>Progressing through the course, you&rsquo;ll quickly build up a comprehensive knowledge of dependency management best practices in Python at your own, comfortable pace.</p>
+<p>Along the way, you&rsquo;ll see hands on examples and step-by-step workflows that reinforce the skills you&rsquo;re learning.</p>
+<p>By the end, you&rsquo;ll know how to apply Python&rsquo;s recommended dependency management tools, like pip, virtualenvs, and requirements files effectively in the most common day-to-day development scenarios on Linux, macOS, and Windows.</p>
+<p>With <em>Managing Python Dependencies</em> you will:</p>
+<div class="big-bullets-hand">
+<ul>
+<li><strong><u>Code at a higher level and become more efficient</u></strong>: Leveraging Python&rsquo;s rich third-party library ecosystem let&rsquo;s you write better programs in a shorter amount of time. With a large body of freely available modules you can avoid reinventing the wheel and deliver higher quality Python software, faster. This is a great way for you to demonstrate senior level skills that will benefit your development career.</li>
+<li><strong><u>Get up to speed with Python dependency management quickly</u></strong>: Your time is your most important asset. If you can use it efficiently you will save your sanity—and a nice stack of money. This course is concise but thorough and will help you attain solid Python dependency management knowledge fast.</li>
+<li><strong><u>Go from &ldquo;writing scripts&rdquo; to &ldquo;building applications&rdquo; with Python</u></strong>: By taking advantage of Python’s rich packaging ecosystem you’ll be able to build substantial and full-featured applications in Python. You’ll know the best practices for finding and documenting application dependencies that put you right on track for deploying and shipping production-grade apps.</li>
+<li><strong><u>Find great libraries for a specific task at hand</u></strong>: This course teaches you a unique 7-step workflow for finding and identifying quality Python packages. Find out which libraries and tools are available on PyPI to help you. By quickly and easily identifying the correct libraries you’ll speed up your development efficiency by a large margin. Meet your deadlines and write better code at the same time by not having to &ldquo;reinvent the wheel.&rdquo;</li>
+<li><strong><u>Master &ldquo;the tools of the trade&rdquo; for dependency management</u></strong>: With this course you’ll master the tools and workflows recommended by the official Python Packaging Authority. By getting those skills under your belt you’ll be ready to work with the Python development and production environments used by professional development teams across the world. Knowing these &ldquo;tools of the trade&rdquo; by heart puts you at an advantage in any job interview situation.</li>
+<li><strong><u>&ldquo;Productionize&rdquo; your projects and share them with the world</u></strong>: You’ll see how to apply the best practices for defining and installing package dependencies in Python. You&rsquo;ll know how to get your programs ready to be deployed on production and automated testing environments and how to make it easy for other developers to contribute code with minimal setup effort.</li>
+<li><strong><u>Become more valuable as an employee and team member</u></strong>: With my detailed 7-step workflow for researching quality Python packages you’ll know how to document and justify added program dependencies to your team and your manager. By taking on more responsibilities and picking up these senior-level &ldquo;architectural&rdquo; skills you’ll rise head and shoulders above other devs stuck at the &ldquo;code monkey&rdquo; level.</li>
+</ul>
+</div>
+<div class="flex-grid">
+<div class="col">
+<p style="margin-top: 0;"><em>Managing Python Dependencies</em> will give you the tools and best practices to tackle Python application development with confidence.</p>
+<p>With six easy to digest training modules you&rsquo;ll pick up core Python development concepts at your own pace.</p>
+<p>Here&rsquo;s a breakdown of the course contents:</p>
+</div>
+<div class="col" style="margin-top: 1.5em">
+<img src="https://files.realpython.com/media/videos.dbf050aa0a98.jpg" />
+</div>
+</div>
+<div class="big-bullets">
+<ul>
+<li><strong>Module 1 &ndash; Welcome &amp; Course Overview</strong><br>You&rsquo;ll get a quick overview of the course and a rundown of the course curriculum. This helps prepare your &ldquo;mental map&rdquo; of what you&rsquo;re going to learn in the course so you can retain that knowledge more readily.</li>
+<li><strong>Module 2 &ndash; Managing Third-Party Dependencies With Pip</strong><br> Discover how dependency management enables modern software development by making well-packaged building blocks available in your own programs. You&rsquo;ll start with an introduction to dependency management in Python, including its main benefits and challenges. Then you&rsquo;ll get hands-on examples for how to work with &ldquo;pip&rdquo;, the official Python package manager.<br><br>You&rsquo;ll learn how to install and update pip, how it&rsquo;s command line interface works, and how you can use pip to install (and uninstall) third-party packages. You&rsquo;ll also see how to identify and selectively upgrade outdated dependencies. Besides that you&rsquo;ll gain a deep understanding of Python&rsquo;s packaging ecosystem, including the main package repositories like PyPI and Warehouse, as well as advanced version management features in pip.</li>
+<li><strong>Module 3 &ndash; Isolating Dependencies With Virtual Environments</strong><br>In this module you&rsquo;ll discover how leveraging sandboxed Python environments helps you avoid version conflicts and deployment headaches.<br><br>By following along with hands-on live demos you&rsquo;ll see how to smoothly integrate virtual environments into your Python (2.x or 3.x) development workflow. I&rsquo;m also sharing my personal command-line workflow and shell setup for making switching between virtual environments a breeze.</li>
+<li><strong>Module 4 &ndash; Finding Quality Python Packages</strong><br>In this core module in the course you&rsquo;ll master how to find and identify quality Python packages. You&rsquo;ll see how the more than 100,000 third-party packages available today will help you save time, avoid &ldquo;reinventing the wheel&rdquo;, and deliver your projects faster.<br><br>After that you&rsquo;ll see how to use curated lists for finding and picking the best Python packages for most common scenarios. Next, you&rsquo;ll pick up a unique 7-step workflow for finding and selecting quality Python packages.<br><br>This module is chock-full with hands-on examples and in-depth discussions of how to find and select the ideal Python library for any use case. You&rsquo;ll see exactly how I avoid low-quality packages in order to keep maintenance costs low and development headache-free. Besides that, you&rsquo;ll see how you can use the same process to justify and defend dependency decisions to your team or manager.</li>
+<li><strong>Module 5 &ndash; Setting Up Reproducible Environments &amp; Application Deploys</strong><br>See how to leverage &ldquo;requirements files&rdquo; and specific workflows to allow your Python programs to run flawlessly and with the exact same set of dependencies on local development environments, automated test or build servers (CI), as well as staging and production deployment targets.<br><br>By mastering these workflows and making your dependency installs 100% repeatable you&rsquo;ll save time and reduce development delays for yourself and everyone you work with. In this module you&rsquo;ll also see the habits and processes I use to structure my Python source code repositories in order to simplify dependency installs and make them more convenient.</li>
+<li><strong>Module 6 &ndash; Course Conclusion and Recap</strong><br>The course ends with a &ldquo;lightning review&rdquo; of the main concepts you picked up. This helps reinforce your learning and enables you to apply your favorite &ldquo;tricks&rdquo; and workflows from the course right away.</li>
+</ul>
+</div>
+<p>All 32 video lessons come at a full 1080p HD resolution for you to enjoy on any device you own.</p>
+<p>The videos use a high-contrast color scheme and large font sizes so you can focus 100% on improving your skills instead of deciphering text.</p>
+<p>To get a feel for the quality of the course, watch the course introduction lesson in the video embedded below:</p>
+<div class="youtube-embed"><iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/8TiCmhwi8dY?autoplay=0&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;origin=https://realpython.com" frameborder="0" allowfullscreen></iframe></div>
+<p>Those are the contents of the core course.</p>
+<p>And I&rsquo;m not stopping there&hellip;</p>
+<p>To help you deepen your mastery of dependency management tools and best practices in Python, I have put together several additional bonuses that perfectly complement this course.</p>
+<p><em>Managing Python Dependencies</em> is your &ldquo;one-stop shop&rdquo; for learning how to use modern dependency management practices and workflows with minimal time investment.</p>
+<p>Take advantage of these additional bonuses included with the course to speed up your learning progress:</p>
+<h1 class="crosshead" id="bonus-1-word-for-wordtranscripts-subtitlesall-32-videos">Bonus #1 &ndash; Word-for-Word<br>Transcripts &amp; Subtitles<br>(All 32 Videos)<a class="headerlink" href="#bonus-1-word-for-wordtranscripts-subtitlesall-32-videos" title="Permanent link"></a></h1>
+<div class="flex-grid">
+<div class="col">
+<p style="margin-top: 0;">This package includes full, human-made transcripts for all 32 video lessons in the course.</p>
+<p>With these transcripts following the course lessons will be a breeze even if English is not your native language. You can print these out to underline key parts and take notes as you follow along with the course.</p>
+<p>Also, all videos in the course include subtitles based on these transcripts. This makes the videos accessible for non-native speakers and developers with hearing impairments.</p>
+</div>
+<div class="col" style="margin: 0">
+<img src="https://files.realpython.com/media/transcripts.7cdf888f4c63.jpg" />
+</div>
+</div>
+<p style="margin-top: 0;">The transcript would cost you $121 just for the transcription itself (plus an extra $40 for editing and formatting) but you get it as part of this package at no additional cost.</p>
+<h3 class="crosshead thin highlight" id="value-161">Value: $161<a class="headerlink" href="#value-161" title="Permanent link"></a></h3>
+<h2 class="chevron-down" id="plus">&mdash; Plus &mdash;<a class="headerlink" href="#plus" title="Permanent link"></a></h2>
+<h1 class="crosshead" id="bonus-2-audio-only-mp3version-of-the-full-course">Bonus #2 &ndash; Audio-Only MP3<br>Version of the Full Course<a class="headerlink" href="#bonus-2-audio-only-mp3version-of-the-full-course" title="Permanent link"></a></h1>
+<p>As a software developer I know you&rsquo;re busy most of the time. The goal of this course is to make your life easier, not add more to your burden.</p>
+<p>That&rsquo;s why the course package includes a full audio-only version of the course contents as a bonus. If you&rsquo;re strapped for time you can listen to the whole course while you&rsquo;re commuting or working out.</p>
+<p>It&rsquo;ll help you quickly build up a mental &ldquo;knowledge map&rdquo; of the course contents. Then you can come back to the video lessons and the transcripts and quickly zoom in on the parts of the course that will really move the needle for you.</p>
+<p>Whenever I buy training courses for myself I like to listen to them several times again in audio-only form while I&rsquo;m at the gym or going for walks. This trick is a huge time saver and a great way to reinforce your learning.</p>
+<p>It cost me $57 to hire an audio engineer on Upwork to prepare this (DRM-free) MP3 version of the course. But you get it for free included with the course package.</p>
+<h3 class="crosshead thin highlight" id="value-57">Value: $57<a class="headerlink" href="#value-57" title="Permanent link"></a></h3>
+<h2 class="chevron-down" id="plus_1">&mdash; Plus &mdash;<a class="headerlink" href="#plus_1" title="Permanent link"></a></h2>
+<h1 class="crosshead" id="bonus-3-review-at-your-own-pace-pdf-slides-for-all-course-lessons">Bonus #3 &ndash; &ldquo;Review at Your Own Pace&rdquo; PDF Slides for All Course Lessons<a class="headerlink" href="#bonus-3-review-at-your-own-pace-pdf-slides-for-all-course-lessons" title="Permanent link"></a></h1>
+<div class="flex-grid">
+<div class="col">
+<p style="margin-top: 0;">These uncut PDF slides are perfect to keep handy as a quick reference when you want to refresh your memory about Python dependency management without scrobbling through the videos.</p>
+<p>I&rsquo;d highly recommend printing this PDF out and keeping it with you while you watch the videos. You can underline key points and make notes in the margins.</p>
+<p>Also, this PDF version of the course contents is fully searchable. This means the full course contents and examples are available at your fingertips and you get to review and annotate them at your leisure.</p>
+</div>
+<div class="col" style="margin: 0">
+<img src="https://files.realpython.com/media/slides.2ab9c461c254.jpg" />
+</div>
+</div>
+<p style="margin-top: 0;">If you had to extract the same content from the video lessons and package them up as PDFs it would likely take you several hours to do it. I've already done that work for you and the course package includes more than 190 crisp (and fully searchable) PDF slides with the course contents.</p>
+<h3 class="crosshead thin highlight" id="value-29">Value: $29<a class="headerlink" href="#value-29" title="Permanent link"></a></h3>
+<h2 class="chevron-down" id="plus_2">&mdash; Plus &mdash;<a class="headerlink" href="#plus_2" title="Permanent link"></a></h2>
+<h1 class="crosshead" id="bonus-4-track-your-learning-progress-course-workbook">Bonus #4 &ndash; &ldquo;Track Your Learning Progress&rdquo; Course Workbook<a class="headerlink" href="#bonus-4-track-your-learning-progress-course-workbook" title="Permanent link"></a></h1>
+<div class="flex-grid">
+<div class="col">
+<p style="margin-top: 0;">Use this printable 28-page PDF workbook to track your learning progress as you make your way through the course.</p>
+<p>Each page in the workbook is dedicated to a single lesson in the course. You can mark lessons and modules as completed and take your learning notes in the blank space on each page. This will help you build up your mental &ldquo;knowledge map&rdquo; of the topic and reinforce your learning.</p>
+</div>
+<div class="col" style="margin: 0">
+<img src="https://files.realpython.com/media/workbook.713ffb60fd65.jpg" />
+</div>
+</div>
+<p style="margin-top: 0;">By completing this workbook you'll get a personalized "cheat sheet" covering your unique perspective on the topic. A personalized cheat sheet is a priceless learning resource that you can come back to again and again to refresh your memory. I paid $14 to get the workbook layout produced and edited but you get it here for free included with the course package.</p>
+<h3 class="crosshead thin highlight" id="value-14">Value: $14<a class="headerlink" href="#value-14" title="Permanent link"></a></h3>
+<p>That&rsquo;s it for the bonus content included with the full course.</p>
+<p>Let&rsquo;s do a quick recap so you&rsquo;ll know exactly whether or not <em>Managing Python Dependencies</em> is right for you:</p>
+<h2 class="crosshead-unpadded thin" id="course-goalsby-the-end-of-the-course-youll-know-how-to"><em>Course Goals</em>:<br>By the End of the Course You&rsquo;ll Know How To:<a class="headerlink" href="#course-goalsby-the-end-of-the-course-youll-know-how-to" title="Permanent link"></a></h2>
+<div class="big-bullets">
+<ul>
+<li>Install, use, and manage third-party Python packages with the &ldquo;pip&rdquo; package manager on Windows, macOS, and Linux.</li>
+<li>Isolate project dependencies with so-called virtual environments to avoid version conflicts in your Python projects.</li>
+<li>Apply a complete 7-step workflow for finding and identifying quality third-party packages to use in your own Python projects (and justifying your decisions to your team or manager.)</li>
+<li>Set up repeatable development environments and application deployments using the &ldquo;pip&rdquo; package manager and requirements files.</li>
+</ul>
+</div>
+<h2 class="crosshead-unpadded thin" id="who-should-take-this-course">Who Should Take This Course?<a class="headerlink" href="#who-should-take-this-course" title="Permanent link"></a></h2>
+<div class="big-bullets-hand">
+<ul>
+<li><strong>This course is for Python developers</strong> wanting to break through to the next phase of developing code by becoming more <u>efficient, productive, and skilled</u> using Python&rsquo;s rich library ecosystem.</li>
+<li>If you&rsquo;ve ever caught yourself thinking <em>&ldquo;There&rsquo;s got to be a Python package out there that does exactly what I want&hellip;But how do I find it?&rdquo;</em> this course will fill in the missing pieces for you. Discover the industry best practices around choosing and managing third-party dependencies for your Python 2 or Python 3 projects.</li>
+<li>If you already know how to use alternative package managers like <em>Conda</em> you&rsquo;ll discover how to use the standards-compliant tools and workflows supported by any Python distribution and used in most production application deployments.</li>
+</ul>
+</div>
+<h2 class="crosshead-unpadded thin" id="who-should-not-take-this-course">Who Should <u>Not</u> Take This Course:<a class="headerlink" href="#who-should-not-take-this-course" title="Permanent link"></a></h2>
+<div class="big-bullets-hand">
+<ul>
+<li><strong>This course is probably not for you</strong> if you already have an in-depth understanding of how packaging works in Python, you&rsquo;re 100% happy with your current workflow for managing dependencies, you know how to find and identify quality Python packages for any situation, and you you can easily justify your decisions to your team or manager.</li>
+</ul>
+</div>
+<h1 class="crosshead" id="you-may-be-wonderinghow-much-will-all-this-cost">You May Be Wondering,<br>How Much Will All This Cost?<a class="headerlink" href="#you-may-be-wonderinghow-much-will-all-this-cost" title="Permanent link"></a></h1>
+<p>When I totaled it up, the complete course package contains a whopping $657 worth of Python training.</p>
+<p>It&rsquo;s a &ldquo;one-stop shop&rdquo; for the dependency management skills and best practices that professional Python engineers are expected to know.</p>
+<p>With this course you&rsquo;re making the smartest kind of investment there is&mdash;an investment in yourself and your own abilities as a developer.</p>
+<p>And an investment like this could easily pay you back 50X or 100X in the next year.</p>
+<p>That might sound over the top, but it&rsquo;s actually pretty realistic.</p>
+<p>Think about it&hellip;</p>
+<p>The workflows and best practices you&rsquo;ll get from this course are &ldquo;table stakes&rdquo; for senior-level Python development jobs.</p>
+<p>Dependency management and application deployment is one of those &ldquo;icky&rdquo; but important topics that&rsquo;s often overlooked by inexperienced developers.</p>
+<p>With your newfound skill set you&rsquo;ll be able to demonstrate that you care about *shipping* a quality product and not &ldquo;just coding&rdquo; it.</p>
+<p>You&rsquo;ll be able to help your colleagues with your expertise. Teaching your coworkers new tricks and workflows that make them more productive is the best way to get recognized as an expert.</p>
+<p>Pulling everyone else around you UP and making them more productive is a fantastic way to show you&rsquo;re ready to take on more responsibility&mdash;which in turn is one of the best ways to get yourself promoted.</p>
+<p>Here&rsquo;s the kicker:</p>
+<p>Even though the &ldquo;return on investment&rdquo; for this course is excellent, I wanted it to price it so it is affordable for <em>all</em> Pythonistas in my audience.</p>
+<p>That&rsquo;s why I&rsquo;m pricing the course at a fair</p>
+<h1 class="crosshead thin highlight" id="49">$49<a class="headerlink" href="#49" title="Permanent link"></a></h1>
+<p>This offer is for the complete course, including all bonuses.</p>
+<p>To put that in perspective, that&rsquo;s less than what you might pay for a decent keyboard or mouse.</p>
+<p>And as an investment in yourself and your development career it will pay off many times over, quickly.</p>
+<p>Now before we go on, let&rsquo;s take a look at what you get in the course package:</p>
+<div style="background:#B8D8A9; padding: 1px 20px;">
+<h1 class="crosshead"><em>Managing Python Dependencies</em><br>The Complete Course</h1>
+<img src="https://files.realpython.com/media/boxset-crop.5d98f3e16799.png">
+<h2 class="crosshead">Here's What's In "The Box":</h2>
+<div class="big-bullets"><ul>
+<li>32 HD-quality video lessons ($396)</li>
+<li>Word-for-Word transcripts for all course lessons ($161)</li>
+<li>190+ "Review at Your Own Pace" PDF slides ($29)</li>
+<li>"Track Your Learning Progress" Course Workbook ($14)</li>
+<li>DRM-free MP3 audio-only version of the course ($57)</li>
+<li>Lifetime access to the course</li>
+</ul></div>
+<div class="belcher-button-box">
+<h2>Managing Python Dependencies</h2>
+<p style="font-size: 40px; font-weight: 400; text-align:center;"><s>&nbsp;$657&nbsp;</s> <span style="color:red;">$49</span></p>
+<a class="belcher-button jsPurchaseButton" id="bbdb58343c-933e-44ac-8e3d-dde33d07e1a7-1" data-product-group="db58343c-933e-44ac-8e3d-dde33d07e1a7" href="#!">Add To Cart »</a>
+<div class="payment-methods">
+<img src="https://cdn.realpython.com/static/payment-icons/visa.49cf14da27bb.png" alt="Visa" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/mastercard.9a31c90b38c7.png" alt="Mastercard" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/amex.c593b222a8ab.png" alt="American Express" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/paypal.b9ea80c6ddec.png" alt="PayPal" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/applepay-sm.4567c887e9e6.png" alt="Apple Pay" style="max-width: 15%;" />
+</div>
+</div>
+</div>
+<h1 class="crosshead" id="what-pythonistas-are-saying">What Pythonistas Are Saying:<a class="headerlink" href="#what-pythonistas-are-saying" title="Permanent link"></a></h1>
+<div class="testimonial testimonial-box">
+<h3 id="very-informative-thoughtfully-approached-and-easy-to-understand">&ldquo;Very informative, thoughtfully approached, and easy to understand&rdquo;<a class="headerlink" href="#very-informative-thoughtfully-approached-and-easy-to-understand" title="Permanent link"></a></h3>
+<blockquote>
+<p>&ldquo;I took this course in hopes that I may learn a few things. I already use virtual environments and was familiar with that concept.</p>
+<p><strong>I found your course to be very informative, thoughtfully approached, and easy to understand.</strong></p>
+<p><strong>You did not leave me behind and, in no part, did I feel lost or confused. In fact, count me in on your next course!</strong></p>
+<p>I thought that the presentation as a workflow was very helpful. Nice and sequential.</p>
+<p>You answered several questions that I have had, especially with managing the requirements.txt file.</p>
+<p>The audio and video quality are really good. The colors chosen contrast nicely which makes reading the bullet points, etc easy while you are talking.</p>
+<p>The font size of the presented material in the videos was nice. Your voice cadence and tone were nice. The volume level was good. The length of the videos seemed appropriate. Not so long as to lose attention and not too short so that you wear out your mouse clicking the next video.</p>
+<p>When showing the command line in the terminal window, the font size there was nice as well!&rdquo;</p>
+</blockquote>
+<div class="testimonial-attribution">
+<img src="https://files.realpython.com/media/testimonial-ba.b72b9549a458.jpg">
+<div>
+<span class="name">Bill Arbuckle</span>
+<span class="job">Certified General Appraiser &amp; Pythonista</span>
+</div>
+</div>
+</div>
+<div class="testimonial testimonial-box">
+<h3 id="a-well-done-interesting-and-enjoyable-program">&ldquo;A well done, interesting and enjoyable program&rdquo;<a class="headerlink" href="#a-well-done-interesting-and-enjoyable-program" title="Permanent link"></a></h3>
+<blockquote>
+<p>&ldquo;I thought it a well done, interesting and enjoyable program that provides very usable tips and tricks for people to be better prepared to start developing applications in Python. I&rsquo;m going after the Sublime Python guide next.&rdquo;</p>
+</blockquote>
+<div class="testimonial-attribution">
+<div>
+<span class="name">Jeff M.</span>
+<span class="job">Network Engineer</span>
+</div>
+</div>
+</div>
+<div class="testimonial testimonial-box">
+<h3 id="the-missing-piece-i-needed-to-start-on-my-continuous-integration-project">&ldquo;The missing piece I needed to start on my continuous integration project&rdquo;<a class="headerlink" href="#the-missing-piece-i-needed-to-start-on-my-continuous-integration-project" title="Permanent link"></a></h3>
+<blockquote>
+<p>&ldquo;I have used pip ever since starting with Python, but after taking this course, I found that I was not using it as well as I could be.</p>
+<p>In the past I had been manually installing 3rd-party modules and always getting the &lsquo;latest&rsquo; versions when moving environments or starting new ones, which sometimes caused problems with code - not to mention that I sometimes forgot which modules I needed to install!</p>
+<p><strong>With the workflow outlined, I think my programs will become a lot more portable; this was the missing piece I needed to start on my continuous integration project with Jenkins!</strong></p>
+<p><strong>Overall this course was full of straight-forward examples and will definitely help me untangle the web that is Python.</strong>&ldquo;</p>
+</blockquote>
+<div class="testimonial-attribution">
+<img src="https://files.realpython.com/media/testimonial-dm.1fe7fa7b254c.jpg">
+<div>
+<span class="name">Daniel Meyer</span>
+<span class="job">Sr. Desktop Administrator at Tesla Inc.</span>
+</div>
+</div>
+</div>
+<div class="testimonial testimonial-box">
+<h3 id="will-move-my-python-skills-to-another-level">&ldquo;Will move my Python skills to another level&rdquo;<a class="headerlink" href="#will-move-my-python-skills-to-another-level" title="Permanent link"></a></h3>
+<blockquote>
+<p>&ldquo;I just finished the course. Thanks to you I learned much about the topic. Not all things were completely new, but I clarify most of them and now I feel that I really should use them (and I want to, of course) :) I believe that the acquired knowledge will move my Python skills to another level.&rdquo;</p>
+</blockquote>
+<div class="testimonial-attribution">
+<img src="https://files.realpython.com/media/testimonial-tr.36706b82c410.jpg">
+<div>
+<span class="name">Tomas Ryba</span>
+<span class="job">Python Developer</span>
+</div>
+</div>
+</div>
+<div class="testimonial testimonial-box">
+<h3 id="i-found-it-excellent">&ldquo;I found it excellent!&rdquo;<a class="headerlink" href="#i-found-it-excellent" title="Permanent link"></a></h3>
+<blockquote>
+<p>&ldquo;<strong>I have just finished the course. I found it excellent!</strong></p>
+<p>On a non-technical note, may I say that you have an excellent &lsquo;manner&rsquo; for teaching. Your voice is easy on the ears (I know that may sound daft but some trainers, in my experience, tend to get, or try to be, SUPER EXCITED about everything and it can become somewhat grating after a while) and very clear. You do not speak too slowly, or too fast.</p>
+<p>And it&rsquo;s all beautifully edited and seamless. <strong>It just kind of feels like you&rsquo;re having a nice conversation with a programmer friend who is in the same room with you, sharing his hard-earned experience and knowledge. Outstanding.</strong></p>
+<p>I have used venv and pip already but only as a means to an end, so to speak. e.g. I am learning Django at the moment and that introduced me to these tools by necessity. But I&rsquo;ve only skimmed the surface of them to get to Django, so to speak&hellip;</p>
+<p><strong>So your course taught me a lot; ready for when I&rsquo;m doing production projects that actually matter.</strong> (I met venv back learning Python itself on Linux - but it was still very useful to go through it again properly.)&rdquo;</p>
+</blockquote>
+<div class="testimonial-attribution">
+
+<div>
+<span class="name">Keith Grant</span>
+<span class="job">Pythonista at Suitable Software</span>
+</div>
+</div>
+</div>
+<div class="testimonial testimonial-box">
+<h3 id="well-organized-easy-to-follow-and-full-of-practical-real-life-examples">&ldquo;Well organized, easy to follow, and full of practical real life examples&rdquo;<a class="headerlink" href="#well-organized-easy-to-follow-and-full-of-practical-real-life-examples" title="Permanent link"></a></h3>
+<blockquote>
+<p>&ldquo;<strong>Dan has made an easy to follow course to get the fundamentals right with Python packages and dependency management.</strong></p>
+<p>The course also covers the essentials of virtual environments, which are key part of managing dependencies especially on your development environment.</p>
+<p>My favorite part is module four where Dan explains his well-defined and practical process, how he finds the quality packages, among the vast number of alternatives, using couple of tools. The module covers several important points, when selecting the right third-party packages for your project. One of the most important ones being licensing, especially if you are building a commercial application. Dan goes through the checks how he identifies the quality of the package in question. He also lays out how to justify your package selection to your colleagues or manager.</p>
+<p><strong>Overall, Dan did a great job with the course. The course is well organized, easy to follow, and full of practical real life examples.</strong></p>
+<p><strong>I very much recommend this course especially to Python beginners, since this will possibly save a lot of time when getting started with the language and its ecosystem. There&rsquo;s something new to learn for more seasoned Python developers, too.</strong>&ldquo;</p>
+</blockquote>
+<div class="testimonial-attribution">
+<img src="https://files.realpython.com/media/testimonial-jk.512747ac54ca.jpg">
+<div>
+<span class="name">Jani Karhunen</span>
+<span class="job">Data Engineer &amp; Python Consultant at Orchid Bits</span>
+</div>
+</div>
+</div>
+<div style="background:#FFF9C4; padding: 10px 10% 0px;">
+<h2 class="crosshead highlight" id="1-year-try-it-yourself-guaranteemaster-python-dependency-managementor-you-pay-nothing"><em>1 Year &ldquo;Try It Yourself&rdquo; Guarantee</em>&mdash;<br>Master Python Dependency Management<br>Or You Pay NOTHING<a class="headerlink" href="#1-year-try-it-yourself-guaranteemaster-python-dependency-managementor-you-pay-nothing" title="Permanent link"></a></h2>
+<hr />
+<p>Maybe you&rsquo;re thinking &ldquo;Yeah, this sounds helpful. But how do I know this course is going to help ME?&rdquo;</p>
+<p>I hear you.</p>
+<p>The last thing I want is for you to pass on this course because you&rsquo;re not sure it&rsquo;ll work for you. I&rsquo;m 100% confident it <u>will</u> so here&rsquo;s my offer to you:</p>
+<p>Put my word to the test. Take <em>Managing Python Dependencies</em> for a spin today.</p>
+<p>Spend just an hour with the course today and start building your Python dependency management skills.</p>
+<p>Then take up to a full year to apply your newfound knowledge.</p>
+<p>And if for some reason you don&rsquo;t agree that I&rsquo;ve given you a faster, easier way to take your practical Python skills to the level you need to rise head-and-shoulders above other developers, I will either:</p>
+<p>A) Jump on Skype with you for 30 minutes of 1-on-1 coaching to help you bust through whatever roadblocks are holding you back. My consulting rate for 1:1 coaching is $250 an hour, so this is a risk for me. But I want you to succeed at this and I&rsquo;m confident in my product.</p>
+<p>B) Or, if you prefer, I&rsquo;ll cheerfully refund your money in full. No questions, no hassles, any time within the next year. You can even keep the bonuses for giving it a try.</p>
+<p>Either way, all the risk is on me.</p>
+<p>&mdash; Dan Bader</p>
+<div style="text-align:center;"><img src="https://files.realpython.com/media/money-back-guarantee.15ae6fd6874e.png"></div>
+</div>
+<h1 class="crosshead" id="what-would-happen-if-you-stopped-losing-productive-time-on-searching-testing-and-re-inventing-python-packages">What would happen if you stopped <u>losing</u> productive time on searching, testing, and re-inventing Python packages?<a class="headerlink" href="#what-would-happen-if-you-stopped-losing-productive-time-on-searching-testing-and-re-inventing-python-packages" title="Permanent link"></a></h1>
+<p>Modern software development keeps moving towards a model where developers connect reusable building blocks instead of writing programs 100% from scratch.</p>
+<p>Python developers who know how to work in an environment like this are highly valuable to businesses and therefore sought after.</p>
+<p>As the industry moves forward these skills will soon become &ldquo;table stakes&rdquo; for any software development job above junior level.</p>
+<p>My new <em>Managing Python Dependencies</em> course will prepare you for these lucrative opportunities.</p>
+<p>It&rsquo;s a &ldquo;batteries included&rdquo; solution to attaining the Python dependency management skills you need to work on a professional development team.</p>
+<p><strong>Here&rsquo;s how to get instant access to the course:</strong></p>
+<p>Just click the Add To Cart button below.</p>
+<p>Then enter your payment info on the next screen and click Pay.</p>
+<p>You&rsquo;ll immediately get access to <em>Managing Python Dependencies</em> and all the bonus content.</p>
+<p>You&rsquo;ll cut out all the wasted time and effort spent on searching, testing, and re-inventing existing Python packages.</p>
+<p>You&rsquo;ll feel confident working with the dependency management &ldquo;tools of the trade&rdquo; like pip, virtual environments, and requirements files.</p>
+<p>And you&rsquo;ll finally be free from the nagging thought that &ldquo;reinventing the wheel disease&rdquo; is holding you back from achieving your goals as a software engineer.</p>
+<p>&mdash; Dan Bader</p>
+<div class="belcher-button-box">
+<h2>Managing Python Dependencies</h2>
+<p style="font-size: 40px; font-weight: 400; text-align:center;"><s>&nbsp;$657&nbsp;</s> <span style="color:red;">$49</span></p>
+<a class="belcher-button jsPurchaseButton" id="bbdb58343c-933e-44ac-8e3d-dde33d07e1a7-2" data-product-group="db58343c-933e-44ac-8e3d-dde33d07e1a7" href="#!">Add To Cart »</a>
+<div class="payment-methods">
+<img src="https://cdn.realpython.com/static/payment-icons/visa.49cf14da27bb.png" alt="Visa" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/mastercard.9a31c90b38c7.png" alt="Mastercard" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/amex.c593b222a8ab.png" alt="American Express" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/paypal.b9ea80c6ddec.png" alt="PayPal" style="max-width: 15%;" />
+<img src="https://cdn.realpython.com/static/payment-icons/applepay-sm.4567c887e9e6.png" alt="Apple Pay" style="max-width: 15%;" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-container">
+<footer class="wrapper">
+<p>© 2012–2021 realpython.com | <a href="/privacy-policy/">Privacy Policy</a></p>
+</footer>
+</div>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+<script src="https://cdn.realpython.com/static/frontend/store/checkout.a45db2a9a232.js"></script>
+<script>
+  StoreCheckout.init({
+    debug: false,
+    paddleVendorId: 39840,
+    fetchPaylinkUrl: "/store/api/v1/paylink/"
+  });
+</script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a41f3fd2f0dfe',m:'6grZ_6itqyIeKH_YMTVvml5vlPUn6AC50H2Fv6HbqcQ-1632635876-0-AUFqMZHZ1GcademDmQFMMYQlZdf7xcUr6dRBPYUeM857OkJwe+20znftpdWgoTabYnmwE2Y/S6kCnTJ+ql2YoVS2tM1hVd6rGZStnKH+ZDHyq/lMRw6iyLiQSIUtDmvmkQPcNasn7URdAOR9IIiHOmLGBM89WHDlbHDgPIcvcv6H',s:[0x50a7d716ce,0xfc1c70a054],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

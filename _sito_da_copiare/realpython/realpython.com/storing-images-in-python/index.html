@@ -1,0 +1,1616 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Three Ways of Storing and Accessing Lots of Images in Python – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="In this tutorial, you&#x27;ll cover three ways of storing and accessing lots of images in Python. You&#x27;ll also see  experimental evidence for the performance benefits and drawbacks of each one.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/storing-images-in-python/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Three Ways of Storing and Accessing Lots of Images in Python – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/storing-images-in-python/">
+<meta property="og:description" content="In this tutorial, you&#x27;ll cover three ways of storing and accessing lots of images in Python. You&#x27;ll also see  experimental evidence for the performance benefits and drawbacks of each one.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Fstoring-images-in-python%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article with-headerlinks">
+<figure class="embed-responsive embed-responsive-16by9">
+<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Three Ways of Storing and Accessing Lots of Images in Python" src="https://files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg&amp;w=480&amp;sig=c256c8aa20e44c3f8355f66122debfe46a3d2016 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg&amp;w=960&amp;sig=76dac9b69bf4170ec80ea354ca124f7e6a5a7230 960w, https://files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg 1920w" sizes="75vw">
+</figure>
+<h1>Three Ways of Storing and Accessing Lots of Images in Python</h1>
+<div class="mb-0">
+<span class="text-muted">by <a class="text-muted" href="#author">Rebecca Stone</a>
+<span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="#reader-comments"><span class="disqus-comment-count" data-disqus-identifier="https://realpython.com/storing-images-in-python/"></span></a>
+<span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<div class="d-sm-flex flex-row justify-content-between my-3 text-center">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+<div class="align-self-center my-2">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Three%20Ways%20of%20Storing%20and%20Accessing%20Lots%20of%20Images%20in%20Python by @realpython&url=https%3A//realpython.com/storing-images-in-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/storing-images-in-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AThree%20Ways%20of%20Storing%20and%20Accessing%20Lots%20of%20Images%20in%20Python%0A%0Ahttps%3A//realpython.com/storing-images-in-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+</div>
+</div>
+<div class="article-body">
+<div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+<p class="h3 mb-2 text-muted">Table of Contents</p>
+<div class="toc">
+<ul>
+<li><a href="#setup">Setup</a><ul>
+<li><a href="#a-dataset-to-play-with">A Dataset to Play With</a></li>
+<li><a href="#setup-for-storing-images-on-disk">Setup for Storing Images on Disk</a></li>
+<li><a href="#getting-started-with-lmdb">Getting Started With LMDB</a></li>
+<li><a href="#getting-started-with-hdf5">Getting Started With HDF5</a></li>
+</ul>
+</li>
+<li><a href="#storing-a-single-image">Storing a Single Image</a><ul>
+<li><a href="#storing-to-disk">Storing to Disk</a></li>
+<li><a href="#storing-to-lmdb">Storing to LMDB</a></li>
+<li><a href="#storing-with-hdf5">Storing With HDF5</a></li>
+<li><a href="#experiments-for-storing-a-single-image">Experiments for Storing a Single Image</a></li>
+</ul>
+</li>
+<li><a href="#storing-many-images">Storing Many Images</a><ul>
+<li><a href="#adjusting-the-code-for-many-images">Adjusting the Code for Many Images</a></li>
+<li><a href="#preparing-the-dataset">Preparing the Dataset</a></li>
+<li><a href="#experiment-for-storing-many-images">Experiment for Storing Many Images</a></li>
+</ul>
+</li>
+<li><a href="#reading-a-single-image">Reading a Single Image</a><ul>
+<li><a href="#reading-from-disk">Reading From Disk</a></li>
+<li><a href="#reading-from-lmdb">Reading From LMDB</a></li>
+<li><a href="#reading-from-hdf5">Reading From HDF5</a></li>
+<li><a href="#experiment-for-reading-a-single-image">Experiment for Reading a Single Image</a></li>
+</ul>
+</li>
+<li><a href="#reading-many-images">Reading Many Images</a><ul>
+<li><a href="#adjusting-the-code-for-many-images_1">Adjusting the Code for Many Images</a></li>
+<li><a href="#experiment-for-reading-many-images">Experiment for Reading Many Images</a></li>
+</ul>
+</li>
+<li><a href="#considering-disk-usage">Considering Disk Usage</a></li>
+<li><a href="#discussion">Discussion</a><ul>
+<li><a href="#parallel-access">Parallel Access</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#a-more-critical-look-at-implementation">A More Critical Look at Implementation</a></li>
+<li><a href="#integration-with-other-libraries">Integration With Other Libraries</a></li>
+</ul>
+</li>
+<li><a href="#a-few-personal-insights-on-storing-images-in-python">A Few Personal Insights on Storing Images in Python</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p>Why would you want to know more about different ways of storing and accessing images in Python? If you&rsquo;re <a href="https://realpython.com/python-opencv-color-spaces/">segmenting a handful of images by color</a> or <a href="https://realpython.com/face-recognition-with-python/">detecting faces one by one</a> using OpenCV, then you don&rsquo;t need to worry about it. Even if you&rsquo;re using the <a href="https://pillow.readthedocs.io/">Python Imaging Library (PIL)</a> to draw on a few hundred photos, you still don&rsquo;t need to. Storing images on disk, as <code>.png</code> or <code>.jpg</code> files, is both suitable and appropriate.</p>
+<p>Increasingly, however, the number of images required for a given task is getting larger and larger. Algorithms like convolutional neural networks, also known as convnets or CNNs, can handle enormous datasets of images and even learn from them. If you&rsquo;re interested, you can read more about how convnets can be used for <a href="https://karpathy.github.io/2015/10/25/selfie/">ranking selfies</a> or for <a href="https://realpython.com/sentiment-analysis-python/">sentiment analysis</a>.</p>
+<p><a href="http://image-net.org">ImageNet</a> is a well-known public image database put together for training models on tasks like object classification, detection, and segmentation, and it consists of <em>over 14 million images.</em> </p>
+<p>Think about how long it would take to load all of them into memory for training, in batches, perhaps hundreds or thousands of times. Keep reading, and you&rsquo;ll be convinced that it would take quite awhile&mdash;at least long enough to leave your computer and do many other things while you wish you worked at Google or NVIDIA.</p>
+<p><strong>In this tutorial, you&rsquo;ll learn about:</strong></p>
+<ul>
+<li>Storing images on disk as <code>.png</code> files</li>
+<li>Storing images in lightning memory-mapped databases (LMDB)</li>
+<li>Storing images in hierarchical data format (HDF5)</li>
+</ul>
+<p><strong>You&rsquo;ll also explore the following:</strong></p>
+<ul>
+<li>Why alternate storage methods are worth considering</li>
+<li>What the performance differences are when you&rsquo;re reading and writing single images</li>
+<li>What the performance differences are when you&rsquo;re reading and writing <em>many</em> images</li>
+<li>How the three methods compare in terms of disk usage</li>
+</ul>
+<p>If none of the storage methods ring a bell, don&rsquo;t worry: for this article, all you need is a reasonably solid foundation in Python and a basic understanding of images (that they are really composed of multi-dimensional arrays of <a href="https://realpython.com/python-numbers/">numbers</a>) and relative memory, such as the difference between 10MB and 10GB.</p>
+<p>Let&rsquo;s get started!</p>
+<div class="alert alert-warning" role="alert"><p><strong>Free Bonus:</strong> <a href="" class="alert-link" data-toggle="modal" data-target="#modal-python-opencv-examples-experiment" data-focus="false">Click here to get the Python Face Detection & OpenCV Examples Mini-Guide</a> that shows you practical code examples of real-world Python computer vision techniques.</p></div>
+<section class="section2" id="setup"><h2>Setup<a class="headerlink" href="#setup" title="Permanent link"></a></h2>
+<p>You will need an image dataset to experiment with, as well as a few <a href="https://realpython.com/python-modules-packages/">Python packages</a>.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="a-dataset-to-play-with"><h3>A Dataset to Play With<a class="headerlink" href="#a-dataset-to-play-with" title="Permanent link"></a></h3>
+<p>We will be using the Canadian Institute for Advanced Research image dataset, better known as <a href="https://en.wikipedia.org/wiki/CIFAR-10">CIFAR-10</a>, which consists of 60,000 32x32 pixel color images belonging to different object classes, such as dogs, cats, and airplanes. Relatively, CIFAR is not a very large dataset, but if we were to use the full <a href="https://groups.csail.mit.edu/vision/TinyImages/">TinyImages dataset</a>, then you would need about 400GB of free disk space, which would probably be a limiting factor.</p>
+<p>Credits for the dataset as described in <a href="https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf">chapter 3 of this tech report</a> go to Alex Krizhevsky, Vinod Nair, and Geoffrey Hinton.</p>
+<p>If you&rsquo;d like to follow along with the code examples in this article, you can <a href="https://www.cs.toronto.edu/~kriz/cifar.html">download CIFAR-10 here</a>, selecting the Python version. You&rsquo;ll be sacrificing 163MB of disk space:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/cifar_10.e77ef0cd86df.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/cifar_10.e77ef0cd86df.png" width="964" height="738" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cifar_10.e77ef0cd86df.png&amp;w=241&amp;sig=e510384d0787f189f977fefb7d27c91b74ebb467 241w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/cifar_10.e77ef0cd86df.png&amp;w=482&amp;sig=603b87769ac3fd7651c7d18e0eed22e83bfcf421 482w, https://files.realpython.com/media/cifar_10.e77ef0cd86df.png 964w" sizes="75vw" alt="cifar-10-dataset" data-asset="949" /></a><figcaption class="figure-caption text-center">Image: A. Krizhevsky</figcaption></figure>
+<p>When you download and unzip the folder, you&rsquo;ll discover that the files are not human-readable image files. They have actually been serialized and saved in batches using <a href="https://docs.python.org/2/library/pickle.html">cPickle</a>.</p>
+<p>While we won&rsquo;t consider <a href="https://realpython.com/python-pickle-module/"><code>pickle</code></a> or <code>cPickle</code> in this article, other than to extract the CIFAR dataset, it&rsquo;s worth mentioning that the Python <code>pickle</code> module has the key advantage of being able to serialize any Python object without any extra code or transformation on your part. It also has a potentially serious disadvantage of posing a security risk and not coping well when dealing with very large quantities of data.</p>
+<p>The following code unpickles each of the five batch files and loads all of the images into a NumPy array:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Path to the unzipped CIFAR data</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/cifar-10-batches-py/&quot;</span><span class="p">)</span>
+
+<span class="c1"># Unpickle function provided by the CIFAR hosts</span>
+<span class="k">def</span> <span class="nf">unpickle</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+        <span class="nb">dict</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;bytes&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span>
+
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;data_batch_*&quot;</span><span class="p">):</span>
+    <span class="n">batch_data</span> <span class="o">=</span> <span class="n">unpickle</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">flat_im</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch_data</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;data&quot;</span><span class="p">]):</span>
+        <span class="n">im_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Each image is flattened, with channels in order of R, G, B</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">im_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">flat_im</span><span class="p">[</span><span class="n">j</span> <span class="o">*</span> <span class="mi">1024</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="c1"># Reconstruct the original image</span>
+        <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span><span class="n">im_channels</span><span class="p">)))</span>
+        <span class="c1"># Save the label</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_data</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loaded CIFAR-10 training set:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - np.shape(images)     </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - np.shape(labels)     </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>All the images are now in RAM in the <code>images</code> <a href="https://realpython.com/python-variables/">variable</a>, with their corresponding meta data in <code>labels</code>, and are ready for you to manipulate. Next, you can install the Python packages you&rsquo;ll use for the three methods.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> That last code block used f-strings. You can read more about them in <a href="https://realpython.com/python-f-strings/">Python 3&rsquo;s f-Strings: An Improved String Formatting Syntax (Guide)</a>.</p>
+</div>
+</section><section class="section3" id="setup-for-storing-images-on-disk"><h3>Setup for Storing Images on Disk<a class="headerlink" href="#setup-for-storing-images-on-disk" title="Permanent link"></a></h3>
+<p>You&rsquo;ll need to set up your environment for the default method of saving and accessing these images from disk. This article will assume you have Python 3.x installed on your system, and will use <code>Pillow</code> for the image manipulation:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>pip install Pillow
+</code></pre></div>
+<p>Alternatively, if you prefer, you can install it using <a href="https://anaconda.org/conda-forge/pillow">Anaconda</a>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>conda install -c conda-forge pillow
+</code></pre></div>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> <code>PIL</code> is the original version of the Python Imaging Library, which is no longer maintained and is not compatible with Python 3.x. If you have previously installed <code>PIL</code>, make sure to uninstall it before installing <code>Pillow</code>, as they can&rsquo;t exist together.</p>
+</div>
+<p>Now you&rsquo;re ready for storing and reading images from disk.</p>
+</section><section class="section3" id="getting-started-with-lmdb"><h3>Getting Started With LMDB<a class="headerlink" href="#getting-started-with-lmdb" title="Permanent link"></a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Lightning_Memory-Mapped_Database">LMDB</a>, sometimes referred to as the &ldquo;Lightning Database,&rdquo; stands for Lightning Memory-Mapped Database because it&rsquo;s fast and uses memory-mapped files. It&rsquo;s a key-value store, not a relational database.</p>
+<p>In terms of implementation, LMDB is a B+ tree, which basically means that it is a tree-like graph structure stored in memory where each key-value element is a node, and nodes can have many children. Nodes on the same level are linked to one another for fast traversal. </p>
+<p>Critically, key components of the B+ tree are set to correspond to the page size of the host operating system, maximizing efficiency when accessing any key-value pair in the database. Since LMDB high-performance heavily relies on this particular point, LMDB efficiency has been shown to be dependent on the underlying file system and its implementation.</p>
+<p>Another key reason for the efficiency of LMDB is that it is memory-mapped. This means that <strong>it returns direct pointers to the memory addresses of both keys and values</strong>, without needing to copy anything in memory as most other databases do.</p>
+<p>Those who want to dive into a bit more of the internal implementation details of B+ trees can check out <a href="http://www.cburch.com/cs/340/reading/btree/index.html">this article on B+ trees</a> and then play with <a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html">this visualization of node insertion</a>.</p>
+<p>If B+ trees don&rsquo;t interest you, don&rsquo;t worry. You don&rsquo;t need to know much about their internal implementation in order to use LMDB. We will be using the <a href="https://realpython.com/python-bindings-overview/">Python binding</a> for the LMDB C library, which can be installed via pip:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>pip install lmdb
+</code></pre></div>
+<p>You also have the option of installing via <a href="https://anaconda.org/conda-forge/python-lmdb">Anaconda</a>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>conda install -c conda-forge python-lmdb
+</code></pre></div>
+<p>Check that you can <code>import lmdb</code> from a Python shell, and you&rsquo;re good to go.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="getting-started-with-hdf5"><h3>Getting Started With HDF5<a class="headerlink" href="#getting-started-with-hdf5" title="Permanent link"></a></h3>
+<p>HDF5 stands for Hierarchical Data Format, a file format referred to as HDF4 or HDF5. We don&rsquo;t need to worry about HDF4, as HDF5 is the current maintained version. </p>
+<p>Interestingly, HDF has <a href="https://www.hdfgroup.org/about-us/">its origins</a> in the National Center for Supercomputing Applications, as a portable, compact scientific data format. If you&rsquo;re wondering if it&rsquo;s widely used, check out <a href="https://earthdata.nasa.gov/user-resources/standards-and-references/hdf-eos5">NASA&rsquo;s blurb on HDF5</a> from their Earth Data project.</p>
+<p>HDF files consist of two types of objects: </p>
+<ol>
+<li>Datasets</li>
+<li>Groups</li>
+</ol>
+<p>Datasets are multidimensional arrays, and groups consist of datasets or other groups. Multidimensional arrays of any size and type can be stored as a dataset, but the dimensions and type have to be uniform within a dataset. Each dataset must contain a homogeneous N-dimensional array. That said, because groups and datasets may be nested, you can still get the heterogeneity you may need:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>pip install h5py
+</code></pre></div>
+<p>As with the other libraries, you can alternately install via <a href="https://anaconda.org/conda-forge/h5py">Anaconda</a>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>conda install -c conda-forge h5py
+</code></pre></div>
+<p>If you can <code>import h5py</code> from a Python shell, everything is set up properly.</p>
+</section></section><section class="section2" id="storing-a-single-image"><h2>Storing a Single Image<a class="headerlink" href="#storing-a-single-image" title="Permanent link"></a></h2>
+<p>Now that you have a general overview of the methods, let&rsquo;s dive straight in and look at a quantitative comparison of the basic tasks we care about: <strong>how long it takes to read and write files, and how much disk memory will be used.</strong> This will also serve as a basic introduction to how the methods work, with code examples of how to use them.</p>
+<p>When I refer to &ldquo;files,&rdquo; I generally mean a lot of them. However, it is important to make a distinction since some methods may be optimized for different operations and quantities of files. </p>
+<p>For the purposes of experimentation, <strong>we can compare the performance between various quantities of files, by factors of 10 from a single image to 100,000 images.</strong> Since our five batches of CIFAR-10 add up to 50,000 images, we can use each image twice to get to 100,000 images.</p>
+<p>To prepare for the experiments, you will want to create a folder for each method, which will contain all the database files or images, and save the paths to those directories in variables:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">disk_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/disk/&quot;</span><span class="p">)</span>
+<span class="n">lmdb_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/lmdb/&quot;</span><span class="p">)</span>
+<span class="n">hdf5_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/hdf5/&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>Path</code> does not automatically create the folders for you unless you specifically ask it to:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">disk_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lmdb_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">hdf5_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>Now you can move on to running the actual experiments, with code examples of how to perform basic tasks with the three different methods. We can use the <code>timeit</code> module, which is included in the Python standard library, to help time the experiments.</p>
+<p>Although the main purpose of this article is not to learn the APIs of the different Python packages, it is helpful to have an understanding of how they can be implemented. We will go through the general principles alongside all the code used to conduct the storing experiments.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="storing-to-disk"><h3>Storing to Disk<a class="headerlink" href="#storing-to-disk" title="Permanent link"></a></h3>
+<p>Our input for this experiment is a single image <code>image</code>, currently in memory as a NumPy array. You want to save it first to disk as a <code>.png</code> image, and name it using a unique image ID <code>image_id</code>. This can be done using the <code>Pillow</code> package you installed earlier:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">def</span> <span class="nf">store_single_disk</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores a single image as a .png file on disk.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        image       image array, (32, 32, 3) to be stored</span>
+<span class="sd">        image_id    integer unique ID for image</span>
+<span class="sd">        label       image label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span>
+            <span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span>
+        <span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">label</span><span class="p">])</span>
+</code></pre></div>
+<p>This saves the image. In all realistic applications, you also care about the meta data attached to the image, which in our example dataset is the image label. When you&rsquo;re storing images to disk, there are several options for saving the meta data.</p>
+<p>One solution is to encode the labels into the image name. This has the advantage of not requiring any extra files. </p>
+<p>However, it also has the big disadvantage of forcing you to deal with all the files whenever you do anything with labels. Storing the labels in a separate file allows you to play around with the labels alone, without having to load the images. Above, I have stored the labels in a separate <code>.csv</code> files for this experiment.</p>
+<p>Now let&rsquo;s move on to doing the exact same task with LMDB.</p>
+</section><section class="section3" id="storing-to-lmdb"><h3>Storing to LMDB<a class="headerlink" href="#storing-to-lmdb" title="Permanent link"></a></h3>
+<p>Firstly, LMDB is a key-value storage system where each entry is saved as a byte array, so in our case, keys will be a unique identifier for each image, and the value will be the image itself. <strong>Both the keys and values are expected to be strings</strong>, so the common usage is to serialize the value as a string, and then unserialize it when reading it back out.</p>
+<p>You can use <code>pickle</code> for the serializing. Any Python object can be serialized, so you might as well include the image meta data in the database as well. This saves you the trouble of attaching meta data back to the image data when we load the dataset from disk.</p>
+<p>You can create a basic <a href="https://realpython.com/lessons/what-object-oriented-programming-oop/">Python class</a> for the image and its meta data:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">CIFAR_Image</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="c1"># Dimensions of image for reconstruction - not really necessary </span>
+        <span class="c1"># for this dataset, but some datasets may include images of </span>
+        <span class="c1"># varying sizes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+
+    <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the image as a numpy array. &quot;&quot;&quot;</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span>
+</code></pre></div>
+<p>Secondly, because LMDB is memory-mapped, new databases need to know how much memory they are expected to use up. This is relatively straightforward in our case, but it can be a massive pain in other cases, which you will see in more depth in a later section. LMDB calls this variable the <code>map_size</code>.</p>
+<p>Finally, read and write operations with LMDB are performed in <code>transactions</code>. You can think of them as similar to those of a traditional database, consisting of a group of operations on the database. This may look already significantly more complicated than the disk version, but hang on and keep reading!</p>
+<p>With those three points in mind, let&rsquo;s look at the code to save a single image to a LMDB:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">import</span> <span class="nn">lmdb</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="k">def</span> <span class="nf">store_single_lmdb</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores a single image to a LMDB.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        image       image array, (32, 32, 3) to be stored</span>
+<span class="sd">        image_id    integer unique ID for image</span>
+<span class="sd">        label       image label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">map_size</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">*</span> <span class="mi">10</span>
+
+    <span class="c1"># Create a new LMDB environment</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">lmdb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lmdb_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;single_lmdb&quot;</span><span class="p">),</span> <span class="n">map_size</span><span class="o">=</span><span class="n">map_size</span><span class="p">)</span>
+
+    <span class="c1"># Start a new write transaction</span>
+    <span class="k">with</span> <span class="n">env</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">txn</span><span class="p">:</span>
+        <span class="c1"># All key-value pairs need to be strings</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">CIFAR_Image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">:</span><span class="s2">08</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">txn</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">),</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> It&rsquo;s a good idea to calculate the exact number of bytes each key-value pair will take up. </p>
+<p>With a dataset of images of varying size, this will be an approximation, but you can use <code>sys.getsizeof()</code> to get a reasonable approximation. Keep in mind that <code>sys.getsizeof(CIFAR_Image)</code> will only return the size of a class definition, which is 1056, <em>not</em> the size of an instantiated object.</p>
+<p>The function will also not be able to fully calculate nested items, <a href="https://realpython.com/python-lists-tuples/">lists</a>, or objects containing references to other objects. </p>
+<p>Alternately, you could use <a href="https://pythonhosted.org/Pympler/#usage-examples"><code>pympler</code></a> to save you some calculations by determining the exact size of an object.</p>
+</div>
+<p>You are now ready to save an image to LMDB. Lastly, let&rsquo;s look at the final method, HDF5.</p>
+</section><section class="section3" id="storing-with-hdf5"><h3>Storing With HDF5<a class="headerlink" href="#storing-with-hdf5" title="Permanent link"></a></h3>
+<p>Remember that an HDF5 file can contain more than one dataset. In this rather trivial case, you can create two datasets, one for the image, and one for its meta data:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="k">def</span> <span class="nf">store_single_hdf5</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores a single image to an HDF5 file.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        image       image array, (32, 32, 3) to be stored</span>
+<span class="sd">        image_id    integer unique ID for image</span>
+<span class="sd">        label       image label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a new HDF5 file</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create a dataset in the file</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+        <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">h5py</span><span class="o">.</span><span class="n">h5t</span><span class="o">.</span><span class="n">STD_U8BE</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">image</span>
+    <span class="p">)</span>
+    <span class="n">meta_set</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+        <span class="s2">&quot;meta&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">h5py</span><span class="o">.</span><span class="n">h5t</span><span class="o">.</span><span class="n">STD_U8BE</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">label</span>
+    <span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p><code>h5py.h5t.STD_U8BE</code> specifies the type of data that will be stored in the dataset, which in this case is unsigned 8-bit integers. You can see a full <a href="http://api.h5py.org/h5t.html">list of HDF&rsquo;s predefined datatypes here</a>.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> The choice of datatype will strongly affect the runtime and storage requirements of HDF5, so it is best to choose your minimum requirements.</p>
+</div>
+<p>Now that we have reviewed the three methods of saving a single image, let&rsquo;s move on to the next step.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="experiments-for-storing-a-single-image"><h3>Experiments for Storing a Single Image<a class="headerlink" href="#experiments-for-storing-a-single-image" title="Permanent link"></a></h3>
+<p>Now you can put all three functions for saving a single image into a <a href="https://realpython.com/python-dicts/">dictionary</a>, which can be called later during the timing experiments:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">_store_single_funcs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">disk</span><span class="o">=</span><span class="n">store_single_disk</span><span class="p">,</span> <span class="n">lmdb</span><span class="o">=</span><span class="n">store_single_lmdb</span><span class="p">,</span> <span class="n">hdf5</span><span class="o">=</span><span class="n">store_single_hdf5</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Finally, everything is ready for conducting the timed experiment. Let&rsquo;s try saving the first image from CIFAR and its corresponding label, and storing it in the three different ways:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
+
+<span class="n">store_single_timings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="s2">&quot;lmdb&quot;</span><span class="p">,</span> <span class="s2">&quot;hdf5&quot;</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span>
+        <span class="s2">&quot;_store_single_funcs[method](image, 0, label)&quot;</span><span class="p">,</span>
+        <span class="n">setup</span><span class="o">=</span><span class="s2">&quot;image=images[0]; label=labels[0]&quot;</span><span class="p">,</span>
+        <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+    <span class="p">)</span>
+    <span class="n">store_single_timings</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">, Time usage: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> While you&rsquo;re playing around with LMDB, you may see a <code>MapFullError: mdb_txn_commit: MDB_MAP_FULL: Environment mapsize limit reached</code> error. It&rsquo;s important to note that LMDB does <strong>not</strong> overwrite preexisting values, even if they have the same key.</p>
+<p>This contributes to the fast write time, but it also means that if you store an image more than once in the same LMDB file, then you will use up the map size. If you run a store function, be sure to delete any preexisting LMDB files first.</p>
+</div>
+<p>Remember that we&rsquo;re interested in runtime, displayed here in seconds, and also the memory usage:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th class="text-center">Method</th>
+<th class="text-center">Save Single Image + Meta</th>
+<th class="text-center">Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-center">Disk</td>
+<td class="text-center">1.915 ms</td>
+<td class="text-center">8 K</td>
+</tr>
+<tr>
+<td class="text-center">LMDB</td>
+<td class="text-center">1.203 ms</td>
+<td class="text-center">32 K</td>
+</tr>
+<tr>
+<td class="text-center">HDF5</td>
+<td class="text-center">8.243 ms</td>
+<td class="text-center">8 K</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There are two takeaways here: </p>
+<ol>
+<li>All of the methods are trivially quick.</li>
+<li>In terms of disk usage, LMDB uses more. </li>
+</ol>
+<p>Clearly, despite LMDB having a slight performance lead, we haven&rsquo;t convinced anyone why to not just store images on disk. After all, it&rsquo;s a human readable format, and you can open and view them from any file system browser! Well, it&rsquo;s time to look at a lot more images&hellip;</p>
+</section></section><section class="section2" id="storing-many-images"><h2>Storing Many Images<a class="headerlink" href="#storing-many-images" title="Permanent link"></a></h2>
+<p>You have seen the code for using the various storage methods to save a single image, so now we need to adjust the code to save many images and then run the timed experiment. </p>
+<section class="section3" id="adjusting-the-code-for-many-images"><h3>Adjusting the Code for Many Images<a class="headerlink" href="#adjusting-the-code-for-many-images" title="Permanent link"></a></h3>
+<p>Saving <em>multiple</em> images as <code>.png</code> files is as straightforward as calling <code>store_single_method()</code> multiple times. But this isn&rsquo;t true for LMDB or HDF5, since you don&rsquo;t want a different database file for each image. Rather, you want to put all of the images into one or more files.</p>
+<p>You will need to slightly alter the code and create three new functions that accept multiple images, <code>store_many_disk()</code>, <code>store_many_lmdb()</code>, and <code>store_many_hdf5</code>:</p>
+<div class="highlight python"><pre><span></span><code> <span class="n">store_many_disk</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores an array of images to disk</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        images       images array, (N, 32, 32, 3) to be stored</span>
+<span class="sd">        labels       labels array, (N, 1) to be stored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+
+    <span class="c1"># Save all the images one by one</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+        <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Save all the labels to the csv file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_images</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span>
+            <span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+            <span class="c1"># This typically would be more than just one value per row</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">label</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">store_many_lmdb</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores an array of images to LMDB.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        images       images array, (N, 32, 32, 3) to be stored</span>
+<span class="sd">        labels       labels array, (N, 1) to be stored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+
+    <span class="n">map_size</span> <span class="o">=</span> <span class="n">num_images</span> <span class="o">*</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">*</span> <span class="mi">10</span>
+
+    <span class="c1"># Create a new LMDB DB for all the images</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">lmdb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lmdb_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_images</span><span class="si">}</span><span class="s2">_lmdb&quot;</span><span class="p">),</span> <span class="n">map_size</span><span class="o">=</span><span class="n">map_size</span><span class="p">)</span>
+
+    <span class="c1"># Same as before — but let&#39;s write all the images in a single transaction</span>
+    <span class="k">with</span> <span class="n">env</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">write</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">txn</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+            <span class="c1"># All key-value pairs need to be Strings</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">CIFAR_Image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">08</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">txn</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">),</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">store_many_hdf5</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores an array of images to HDF5.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        images       images array, (N, 32, 32, 3) to be stored</span>
+<span class="sd">        labels       labels array, (N, 1) to be stored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+
+    <span class="c1"># Create a new HDF5 file</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_images</span><span class="si">}</span><span class="s2">_many.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create a dataset in the file</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+        <span class="s2">&quot;images&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">),</span> <span class="n">h5py</span><span class="o">.</span><span class="n">h5t</span><span class="o">.</span><span class="n">STD_U8BE</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">images</span>
+    <span class="p">)</span>
+    <span class="n">meta_set</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+        <span class="s2">&quot;meta&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="n">h5py</span><span class="o">.</span><span class="n">h5t</span><span class="o">.</span><span class="n">STD_U8BE</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">labels</span>
+    <span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>So you could store more than one file to disk, the image files method was altered to loop over each image in the list. For LMDB, a loop is also needed since we are creating a <code>CIFAR_Image</code> object for each image and its meta data.</p>
+<p>The smallest adjustment is with the HDF5 method. In fact, there&rsquo;s hardly an adjustment at all! HFD5 files have no limitation on file size aside from external restrictions or dataset size, so all the images were stuffed into a single dataset, just like before.</p>
+<p>Next, you will need to prepare the dataset for the experiments by increasing its size.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="preparing-the-dataset"><h3>Preparing the Dataset<a class="headerlink" href="#preparing-the-dataset" title="Permanent link"></a></h3>
+<p>Before running the experiments again, let&rsquo;s first double our dataset size so that we can test with up to 100,000 images:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">cutoffs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">]</span>
+
+<span class="c1"># Let&#39;s double our images so that we have 100,000</span>
+<span class="n">images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">images</span><span class="p">,</span> <span class="n">images</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">labels</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Make sure you actually have 100,000 images and labels</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+</code></pre></div>
+<p>Now that there are enough images, it&rsquo;s time for the experiment.</p>
+</section><section class="section3" id="experiment-for-storing-many-images"><h3>Experiment for Storing Many Images<a class="headerlink" href="#experiment-for-storing-many-images" title="Permanent link"></a></h3>
+<p>As you did with reading many images, you can create a dictionary handling all the functions with <code>store_many_</code> and run the experiments:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">_store_many_funcs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">disk</span><span class="o">=</span><span class="n">store_many_disk</span><span class="p">,</span> <span class="n">lmdb</span><span class="o">=</span><span class="n">store_many_lmdb</span><span class="p">,</span> <span class="n">hdf5</span><span class="o">=</span><span class="n">store_many_hdf5</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
+
+<span class="n">store_many_timings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;disk&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;lmdb&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;hdf5&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">cutoffs</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="s2">&quot;lmdb&quot;</span><span class="p">,</span> <span class="s2">&quot;hdf5&quot;</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span>
+            <span class="s2">&quot;_store_many_funcs[method](images_, labels_)&quot;</span><span class="p">,</span>
+            <span class="n">setup</span><span class="o">=</span><span class="s2">&quot;images_=images[:cutoff]; labels_=labels[:cutoff]&quot;</span><span class="p">,</span>
+            <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">store_many_timings</span><span class="p">[</span><span class="n">method</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+        <span class="c1"># Print out the method, cutoff, and elapsed time</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">, Time usage: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>If you&rsquo;re following along and running the code yourself, you&rsquo;ll need to sit back a moment in suspense and wait for 111,110 images to be stored three times each to your disk, in three different formats. You&rsquo;ll also need to say goodbye to approximately 2 GB of disk space.</p>
+<p>Now for the moment of truth! <strong>How long did all of that storing take?</strong> A picture is worth a thousand words:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/store_many.273573157770.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/store_many.273573157770.png" width="629" height="464" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/store_many.273573157770.png&amp;w=157&amp;sig=957f58cfcef02f5beea36463bf7f78da3cbf35ea 157w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/store_many.273573157770.png&amp;w=314&amp;sig=e875ba210d947762c8e2de5ef564343cdcb44e01 314w, https://files.realpython.com/media/store_many.273573157770.png 629w" sizes="75vw" alt="store-many" data-asset="951" /></a></figure>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/store_many_log.29e8ae980ab6.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/store_many_log.29e8ae980ab6.png" width="638" height="474" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/store_many_log.29e8ae980ab6.png&amp;w=159&amp;sig=a6f287f3516ba2f3254374102ec20fe3502646b1 159w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/store_many_log.29e8ae980ab6.png&amp;w=319&amp;sig=b0a77114ed4734d41dd0337f71dd87fff4b50c1e 319w, https://files.realpython.com/media/store_many_log.29e8ae980ab6.png 638w" sizes="75vw" alt="store-many-log" data-asset="1067" /></a></figure>
+<p>The first graph shows the normal, unadjusted storage time, highlighting the drastic difference between storing to <code>.png</code> files and LMDB or HDF5. </p>
+<p>The second graph shows the <code>log</code> of the timings, highlighting that HDF5 starts out slower than LMDB but, with larger quantities of images, comes out slightly ahead.</p>
+<p>While exact results may vary depending on your machine, <strong>this is why LMDB and HDF5 are worth thinking about.</strong> Here&rsquo;s the code that generated the above graph:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">plot_with_legend</span><span class="p">(</span>
+    <span class="n">x_range</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">legend_labels</span><span class="p">,</span> <span class="n">x_label</span><span class="p">,</span> <span class="n">y_label</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Displays a single plot with multiple datasets and matching legends.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        --------------</span>
+<span class="sd">        x_range         list of lists containing x data</span>
+<span class="sd">        y_data          list of lists containing y values</span>
+<span class="sd">        legend_labels   list of string legend labels</span>
+<span class="sd">        x_label         x axis label</span>
+<span class="sd">        y_label         y axis label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-whitegrid&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">legend_labels</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="s2">&quot;Error: number of data sets does not match number of labels.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">all_plots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y_data</span><span class="p">,</span> <span class="n">legend_labels</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">log</span><span class="p">:</span>
+            <span class="n">temp</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">temp</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">x_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">all_plots</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Getting the store timings data to display</span>
+<span class="n">disk_x</span> <span class="o">=</span> <span class="n">store_many_timings</span><span class="p">[</span><span class="s2">&quot;disk&quot;</span><span class="p">]</span>
+<span class="n">lmdb_x</span> <span class="o">=</span> <span class="n">store_many_timings</span><span class="p">[</span><span class="s2">&quot;lmdb&quot;</span><span class="p">]</span>
+<span class="n">hdf5_x</span> <span class="o">=</span> <span class="n">store_many_timings</span><span class="p">[</span><span class="s2">&quot;hdf5&quot;</span><span class="p">]</span>
+
+<span class="n">plot_with_legend</span><span class="p">(</span>
+    <span class="n">cutoffs</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">disk_x</span><span class="p">,</span> <span class="n">lmdb_x</span><span class="p">,</span> <span class="n">hdf5_x</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;PNG files&quot;</span><span class="p">,</span> <span class="s2">&quot;LMDB&quot;</span><span class="p">,</span> <span class="s2">&quot;HDF5&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Number of images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Seconds to store&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Storage time&quot;</span><span class="p">,</span>
+    <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plot_with_legend</span><span class="p">(</span>
+    <span class="n">cutoffs</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">disk_x</span><span class="p">,</span> <span class="n">lmdb_x</span><span class="p">,</span> <span class="n">hdf5_x</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;PNG files&quot;</span><span class="p">,</span> <span class="s2">&quot;LMDB&quot;</span><span class="p">,</span> <span class="s2">&quot;HDF5&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Number of images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Seconds to store&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Log storage time&quot;</span><span class="p">,</span>
+    <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Now let&rsquo;s go on to reading the images back out.</p>
+</section></section><section class="section2" id="reading-a-single-image"><h2>Reading a Single Image<a class="headerlink" href="#reading-a-single-image" title="Permanent link"></a></h2>
+<p>First, let&rsquo;s consider the case for reading a single image back into an array for each of the three methods.</p>
+<section class="section3" id="reading-from-disk"><h3>Reading From Disk<a class="headerlink" href="#reading-from-disk" title="Permanent link"></a></h3>
+<p>Of the three methods, LMDB requires the most legwork when reading image files back out of memory, because of the serialization step. Let&rsquo;s walk through these functions that read a single image out for each of the three storage formats. </p>
+<p>First, read a single image and its meta from a <code>.png</code> and <code>.csv</code> file:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">read_single_disk</span><span class="p">(</span><span class="n">image_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores a single image to disk.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        image_id    integer unique ID for image</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image       image array, (32, 32, 3) to be stored</span>
+<span class="sd">        label       associated meta data, int label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span>
+            <span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span>
+        <span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span>
+</code></pre></div>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="reading-from-lmdb"><h3>Reading From LMDB<a class="headerlink" href="#reading-from-lmdb" title="Permanent link"></a></h3>
+<p>Next, read the same image and meta from an LMDB by opening the environment and starting a read transaction:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">read_single_lmdb</span><span class="p">(</span><span class="n">image_id</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="sd">&quot;&quot;&quot; Stores a single image to LMDB.</span>
+<span class="linenos"> 3</span><span class="sd">        Parameters:</span>
+<span class="linenos"> 4</span><span class="sd">        ---------------</span>
+<span class="linenos"> 5</span><span class="sd">        image_id    integer unique ID for image</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="sd">        Returns:</span>
+<span class="linenos"> 8</span><span class="sd">        ----------</span>
+<span class="linenos"> 9</span><span class="sd">        image       image array, (32, 32, 3) to be stored</span>
+<span class="linenos">10</span><span class="sd">        label       associated meta data, int label</span>
+<span class="linenos">11</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">12</span>    <span class="c1"># Open the LMDB environment</span>
+<span class="linenos">13</span>    <span class="n">env</span> <span class="o">=</span> <span class="n">lmdb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lmdb_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;single_lmdb&quot;</span><span class="p">),</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="c1"># Start a new read transaction</span>
+<span class="linenos">16</span>    <span class="k">with</span> <span class="n">env</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">txn</span><span class="p">:</span>
+<span class="linenos">17</span>        <span class="c1"># Encode the key the same way as we stored it</span>
+<span class="linenos">18</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">txn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">:</span><span class="s2">08</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">))</span>
+<span class="linenos">19</span>        <span class="c1"># Remember it&#39;s a CIFAR_Image object that is loaded</span>
+<span class="linenos">20</span>        <span class="n">cifar_image</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">21</span>        <span class="c1"># Retrieve the relevant bits</span>
+<span class="linenos">22</span>        <span class="n">image</span> <span class="o">=</span> <span class="n">cifar_image</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="linenos">23</span>        <span class="n">label</span> <span class="o">=</span> <span class="n">cifar_image</span><span class="o">.</span><span class="n">label</span>
+<span class="linenos">24</span>    <span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>    <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span>
+</code></pre></div>
+<p>Here are a couple points to not about the code snippet above:</p>
+<ul>
+<li><strong>Line 13:</strong> The <code>readonly=True</code> flag specifies that no writes will be allowed on the LMDB file until the transaction is finished. In database lingo, it&rsquo;s equivalent to taking a read lock.</li>
+<li><strong>Line 20:</strong> To retrieve the CIFAR_Image object, you need to reverse the steps we took to pickle it when we were writing it. This is where the <code>get_image()</code> of the object is helpful.</li>
+</ul>
+<p>This wraps up reading the image back out from LMDB. Finally, you will want to do the same with HDF5.</p>
+</section><section class="section3" id="reading-from-hdf5"><h3>Reading From HDF5<a class="headerlink" href="#reading-from-hdf5" title="Permanent link"></a></h3>
+<p>Reading from HDF5 looks very similar to the writing process. Here is the code to open and read the HDF5 file and parse the same image and meta:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">read_single_hdf5</span><span class="p">(</span><span class="n">image_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stores a single image to HDF5.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        image_id    integer unique ID for image</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        image       image array, (32, 32, 3) to be stored</span>
+<span class="sd">        label       associated meta data, int label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Open the HDF5 file</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">)</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;/image&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;/meta&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span>
+</code></pre></div>
+<p>Note that you access the various datasets in the file by indexing the <code>file</code> object using the dataset name preceded by a forward slash <code>/</code>. As before, you can create a dictionary containing all the read functions:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">_read_single_funcs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">disk</span><span class="o">=</span><span class="n">read_single_disk</span><span class="p">,</span> <span class="n">lmdb</span><span class="o">=</span><span class="n">read_single_lmdb</span><span class="p">,</span> <span class="n">hdf5</span><span class="o">=</span><span class="n">read_single_hdf5</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>With this dictionary prepared, you are ready for running the experiment.</p>
+</section><section class="section3" id="experiment-for-reading-a-single-image"><h3>Experiment for Reading a Single Image<a class="headerlink" href="#experiment-for-reading-a-single-image" title="Permanent link"></a></h3>
+<p>You might expect that the experiment for reading a single image in will have somewhat trivial results, but here&rsquo;s the experiment code:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
+
+<span class="n">read_single_timings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="s2">&quot;lmdb&quot;</span><span class="p">,</span> <span class="s2">&quot;hdf5&quot;</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span>
+        <span class="s2">&quot;_read_single_funcs[method](0)&quot;</span><span class="p">,</span>
+        <span class="n">setup</span><span class="o">=</span><span class="s2">&quot;image=images[0]; label=labels[0]&quot;</span><span class="p">,</span>
+        <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+    <span class="p">)</span>
+    <span class="n">read_single_timings</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">, Time usage: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Here are the results of the experiment for reading a single image:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th class="text-center">Method</th>
+<th class="text-center">Read Single Image + Meta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-center">Disk</td>
+<td class="text-center">1.61970 ms</td>
+</tr>
+<tr>
+<td class="text-center">LMDB</td>
+<td class="text-center">4.52063 ms</td>
+</tr>
+<tr>
+<td class="text-center">HDF5</td>
+<td class="text-center">1.98036 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It&rsquo;s slightly faster to read the <code>.png</code> and <code>.csv</code> files directly from disk, but all three methods perform trivially quickly. The experiments we&rsquo;ll do next are much more interesting.</p>
+</section></section><section class="section2" id="reading-many-images"><h2>Reading Many Images<a class="headerlink" href="#reading-many-images" title="Permanent link"></a></h2>
+<p>Now you can adjust the code to read many images at once. This is likely the action you&rsquo;ll be performing most often, so the runtime performance is essential.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="adjusting-the-code-for-many-images_1"><h3>Adjusting the Code for Many Images<a class="headerlink" href="#adjusting-the-code-for-many-images_1" title="Permanent link"></a></h3>
+<p>Extending the functions above, you can create functions with <code>read_many_</code>, which can be used for the next experiments. Like before, it is interesting to compare performance when reading different quantities of images, which are repeated in the code below for reference:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">read_many_disk</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Reads image from disk.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        num_images   number of images to read</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        images      images array, (N, 32, 32, 3) to be stored</span>
+<span class="sd">        labels      associated meta data, int label (N, 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="c1"># Loop over all IDs and read each image in one by one</span>
+    <span class="k">for</span> <span class="n">image_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+        <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">disk_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_images</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span>
+            <span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span>
+
+<span class="k">def</span> <span class="nf">read_many_lmdb</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Reads image from LMDB.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        num_images   number of images to read</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        images      images array, (N, 32, 32, 3) to be stored</span>
+<span class="sd">        labels      associated meta data, int label (N, 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">lmdb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lmdb_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_images</span><span class="si">}</span><span class="s2">_lmdb&quot;</span><span class="p">),</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Start a new read transaction</span>
+    <span class="k">with</span> <span class="n">env</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">txn</span><span class="p">:</span>
+        <span class="c1"># Read all images in one single transaction, with one lock</span>
+        <span class="c1"># We could split this up into multiple transactions if needed</span>
+        <span class="k">for</span> <span class="n">image_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">txn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">:</span><span class="s2">08</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">))</span>
+            <span class="c1"># Remember that it&#39;s a CIFAR_Image object </span>
+            <span class="c1"># that is stored as the value</span>
+            <span class="n">cifar_image</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="c1"># Retrieve the relevant bits</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cifar_image</span><span class="o">.</span><span class="n">get_image</span><span class="p">())</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cifar_image</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span>
+
+<span class="k">def</span> <span class="nf">read_many_hdf5</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Reads image from HDF5.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        num_images   number of images to read</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        images      images array, (N, 32, 32, 3) to be stored</span>
+<span class="sd">        labels      associated meta data, int label (N, 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="c1"># Open the HDF5 file</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num_images</span><span class="si">}</span><span class="s2">_many.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">)</span>
+
+    <span class="n">images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;/images&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;/meta&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span>
+
+<span class="n">_read_many_funcs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">disk</span><span class="o">=</span><span class="n">read_many_disk</span><span class="p">,</span> <span class="n">lmdb</span><span class="o">=</span><span class="n">read_many_lmdb</span><span class="p">,</span> <span class="n">hdf5</span><span class="o">=</span><span class="n">read_many_hdf5</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>With the reading functions stored in a dictionary as with the writing functions, you&rsquo;re all set for the experiment.</p>
+</section><section class="section3" id="experiment-for-reading-many-images"><h3>Experiment for Reading Many Images<a class="headerlink" href="#experiment-for-reading-many-images" title="Permanent link"></a></h3>
+<p>You can now run the experiment for reading many images out:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
+
+<span class="n">read_many_timings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;disk&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;lmdb&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;hdf5&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">cutoffs</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;disk&quot;</span><span class="p">,</span> <span class="s2">&quot;lmdb&quot;</span><span class="p">,</span> <span class="s2">&quot;hdf5&quot;</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span>
+            <span class="s2">&quot;_read_many_funcs[method](num_images)&quot;</span><span class="p">,</span>
+            <span class="n">setup</span><span class="o">=</span><span class="s2">&quot;num_images=cutoff&quot;</span><span class="p">,</span>
+            <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">read_many_timings</span><span class="p">[</span><span class="n">method</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+        <span class="c1"># Print out the method, cutoff, and elapsed time</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">, No. images: </span><span class="si">{</span><span class="n">cutoff</span><span class="si">}</span><span class="s2">, Time usage: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>As we did previously, you can graph the read experiment results:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/read_many.9c4a6dc5bdc0.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/read_many.9c4a6dc5bdc0.png" width="629" height="464" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/read_many.9c4a6dc5bdc0.png&amp;w=157&amp;sig=2817a607a35bf3b569a6d532ce5821bcdbaa604e 157w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/read_many.9c4a6dc5bdc0.png&amp;w=314&amp;sig=7cc2cf221eb8238fd02f99e47112e695eac6908b 314w, https://files.realpython.com/media/read_many.9c4a6dc5bdc0.png 629w" sizes="75vw" alt="read-many-image" data-asset="953" /></a></figure>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/read_many_log.594dac8746ad.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/read_many_log.594dac8746ad.png" width="638" height="474" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/read_many_log.594dac8746ad.png&amp;w=159&amp;sig=5c76fd59e67b849a7c06662cbae54be391784571 159w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/read_many_log.594dac8746ad.png&amp;w=319&amp;sig=e5fe9a82f2b3421f2a65c8f2ff5a50a3a3b23362 319w, https://files.realpython.com/media/read_many_log.594dac8746ad.png 638w" sizes="75vw" alt="read-many-log" data-asset="1068" /></a></figure>
+<p>The top graph shows the normal, unadjusted read times, showing the drastic difference between reading from <code>.png</code> files and LMDB or HDF5. </p>
+<p>In contrast, the graph on the bottom shows the <code>log</code> of the timings, highlighting the relative differences with fewer images. Namely, we can see how HDF5 starts out behind but, with more images, becomes consistently faster than LMDB by a small margin.</p>
+<div class="card mb-3" id="collapse_card0b7b96">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapse0b7b96" aria-expanded="false" aria-controls="collapse0b7b96" markdown="1"><span class="float-left" markdown="1">Plot the Read Timings</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse js-collapsible-section" data-parent="#collapse_card0b7b96" id="collapse0b7b96">
+<div class="card-body">
+<p>Using the same plotting function as for the write timings, we have the following:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">disk_x_r</span> <span class="o">=</span> <span class="n">read_many_timings</span><span class="p">[</span><span class="s2">&quot;disk&quot;</span><span class="p">]</span>
+<span class="n">lmdb_x_r</span> <span class="o">=</span> <span class="n">read_many_timings</span><span class="p">[</span><span class="s2">&quot;lmdb&quot;</span><span class="p">]</span>
+<span class="n">hdf5_x_r</span> <span class="o">=</span> <span class="n">read_many_timings</span><span class="p">[</span><span class="s2">&quot;hdf5&quot;</span><span class="p">]</span>
+
+<span class="n">plot_with_legend</span><span class="p">(</span>
+    <span class="n">cutoffs</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">disk_x_r</span><span class="p">,</span> <span class="n">lmdb_x_r</span><span class="p">,</span> <span class="n">hdf5_x_r</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;PNG files&quot;</span><span class="p">,</span> <span class="s2">&quot;LMDB&quot;</span><span class="p">,</span> <span class="s2">&quot;HDF5&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Number of images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Seconds to read&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Read time&quot;</span><span class="p">,</span>
+    <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plot_with_legend</span><span class="p">(</span>
+    <span class="n">cutoffs</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">disk_x_r</span><span class="p">,</span> <span class="n">lmdb_x_r</span><span class="p">,</span> <span class="n">hdf5_x_r</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;PNG files&quot;</span><span class="p">,</span> <span class="s2">&quot;LMDB&quot;</span><span class="p">,</span> <span class="s2">&quot;HDF5&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Number of images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Seconds to read&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Log read time&quot;</span><span class="p">,</span>
+    <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>In practice, the write time is often less critical than the read time.</strong> Imagine that you are training a deep neural network on images, and only half of your entire image dataset fits into RAM at once. Each epoch of training a network requires the entire dataset, and the model needs a few hundred epochs to converge. You will essentially be reading half of the dataset into memory every epoch.</p>
+<p>There are several tricks people do, such as training pseudo-epochs to make this slightly better, but you get the idea.</p>
+<p>Now, look again at the read graph above. The difference between a 40-second and 4-second read time suddenly is the difference between waiting six hours for your model to train, or forty minutes!</p>
+<p>If we view the read and write times on the same chart, we have the following:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/read_write.a4f87d39489d.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/read_write.a4f87d39489d.png" width="629" height="464" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/read_write.a4f87d39489d.png&amp;w=157&amp;sig=aecde3bdcda3a7abbb446596f96cce7b42d00f45 157w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/read_write.a4f87d39489d.png&amp;w=314&amp;sig=aba207635d5dc60b79563cb87df73fe8f454e1a8 314w, https://files.realpython.com/media/read_write.a4f87d39489d.png 629w" sizes="75vw" alt="read-write" data-asset="950" /></a></figure>
+<div class="card mb-3" id="collapse_cardf4a00f">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapsef4a00f" aria-expanded="false" aria-controls="collapsef4a00f" markdown="1"><span class="float-left" markdown="1">Plot the Read and Write Timings</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse js-collapsible-section" data-parent="#collapse_cardf4a00f" id="collapsef4a00f">
+<div class="card-body">
+<p>You can plot all the read and write timings on a single graph using the same plotting function:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">plot_with_legend</span><span class="p">(</span>
+    <span class="n">cutoffs</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">disk_x_r</span><span class="p">,</span> <span class="n">lmdb_x_r</span><span class="p">,</span> <span class="n">hdf5_x_r</span><span class="p">,</span> <span class="n">disk_x</span><span class="p">,</span> <span class="n">lmdb_x</span><span class="p">,</span> <span class="n">hdf5_x</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Read PNG&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Read LMDB&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Read HDF5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Write PNG&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Write LMDB&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Write HDF5&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;Number of images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Seconds&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Log Store and Read Times&quot;</span><span class="p">,</span>
+    <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>When you&rsquo;re storing images as <code>.png</code> files, there is a big difference between write and read times. However, with LMDB and HDF5, the difference is much less marked. Overall, even if read time is more critical than write time, there is a strong argument for storing images using LMDB or HDF5.</p>
+<p>Now that you&rsquo;ve seen the performance benefits of LMDB and HDF5, let&rsquo;s look at another crucial metric: disk usage.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section2" id="considering-disk-usage"><h2>Considering Disk Usage<a class="headerlink" href="#considering-disk-usage" title="Permanent link"></a></h2>
+<p>Speed is not the only performance metric you may be interested in. We&rsquo;re already dealing with very large datasets, so disk space is also a very valid and relevant concern.</p>
+<p>Suppose you have an image dataset of 3TB. Presumably, you have them already on disk somewhere, unlike our CIFAR example, so by using an alternate storage method, you are essentially making a copy of them, which also has to be stored. Doing so will give you huge performance benefits when you use the images, but you&rsquo;ll need to make sure you have enough disk space.</p>
+<p><strong>How much disk space do the various storage methods use?</strong> Here&rsquo;s the disk space used for each method for each quantity of images:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/store_mem.dadff24e67e3.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/store_mem.dadff24e67e3.png" width="554" height="604" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/store_mem.dadff24e67e3.png&amp;w=138&amp;sig=0815866dbe443ab043a73fbfbc2e4f9dc0efc5a1 138w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/store_mem.dadff24e67e3.png&amp;w=277&amp;sig=2a566c7f8e20ee0b872cc24637639499743c2b53 277w, https://files.realpython.com/media/store_mem.dadff24e67e3.png 554w" sizes="75vw" alt="store-mem-image" data-asset="952" /></a></figure>
+<div class="card mb-3" id="collapse_cardf88fff">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapsef88fff" aria-expanded="false" aria-controls="collapsef88fff" markdown="1"><span class="float-left" markdown="1">Generating the Bar Plot for Disk Space Usage</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse js-collapsible-section" data-parent="#collapse_cardf88fff" id="collapsef88fff">
+<div class="card-body">
+<p>I used the Linux <code>du -h -c folder_name/*</code> command to compute the disk usage on my system. There is some approximation inherent with this method due to rounding, but here&rsquo;s the general comparison:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Memory used in KB</span>
+<span class="n">disk_mem</span> <span class="o">=</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">2004</span><span class="p">,</span> <span class="mi">20032</span><span class="p">,</span> <span class="mi">200296</span><span class="p">]</span>
+<span class="n">lmdb_mem</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">420</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">39000</span><span class="p">,</span> <span class="mi">393000</span><span class="p">]</span>
+<span class="n">hdf5_mem</span> <span class="o">=</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">2900</span><span class="p">,</span> <span class="mi">29000</span><span class="p">,</span> <span class="mi">293000</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">disk_mem</span><span class="p">,</span> <span class="n">lmdb_mem</span><span class="p">,</span> <span class="n">hdf5_mem</span><span class="p">]</span>
+
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">X</span><span class="p">],</span> <span class="n">width</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cutoffs</span><span class="p">)):</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">X</span><span class="p">],</span> <span class="n">width</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Memory in KB&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Disk memory used by method&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;PNG&quot;</span><span class="p">,</span> <span class="s2">&quot;LMDB&quot;</span><span class="p">,</span> <span class="s2">&quot;HDF5&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">plot</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">],</span> <span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;1,000&quot;</span><span class="p">,</span> <span class="s2">&quot;10,000&quot;</span><span class="p">,</span> <span class="s2">&quot;100,000&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Both HDF5 and LMDB take up more disk space than if you store using normal <code>.png</code> images. It&rsquo;s important to note that both LMDB and HDF5 disk usage and performance <strong>depend highly on various factors, including operating system and, more critically, the size of the data you store.</strong></p>
+<p>LMDB gains its efficiency from caching and taking advantage of OS page sizes. You don&rsquo;t need to understand its inner workings, but note that <strong>with larger images, you will end up with significantly more disk usage with LMDB,</strong> because images won&rsquo;t fit on LMDB&rsquo;s leaf pages, the regular storage location in the tree, and instead you will have many overflow pages. The LMDB bar in the chart above will shoot off the chart.</p>
+<p>Our 32x32x3 pixel images are relatively small compared to the average images you may use, and they allow for optimal LMDB performance.</p>
+<p>While we won&rsquo;t explore it here experimentally, in my own experience with images of 256x256x3 or 512x512x3 pixels, HDF5 is usually slightly more efficient in terms of disk usage than LMDB. This is a good transition into the final section, a qualitative discussion of the differences between the methods.</p>
+</section><section class="section2" id="discussion"><h2>Discussion<a class="headerlink" href="#discussion" title="Permanent link"></a></h2>
+<p>There are other distinguishing features of LMDB and HDF5 that are worth knowing about, and it&rsquo;s also important to briefly discuss some of the criticisms of both methods. Several links are included along with the discussion if you want to learn more.</p>
+<section class="section3" id="parallel-access"><h3>Parallel Access<a class="headerlink" href="#parallel-access" title="Permanent link"></a></h3>
+<p>A key comparison that we didn&rsquo;t test in the experiments above is <a href="https://realpython.com/python-concurrency/">concurrent</a> reads and writes. <strong>Often, with such large datasets, you may want to speed up your operation through parallelization.</strong></p>
+<p>In the majority of cases, you won&rsquo;t be interested in reading parts of the same image at the same time, but you <em>will</em> want to read multiple images at once. With this definition of concurrency, storing to disk as <code>.png</code> files actually allows for complete concurrency. Nothing prevents you from reading several images at once from different threads, or writing multiple files at once, as long as the image names are different.</p>
+<p>How about LMDB? There can be multiple readers on an LMDB environment at a time, but only one writer, and writers do not block readers. You can read more about that at the <a href="http://www.lmdb.tech/doc/">LMDB technology website</a>.</p>
+<p>Multiple applications can access the same LMDB database at the same time, and multiple threads from the same process can also concurrently access the LMDB for reads. This allows for even quicker read times: if you divided all of CIFAR into ten sets, then you could set up ten processes to each read in one set, and it would divide the loading time by ten.</p>
+<p>HDF5 also offers parallel I/O, allowing concurrent reads and writes. However, in implementation, a write lock is held, and access is sequential, unless you have a parallel file system.</p>
+<p>There are two main options if you are working on such a system, which are discussed more in depth in <a href="https://www.hdfgroup.org/2015/04/parallel-io-why-how-and-where-to-hdf5/">this article by the HDF Group on parallel IO</a>. It can get quite complicated, and the simplest option is to intelligently split your dataset into multiple HDF5 files, such that each process can deal with one <code>.h5</code> file independently of the others.</p>
+</section><section class="section3" id="documentation"><h3>Documentation<a class="headerlink" href="#documentation" title="Permanent link"></a></h3>
+<p>If you Google <code>lmdb</code>, at least in the United Kingdom, the third search result is IMDb, the Internet Movie Database. That&rsquo;s not what you were looking for! </p>
+<p>Actually, there is one main source of documentation for the Python binding of LMDB, which is hosted on <a href="https://lmdb.readthedocs.io/en/release/#">Read the Docs LMDB</a>. While the Python package hasn&rsquo;t even reached version &gt; 0.94, it <em>is</em> quite widely used and is considered stable.</p>
+<p>As for the LMDB technology itself, there is more detailed documentation <a href="http://www.lmdb.tech/doc/index.html">at the LMDB technology website</a>, which can feel a bit like learning calculus in second grade, unless you start from their <a href="http://www.lmdb.tech/doc/starting.html">Getting Started</a> page.</p>
+<p>For HDF5, there is very clear documentation at the <a href="http://docs.h5py.org/en/stable/">h5py docs</a> site, as well as <a href="https://www.christopherlovell.co.uk/blog/2016/04/27/h5py-intro.html">a helpful blog post by Christopher Lovell</a>, which is an excellent overview of how to use the <code>h5py</code> package. The O&rsquo;Reilly book, <a href="https://realpython.com/asins/1449367836/">Python and HDF5</a> also is a good way to get started.</p>
+<p>While not as documented as perhaps a beginner would appreciate, both LMDB and HDF5 have large user communities, so a deeper Google search usually yields helpful results.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="a-more-critical-look-at-implementation"><h3>A More Critical Look at Implementation<a class="headerlink" href="#a-more-critical-look-at-implementation" title="Permanent link"></a></h3>
+<p>There is no utopia in storage systems, and both LMDB and HDF5 have their share of pitfalls.</p>
+<p>A key point to understand about LMDB is that new data is written <strong>without overwriting or moving existing data.</strong> This is a design decision that allows for the extremely quick reads you witnessed in our experiments, and also guarantees data integrity and reliability without the additional need of keeping transaction logs.</p>
+<p>Remember, however, that you needed to define the <code>map_size</code> parameter for memory allocation <em>before</em> writing to a new database? This is where LMDB can be a hassle. Suppose you have created an LMDB database, and everything is wonderful. You&rsquo;ve waited patiently for your enormous dataset to be packed into a LMDB.</p>
+<p>Then, later down the line, you remember that you need to add new data. Even with the buffer you specified on your <code>map_size</code>, you may easily expect to see the <code>lmdb.MapFullError</code> error. Unless you want to re-write your entire database, with the updated <code>map_size</code>, you&rsquo;ll have to store that new data in a separate LMDB file. Even though one transaction can span multiple LMDB files, having multiple files can still be a pain.</p>
+<p>Additionally, some systems have restrictions on how much memory may be claimed at once. In my own experience, working with high-performance computing (HPC) systems, this has proved extremely frustrating, and has often made me prefer HDF5 over LMDB.</p>
+<p>With both LMDB and HDF5, only the requested item is read into memory at once. With LMDB, key-unit pairs are read into memory one by one, while with HDF5, the <code>dataset</code> object can be accessed like a Python array, with indexing <code>dataset[i]</code>, ranges, <code>dataset[i:j]</code> and other splicing <code>dataset[i:j:interval]</code>.</p>
+<p>Because of the way the systems are optimized, and depending on your operating system, the order in which you access items can impact performance. </p>
+<p>In my experience, it&rsquo;s generally true that for LMDB, you may get better performance when accessing items sequentially by key (key-value pairs being kept in memory ordered alphanumerically by key), and that for HDF5, accessing large ranges will perform better than reading every element of the dataset one by one using the following:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Slightly slower</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):</span>
+    <span class="c1"># Read the ith value in the dataset, one at a time</span>
+    <span class="n">do_something_with</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1"># This is better</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">do_something_with</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</code></pre></div>
+<p>If you are considering a choice of file storage format to write your software around, it would be remiss not to mention <a href="https://cyrille.rossant.net/moving-away-hdf5/">Moving away from HDF5</a> by Cyrille Rossant on the pitfalls of HDF5, and Konrad Hinsen&rsquo;s response <a href="http://blog.khinsen.net/posts/2016/01/07/on-hdf5-and-the-future-of-data-management/">On HDF5 and the future of data management</a>, which shows how some of the pitfalls can be avoided in his own use cases with many smaller datasets rather than a few enormous ones. Note that a relatively smaller dataset is still several GB in size.</p>
+</section><section class="section3" id="integration-with-other-libraries"><h3>Integration With Other Libraries<a class="headerlink" href="#integration-with-other-libraries" title="Permanent link"></a></h3>
+<p>If you&rsquo;re dealing with really large datasets, it&rsquo;s highly likely that you&rsquo;ll be doing something significant with them. It&rsquo;s worthwhile to consider deep learning libraries and what kind of integration there is with LMDB and HDF5.</p>
+<p>First of all, all libraries support reading images from disk as <code>.png</code> files, as long as you convert them into NumPy arrays of the expected format. This holds true for all the methods, and we have already seen above that it is relatively straightforward to read in images as arrays.</p>
+<p><strong>Here are several of the most popular deep learning libraries and their LMDB and HDF5 integration:</strong></p>
+<ul>
+<li>
+<p><a href="https://caffe.berkeleyvision.org/"><strong>Caffe</strong></a> has a stable, well-supported LMDB integration, and it handles the reading step transparently. The LMDB layer can also easily be replaced with a HDF5 database.</p>
+</li>
+<li>
+<p><a href="https://www.tensorflow.org/tutorials/keras/save_and_restore_models"><strong>Keras</strong></a> uses the HDF5 format to save and restore models. This implies that TensorFlow can as well.</p>
+</li>
+<li>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/LMDBDataset"><strong>TensorFlow</strong></a> has a built-in class <code>LMDBDataset</code> that provides an interface for reading in input data from an LMDB file and can produce iterators and tensors in batches. <a href="https://realpython.com/pytorch-vs-tensorflow/">TensorFlow</a> does <em>not</em> have a built-in class for HDF5, but one can be written that inherits from the <code>Dataset</code> class. I personally use a custom class altogether that is designed for optimal read access based on the way I structure my HDF5 files.</p>
+</li>
+<li>
+<p><a href="http://deeplearning.net/software/theano/"><strong>Theano</strong></a> does not natively support any particular file format or database, but as previously stated, can use anything as long as it is read in as an N-dimensional array.</p>
+</li>
+</ul>
+<p>While far from comprehensive, this hopefully gives you a feel for the LMDB/HDF5 integration by some key deep learning libraries.</p>
+</section></section><section class="section2" id="a-few-personal-insights-on-storing-images-in-python"><h2>A Few Personal Insights on Storing Images in Python<a class="headerlink" href="#a-few-personal-insights-on-storing-images-in-python" title="Permanent link"></a></h2>
+<p>In my own daily work analyzing terabytes of medical images, I use both LMDB and HDF5, and have learned that, with any storage method, <strong>forethought is critical</strong>. </p>
+<p>Often, models need to be trained using k-fold cross validation, which involves splitting the entire dataset into k-sets (k typically being 10), and k models being trained, each with a different k-set used as test set. This ensures that the model is not overfitting the dataset, or, in other words, unable to make good predictions on unseen data.</p>
+<p>A standard way to craft a k-set is to put an equal representation of each type of data represented in the dataset in each k-set. Thus, saving each k-set into a separate HDF5 dataset maximizes efficiency. Sometimes, a single k-set cannot be loaded into memory at once, so even the ordering of data within a dataset requires some forethought.</p>
+<p>With LMDB, I similarly am careful to plan ahead before creating the database(s). There are a few good questions worth asking before you save images:</p>
+<ul>
+<li>How can I save the images such that most of the reads will be sequential? </li>
+<li>What are good keys? </li>
+<li>How can I calculate a good <code>map_size</code>, anticipating potential future changes in the dataset? </li>
+<li>How large can a single transaction be, and how should transactions be subdivided?</li>
+</ul>
+<p>Regardless of the storage method, when you&rsquo;re dealing with large image datasets, a little planning goes a long way.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="conclusion"><h2>Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<p>You&rsquo;ve made it to the end! You&rsquo;ve now had a bird&rsquo;s eye view of a large topic.</p>
+<p>In this article, you&rsquo;ve been introduced to three ways of storing and accessing lots of images in Python, and perhaps had a chance to play with some of them. All the code for this article is in a <a href="https://github.com/realpython/materials/blob/storing-images/storing-images/storing_images.ipynb">Jupyter notebook here</a> or <a href="https://github.com/realpython/materials/blob/storing-images/storing-images/storing_images.py">Python script here</a>. Run at your own risk, as a few GB of your disk space will be overtaken by little square images of cars, boats, and so on.</p>
+<p>You&rsquo;ve seen evidence of how various storage methods can drastically affect read and write time, as well as a few pros and cons of the three methods considered in this article. While storing images as <code>.png</code> files may be the most intuitive, there are large performance benefits to considering methods such as HDF5 or LMDB.</p>
+<p>Feel free to discuss in the comment section the excellent storage methods not covered in this article, such as <a href="https://github.com/google/leveldb">LevelDB</a>, <a href="https://github.com/wesm/feather">Feather</a>, <a href="https://tiledb.io/">TileDB</a>, <a href="https://blog.dgraph.io/post/badger/">Badger</a>, <a href="https://godoc.org/github.com/boltdb/bolt">BoltDB</a>, or anything else. <strong>There is no perfect storage method, and the best method depends on your specific dataset and use cases.</strong></p>
+</section><section class="section2" id="further-reading"><h2>Further Reading<a class="headerlink" href="#further-reading" title="Permanent link"></a></h2>
+<p>Here are some references related to the three methods covered in this article:</p>
+<ul>
+<li><a href="https://lmdb.readthedocs.io/en/release/#">Python binding for LMDB</a></li>
+<li><a href="http://www.lmdb.tech/doc/starting.html">LMDB documentation: Getting Started</a></li>
+<li><a href="https://www.h5py.org/">Python binding for HDF5 (h5py)</a></li>
+<li><a href="https://www.hdfgroup.org/solutions/hdf5/">The HDF5 Group</a></li>
+<li><a href="https://realpython.com/asins/1449367836/">&ldquo;Python and HDF5&rdquo; from O&rsquo;Reilly</a></li>
+<li><a href="https://pillow.readthedocs.io/en/stable/">Pillow</a></li>
+</ul>
+<p>You may also appreciate <a href="https://www.osti.gov/biblio/1335300">&ldquo;An analysis of image storage systems for scalable training of deep neural networks&rdquo;</a> by Lim, Young, and Patton. That paper covers experiments similar to the ones in this article, but on a much larger scale, considering cold and warm cache as well as other factors.</p>
+</section>
+<div class="text-center my-3">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.</p>
+</div>
+<div class="col-xs-12 col-sm-5">
+<img class="img-fluid rounded mb-3" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="Gqrdoszecdm2KYAjrFTVlLqizfTJqIdyMv6qZ1LcxIhcURf1Arl5LQpePaYDDgHn">
+<input type="hidden" name="slug" value="static-python-tricks-footer">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me Python Tricks »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="card mt-3" id="author">
+<p class="card-header h3">About <strong>Rebecca Stone</strong></p>
+<div class="card-body">
+<div class="container p-0">
+<div class="row">
+<div class="col-12 col-md-3 align-self-center">
+<a href="/team/rstone/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=245&amp;h=245&amp;mode=crop&amp;sig=44cd0b2125ff73159863fd61eb5f2b1ca4975e13" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=61&amp;h=61&amp;mode=crop&amp;sig=8913ed1bc47774021d401bf7dea64e7e7cb43b39 61w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=122&amp;h=122&amp;mode=crop&amp;sig=2edf868b9030678c63dedfa39d4d05f997ce53b2 122w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=245&amp;h=245&amp;mode=crop&amp;sig=44cd0b2125ff73159863fd61eb5f2b1ca4975e13 245w" sizes="25vw" width="245" height="245" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto" alt="Rebecca Stone"></a>
+<a href="/team/rstone/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=245&amp;h=245&amp;mode=crop&amp;sig=44cd0b2125ff73159863fd61eb5f2b1ca4975e13" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=61&amp;h=61&amp;mode=crop&amp;sig=8913ed1bc47774021d401bf7dea64e7e7cb43b39 61w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=122&amp;h=122&amp;mode=crop&amp;sig=2edf868b9030678c63dedfa39d4d05f997ce53b2 122w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/avatar_2019.a43824888e35.png&amp;w=245&amp;h=245&amp;mode=crop&amp;sig=44cd0b2125ff73159863fd61eb5f2b1ca4975e13 245w" sizes="25vw" width="245" height="245" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0" alt="Rebecca Stone"></a>
+</div>
+<div class="col mt-3">
+<p>Rebecca is a PhD student in computer vision and artificial intelligence applied to medical images. She&#x27;s passionate about teaching.</p>
+<a href="/team/rstone/" class="card-link">» More about Rebecca</a>
+</div>
+</div>
+</div>
+</div>
+<hr class="my-0">
+<div class="card-body pb-0">
+<div class="container">
+<div class="row">
+<p><em>Each tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:</em></p>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/asantos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=175&amp;h=175&amp;mode=crop&amp;sig=30253487c673fd67bb45ea6bef95b3c57e115e46 175w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=350&amp;h=350&amp;mode=crop&amp;sig=a43bd9ea30a6f61a4fc2451ab9abfc6faec8a2c0 350w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c 700w" sizes="10vw" width="245" height="245" class="rounded-circle img-fluid w-100" alt="Aldren Santos"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/asantos/" class="card-link small"><p>Aldren</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/gahjelle/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=c6390201e73d3e09429d73da5bb29c17ab10403a 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=fcea459ee24a7b320573cadee324cf75509dc1d6 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1 800w" sizes="10vw" width="245" height="245" class="rounded-circle img-fluid w-100" alt="Geir Arne Hjelle"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/gahjelle/" class="card-link small"><p>Geir Arne</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jjablonski/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=706b16de3cb88a8f353f4a98d7c7bc7234229bd0 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=6d7aa672ca3f1ac5f7cd62ed1641b60f98d04d8b 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858 800w" sizes="10vw" width="245" height="245" class="rounded-circle img-fluid w-100" alt="Joanna Jablonski"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jjablonski/" class="card-link small"><p>Joanna</p></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+<div class="col-12 text-center d-block d-md-none">
+<p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</mark></u> With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-1"><img class="w-75" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+<p class="mb-0"><a href="/account/join/?utm_source=rp_article_footer&utm_content=storing-images-in-python" class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+</div>
+<div class="col-12 text-center d-none d-md-block">
+<p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-2"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="/account/join/?utm_source=rp_article_footer&utm_content=storing-images-in-python" class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+</div>
+</div>
+<div class="card mt-4" id="reader-comments">
+<p class="card-header h3">What Do You Think?</p>
+<div class="text-center mt-3 mb-0 p-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Three%20Ways%20of%20Storing%20and%20Accessing%20Lots%20of%20Images%20in%20Python by @realpython&url=https%3A//realpython.com/storing-images-in-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/storing-images-in-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AThree%20Ways%20of%20Storing%20and%20Accessing%20Lots%20of%20Images%20in%20Python%0A%0Ahttps%3A//realpython.com/storing-images-in-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="card-body">
+<div class="alert alert-dark">
+<p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.</p>
+</div>
+<p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.</p>
+<div class="mb-4" id="disqus_thread">
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<p class="card-header h3">Keep Learning</p>
+<div class="card-body">
+<p class="mb-0">Related Tutorial Categories:
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+</p>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="rprw">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header border-0 mt-3">
+<div class="col-12 modal-title text-center">
+<h2 class="my-0 mx-5">Keep reading Real&nbsp;Python by creating a free account or signing&nbsp;in:</h2>
+</div>
+</div>
+<div class="modal-body bg-light">
+<div class="col-12 text-center">
+<p class="mb-2 mt-3"><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fstoring-images-in-python%2F"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260" alt="Keep reading"></a></p>
+<p><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fstoring-images-in-python%2F" class="btn btn-primary btn-lg px-5"></i>Continue »</a></a>
+</div>
+</div>
+<div class="modal-footer border-0">
+<p class="text-center text-muted mt-2 mb-1">Already have an account? <a href="/account/login/?next=/storing-images-in-python/">Sign-In</a></p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.realpython.com/static/frontend/reader/rw.38bf29157dfe.js" async></script>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="Gqrdoszecdm2KYAjrFTVlLqizfTJqIdyMv6qZ1LcxIhcURf1Arl5LQpePaYDDgHn">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+<div class="sidebar-sticky ">
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+<p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+<div class="toc">
+<ul>
+<li><a href="#setup">Setup</a><ul>
+<li><a href="#a-dataset-to-play-with">A Dataset to Play With</a></li>
+<li><a href="#setup-for-storing-images-on-disk">Setup for Storing Images on Disk</a></li>
+<li><a href="#getting-started-with-lmdb">Getting Started With LMDB</a></li>
+<li><a href="#getting-started-with-hdf5">Getting Started With HDF5</a></li>
+</ul>
+</li>
+<li><a href="#storing-a-single-image">Storing a Single Image</a><ul>
+<li><a href="#storing-to-disk">Storing to Disk</a></li>
+<li><a href="#storing-to-lmdb">Storing to LMDB</a></li>
+<li><a href="#storing-with-hdf5">Storing With HDF5</a></li>
+<li><a href="#experiments-for-storing-a-single-image">Experiments for Storing a Single Image</a></li>
+</ul>
+</li>
+<li><a href="#storing-many-images">Storing Many Images</a><ul>
+<li><a href="#adjusting-the-code-for-many-images">Adjusting the Code for Many Images</a></li>
+<li><a href="#preparing-the-dataset">Preparing the Dataset</a></li>
+<li><a href="#experiment-for-storing-many-images">Experiment for Storing Many Images</a></li>
+</ul>
+</li>
+<li><a href="#reading-a-single-image">Reading a Single Image</a><ul>
+<li><a href="#reading-from-disk">Reading From Disk</a></li>
+<li><a href="#reading-from-lmdb">Reading From LMDB</a></li>
+<li><a href="#reading-from-hdf5">Reading From HDF5</a></li>
+<li><a href="#experiment-for-reading-a-single-image">Experiment for Reading a Single Image</a></li>
+</ul>
+</li>
+<li><a href="#reading-many-images">Reading Many Images</a><ul>
+<li><a href="#adjusting-the-code-for-many-images_1">Adjusting the Code for Many Images</a></li>
+<li><a href="#experiment-for-reading-many-images">Experiment for Reading Many Images</a></li>
+</ul>
+</li>
+<li><a href="#considering-disk-usage">Considering Disk Usage</a></li>
+<li><a href="#discussion">Discussion</a><ul>
+<li><a href="#parallel-access">Parallel Access</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#a-more-critical-look-at-implementation">A More Critical Look at Implementation</a></li>
+<li><a href="#integration-with-other-libraries">Integration With Other Libraries</a></li>
+</ul>
+</li>
+<li><a href="#a-few-personal-insights-on-storing-images-in-python">A Few Personal Insights on Storing Images in Python</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Three%20Ways%20of%20Storing%20and%20Accessing%20Lots%20of%20Images%20in%20Python by @realpython&url=https%3A//realpython.com/storing-images-in-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/storing-images-in-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AThree%20Ways%20of%20Storing%20and%20Accessing%20Lots%20of%20Images%20in%20Python%0A%0Ahttps%3A//realpython.com/storing-images-in-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-python-opencv-examples-experiment" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+<img class="img-fluid rounded" src="https://files.realpython.com/media/face-detection-abba.ea2dcc6d3bda.jpg" width="502" height="464" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/face-detection-abba.ea2dcc6d3bda.jpg&amp;w=125&amp;sig=5abd5698348a2d40b5c2fa52b3b64e0661a854dc 125w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/face-detection-abba.ea2dcc6d3bda.jpg&amp;w=251&amp;sig=16e9d9b9fd9e95d2c4b070e787359357cf2bf2d4 251w, https://files.realpython.com/media/face-detection-abba.ea2dcc6d3bda.jpg 502w" sizes="50vw" alt="Python face detection example 1: Abba">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">Python Face Detection &amp; OpenCV Examples Mini-Guide</p>
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="Gqrdoszecdm2KYAjrFTVlLqizfTJqIdyMv6qZ1LcxIhcURf1Arl5LQpePaYDDgHn">
+<input type="hidden" name="slug" value="python-opencv-examples-experiment">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Send My Free Guide »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<div class="w-75 mx-auto mt-4 mb-0">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/toc-refresh.76a102c7d921.js" async></script>
+<script id="js-context" type="application/json">{"is_completed": false, "is_bookmarked": false, "api_article_bookmark_url": "/api/v1/articles/storing-images-in-python/bookmark/", "api_article_completion_status_url": "/api/v1/articles/storing-images-in-python/completion_status/"}</script>
+<script src="https://cdn.realpython.com/static/frontend/reader/completion-status.352d07abd84a.js" async></script>
+<script id="dsq-count-scr" src="https://realpython.disqus.com/count.js" async></script>
+<script>
+      var disqus_config = function () {
+        this.page.url = 'https://realpython.com/storing-images-in-python/';
+        this.page.identifier = 'https://realpython.com/storing-images-in-python/';
+        this.callbacks.onReady = [function() {
+          if (window.onDisqusReady) {
+            window.onDisqusReady();
+          }
+        }];
+      };
+      var disqus_script_url = 'https://realpython.disqus.com/embed.js';
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lazy-disqus.07ee9079f4a3.js" defer></script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Three Ways of Storing and Accessing Lots of Images in Python",
+    
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://files.realpython.com/media/Three-Ways-of-Storing-and-Accessing-Lots-of-Images-in-Python_Watermarked.e0e46e94536c.jpg",
+      "width": 1920,
+      "height": 1080
+    },
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://realpython.com/storing-images-in-python/"
+    },
+    "datePublished": "2019-05-15T14:00:00+00:00",
+    "dateModified": "2021-03-19T05:56:20.444208+00:00",
+     "publisher": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cdn.realpython.com/static/real-python-logo-square-tiny.b2452b6d3823.png",
+        "width": 60,
+        "height": 60
+      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "url": "https://realpython.com",
+      "logo": "https://cdn.realpython.com/static/real-python-logo-square.146e987bf77c.png"
+    },
+    "description": "In this tutorial, you\u0027ll cover three ways of storing and accessing lots of images in Python. You\u0027ll also see  experimental evidence for the performance benefits and drawbacks of each one."
+  }
+  </script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a459f59fe3749',m:'fiXfofbQpQ0Mf3mZoCeQ7LgKt.YFJzHwcOTlgta6DBk-1632636027-0-AQiTSysqOjB3G0ZyNZZ/fSyLPNqbJVsxbVOXI5d3rBTxVqA3a7AmkAdVgC2ibctHV1Rei2NWJYEMhP78MVsJbMJC/lCaKvcgR74ZhXCc2bfWmtKbVeQgAP6HeTGxPi19OmlkjvAFTFdgdCE//DpA7b8=',s:[0x17bb37500b,0xa6645cb9c6],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

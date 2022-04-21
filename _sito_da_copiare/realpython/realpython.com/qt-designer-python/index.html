@@ -1,0 +1,1407 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Qt Designer and Python: Build Your GUI Applications Faster – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="In this step-by-step tutorial, you&#x27;ll learn how to use Qt Designer to create GUIs from your windows and dialogs and use them in your Python applications.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/qt-designer-python/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Qt Designer and Python: Build Your GUI Applications Faster – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/qt-designer-python/">
+<meta property="og:description" content="In this step-by-step tutorial, you&#x27;ll learn how to use Qt Designer to create GUIs from your windows and dialogs and use them in your Python applications.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+ <a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Fqt-designer-python%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article with-headerlinks">
+<figure class="embed-responsive embed-responsive-16by9">
+<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Qt Designer and Python: Build Your GUI Applications Faster" src="https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg&amp;w=480&amp;sig=0d3f4e28df3f8ff8a44055e5e3047485c6b5a2a2 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg&amp;w=960&amp;sig=7453a1af62d3f446f9a07bdb8573622125a8ad08 960w, https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg 1920w" sizes="75vw">
+</figure>
+<h1>Qt Designer and Python: Build Your GUI Applications Faster</h1>
+<div class="mb-0">
+<span class="text-muted">by <a class="text-muted" href="#author">Leodanis Pozo Ramos</a>
+<span class="ml-2 fa fa-clock-o"></span> Feb 03, 2021
+<span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="#reader-comments"><span class="disqus-comment-count" data-disqus-identifier="https://realpython.com/qt-designer-python/"></span></a>
+<span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<div class="d-sm-flex flex-row justify-content-between my-3 text-center">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+<div class="align-self-center my-2">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Qt%20Designer%20and%20Python%3A%20Build%20Your%20GUI%20Applications%20Faster by @realpython&url=https%3A//realpython.com/qt-designer-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/qt-designer-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AQt%20Designer%20and%20Python%3A%20Build%20Your%20GUI%20Applications%20Faster%0A%0Ahttps%3A//realpython.com/qt-designer-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+</div>
+</div>
+<div class="article-body">
+<div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+<p class="h3 mb-2 text-muted">Table of Contents</p>
+<div class="toc">
+<ul>
+<li><a href="#getting-started-with-qt-designer">Getting Started With Qt Designer</a><ul>
+<li><a href="#installing-and-running-qt-designer">Installing and Running Qt Designer</a></li>
+<li><a href="#using-qt-designers-new-form-dialog">Using Qt Designer&rsquo;s New Form Dialog</a></li>
+<li><a href="#working-with-qt-designers-main-window">Working With Qt Designer&rsquo;s Main Window</a></li>
+<li><a href="#using-qt-designer-vs-hand-coding-your-guis">Using Qt Designer vs Hand Coding Your GUIs</a></li>
+</ul>
+</li>
+<li><a href="#building-main-windows-with-qt-designer-and-python">Building Main Windows With Qt Designer and Python</a><ul>
+<li><a href="#creating-the-main-menu">Creating the Main Menu</a></li>
+<li><a href="#creating-a-toolbar">Creating a Toolbar</a></li>
+<li><a href="#laying-out-a-single-central-widget">Laying Out a Single Central Widget</a></li>
+<li><a href="#laying-out-a-compound-central-widget">Laying Out a Compound Central Widget</a></li>
+<li><a href="#having-a-status-bar">Having a Status Bar</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-dialog-with-qt-designer-and-python">Creating a Dialog With Qt Designer and Python</a><ul>
+<li><a href="#creating-a-dialog-gui">Creating a Dialog GUI</a></li>
+<li><a href="#laying-out-the-dialog-gui">Laying Out the Dialog GUI</a></li>
+<li><a href="#connecting-signals-and-slots">Connecting Signals and Slots</a></li>
+<li><a href="#setting-the-tab-order-of-widgets">Setting the Tab Order of Widgets</a></li>
+<li><a href="#providing-keyboard-accelerators">Providing Keyboard Accelerators</a></li>
+</ul>
+</li>
+<li><a href="#integrating-windows-and-dialogs-in-an-application">Integrating Windows and Dialogs in an Application</a><ul>
+<li><a href="#setting-up-windows-and-dialogs-for-use">Setting Up Windows and Dialogs for Use</a></li>
+<li><a href="#putting-everything-together-in-an-application">Putting Everything Together in an Application</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p>To create a GUI for your windows and dialogs in PyQt, you can take two main paths: you can use <a href="https://doc.qt.io/qt-5/qtdesigner-manual.html">Qt Designer</a>, or you can <strong>hand code</strong> the GUI in plain Python code. The first path can dramatically improve your productivity, whereas the second path puts you in full control of your application&rsquo;s code.</p>
+<p>GUI applications often consist of a <strong>main window</strong> and several <strong>dialogs</strong>. If you&rsquo;re looking to create these graphical components in an efficient and user-friendly way, then Qt Designer is the tool for you. In this tutorial, you&rsquo;ll learn how to use Qt Designer to create your GUIs productively.</p>
+<p><strong>In this tutorial, you&rsquo;ll learn:</strong></p>
+<ul>
+<li>What <strong>Qt Designer</strong> is and how to install it on your system</li>
+<li>When to use <strong>Qt Designer vs hand coding</strong> for building your GUIs</li>
+<li>How to build and lay out the GUI of an application&rsquo;s <strong>main window</strong> using Qt Designer</li>
+<li>How to create and lay out the GUI of your <strong>dialogs</strong> with Qt Designer</li>
+<li>How to use Qt Designer&rsquo;s <strong><code>.ui</code> files</strong> in your GUI applications</li>
+</ul>
+<p>For a better understanding of the topics in this tutorial, you can check out the following resources:</p>
+<ul>
+<li><a href="https://realpython.com/python-pyqt-gui-calculator/">Python and PyQt: Building a GUI Desktop Calculator</a></li>
+<li><a href="https://realpython.com/python-menus-toolbars/">Python and PyQt: Creating Menus, Toolbars, and Status Bars</a></li>
+<li><a href="https://realpython.com/python-pyqt-layout/">PyQt Layouts: Create Professional-Looking GUI Applications</a></li>
+</ul>
+<p>You&rsquo;ll put all this knowledge together by using the GUIs that you&rsquo;ll build with Qt Designer in a sample text editor application. You can get the code and all the required resources to build this application by clicking the link below:</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Get the Source Code:</strong> <a href="https://realpython.com/bonus/qt-designer-code/" class="alert-link" data-toggle="modal" data-target="#modal-qt-designer-code" data-focus="false" markdown="1">Click here to get the source code you&rsquo;ll use</a> to learn about creating Python GUI applications with Qt Designer in this tutorial.</p>
+</div>
+<section class="section2" id="getting-started-with-qt-designer"><h2>Getting Started With Qt Designer<a class="headerlink" href="#getting-started-with-qt-designer" title="Permanent link"></a></h2>
+<p><strong>Qt Designer</strong> is a <a href="https://www.qt.io/">Qt</a> tool that provides you with a <a href="https://en.wikipedia.org/wiki/WYSIWYG">what-you-see-is-what-you-get (WYSIWYG)</a> user interface to create GUIs for your PyQt applications productively and efficiently. With this tool, you create GUIs by dragging and dropping <a href="https://doc.qt.io/qt-5/qtwidgets-index.html"><code>QWidget</code></a> objects on an empty form. After that, you can arrange them into a coherent GUI using different layout managers.</p>
+<p>Qt Designer also allows you to preview your GUIs using different styles and resolutions, connect <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html">signals and slots</a>, create menus and toolbars, and more.</p>
+<p>Qt Designer is platform and programming language independent. It doesn&rsquo;t produce code in any particular programming language, but it creates <a href="https://doc.qt.io/qt-5/designer-ui-file-format.html"><code>.ui</code> files</a>. These files are <code>XML</code> files with detailed descriptions of how to generate Qt-based GUIs.</p>
+<p>You can translate the content of <code>.ui</code> files into Python code with <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/designer.html#pyuic5"><code>pyuic5</code></a>, which is a command-line tool that comes with PyQt. Then you can use this Python code in your GUI applications. You can also read <code>.ui</code> files directly and load their content to generate the associated GUI.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="installing-and-running-qt-designer"><h3>Installing and Running Qt Designer<a class="headerlink" href="#installing-and-running-qt-designer" title="Permanent link"></a></h3>
+<p>There are several ways to get and install Qt Designer depending on your current platform. If you use Windows or Linux, then you can run the following commands from your terminal or command line:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python3 -m venv ./venv
+<span class="gp">$ </span><span class="nb">source</span> venv/bin/activate
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">$ </span>pip install pyqt5 pyqt5-tools
+</code></pre></div>
+<p>Here, you create a <a href="https://realpython.com/python-virtual-environments-a-primer/">Python virtual environment</a>, activate it, and install <code>pyqt5</code> and <code>pyqt5-tools</code>. <code>pyqt5</code> installs PyQt and a copy of the required Qt libraries, while <code>pyqt5-tools</code> installs a set of Qt tools that includes Qt Designer.</p>
+<p>The installation will place the Qt Designer executable in a different directory according to your platform:</p>
+<ul>
+<li><strong>Linux:</strong> <code>...lib/python3.x/site-packages/qt5_applications/Qt/bin/designer</code></li>
+<li><strong>Windows:</strong> <code>...Lib\site-packages\pyqt5_tools\designer.exe</code></li>
+</ul>
+<p>On Linux systems, such as Debian and Ubuntu, you can also install Qt Designer by using the system package manager with the following command:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>sudo apt install qttools5-dev-tools
+</code></pre></div>
+<p>This command downloads and installs Qt Designer and other Qt tools on your system. In other words, you&rsquo;ll have a system-wide installation and you&rsquo;ll be able to run Qt Designer by clicking its icon in a file manager or system menu.</p>
+<p>On macOS, if you&rsquo;ve installed <a href="https://formulae.brew.sh/formula/qt">Qt from Homebrew</a> using the <code>brew install qt</code> command, then you should have Qt Designer already installed on your system.</p>
+<p>Finally, you can download the Qt installer for your current platform from the <a href="https://www.qt.io/download-qt-installer">official download site</a> and then follow the on-screen instructions. In this case, to complete the installation process, you need to <a href="https://login.qt.io/register">register a Qt account</a>.</p>
+<p>If you&rsquo;ve already installed Qt Designer using one of the options discussed so far, then go ahead and launch the application. You should get the following two windows on your screen:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-GUI.7fddfb2df121.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-GUI.7fddfb2df121.png" width="787" height="583" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Qt-Designer-GUI.7fddfb2df121.png&amp;w=196&amp;sig=8c3a62aa9959431eff4345f68e1478444154c1e0 196w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Qt-Designer-GUI.7fddfb2df121.png&amp;w=393&amp;sig=faf49292374fcaa2141717634edb5b345f91420d 393w, https://files.realpython.com/media/Qt-Designer-GUI.7fddfb2df121.png 787w" sizes="75vw" alt="Qt Designer GUI" data-asset="3354" /></a></figure>
+<p>The window in the foreground is Qt Designer&rsquo;s <em>New Form</em> dialog. The window in the background is Qt Designer&rsquo;s main window. In the next two sections, you&rsquo;ll learn the basics of how to use these components of the Qt Designer interface.</p>
+</section><section class="section3" id="using-qt-designers-new-form-dialog"><h3>Using Qt Designer&rsquo;s New Form Dialog<a class="headerlink" href="#using-qt-designers-new-form-dialog" title="Permanent link"></a></h3>
+<p>When you run Qt Designer, you&rsquo;re presented with the application&rsquo;s main window and the <em>New Form</em> dialog. In this dialog, you can select from five available GUI templates. These templates include options to create dialogs, main windows, and custom widgets:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Template</th>
+<th>Form Type</th>
+<th>Widgets</th>
+<th>Base Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dialog with Buttons Bottom</td>
+<td>Dialog</td>
+<td><em>OK</em> and <em>Cancel</em> buttons laid out horizontally on the bottom-right corner</td>
+<td><a href="https://doc.qt.io/qt-5/qdialog.html"><code>QDialog</code></a></td>
+</tr>
+<tr>
+<td>Dialog with Buttons Right</td>
+<td>Dialog</td>
+<td><em>OK</em> and <em>Cancel</em> buttons laid out vertically on the top-right corner</td>
+<td><code>QDialog</code></td>
+</tr>
+<tr>
+<td>Dialog without Buttons</td>
+<td>Dialog</td>
+<td>No</td>
+<td><code>QDialog</code></td>
+</tr>
+<tr>
+<td>Main Window</td>
+<td>Main Window</td>
+<td>A menu bar at the top and a status bar at the bottom</td>
+<td><a href="https://doc.qt.io/qt-5/qmainwindow.html"><code>QMainWindow</code></a></td>
+</tr>
+<tr>
+<td>Widget</td>
+<td>Widget</td>
+<td>No</td>
+<td><a href="https://doc.qt.io/qt-5/qwidget.html"><code>QWidget</code></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>By default, when you run Qt Designer, the <em>New Form</em> dialog appears in the foreground. If it doesn&rsquo;t, then you can click <em>New</em> on Qt Designer&rsquo;s toolbar. You can also click <em>File → New</em> in the main menu or press <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-n">N</kbd></span> on your keyboard.</p>
+<p>In the <em>New Form</em> dialog, you can select the form template that you want to start with and then click <em>Create</em> to generate a new form:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500145925?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>To create a new and empty form using a Qt Designer template, you just need to select the desired template from the <em>New Form</em> dialog and then click <em>Create</em> or press <span class="keys"><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-r">R</kbd></span> on your keyboard.</p>
+<p>Note that the first two dialog templates have their own default buttons. These are standard buttons included in a <a href="https://doc.qt.io/qt-5/qdialogbuttonbox.html"><code>QDialogButtonBox</code></a>. This class automatically handles the position or order of buttons across different platforms.</p>
+<p>For example, if you use a <em>Cancel</em> button and an <em>OK</em> button, then the standard on Linux and macOS is to display those buttons in this same order. But on Windows, the order of buttons will be swapped, with <em>OK</em> appearing first, followed by <em>Cancel</em>. <code>QDialogButtonBox</code> handles this issue for you automatically.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="working-with-qt-designers-main-window"><h3>Working With Qt Designer&rsquo;s Main Window<a class="headerlink" href="#working-with-qt-designers-main-window" title="Permanent link"></a></h3>
+<p>Qt Designer&rsquo;s <strong>main window</strong> provides a menu bar with options for saving and managing forms, editing forms and changing the edit mode, laying out and previewing forms, and also for tuning the application&rsquo;s settings and accessing its help documentation:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Main-Menu.4b5fbaa7079f.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block border " src="https://files.realpython.com/media/Qt-Designer-Main-Menu.4b5fbaa7079f.gif" width="583" height="400" srcset="https://files.realpython.com/media/Qt-Designer-Main-Menu.4b5fbaa7079f.gif 145w, https://files.realpython.com/media/Qt-Designer-Main-Menu.4b5fbaa7079f.gif 291w, https://files.realpython.com/media/Qt-Designer-Main-Menu.4b5fbaa7079f.gif 583w" sizes="75vw" alt="Qt Designer Main Menu" data-asset="3355" /></a></figure>
+<p>The main window also provides a toolbar that displays commonly used options. You&rsquo;ll use most of these options when you&rsquo;re editing and laying out your forms. These options are also available in the main menu, especially in the <em>File</em>, <em>Edit</em>, and <em>Form</em> menus:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Toolbar.81e22badf269.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block border " src="https://files.realpython.com/media/Qt-Designer-Toolbar.81e22badf269.gif" width="710" height="140" srcset="https://files.realpython.com/media/Qt-Designer-Toolbar.81e22badf269.gif 177w, https://files.realpython.com/media/Qt-Designer-Toolbar.81e22badf269.gif 355w, https://files.realpython.com/media/Qt-Designer-Toolbar.81e22badf269.gif 710w" sizes="75vw" alt="Qt Designer Toolbar" data-asset="3356" /></a></figure>
+<p>Qt Designer&rsquo;s main window also includes a few <strong>dock windows</strong> that provide a rich set of features and tools:</p>
+<ul>
+<li>Widget Box</li>
+<li>Object Inspector</li>
+<li>Property Editor</li>
+<li>Resource Browser</li>
+<li>Action Editor</li>
+<li>Signal/Slot Editor</li>
+</ul>
+<p>The <strong>Widget Box</strong> provides a selection of layout managers, spacers, standard widgets, and other objects that you can use to create a GUI for your dialogs and windows:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146161?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>The Widget Box provides a filter option at the top of the window. You can type the name of a given object or widget and get quick access to it. The objects are grouped into categories that reflect their specific use. You can show or hide all the available objects in a category by clicking the handle next to the category label.</p>
+<p>When you&rsquo;re creating your forms, you can take objects from the Widget Box with your mouse pointer and then drag and drop them onto the form to build its GUI.</p>
+<p>The Widget Box also provides a <strong>Scratchpad</strong> section at the bottom of the window. In this section, you can group frequently used objects in a separate category. You can fill the Scratchpad category with any widget currently placed on a form by dragging and dropping them back onto the Widget Box. You can remove widgets from the Scratchpad category by right-clicking them and selecting <em>Remove</em> in the context menu.</p>
+<p>The <strong>Object Inspector</strong> provides a <a href="https://doc.qt.io/qt-5/objecttrees.html">tree</a> view of all the objects on the current form. The Object Inspector also has a filter box at the top to allow you to find objects in the tree. You can use the Object Inspector to set the name and other properties of the form and its widgets. You can also right-click any widget to access a context menu with additional options:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500145888?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>With the Object Inspector, you can manage the widgets on your form. You can rename them, update some of their properties, remove them from the form, and so on. The tree view in the Object Inspector reflects the <strong>parent-child relationship</strong> of the widgets and objects on the current form.</p>
+<p>The <strong>Property Editor</strong> is another dock window that appears in Qt Designer&rsquo;s main window. This window holds a two-column table with the active object&rsquo;s properties and their values. You can use the Property Editor to edit the value of an object&rsquo;s properties, as the name implies:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146210?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>The Property Editor provides a user-friendly way to access and edit the values of the active object&rsquo;s properties, such as its name, size, font, icon, and so on. The properties listed on the editor will change depending on which object you select on your form.</p>
+<p>The properties are listed from top to bottom according to class hierarchy. For example, if you select a <a href="https://doc.qt.io/qt-5/qpushbutton.html"><code>QPushButton</code></a> on the form, then the Property Editor shows the properties of <code>QWidget</code>, followed by the properties of <a href="https://doc.qt.io/qt-5/qabstractbutton.html"><code>QAbstractButton</code></a>, and finally the properties of <code>QPushButton</code> itself. Note that the rows on the editor show different colors to visually differentiate the underlying class.</p>
+<p>Finally, you have three dock windows that commonly appear as tabs in the bottom-right corner:</p>
+<ol>
+<li><strong>Resource Browser</strong> provides a quick way of adding resources, such as icons, translation files, images, and other binary files to your applications.</li>
+<li><strong>Action Editor</strong> provides a way to create actions and add them to your forms.</li>
+<li><strong>Signal/Slot Editor</strong> provides a way to connect signals and slots in your forms.</li>
+</ol>
+<p>Here are some of the options that these tools provide:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Action-Signal-Resource.594226f375cb.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Action-Signal-Resource.594226f375cb.gif" width="670" height="530" srcset="https://files.realpython.com/media/Qt-Designer-Action-Signal-Resource.594226f375cb.gif 167w, https://files.realpython.com/media/Qt-Designer-Action-Signal-Resource.594226f375cb.gif 335w, https://files.realpython.com/media/Qt-Designer-Action-Signal-Resource.594226f375cb.gif 670w" sizes="75vw" alt="Qt Designer Action Signal Resource" data-asset="3365" /></a></figure>
+<p>That&rsquo;s it! These three dock windows round out the set of tools and options that Qt Designer provides for you to create and customize the GUIs for your dialogs and windows.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="using-qt-designer-vs-hand-coding-your-guis"><h3>Using Qt Designer vs Hand Coding Your GUIs<a class="headerlink" href="#using-qt-designer-vs-hand-coding-your-guis" title="Permanent link"></a></h3>
+<p>With PyQt, you have at least two options for creating the GUI of a window or dialog: You can use Qt Designer, or you can hand code the GUI in plain Python code. Both options have their pros and cons. Sometimes it&rsquo;s hard to decide when to use one or the other.</p>
+<p>Qt Designer provides a user-friendly graphical interface that allows you to quickly create GUIs. This can boost your productivity as a developer and shorten your development cycles.</p>
+<p>Hand coding your GUIs, on the other hand, can give you much more control over them. With this approach, adding new components and features doesn&rsquo;t require any extra tools beyond your <a href="https://realpython.com/python-ides-code-editors-guide/">code editor or IDE</a>, which can be quite convenient in some development environments.</p>
+<p>Whether you use Qt Designer or hand code your GUIs is a personal decision. Here are some general considerations on both approaches:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Qt Designer</th>
+<th>Hand Coding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Developer&rsquo;s productivity</td>
+<td>High</td>
+<td>High if you&rsquo;re familiar with PyQt, but low otherwise</td>
+</tr>
+<tr>
+<td>Separation of GUI logic from business logic</td>
+<td>High</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Control over GUI components</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Capability for adding and removing widgets dynamically</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Flexibility for exploration, learning, prototyping, and sketching</td>
+<td>High</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Flexibility for using custom widgets</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Amount of boilerplate code</td>
+<td>High</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Beyond these concerns, if you&rsquo;re just starting with PyQt, then Qt Designer can help you discover available widgets, layout managers, base classes, properties and their typical values, and so on. </p>
+<p>One last difference between using Qt Designer and hand coding a GUI is that you need to run an extra step when using Qt Designer: translating <code>.ui</code> files into Python code.</p>
+</section></section><section class="section2" id="building-main-windows-with-qt-designer-and-python"><h2>Building Main Windows With Qt Designer and Python<a class="headerlink" href="#building-main-windows-with-qt-designer-and-python" title="Permanent link"></a></h2>
+<p>With PyQt, you can build <strong>main window&ndash;style</strong> and <strong>dialog-style</strong> applications. Main window&ndash;style applications often consist of a main window with a menu bar, one or more toolbars, a central widget, and a status bar. They can also include several dialogs, but those are independent of the main window.</p>
+<p>Qt Designer enables you to quickly build the GUI of your main windows using the predefined Main Window template. Once you&rsquo;ve created a form based on that template, you&rsquo;ll have tools to perform the following actions:</p>
+<ul>
+<li>Creating a main menu</li>
+<li>Adding and populating toolbars</li>
+<li>Laying out widgets</li>
+</ul>
+<p>Qt Designer&rsquo;s Main Window template also provides a default central widget and a status bar at the bottom of the window:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500145960?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Qt Designer saves its forms in <code>.ui</code> files. These are <code>XML</code> files that contain all the information you&rsquo;ll need to later recreate the GUI in your applications.</p>
+<p>To save your forms, go to <em>File → Save</em>, enter <code>main_window.ui</code> in the <em>Save Form As</em> dialog, select a directory to save the file in, and click <em>Save</em>. You can also get access to the <em>Save Form As</em> dialog by pressing <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> on your keyboard.</p>
+<p>Don&rsquo;t close your Qt Designer session&mdash;stay there to continue adding menus and toolbars to the main window you just created.</p>
+<section class="section3" id="creating-the-main-menu"><h3>Creating the Main Menu<a class="headerlink" href="#creating-the-main-menu" title="Permanent link"></a></h3>
+<p>Qt Designer&rsquo;s Main Window template provides an empty <strong>menu bar</strong> at the top of the form. You can add <strong>menus</strong> to that menu bar using the Menu Editor. Menus are pull-down lists of options that provide quick access to the application&rsquo;s options. Go back to Qt Designer and your newly created main window. At the top of the form, you&rsquo;ll see a menu bar with the placeholder text <em>Type Here</em>.</p>
+<p>If you double-click or press <span class="keys"><kbd class="key-enter">Enter</kbd></span> on this placeholder text, then you can type the name of your first menu. To confirm the menu name, just press <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>Say you want to create your own <a href="https://en.wikipedia.org/wiki/Text_editor">text editor</a>. Typically, this kind of application has a <em>File</em> menu with at least some of the following options:</p>
+<ul>
+<li><strong><em>New</em></strong> for creating a new document</li>
+<li><strong><em>Open</em></strong> for opening an existing document</li>
+<li><strong><em>Open Recent</em></strong> for opening recently viewed documents</li>
+<li><strong><em>Save</em></strong> for saving a document</li>
+<li><strong><em>Exit</em></strong> for exiting the application</li>
+</ul>
+<p>Here&rsquo;s how you can use Qt Designer to create this menu:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Main-Menu-Editor.a5e266106618.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Main-Menu-Editor.a5e266106618.gif" width="362" height="328" srcset="https://files.realpython.com/media/Qt-Designer-Main-Menu-Editor.a5e266106618.gif 90w, https://files.realpython.com/media/Qt-Designer-Main-Menu-Editor.a5e266106618.gif 181w, https://files.realpython.com/media/Qt-Designer-Main-Menu-Editor.a5e266106618.gif 362w" sizes="75vw" alt="Qt Designer Main Menu Editor" data-asset="3367" /></a></figure>
+<p>Qt Designer&rsquo;s Menu Editor allows you to add menus to the menu bar in a user-friendly way. When you enter the name of a menu or menu option, you can use an ampersand symbol (<code>&amp;</code>) before a given letter to provide a <strong>keyboard accelerator</strong>.</p>
+<p>For example, if you add an ampersand before the <em>F</em> in the <em>File</em> menu, then you can access this menu by pressing <span class="keys"><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-f">F</kbd></span>. Likewise, if you add an ampersand before the <em>N</em> in <em>New</em>, then once you&rsquo;ve launched the <em>File</em> menu, you can access the <em>New</em> option by pressing <span class="keys"><kbd class="key-n">N</kbd></span>.</p>
+<p>With the Menu Editor, you can also add <strong>separators</strong> to your menus. This is a good way to visually separate menu options and group them logically. To add a separator, double-click the <em>Add Separator</em> option at the end of the active menu in the Menu Editor. You can remove an existing separator by right-clicking it and then selecting <em>Remove Separator</em> in the context menu. This menu also allows you to add new separators.</p>
+<p>If you need to move a separator to another place in a given menu, then you can drag the separator to the desired position and drop it there. A red line will indicate the position where the separator will be placed.</p>
+<p>You can also add a <strong>submenu</strong> to a given menu option. To do this, click the icon on the right side of the menu option to which you want to attach the submenu, just like you did with the <em>Open Recent</em> option in the above example.</p>
+<p>To run a preview of your form, go to <em>Form → Preview</em>, or hit the key combination <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-r">R</kbd></span> on your keyboard.</p>
+<p>When you create a menu like the <em>File</em> menu in your sample text editor, a new <code>QMenu</code> object is automatically added to your menu bar. When you add a menu option to a given menu, you create an <strong>action</strong>. Qt Designer provides an Action Editor for creating, customizing, and managing actions. The tool provides a few handy options that you can use to fine-tune your actions:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146019?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>With the Action Editor, you can fine-tune, update, or set the following options:</p>
+<ul>
+<li>The text of the action, which will be shown on menu options and toolbar buttons</li>
+<li>The object name, which you&rsquo;ll use in your code to reference the action object</li>
+<li>The icons that will be shown on your menu options and toolbar buttons</li>
+<li>The <a href="https://doc.qt.io/qt-5/qaction.html#checkable-prop">checkable</a> property of the action</li>
+<li>The keyboard shortcuts, which will provide the user with a quick way to access the action</li>
+</ul>
+<p>The final ellipsis (<code>...</code>) in the text of your menu options is a widely used convention for naming options that don&rsquo;t perform an immediate action but launch a pop-up dialog for performing further actions.</p>
+<p>In the case of the icons, you need to pack those icons with your application as independent files, or you can create a <a href="https://doc.qt.io/qt-5/resources.html">resources file</a>, also known as a <code>.qrc</code> file. For this example, you can download the required icons and other resources by clicking the link below:</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Get the Source Code:</strong> <a href="https://realpython.com/bonus/qt-designer-code/" class="alert-link" data-toggle="modal" data-target="#modal-qt-designer-code" data-focus="false" markdown="1">Click here to get the source code you&rsquo;ll use</a> to learn about creating Python GUI applications with Qt Designer in this tutorial.</p>
+</div>
+<p>Once you&rsquo;ve downloaded the icons, create a <code>resources</code> directory beside your <code>main_window.ui</code> file and copy the icons there. Then get back to the Action Editor and add icons to your actions like this:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500145992?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Note that your menu options now display an icon on the left margin. This provides extra visual information to your users and helps them find the desired option. Now go ahead and add an <em>Edit</em> menu with the following options:</p>
+<ul>
+<li><strong><em>Copy</em></strong> for copying some text</li>
+<li><strong><em>Paste</em></strong> for pasting some text</li>
+<li><strong><em>Cut</em></strong> for cutting some text</li>
+<li><strong><em>Find and Replace</em></strong> for finding and replacing text</li>
+</ul>
+<p>Next, add a <em>Help</em> menu with an <em>About</em> option for launching a dialog with general information about your text editor. Finally, go to the Property Editor and set the title of your window to <code>Sample Editor</code>. After these additions, your main window should look something like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Sample-Text-Editor-Main-Menu.e9558f4d9989.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Sample-Text-Editor-Main-Menu.e9558f4d9989.gif" width="460" height="388" srcset="https://files.realpython.com/media/Sample-Text-Editor-Main-Menu.e9558f4d9989.gif 115w, https://files.realpython.com/media/Sample-Text-Editor-Main-Menu.e9558f4d9989.gif 230w, https://files.realpython.com/media/Sample-Text-Editor-Main-Menu.e9558f4d9989.gif 460w" sizes="75vw" alt="Sample Text Editor Main Menu" data-asset="3388" /></a></figure>
+<p>With these additions, your sample text editor&rsquo;s main menu is starting to look like the menu of a real text editor!</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="creating-a-toolbar"><h3>Creating a Toolbar<a class="headerlink" href="#creating-a-toolbar" title="Permanent link"></a></h3>
+<p>You can add as many toolbars as you need to your main window&rsquo;s GUI using Qt Designer. To do that, right-click on the form and select <em>Add Tool Bar</em> from the context menu. This adds an empty toolbar at the top of the window. Alternatively, you can predefine the <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtcore/qt.html#ToolBarArea">toolbar area</a> where you want to place a given toolbar by selecting <em>Add Tool Bar to Other Area</em>:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Create-Toolbars.eca8fa7e93f3.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Create-Toolbars.eca8fa7e93f3.gif" width="500" height="500" srcset="https://files.realpython.com/media/Qt-Designer-Create-Toolbars.eca8fa7e93f3.gif 125w, https://files.realpython.com/media/Qt-Designer-Create-Toolbars.eca8fa7e93f3.gif 250w, https://files.realpython.com/media/Qt-Designer-Create-Toolbars.eca8fa7e93f3.gif 500w" sizes="75vw" alt="Qt Designer Create Toolbars" data-asset="3369" /></a></figure>
+<p>Once you have your toolbars in place, you can populate them with buttons. To do this, you use <strong>actions</strong> rather than specific toolbar buttons from the Widget Box. To add actions to your toolbars, you can use the Action Editor:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146235?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Actions can be shared between menu options and toolbar buttons, so in this case, you reuse the actions that you created when you populated your menus in the preceding section. To populate the toolbar, click on an action on the Action Editor, then drag and drop it onto the toolbar. Note that by right-clicking on the toolbar, you can add separators to visually separate the tool buttons.</p>
+</section><section class="section3" id="laying-out-a-single-central-widget"><h3>Laying Out a Single Central Widget<a class="headerlink" href="#laying-out-a-single-central-widget" title="Permanent link"></a></h3>
+<p>Qt Designer uses <code>QMainWindow</code> for building its Main Window template. This class provides a default layout that allows you to create a menu bar, one or more toolbars, one or more dock widgets, a status bar, and a central widget. By default, Qt Designer uses a <code>QWidget</code> object as the central widget on the Main Window template.</p>
+<p>Using a bare-bones <code>QWidget</code> object as the central widget on a main window&rsquo;s GUI is a good choice because, on top of that widget, you can place either a <strong>single widget</strong> or <strong>multiple widgets</strong> in a coherent layout.</p>
+<p>For example, in your sample text editor, you might want to use a single widget that provides your users with a work area to type, copy, paste, and edit their text. For this purpose, you can use a <code>QTextEdit</code> object and then add a vertical (or horizontal) layout as the central widget&rsquo;s layout:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146185?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>In this example, you first drag a <code>QTextEdit</code> onto the form. Then you click on the form to select your central widget. Finally, you apply a vertical layout to your central widget by clicking <em>Lay Out Vertically</em> on Qt Designer&rsquo;s toolbar.</p>
+<p>Since the spacing around the <code>QTextEdit</code> doesn&rsquo;t look right, you use the Object Inspector to change the margins of the layout from <code>9</code> pixels to <code>1</code> pixel.</p>
+<p>With Qt Designer, you can use different layout managers to arrange your widgets quickly. Arguably, the most accessible way of laying out your GUIs with Qt Designer is using the layout-related section on the main toolbar:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Layout-Toolbar.dfe5eace5102.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block border " src="https://files.realpython.com/media/Qt-Designer-Layout-Toolbar.dfe5eace5102.gif" width="362" height="71" srcset="https://files.realpython.com/media/Qt-Designer-Layout-Toolbar.dfe5eace5102.gif 90w, https://files.realpython.com/media/Qt-Designer-Layout-Toolbar.dfe5eace5102.gif 181w, https://files.realpython.com/media/Qt-Designer-Layout-Toolbar.dfe5eace5102.gif 362w" sizes="75vw" alt="Qt Designer Layout Toolbar" data-asset="3372" /></a></figure>
+<p>From left to right, you&rsquo;ll find the following options to create different types of layouts:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Option</th>
+<th>Widget Arrangement</th>
+<th>Layout Class</th>
+<th>Keyboard Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Lay Out Horizontally</em></td>
+<td>Horizontally in one row and several columns</td>
+<td><a href="https://doc.qt.io/qt-5/qhboxlayout.html"><code>QHBoxLayout</code></a></td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-1">1</kbd></span></td>
+</tr>
+<tr>
+<td><em>Lay Out Vertically</em></td>
+<td>Vertically in one column and several rows</td>
+<td><a href="https://doc.qt.io/qt-5/qvboxlayout.html"><code>QVBoxLayout</code></a></td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-2">2</kbd></span></td>
+</tr>
+<tr>
+<td><em>Lay Out Horizontally in Splitter</em></td>
+<td>Horizontally in a resizable splitter</td>
+<td><a href="https://doc.qt.io/qt-5/qsplitter.html"><code>QSplitter</code></a></td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-3">3</kbd></span></td>
+</tr>
+<tr>
+<td><em>Lay Out Vertically in Splitter</em></td>
+<td>Vertically in a resizable splitter</td>
+<td><code>QSplitter</code></td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-4">4</kbd></span></td>
+</tr>
+<tr>
+<td><em>Lay Out in a Grid</em></td>
+<td>Tabularly in a grid with several rows and columns</td>
+<td><a href="https://doc.qt.io/qt-5/qgridlayout.html"><code>QGridLayout</code></a></td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-5">5</kbd></span></td>
+</tr>
+<tr>
+<td><em>Lay Out in a Form Layout</em></td>
+<td>Tabularly in a two-column table</td>
+<td><a href="https://doc.qt.io/qt-5/qformlayout.html"><code>QFormLayout</code></a></td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-6">6</kbd></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The last two options in the toolbar are related to layouts but don&rsquo;t create them:</p>
+<ol>
+<li>
+<p><strong><em>Break Layout</em></strong> allows you to break an existing layout. Once widgets are arranged in a layout, you can&rsquo;t move or resize them individually because their geometry is controlled by the layout. To modify individual widgets, you might need to break the layout and redo it later. To access this option, you can press <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-0">0</kbd></span> on your keyboard.</p>
+</li>
+<li>
+<p><strong><em>Adjust Size</em></strong> adjusts the size of the layout to accommodate contained widgets and to ensure that each has enough space to be visible. To access this option, you can press <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-j">J</kbd></span> on your keyboard.</p>
+</li>
+</ol>
+<p>You can also access all these layout-related options through Qt Designer&rsquo;s main menu bar, under the <em>Form</em> menu:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Form-Menu.286bb196fd55.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Form-Menu.286bb196fd55.png" width="354" height="326" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Qt-Designer-Form-Menu.286bb196fd55.png&amp;w=88&amp;sig=6523af262f2e4febd0b471dcf3fb5367d630d8e9 88w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Qt-Designer-Form-Menu.286bb196fd55.png&amp;w=177&amp;sig=ce67339e626a2ed0218207e7ea04f3426b53ac5f 177w, https://files.realpython.com/media/Qt-Designer-Form-Menu.286bb196fd55.png 354w" sizes="75vw" alt="Qt Designer Form Menu" data-asset="3373" /></a></figure>
+<p>In the <em>Form</em> menu, you have access to all the layout-related options, with a complete reference of the keyboard shortcuts to access them. You can also access these options through the form&rsquo;s context menu, under the <em>Lay Out</em> option.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="laying-out-a-compound-central-widget"><h3>Laying Out a Compound Central Widget<a class="headerlink" href="#laying-out-a-compound-central-widget" title="Permanent link"></a></h3>
+<p>When you&rsquo;re creating your main windows, you might face situations in which you need to use <strong>multiple widgets</strong> in a given layout as your central widget. Since Qt Designer&rsquo;s Main Window template ships with a <code>QWidget</code> object as its central widget, you can take advantage of this to create your own custom arrangement of widgets and then set it as the top-level layout of that central widget.</p>
+<p>With Qt Designer, you can lay out your widgets using layout managers, as you already saw in the above section. If you need a compound layout of widgets for your main window&rsquo;s GUI, then you can build it by running the following steps:</p>
+<ol>
+<li>Drag and drop the widgets onto your form and try to place them near their desired position.</li>
+<li>Select the widgets that should be managed together by a given layout.</li>
+<li>Apply the appropriate layout using Qt Designer&rsquo;s toolbar or main menu, or with the form&rsquo;s context menu.</li>
+</ol>
+<p>Although you can drag layouts onto a form and then drag widgets onto the layouts, the best practice is to drag all the widgets and spacers first and then repeatedly select related widgets and spacers to apply layouts to them.</p>
+<p>For example, suppose you&rsquo;re <a href="https://realpython.com/python-pyqt-gui-calculator/">building a calculator application</a>. You need a <a href="https://doc.qt.io/qt-5/qlineedit.html"><code>QLineEdit</code></a> object on the top of your form to display the operations and their results. Under the line edit, you need a few <code>QPushButton</code> objects for the numbers and operations. That gives you a window like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Calculator-No-Layout.0c561e217832.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Calculator-No-Layout.0c561e217832.png" width="471" height="342" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Calculator-No-Layout.0c561e217832.png&amp;w=117&amp;sig=3b2364fb617539bf3b27aae6bf32fbda3d43d2ce 117w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Calculator-No-Layout.0c561e217832.png&amp;w=235&amp;sig=4648a7eed3ec7a51f2738e6c2feb52c43d5e80ae 235w, https://files.realpython.com/media/Calculator-No-Layout.0c561e217832.png 471w" sizes="75vw" alt="Calculator No Layout" data-asset="3374" /></a></figure>
+<p>This looks something like a calculator, but the GUI is messy and cluttered. To arrange this into a more polished calculator GUI, you can use a grid layout for the buttons and a vertical box layout as the calculator&rsquo;s top-level layout:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/492155782?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Your calculator still needs some extra polishing, but it looks a lot better now. To get a more finished version, you can use the Property Editor to tweak the values of some properties on your buttons, such as their maximum and minimum size. You can also set a fixed size for your calculator&rsquo;s main window, and so on. Go ahead and give it a try!</p>
+</section><section class="section3" id="having-a-status-bar"><h3>Having a Status Bar<a class="headerlink" href="#having-a-status-bar" title="Permanent link"></a></h3>
+<p>Qt Designer&rsquo;s Main Window template provides a <a href="https://en.wikipedia.org/wiki/Status_bar">status bar</a> by default. A status bar is a horizontal panel that&rsquo;s usually placed at the bottom of the main window in a GUI application. Its primary purpose is to display information about the current <strong>status</strong> of the application.</p>
+<p>You can divide a status bar into several sections and show different information on each section. The information on the status bar can be <strong>temporary</strong> or <strong>permanent</strong>, and most of the time it comes as text messages. The purpose of the information displayed on the status bar is to keep your users updated about what the application is currently doing and what its general status is at a given time.</p>
+<p>You can also use the status bar to display <strong>help tips</strong>, which are short help messages that describe what a given button or menu option does. This kind of message appears on the status bar when the user hovers the mouse pointer over a toolbar button or menu option.</p>
+</section></section><section class="section2" id="creating-a-dialog-with-qt-designer-and-python"><h2>Creating a Dialog With Qt Designer and Python<a class="headerlink" href="#creating-a-dialog-with-qt-designer-and-python" title="Permanent link"></a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Dialog_box">Dialogs</a> are small-sized windows that you commonly use to provide auxiliary functionalities, such as a <em>Preferences</em> dialog, or to communicate with your users by showing error messages or general information about a given operation. You can also use dialogs to ask the user for some required information or to confirm an operation that&rsquo;s about to take place.</p>
+<p>PyQt offers a rich set of built-in dialog that you can use in your applications directly. You just need to import them from <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtwidgets/qtwidgets-module.html"><code>PyQt5.QtWidgets</code></a>. Here&rsquo;s a summary:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Dialog Class</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qfontdialog.html"><code>QFontDialog</code></a></td>
+<td>Selecting and setting a font of a given text</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qprintdialog.html"><code>QPrintDialog</code></a></td>
+<td>Specifying the settings of a printer</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qprogressdialog.html"><code>QProgressDialog</code></a></td>
+<td>Showing the progress of a long-running operation</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qcolordialog.html"><code>QColorDialog</code></a></td>
+<td>Selecting and setting colors</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qinputdialog.html"><code>QInputDialog</code></a></td>
+<td>Getting a single value from the user</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qfiledialog.html"><code>QFileDialog</code></a></td>
+<td>Selecting files and directories</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qmessagebox.html"><code>QMessageBox</code></a></td>
+<td>Displaying messages such as errors, general information, warnings, and questions</td>
+</tr>
+<tr>
+<td><a href="https://doc.qt.io/qt-5/qerrormessage.html"><code>QErrorMessage</code></a></td>
+<td>Displaying error message</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>All these built-in dialogs are ready for you to use in your code directly. Most of them provide class methods to build specific types of dialogs depending on your needs. Along with these dialogs, PyQt provides the <a href="https://doc.qt.io/qt-5/qdialog.html"><code>QDialog</code></a> class. You can use this class to create your own dialogs in code, but you can also use Qt Designer to create your dialogs quickly.</p>
+<p>In the next few sections, you&rsquo;ll learn how to create, lay out, and customize your dialogs using Qt Designer and its dialog templates.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="creating-a-dialog-gui"><h3>Creating a Dialog GUI<a class="headerlink" href="#creating-a-dialog-gui" title="Permanent link"></a></h3>
+<p>To create a custom dialog with Qt Designer, select the appropriate template for the dialog from the <em>New Form</em> dialog. Drag and drop the required widgets onto the form, lay out them correctly, and save the form in a <code>.ui</code> file for later use in your application.</p>
+<p>Go back to your sample text editor and suppose you want to add a <em>Find and Replace</em> dialog like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Find-Replace-Dialog.279daf19c283.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Find-Replace-Dialog.279daf19c283.png" width="391" height="157" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Find-Replace-Dialog.279daf19c283.png&amp;w=97&amp;sig=9c5616c72a4b21b3dba3397da49395a994b31af1 97w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Find-Replace-Dialog.279daf19c283.png&amp;w=195&amp;sig=e1a898c18a6a75042950dc73d06e8a21f0cc382b 195w, https://files.realpython.com/media/Find-Replace-Dialog.279daf19c283.png 391w" sizes="75vw" alt="Find Replace Dialog" data-asset="3376" /></a></figure>
+<p>To create this dialog, start with the Dialog without Buttons template and add the required widgets to the form:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146098?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Here, you first create an empty dialog using the Dialog without Buttons template and set the window title to <em>Find and Replace</em> in the Object Inspector. Then you drag and drop two <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/qtwidgets/qlabel.html"><code>QLabel</code></a> objects onto the form using the Widget Box. These labels ask the users for the words they need to find and replace. Those words will be entered in the corresponding <code>QLineEdit</code> objects near the labels.</p>
+<p>Next, you drag and drop three <code>QPushButton</code> objects onto the form. These buttons will allow your users to find and replace words in their current document. Finally, you add two <a href="https://doc.qt.io/qt-5/qcheckbox.html"><code>QCheckBox</code></a> objects to provide <em>Match Case</em> and <em>Match Whole Word</em> options.</p>
+<p>Once you have all the widgets on the form, make sure to place them in a position that&rsquo;s similar to what you want to achieve in your final dialog. Now it&rsquo;s time to lay out the widgets.</p>
+</section><section class="section3" id="laying-out-the-dialog-gui"><h3>Laying Out the Dialog GUI<a class="headerlink" href="#laying-out-the-dialog-gui" title="Permanent link"></a></h3>
+<p>As you saw before, to arrange the widgets in a form, you can use several <strong>layout managers</strong>. To lay out your <em>Find and Replace</em> dialog, use a grid layout for the labels, line edits, and checkboxes. For the buttons, use a vertical layout. Finally, use a horizontal layout as your dialog&rsquo;s top-level layout manager:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500146036?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>Here, you select the labels, line edits, and checkboxes with your mouse pointer and apply a grid layout to them. After that, you add a vertical spacer between the <em>Replace</em> and <em>Cancel</em> buttons to keep them visually separated.</p>
+<p>The final step is to set the dialog&rsquo;s top-level layout. In this case, you use a horizontal layout manager. That&rsquo;s it! You&rsquo;ve built the GUI of your <em>Find and Replace</em> dialog with Qt Designer. Save it with the filename <code>find_replace.ui</code>.</p>
+<p>There are a bunch of other properties and features that you can tweak in your dialogs using Qt Designer. For example, you can set the tab order of your input widget to improve the experience of users navigating your dialogs with their keyboard. You can also provide keyboard accelerators, connect <a href="https://doc.qt.io/qt-5/signalsandslots.html">signals and slots</a>, and so on.</p>
+</section><section class="section3" id="connecting-signals-and-slots"><h3>Connecting Signals and Slots<a class="headerlink" href="#connecting-signals-and-slots" title="Permanent link"></a></h3>
+<p>So far, you&rsquo;ve used Qt Designer in the Edit Widgets mode, which is its default mode. In this mode, you can add widgets to your forms, edit widget&rsquo;s properties, lay out the widgets on the form, and so on. However, Qt Designer has up to four different modes to allow you to work on different features of your forms:</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Mode</th>
+<th>Purpose</th>
+<th>Menu Option</th>
+<th>Keyboard Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edit Widgets</td>
+<td>Editing widgets</td>
+<td><em>Edit → Edit Widgets</em></td>
+<td><span class="keys"><kbd class="key-f3">F3</kbd></span></td>
+</tr>
+<tr>
+<td>Edit Signals/Slots</td>
+<td>Connecting built-in signals and slots</td>
+<td><em>Edit → Edit Signals/Slots</em></td>
+<td><span class="keys"><kbd class="key-f4">F4</kbd></span></td>
+</tr>
+<tr>
+<td>Edit Buddies</td>
+<td>Setting up keyboard accelerators</td>
+<td><em>Edit → Edit Buddies</em></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Edit Tab Order</td>
+<td>Setting up the tab order of widgets</td>
+<td><em>Edit → Edit Tab Order</em></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can also access these modes by clicking their corresponding buttons in the mode-related section of Qt Designer&rsquo;s toolbar, which looks like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Mode-Toolbar.fbeca3ebfcbd.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block border " src="https://files.realpython.com/media/Qt-Designer-Mode-Toolbar.fbeca3ebfcbd.gif" width="244" height="71" srcset="https://files.realpython.com/media/Qt-Designer-Mode-Toolbar.fbeca3ebfcbd.gif 61w, https://files.realpython.com/media/Qt-Designer-Mode-Toolbar.fbeca3ebfcbd.gif 122w, https://files.realpython.com/media/Qt-Designer-Mode-Toolbar.fbeca3ebfcbd.gif 244w" sizes="75vw" alt="Qt Designer Mode Toolbar" data-asset="3379" /></a></figure>
+<p>To be able to edit the built-in signals and slots of your widgets and forms, you first need to switch to the Edit Signals/Slots mode.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> In Qt, the term <strong>buddies</strong> refers to a special relationship between a label and a widget in which the label provides a keyboard accelerator or shortcut that allows you to access the buddy widget using your keyboard.</p>
+</div>
+<p>User actions on widgets and forms, such as a click or a keypress, are known as <strong>events</strong> in PyQt. When an event occurs, the widget at hand emits a <strong>signal</strong>. This mechanism allows you to run actions in response to events. These actions are known as <strong>slots</strong>, which are methods or functions.</p>
+<p>To execute a slot in response to an event, you need to select one of the signals emitted by the widget in response to an event and connect it to the desired slot.</p>
+<p>Most widgets, including dialogs and windows, implement built-in signals that are emitted when a given event occurs on the widget. Widgets also provide built-in slots that allow you to perform certain standardized actions.</p>
+<p>To establish a signal-and-slot connection between two widgets using Qt Designer, you need to select the <strong>signal-provider widget</strong> with your mouse and then drag and drop it over the <strong>slot-provider widget</strong>. This launches Qt Designer&rsquo;s <em>Configure Connection</em> dialog. Now go back to the <em>Find and Replace</em> dialog and switch to Qt Designer&rsquo;s Edit Signals/Slots mode. Then drag and drop the <em>Cancel</em> button onto the form:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Configure-Connection-Dialog.8c1694ce6193.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Configure-Connection-Dialog.8c1694ce6193.gif" width="621" height="423" srcset="https://files.realpython.com/media/Qt-Designer-Configure-Connection-Dialog.8c1694ce6193.gif 155w, https://files.realpython.com/media/Qt-Designer-Configure-Connection-Dialog.8c1694ce6193.gif 310w, https://files.realpython.com/media/Qt-Designer-Configure-Connection-Dialog.8c1694ce6193.gif 621w" sizes="75vw" alt="Qt Designer Configure Connection Dialog" data-asset="3380" /></a></figure>
+<p>The <em>Configure Connection</em> dialog has two panels. On the left panel, you can select a signal from the signal-provider widget, and on the right panel, you can select a slot from the slot-provider widget. To create the connection, press <em>OK</em>:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Create-Connection.ebe5c59da27a.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Create-Connection.ebe5c59da27a.gif" width="621" height="423" srcset="https://files.realpython.com/media/Qt-Designer-Create-Connection.ebe5c59da27a.gif 155w, https://files.realpython.com/media/Qt-Designer-Create-Connection.ebe5c59da27a.gif 310w, https://files.realpython.com/media/Qt-Designer-Create-Connection.ebe5c59da27a.gif 621w" sizes="75vw" alt="Qt Designer Create Connection" data-asset="3381" /></a></figure>
+<p>The connection appears as an arrow from the signal-provider widget to the slot-provider widget, indicating that the connection is established. You&rsquo;ll also see the name of the signal and the slot that you just connected.</p>
+<p>In this case, you connected the <a href="https://doc.qt.io/qt-5/qabstractbutton.html#clicked"><code>clicked()</code></a> signal of the <em>Cancel</em> button with the <a href="https://doc.qt.io/qt-5/qdialog.html#reject"><code>reject()</code></a> slot of the dialog. Now when you click <em>Cancel</em>, your action will be ignored, and the dialog will close.</p>
+<p>To modify a connection, double-click the arrow or one of the labels. This displays the <em>Configure Connection</em> dialog, in which you can change the signal or the slot involved in the connection according to your needs.</p>
+<p>To delete a connection, select the arrow that represents the connection or one of the labels that identify the signal and slot, then press <span class="keys"><kbd class="key-delete">Del</kbd></span>.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="setting-the-tab-order-of-widgets"><h3>Setting the Tab Order of Widgets<a class="headerlink" href="#setting-the-tab-order-of-widgets" title="Permanent link"></a></h3>
+<p>To improve the usability of your dialogs, you can set a coherent <strong>tab order</strong> for your input widgets. The tab order is the order in which the widgets on your form come into focus when you press <span class="keys"><kbd class="key-tab">Tab</kbd></span> or <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-tab">Tab</kbd></span> on your keyboard.</p>
+<p>If you&rsquo;re using Qt Designer to create your forms, then the default tab order of your widgets is based on the order in which you place each widget on the form. Sometimes this order isn&rsquo;t right, and when you hit <span class="keys"><kbd class="key-tab">Tab</kbd></span> or <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-tab">Tab</kbd></span>, the focus jumps to an unexpected widget. Take a look at the tab order behavior in your <em>Find and Replace</em> dialog:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Find-Replace-Dialog-Tab-Order.36576752f247.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Find-Replace-Dialog-Tab-Order.36576752f247.gif" width="436" height="224" srcset="https://files.realpython.com/media/Find-Replace-Dialog-Tab-Order.36576752f247.gif 109w, https://files.realpython.com/media/Find-Replace-Dialog-Tab-Order.36576752f247.gif 218w, https://files.realpython.com/media/Find-Replace-Dialog-Tab-Order.36576752f247.gif 436w" sizes="75vw" alt="Find Replace Dialog Tab Order" data-asset="3382" /></a></figure>
+<p>The focus starts on the <em>Find</em> line edit, then it goes through the <em>Replace</em> line edit, then through the checkboxes, and finally through the buttons. What if you want the focus to jump from the <em>Find</em> line edit to the <em>Replace</em> line edit and then to the <em>Find</em> button? In this case, you can change the tab order of the input widgets on the dialog. Switch to Edit Tab Order mode in Qt Designer. You&rsquo;ll see something like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Tab-Order.43d9c2e325bd.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Tab-Order.43d9c2e325bd.png" width="429" height="194" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Qt-Designer-Tab-Order.43d9c2e325bd.png&amp;w=107&amp;sig=c743162fb7a0035f4f492a09c49c1d5243a3ab91 107w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Qt-Designer-Tab-Order.43d9c2e325bd.png&amp;w=214&amp;sig=aa49d0240e31012810fdeecd1d0cc32e40f0fb02 214w, https://files.realpython.com/media/Qt-Designer-Tab-Order.43d9c2e325bd.png 429w" sizes="75vw" alt="Qt Designer Tab Order" data-asset="3383" /></a></figure>
+<p>In Edit Tab Order mode, each input widget in the form shows a number that identifies its position in the tab-order chain. You can change that order by clicking on the numbers in the desired order:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Change-Tab-Order.25ffc42684ab.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Change-Tab-Order.25ffc42684ab.gif" width="436" height="224" srcset="https://files.realpython.com/media/Qt-Designer-Change-Tab-Order.25ffc42684ab.gif 109w, https://files.realpython.com/media/Qt-Designer-Change-Tab-Order.25ffc42684ab.gif 218w, https://files.realpython.com/media/Qt-Designer-Change-Tab-Order.25ffc42684ab.gif 436w" sizes="75vw" alt="Qt Designer Change Tab Order" data-asset="3384" /></a></figure>
+<p>You change the tab order of the input widgets by clicking the numbers in the desired order. Note that when you select a number, it changes to red, indicating that this is the currently edited position in the tab-order chain. Numbers you haven&rsquo;t set are shown in blue, and the numbers you have set are shown in green. If you make a mistake, then you can restart the ordering by choosing <em>Restart</em> from the form&rsquo;s context menu.</p>
+</section><section class="section3" id="providing-keyboard-accelerators"><h3>Providing Keyboard Accelerators<a class="headerlink" href="#providing-keyboard-accelerators" title="Permanent link"></a></h3>
+<p>A <a href="https://doc.qt.io/qt-5/accelerators.html">keyboard accelerator</a> is a key combination that you can press on your keyboard to quickly move the focus onto a given widget on a dialog or window. Normally, keyboard accelerators consist of the <span class="keys"><kbd class="key-alt">Alt</kbd></span> key and a letter that identifies the widget or option that you want to access. This can help you improve the usability of your applications.</p>
+<p>To define a keyboard accelerator on a widget that includes a label, such as a button or a checkbox, you just need to place an ampersand symbol (<code>&amp;</code>) before the letter in the label text that you want to use in the accelerator. For example, place an ampersand before the <em>C</em> on the <em>Cancel</em> button of your <em>Find and Replace</em> dialog, run a preview, and press <span class="keys"><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-c">C</kbd></span> like in the following example:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Set-Accelerator.6a0613a64996.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/Qt-Designer-Set-Accelerator.6a0613a64996.gif" width="436" height="224" srcset="https://files.realpython.com/media/Qt-Designer-Set-Accelerator.6a0613a64996.gif 109w, https://files.realpython.com/media/Qt-Designer-Set-Accelerator.6a0613a64996.gif 218w, https://files.realpython.com/media/Qt-Designer-Set-Accelerator.6a0613a64996.gif 436w" sizes="75vw" alt="Qt Designer Set Accelerator" data-asset="3385" /></a></figure>
+<p>By placing an ampersand before the letter <em>C</em> in the text of the <em>Cancel</em> button, you create a keyboard accelerator. If you press <span class="keys"><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-c">C</kbd></span> on your keyboard, then the <em>Cancel</em> button is selected and the dialog closes.</p>
+<p>To define a keyboard accelerator on a widget that doesn&rsquo;t include a label, such as a line edit, you need to make that widget a buddy of a label object. There are four steps that you need to take if you want to create a buddy connection:</p>
+<ol>
+<li>Select a letter in the text of the label to identify the buddy connection and provide the keyboard accelerator.</li>
+<li>Place an ampersand (<code>&amp;</code>) before the selected letter in the text of the label.</li>
+<li>Switch to Edit Buddies mode in Qt Designer.</li>
+<li>Drag and drop the label onto the buddy widget.</li>
+</ol>
+<p>Here&rsquo;s how you can create a buddy relationship between the <em>Find</em> label and its related line edit:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/Qt-Designer-Set-Buddies.9680d49f376d.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block border " src="https://files.realpython.com/media/Qt-Designer-Set-Buddies.9680d49f376d.gif" width="441" height="264" srcset="https://files.realpython.com/media/Qt-Designer-Set-Buddies.9680d49f376d.gif 110w, https://files.realpython.com/media/Qt-Designer-Set-Buddies.9680d49f376d.gif 220w, https://files.realpython.com/media/Qt-Designer-Set-Buddies.9680d49f376d.gif 441w" sizes="75vw" alt="Qt Designer Set Buddies" data-asset="3386" /></a></figure>
+<p>To create a buddy relationship between a label and a widget, select the label with your mouse and drag it onto the input widget that you want to set as its buddy. The label and the input widget will become buddies. From this point on, you can press <span class="keys"><kbd class="key-alt">Alt</kbd></span> plus the selected letter in the label text to move the focus to the related widget.</p>
+<p>It&rsquo;s important to note that you shouldn&rsquo;t have two widgets with the same keyboard accelerator in a given form. This means that you need to select a unique letter for each keyboard accelerator.</p>
+<p>Go ahead and use Qt Designer to set keyboard accelerators for the widgets on your <em>Find and Replace</em> dialog. The final result should look like the dialog you saw at the beginning of the section <a href="https://realpython.com/qt-designer-python/#creating-a-dialog-gui">Creating a Dialog GUI</a>.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section2" id="integrating-windows-and-dialogs-in-an-application"><h2>Integrating Windows and Dialogs in an Application<a class="headerlink" href="#integrating-windows-and-dialogs-in-an-application" title="Permanent link"></a></h2>
+<p>Up to this point, you&rsquo;ve learned how to create a GUI for your main windows and dialogs with Qt Designer. In this section, you&rsquo;ll learn how to integrate those GUIs into your Python code and build a real application. There are two main approaches to do that in PyQt:</p>
+<ol>
+<li><strong>Translating</strong> the content of your <code>.ui</code> files into Python code using <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/designer.html#pyuic5"><code>pyuic5</code></a></li>
+<li><strong>Loading</strong> the content of the <code>.ui</code> files dynamically using <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/api/uic/uic-module.html#loadUi"><code>uic.loadUi()</code></a></li>
+</ol>
+<p>The first approach uses <code>pyuic5</code>, which is a tool included in the PyQt installation that allows you to translate the content of a <code>.ui</code> file into Python code. This approach is widely used because of its efficiency. However, it has one drawback: every time you modify the GUI with Qt Designer, you need to generate the code again.</p>
+<p>The second approach takes advantage of <code>uic.loadUi()</code> to dynamically load the content of a <code>.ui</code> file into your application. This approach is suitable when you&rsquo;re working with small GUIs that don&rsquo;t involve substantial loading time.</p>
+<section class="section3" id="setting-up-windows-and-dialogs-for-use"><h3>Setting Up Windows and Dialogs for Use<a class="headerlink" href="#setting-up-windows-and-dialogs-for-use" title="Permanent link"></a></h3>
+<p>Now it&rsquo;s time to set up your windows and dialogs for use in a real application (in this case, a sample text editor). If you&rsquo;ve been following this tutorial, then you should have at least two <code>.ui</code> files:</p>
+<ol>
+<li><strong><code>main_window.ui</code></strong> with the GUI of a sample text editor application</li>
+<li><strong><code>find_replace.ui</code></strong> with the GUI of a <em>Find and Replace</em> dialog</li>
+</ol>
+<p>Go ahead and create a new directory called <code>sample_editor/</code>. Inside this directory, create another directory called <code>ui/</code> and copy your <code>.ui</code> files into it. Also, copy the <code>resources/</code> directory that contains the icons for your menu options and toolbar buttons to the <code>sample_editor/ui/</code> directory. So far, the structure of your application should look like this:</p>
+<div class="highlight"><pre><span></span><code>sample_editor/
+│
+└── ui/
+    ├── resources/
+    │   ├── edit-copy.png
+    │   ├── edit-cut.png
+    │   ├── edit-paste.png
+    │   ├── file-exit.png
+    │   ├── file-new.png
+    │   ├── file-open.png
+    │   ├── file-save.png
+    │   └── help-content.png
+    │
+    ├── find_replace.ui
+    └── main_window.ui
+</code></pre></div>
+<p>Since the main-window GUI is relatively complex, you can use <code>pyuic5</code> to translate the content of <code>main_window.ui</code> into Python code.</p>
+<p>You can download all the required code and resources to build your sample text editor by clicking the link below:</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Get the Source Code:</strong> <a href="https://realpython.com/bonus/qt-designer-code/" class="alert-link" data-toggle="modal" data-target="#modal-qt-designer-code" data-focus="false" markdown="1">Click here to get the source code you&rsquo;ll use</a> to learn about creating Python GUI applications with Qt Designer in this tutorial.</p>
+</div>
+<p>Now open a terminal and navigate to the <code>sample_editor/</code> directory. Once you&rsquo;re there, run the following command:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>pyuic5 -o main_window_ui.py ui/main_window.ui
+</code></pre></div>
+<p>This command generates a Python module called <code>main_window_ui.py</code> from the <code>ui/main_window.ui</code> file and places it in your <code>sample_editor/</code> directory. This module contains the Python code for your main window&rsquo;s GUI. Here&rsquo;s a small sample of the code:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># Form implementation generated from reading ui file &#39;ui/main_window.ui&#39;</span>
+<span class="c1">#</span>
+<span class="c1"># Created by: PyQt5 UI code generator 5.15.1</span>
+<span class="c1">#</span>
+<span class="c1"># WARNING: Any manual changes made to this file will be lost when pyuic5 is</span>
+<span class="c1"># run again.  Do not edit this file unless you know what you are doing.</span>
+
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+
+<span class="k">class</span> <span class="nc">Ui_MainWindow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MainWindow</span><span class="p">):</span>
+        <span class="n">MainWindow</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s2">&quot;MainWindow&quot;</span><span class="p">)</span>
+        <span class="n">MainWindow</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">413</span><span class="p">,</span> <span class="mi">299</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centralwidget</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+        <span class="c1"># Snip...</span>
+
+    <span class="k">def</span> <span class="nf">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MainWindow</span><span class="p">):</span>
+        <span class="n">_translate</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QCoreApplication</span><span class="o">.</span><span class="n">translate</span>
+        <span class="n">MainWindow</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">_translate</span><span class="p">(</span><span class="s2">&quot;MainWindow&quot;</span><span class="p">,</span> <span class="s2">&quot;Sample Editor&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">menu_File</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="n">_translate</span><span class="p">(</span><span class="s2">&quot;MainWindow&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;File&quot;</span><span class="p">))</span>
+        <span class="c1"># Snip...</span>
+</code></pre></div>
+<p><code>Ui_MainWindow</code> has all the code for generating the GUI of the sample editor&rsquo;s main window. Note that <code>.setupUi()</code> contains the code to create all the required widgets and lay them out on the GUI. <code>.retranslateUi()</code> contains code for <a href="https://en.wikipedia.org/wiki/Internationalization_and_localization">internationalization and localization</a>, but this topic is beyond the scope of this tutorial.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> If <code>pyuic5</code> doesn&rsquo;t work for you, then you need to check out your current PyQt installation. If you installed PyQt in a Python virtual environment, then you might need to activate the environment. You can also move to your virtual environment directory and run <code>pyuic5</code> from there. Typically, you&rsquo;ll find the application under the <code>bin/</code> directory.</p>
+<p>If you have a system-wide installation of PyQt, then you should be able to run <code>pyuic5</code> directly from your command line without needing to activate a virtual environment.</p>
+</div>
+<p>Now your working directory should look like this:</p>
+<div class="highlight"><pre><span></span><code>sample_editor/
+│
+├── ui/
+│   ├── resources/
+│   │   ├── edit-copy.png
+│   │   ├── edit-cut.png
+│   │   ├── edit-paste.png
+│   │   ├── file-exit.png
+│   │   ├── file-new.png
+│   │   ├── file-open.png
+│   │   ├── file-save.png
+│   │   └── help-content.png
+│   │
+│   ├── find_replace.ui
+│   └── main_window.ui
+│
+└── main_window_ui.py
+</code></pre></div>
+<p>Since your <em>Find and Replace</em> dialog is quite small, you can load its GUI directly from your <code>.ui</code> file using <code>uic.loadUi()</code>. This function takes a string with the path to a <code>.ui</code> file as an argument and returns a <code>QWidget</code> subclass that implements the GUI.</p>
+<p>This way of loading <code>.ui</code> files dynamically is rarely used in practice. You can use it with small dialogs that don&rsquo;t require too much effort to load. With this approach, you don&rsquo;t need to generate the Python code for the dialog&rsquo;s GUI every time you modify the <code>.ui</code> file with Qt Designer, which can be a productivity and maintainability win in some cases.</p>
+<p>Now that you&rsquo;ve chosen a strategy for building each of your GUIs, it&rsquo;s time to put everything together in a real application.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="putting-everything-together-in-an-application"><h3>Putting Everything Together in an Application<a class="headerlink" href="#putting-everything-together-in-an-application" title="Permanent link"></a></h3>
+<p>With all the pieces in place for your sample text editor, you can create the application and write the required code to use the main window and the <em>Find and Replace</em> dialog. Fire up your favorite code editor or IDE in your <code>sample_editor/</code> directory and create a new file called <code>app.py</code>. Add the following code to it:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos"> 4</span>    <span class="n">QApplication</span><span class="p">,</span> <span class="n">QDialog</span><span class="p">,</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QMessageBox</span>
+<span class="linenos"> 5</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">PyQt5.uic</span> <span class="kn">import</span> <span class="n">loadUi</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">main_window_ui</span> <span class="kn">import</span> <span class="n">Ui_MainWindow</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">,</span> <span class="n">Ui_MainWindow</span><span class="p">):</span>
+<span class="linenos">11</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="linenos">12</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="bp">self</span><span class="o">.</span><span class="n">connectSignalsSlots</span><span class="p">()</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="k">def</span> <span class="nf">connectSignalsSlots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">action_Exit</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">action_Find_Replace</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">findAndReplace</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="bp">self</span><span class="o">.</span><span class="n">action_About</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">about</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="k">def</span> <span class="nf">findAndReplace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">22</span>        <span class="n">dialog</span> <span class="o">=</span> <span class="n">FindReplaceDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="k">def</span> <span class="nf">about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">26</span>        <span class="n">QMessageBox</span><span class="o">.</span><span class="n">about</span><span class="p">(</span>
+<span class="linenos">27</span>            <span class="bp">self</span><span class="p">,</span>
+<span class="linenos">28</span>            <span class="s2">&quot;About Sample Editor&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>            <span class="s2">&quot;&lt;p&gt;A sample text editor app built with:&lt;/p&gt;&quot;</span>
+<span class="linenos">30</span>            <span class="s2">&quot;&lt;p&gt;- PyQt&lt;/p&gt;&quot;</span>
+<span class="linenos">31</span>            <span class="s2">&quot;&lt;p&gt;- Qt Designer&lt;/p&gt;&quot;</span>
+<span class="linenos">32</span>            <span class="s2">&quot;&lt;p&gt;- Python&lt;/p&gt;&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>        <span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="k">class</span> <span class="nc">FindReplaceDialog</span><span class="p">(</span><span class="n">QDialog</span><span class="p">):</span>
+<span class="linenos">36</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="linenos">37</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="linenos">38</span>        <span class="n">loadUi</span><span class="p">(</span><span class="s2">&quot;ui/find_replace.ui&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">41</span>    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="linenos">42</span>    <span class="n">win</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span>
+<span class="linenos">43</span>    <span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">44</span>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
+</code></pre></div>
+<p>Here&rsquo;s what this code does:</p>
+<ul>
+<li><strong>Line 3</strong> <a href="https://realpython.com/python-import/">imports</a> the required PyQt classes to build the application and the GUI.</li>
+<li><strong>Line 6</strong> imports <code>loadUi()</code> from the <code>uic</code> module. This function provides a way of loading the content of a <code>.ui</code> file dynamically.</li>
+<li><strong>Line 8</strong> imports <code>Ui_MainWindow</code>, which contains the GUI for your main window.</li>
+<li><strong>Line 10</strong> defines <code>Window</code>, which will provide your application&rsquo;s main window. In this case, the class uses <a href="https://realpython.com/inheritance-composition-python/#inheriting-multiple-classes">multiple inheritance</a>. It inherits the main window functionality from <code>QMainWindow</code> and the GUI functionality from <code>Ui_MainWindow</code>.</li>
+<li><strong>Line 13</strong> calls <code>.setupUi()</code>, which creates the whole GUI for your main window.</li>
+<li><strong>Line 16</strong> defines <code>.connectSignalsSlots()</code>, which connects the required signals and slots.</li>
+<li><strong>Line 21</strong> defines <code>.findAndReplace()</code>. This method creates an instance of your <em>Find and Replace</em> dialog and execute it.</li>
+<li><strong>Line 25</strong> defines <code>.about()</code>, which creates and launches a small dialog to provide information about the application. In this case, you use a built-in dialog based on <code>QMessageBox</code>.</li>
+<li><strong>Line 35</strong> defines <code>FindReplaceDialog</code>, which provides the <em>Find and Replace</em> dialog.</li>
+<li><strong>Line 38</strong> calls <code>loadUi()</code> to load the dialog&rsquo;s GUI from the files <code>ui/find_replace.ui</code>.</li>
+</ul>
+<p>Finally, on lines 41 to 44, you create the application, create and show the main window, and run the application&rsquo;s main loop by calling <code>.exec()</code> on the application object.</p>
+<p>It&rsquo;s important to note that Qt Designer can name your actions a bit differently from what you saw in the above code. For example, you might find the name <code>.actionE_xit</code> instead of <code>.action_Exit</code> to refer to the <em>Exit</em> action. So, for this example to work properly, you need to make sure you&rsquo;re using the right names.</p>
+<p>If you want to use your own names instead of the names that Qt Designer generates, then you can go to the Property Editor and change the <code>.objectName</code> property to the name that seems right for you.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> You can also create <code>Window</code> using <a href="https://realpython.com/inheritance-composition-python/">composition instead of multiple inheritance</a>.</p>
+<p>For example, you can define <code>Window</code> and its initializer like this:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Window</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">Ui_MainWindow</span><span class="p">()</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">connectSignalsSlots</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">connectSignalsSlots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">action_Exit</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">action_Find_Replace</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+</span>            <span class="bp">self</span><span class="o">.</span><span class="n">findAndReplace</span>
+        <span class="p">)</span>
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">action_About</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">about</span><span class="p">)</span>
+</span>    <span class="c1"># Snip...</span>
+</code></pre></div>
+<p>In this case, you create <code>.ui</code>, which is an instance of <code>Ui_MainWindow</code>. From this point on, you need to use <code>.ui</code> to access the widgets and objects on your main window&rsquo;s GUI.</p>
+</div>
+<p>If you run this application, then you&rsquo;ll get the following window on your screen:</p>
+<div class="embed-responsive embed-responsive-16by9 rounded mb-3 ">
+<iframe loading="lazy" class="embed-responsive-item" src="https://player.vimeo.com/video/500233090?background=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>That&rsquo;s it! You&rsquo;ve created a sample text editor with minimal functionality using Qt Designer. Note that to code this application, you wrote only forty-four lines of Python code, which is substantially less than what you&rsquo;d need to write to hand code the GUI of an equivalent application from scratch.</p>
+</section></section><section class="section2" id="conclusion"><h2>Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<p>When you create applications in PyQt, you commonly build a main window and several dialogs. Building the GUI of those windows and dialogs can take a lot of time if you hand code them. Luckily, <a href="https://doc.qt.io/">Qt</a> provides <a href="https://doc.qt.io/qt-5/qtdesigner-manual.html">Qt Designer</a>, which is a powerful tool intended to create GUIs fast and productively using a user-friendly graphical interface.</p>
+<p>With Qt Designer, you can drag and drop all the required widgets onto an empty form, lay them out, and create your GUIs in almost no time. Those GUIs are saved in <code>.ui</code> files that you can translate into Python code and use in your applications.</p>
+<p><strong>In this tutorial, you learned how to:</strong></p>
+<ul>
+<li>Install <strong>Qt Designer</strong> on your system</li>
+<li>Decide when to <strong>use Qt Designer vs hand code</strong> your GUIs</li>
+<li>Build the GUI of an application&rsquo;s <strong>main window</strong> using Qt Designer</li>
+<li>Create and lay out the GUI of your <strong>dialogs</strong> with Qt Designer</li>
+<li>Use <strong>Qt Designer&rsquo;s <code>.ui</code> files</strong> in your GUI applications</li>
+</ul>
+<p>Finally, you put all this knowledge into action by using Qt Designer to create the GUIs of the windows and dialogs required to build a sample text editor application. You can get all the required code and resources to build this application by clicking the link below:</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Get the Source Code:</strong> <a href="https://realpython.com/bonus/qt-designer-code/" class="alert-link" data-toggle="modal" data-target="#modal-qt-designer-code" data-focus="false" markdown="1">Click here to get the source code you&rsquo;ll use</a> to learn about creating Python GUI applications with Qt Designer in this tutorial.</p>
+</div>
+</section>
+<div class="text-center my-3">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.</p>
+</div>
+<div class="col-xs-12 col-sm-5">
+<img class="img-fluid rounded mb-3" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="UogXaMnV5oc3BzmCT54gVrnoZYltzCZP0tVaLlzTqT7dLs1k2RwqlwmkfTqnMatE">
+<input type="hidden" name="slug" value="static-python-tricks-footer">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me Python Tricks »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="card mt-3" id="author">
+<p class="card-header h3">About <strong>Leodanis Pozo Ramos</strong></p>
+<div class="card-body">
+<div class="container p-0">
+<div class="row">
+<div class="col-12 col-md-3 align-self-center">
+<a href="/team/lpozoramos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=862&amp;h=862&amp;mode=crop&amp;sig=2d089ce1d1dc031cba6526fec6773d79fd0495d8" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=215&amp;h=215&amp;mode=crop&amp;sig=d5445576454e66fffb8c54c94a51779f114f6d98 215w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=431&amp;h=431&amp;mode=crop&amp;sig=09e05527710aa4fc68ca8cc43070c43c6aa15011 431w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=862&amp;h=862&amp;mode=crop&amp;sig=2d089ce1d1dc031cba6526fec6773d79fd0495d8 862w" sizes="25vw" width="862" height="862" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto" alt="Leodanis Pozo Ramos"></a>
+<a href="/team/lpozoramos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=862&amp;h=862&amp;mode=crop&amp;sig=2d089ce1d1dc031cba6526fec6773d79fd0495d8" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=215&amp;h=215&amp;mode=crop&amp;sig=d5445576454e66fffb8c54c94a51779f114f6d98 215w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=431&amp;h=431&amp;mode=crop&amp;sig=09e05527710aa4fc68ca8cc43070c43c6aa15011 431w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Perfil_final1.9f896bc212f6.jpg&amp;w=862&amp;h=862&amp;mode=crop&amp;sig=2d089ce1d1dc031cba6526fec6773d79fd0495d8 862w" sizes="25vw" width="862" height="862" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0" alt="Leodanis Pozo Ramos"></a>
+</div>
+<div class="col mt-3">
+<p>Leodanis is an industrial engineer who loves Python and software development. He&#x27;s a self-taught Python developer with 6+ years of experience. He&#x27;s an avid technical writer with a growing number of articles published on Real Python and other sites.</p>
+<a href="/team/lpozoramos/" class="card-link">» More about Leodanis</a>
+</div>
+</div>
+</div>
+</div>
+<hr class="my-0">
+<div class="card-body pb-0">
+<div class="container">
+<div class="row">
+<p><em>Each tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:</em></p>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/asantos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=175&amp;h=175&amp;mode=crop&amp;sig=30253487c673fd67bb45ea6bef95b3c57e115e46 175w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=350&amp;h=350&amp;mode=crop&amp;sig=a43bd9ea30a6f61a4fc2451ab9abfc6faec8a2c0 350w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c 700w" sizes="10vw" width="862" height="862" class="rounded-circle img-fluid w-100" alt="Aldren Santos"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/asantos/" class="card-link small"><p>Aldren</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/bzaczynski/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=84695876e8b66be5e91aa5eb72f25a3fb4dcceeb" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=225&amp;h=225&amp;mode=crop&amp;sig=8e1a0d84149944be3c2615404fb46e7da001c17f 225w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=450&amp;h=450&amp;mode=crop&amp;sig=2e7c93ebefa8a958432160f29cd4a09c889ae8d3 450w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=84695876e8b66be5e91aa5eb72f25a3fb4dcceeb 900w" sizes="10vw" width="862" height="862" class="rounded-circle img-fluid w-100" alt="Bartosz Zaczyński"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/bzaczynski/" class="card-link small"><p>Bartosz</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/gahjelle/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=c6390201e73d3e09429d73da5bb29c17ab10403a 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=fcea459ee24a7b320573cadee324cf75509dc1d6 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1 800w" sizes="10vw" width="862" height="862" class="rounded-circle img-fluid w-100" alt="Geir Arne Hjelle"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/gahjelle/" class="card-link small"><p>Geir Arne</p></a>
+</div>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jjablonski/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=706b16de3cb88a8f353f4a98d7c7bc7234229bd0 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=6d7aa672ca3f1ac5f7cd62ed1641b60f98d04d8b 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858 800w" sizes="10vw" width="862" height="862" class="rounded-circle img-fluid w-100" alt="Joanna Jablonski"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jjablonski/" class="card-link small"><p>Joanna</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jschmitt/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=d10d9fc35ba4a6608969e71b4c24c1e61176ee2d" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=100&amp;h=100&amp;mode=crop&amp;sig=ef40d1115d3b4c306b16314b5555d5dc55361da9 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=e1df2f238effe79f5750fc75258642036de498c3 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=d10d9fc35ba4a6608969e71b4c24c1e61176ee2d 400w" sizes="10vw" width="862" height="862" class="rounded-circle img-fluid w-100" alt="Jacob Schmitt"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jschmitt/" class="card-link small"><p>Jacob</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center"></div>
+<div class="col pl-0 d-none d-sm-block"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+<div class="col-12 text-center d-block d-md-none">
+<p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</mark></u> With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-1"><img class="w-75" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+<p class="mb-0"><a href="/account/join/?utm_source=rp_article_footer&utm_content=qt-designer-python" class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+</div>
+<div class="col-12 text-center d-none d-md-block">
+<p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-2"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="/account/join/?utm_source=rp_article_footer&utm_content=qt-designer-python" class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+</div>
+</div>
+<div class="card mt-4" id="reader-comments">
+<p class="card-header h3">What Do You Think?</p>
+<div class="text-center mt-3 mb-0 p-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Qt%20Designer%20and%20Python%3A%20Build%20Your%20GUI%20Applications%20Faster by @realpython&url=https%3A//realpython.com/qt-designer-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/qt-designer-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AQt%20Designer%20and%20Python%3A%20Build%20Your%20GUI%20Applications%20Faster%0A%0Ahttps%3A//realpython.com/qt-designer-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="card-body">
+<div class="alert alert-dark">
+<p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.</p>
+</div>
+<p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.</p>
+<div class="mb-4" id="disqus_thread">
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<p class="card-header h3">Keep Learning</p>
+<div class="card-body">
+<p class="mb-0">Related Tutorial Categories:
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+</p>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="rprw">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header border-0 mt-3">
+<div class="col-12 modal-title text-center">
+<h2 class="my-0 mx-5">Keep reading Real&nbsp;Python by creating a free account or signing&nbsp;in:</h2>
+</div>
+</div>
+<div class="modal-body bg-light">
+<div class="col-12 text-center">
+<p class="mb-2 mt-3"><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fqt-designer-python%2F"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260" alt="Keep reading"></a></p>
+<p><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fqt-designer-python%2F" class="btn btn-primary btn-lg px-5"></i>Continue »</a></a>
+</div>
+</div>
+<div class="modal-footer border-0">
+<p class="text-center text-muted mt-2 mb-1">Already have an account? <a href="/account/login/?next=/qt-designer-python/">Sign-In</a></p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.realpython.com/static/frontend/reader/rw.38bf29157dfe.js" async></script>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="UogXaMnV5oc3BzmCT54gVrnoZYltzCZP0tVaLlzTqT7dLs1k2RwqlwmkfTqnMatE">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+<div class="sidebar-sticky ">
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+<p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+<div class="toc">
+<ul>
+<li><a href="#getting-started-with-qt-designer">Getting Started With Qt Designer</a><ul>
+<li><a href="#installing-and-running-qt-designer">Installing and Running Qt Designer</a></li>
+<li><a href="#using-qt-designers-new-form-dialog">Using Qt Designer&rsquo;s New Form Dialog</a></li>
+<li><a href="#working-with-qt-designers-main-window">Working With Qt Designer&rsquo;s Main Window</a></li>
+<li><a href="#using-qt-designer-vs-hand-coding-your-guis">Using Qt Designer vs Hand Coding Your GUIs</a></li>
+</ul>
+</li>
+<li><a href="#building-main-windows-with-qt-designer-and-python">Building Main Windows With Qt Designer and Python</a><ul>
+<li><a href="#creating-the-main-menu">Creating the Main Menu</a></li>
+<li><a href="#creating-a-toolbar">Creating a Toolbar</a></li>
+<li><a href="#laying-out-a-single-central-widget">Laying Out a Single Central Widget</a></li>
+<li><a href="#laying-out-a-compound-central-widget">Laying Out a Compound Central Widget</a></li>
+<li><a href="#having-a-status-bar">Having a Status Bar</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-dialog-with-qt-designer-and-python">Creating a Dialog With Qt Designer and Python</a><ul>
+<li><a href="#creating-a-dialog-gui">Creating a Dialog GUI</a></li>
+<li><a href="#laying-out-the-dialog-gui">Laying Out the Dialog GUI</a></li>
+<li><a href="#connecting-signals-and-slots">Connecting Signals and Slots</a></li>
+<li><a href="#setting-the-tab-order-of-widgets">Setting the Tab Order of Widgets</a></li>
+<li><a href="#providing-keyboard-accelerators">Providing Keyboard Accelerators</a></li>
+</ul>
+</li>
+<li><a href="#integrating-windows-and-dialogs-in-an-application">Integrating Windows and Dialogs in an Application</a><ul>
+<li><a href="#setting-up-windows-and-dialogs-for-use">Setting Up Windows and Dialogs for Use</a></li>
+<li><a href="#putting-everything-together-in-an-application">Putting Everything Together in an Application</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Qt%20Designer%20and%20Python%3A%20Build%20Your%20GUI%20Applications%20Faster by @realpython&url=https%3A//realpython.com/qt-designer-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/qt-designer-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AQt%20Designer%20and%20Python%3A%20Build%20Your%20GUI%20Applications%20Faster%0A%0Ahttps%3A//realpython.com/qt-designer-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-qt-designer-code" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+<img class="img-fluid rounded" src="https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg&amp;w=480&amp;sig=0d3f4e28df3f8ff8a44055e5e3047485c6b5a2a2 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg&amp;w=960&amp;sig=7453a1af62d3f446f9a07bdb8573622125a8ad08 960w, https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg 1920w" sizes="50vw" alt="Qt Designer and Python: Build Your GUI Applications Faster">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">Python GUI Applications With Qt Designer (Source Code)</p>
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="UogXaMnV5oc3BzmCT54gVrnoZYltzCZP0tVaLlzTqT7dLs1k2RwqlwmkfTqnMatE">
+<input type="hidden" name="slug" value="qt-designer-code">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Send Source Code »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<div class="w-75 mx-auto mt-4 mb-0">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/toc-refresh.76a102c7d921.js" async></script>
+<script id="js-context" type="application/json">{"is_completed": false, "is_bookmarked": false, "api_article_bookmark_url": "/api/v1/articles/qt-designer-python/bookmark/", "api_article_completion_status_url": "/api/v1/articles/qt-designer-python/completion_status/"}</script>
+<script src="https://cdn.realpython.com/static/frontend/reader/completion-status.352d07abd84a.js" async></script>
+<script id="dsq-count-scr" src="https://realpython.disqus.com/count.js" async></script>
+<script>
+      var disqus_config = function () {
+        this.page.url = 'https://realpython.com/qt-designer-python/';
+        this.page.identifier = 'https://realpython.com/qt-designer-python/';
+        this.callbacks.onReady = [function() {
+          if (window.onDisqusReady) {
+            window.onDisqusReady();
+          }
+        }];
+      };
+      var disqus_script_url = 'https://realpython.disqus.com/embed.js';
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lazy-disqus.07ee9079f4a3.js" defer></script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Qt Designer and Python: Build Your GUI Applications Faster",
+    
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://files.realpython.com/media/Creating-Python-GUI-Applications-with-Qt-Designer_Watermarked.7f1a8406f413.jpg",
+      "width": 1920,
+      "height": 1080
+    },
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://realpython.com/qt-designer-python/"
+    },
+    "datePublished": "2021-02-03T14:00:00+00:00",
+    "dateModified": "2021-01-21T23:06:32.030704+00:00",
+     "publisher": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cdn.realpython.com/static/real-python-logo-square-tiny.b2452b6d3823.png",
+        "width": 60,
+        "height": 60
+      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "url": "https://realpython.com",
+      "logo": "https://cdn.realpython.com/static/real-python-logo-square.146e987bf77c.png"
+    },
+    "description": "In this step\u002Dby\u002Dstep tutorial, you\u0027ll learn how to use Qt Designer to create GUIs from your windows and dialogs and use them in your Python applications."
+  }
+  </script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a458899873762',m:'RP8B5fhgbAz2JghO7O.pxr4QaukRncqO4KhncSb2abE-1632636023-0-AVPEd/vszUTew1CAzqXDfBYKlzDzUvHH3s0lxTIYxHIW6yGTK5MA7wINykYZgXCsBiDp/ZveMgAbMo9Fsh2eGdgSrVl2Xtz4dZ1ULZtqcKvabDQRW4h4SkEafUydva6troQ19bM8AnWcV/NwA/VdC48=',s:[0xd3b7a523a7,0x3bc2e80e55],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

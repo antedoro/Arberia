@@ -1,0 +1,13 @@
+{{ define "main" }}
+
+<div class="container main-content">
+	<div class="row justify-content-center">
+		{{- if eq .Params.sidebar true -}}
+			{{ partial "article-with-sidebar.html" . }}
+		{{else}}
+			{{ partial "article-without-sidebar.html" . }}
+		{{- end -}}
+	</div>
+</div>
+
+{{ end }}

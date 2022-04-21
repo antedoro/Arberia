@@ -1,0 +1,1231 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Python Web Applications With Flask – Part III – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="In this part of our series on Building a Web Application with Flask we&#x27;ll explore unit and integration testing.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/python-web-applications-with-flask-part-iii/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg">
+<meta property="og:image" content="https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Python Web Applications With Flask – Part III – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/python-web-applications-with-flask-part-iii/">
+<meta property="og:description" content="In this part of our series on Building a Web Application with Flask we&#x27;ll explore unit and integration testing.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Fpython-web-applications-with-flask-part-iii%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article with-headerlinks">
+<figure class="embed-responsive embed-responsive-16by9">
+<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Web Applications With Flask – Part III" src="https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg&amp;w=480&amp;sig=81c4a126c536fc7171a42cff81535e6f45a90d28 480w, https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg&amp;w=960&amp;sig=dea21f887b9bd9d8e821392e5ffde90545abb9b1 960w, https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg 1920w" sizes="75vw">
+</figure>
+<h1>Python Web Applications With Flask – Part III</h1>
+<div class="mb-0">
+<span class="text-muted">by <a class="text-muted" href="/">Real Python</a>
+<span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="#reader-comments"><span class="disqus-comment-count" data-disqus-identifier="https://realpython.com/python-web-applications-with-flask-part-iii/"></span></a>
+<span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<div class="d-sm-flex flex-row justify-content-between my-3 text-center">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+<div class="align-self-center my-2">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Python%20Web%20Applications%20With%20Flask%20%E2%80%93%20Part%20III by @realpython&url=https%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0APython%20Web%20Applications%20With%20Flask%20%E2%80%93%20Part%20III%0A%0Ahttps%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+</div>
+</div>
+<div class="article-body">
+<div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+<p class="h3 mb-2 text-muted">Table of Contents</p>
+<div class="toc">
+<ul>
+<li><a href="#why-testing">Why Testing</a></li>
+<li><a href="#setting-up">Setting up</a></li>
+<li><a href="#the-tests">The Tests</a></li>
+<li><a href="#mocks-and-integration-tests">Mocks and Integration Tests</a><ul>
+<li><a href="#unit-vs-integration-tests">Unit vs. Integration Tests</a></li>
+<li><a href="#mocking-free-geoip">Mocking Free GeoIP</a></li>
+<li><a href="#set-up-the-test-data-and-mocks">Set up the test data and mocks</a></li>
+<li><a href="#patch-the-mock-into-our-tracking-module">Patch the mock into our tracking module</a></li>
+<li><a href="#run-the-test">Run the test</a></li>
+<li><a href="#assert-that-everything-worked">Assert that everything worked</a></li>
+</ul>
+</li>
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#error-handling">Error Handling</a></li>
+<li><a href="#logging">Logging</a><ul>
+<li><a href="#adding-context-and-formatting-to-our-logs">Adding context and formatting to our logs</a></li>
+<li><a href="#directing-logs-to-different-places">Directing logs to different places</a></li>
+</ul>
+</li>
+<li><a href="#wrapping-up">Wrapping Up</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p>Please note: This is a collaboration piece between Michael Herman, from Real Python, and Sean Vieira, a Python developer from <a href="http://dedeodesigns.com/">De Deo Designs</a>.</p>
+<hr />
+<p><strong>Articles in this series:</strong></p>
+<ol>
+<li>Part I: <a href="https://realpython.com/python-web-applications-with-flask-part-i/">Application setup</a></li>
+<li>Part II: <a href="https://realpython.com/python-web-applications-with-flask-part-ii/">Setup user accounts, Templates, Static files</a></li>
+<li><strong>Part III: Testing (unit and integration), Debugging, and Error handling ← <em>CURRENT ARTICLE</em></strong></li>
+</ol>
+<p>Welcome back to the Flask-Tracking development series! For those of you who are just joining us, we are implementing a web analytics application that conforms to <a href="https://realpython.com/python-web-applications-with-flask-part-i/#toc_1">this napkin specification</a>. For all those of you following along at home, you may check out today&rsquo;s code with:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>git checkout v0.3
+</code></pre></div>
+<p>Or you may download it from the <a href="https://github.com/mjhea0/flask-tracking/releases">releases page on Github</a>. Those of you who are just joining us may wish to read <a href="https://realpython.com/python-web-applications-with-flask-part-i/#toc_5">a note on the repository structure</a> as well.</p>
+<p><a href="https://realpython.com/python-web-applications-with-flask-part-ii/">In the previous segment</a> we added user accounts to our application. This week we&rsquo;ll work on implementing a testing framework, talk a bit about why testing is important and then write some tests for our application. After, we&rsquo;ll talk a bit about debugging errors in our application and logging.</p>
+<section class="section2" id="why-testing"><h2>Why Testing<a class="headerlink" href="#why-testing" title="Permanent link"></a></h2>
+<p>Before we actually write any of our tests lets talk about <a href="https://realpython.com/python-testing/">why testing is important</a>. If you remember the Zen of Python from <a href="https://realpython.com/python-web-applications-with-flask-part-i/">Part 1</a>, you may have noticed that &ldquo;Simple is better than complex&rdquo; is right above &ldquo;Complex is better than complicated&rdquo;. <em>Simple is the ideal, complex is often a reality.</em> Web applications, in particular, have many moving parts, and can very quickly move from simple to complex.</p>
+<p>As the complexity of our application grows we want to ensure that the various moving parts we create continue to work together in a harmonious fashion. We don&rsquo;t want to change the signature of a utility function that breaks a seemingly unrelated feature in production. Moreover, we want to ensure that our changes still preserve <em>correct</em> (not simply valid) functionality. A method that always returns the same <code>datetime</code> instance is valid and correct twice a day, but valid and <em>incorrect</em> all the rest of the time.</p>
+<p>Tests are a great debugging aid. Writing a test that produces the invalid behavior we are seeing helps us look at our code from a different perspective. In addition, once we have the test passing we have ensured that we will not re-introduce this bug again (at least in that particular way).</p>
+<p>Tests are also an excellent source of documentation. Since they have to deal with expected inputs and outputs reading a test suite will clarify what the code under test is expected to do. This will illuminate unclear segments of the documentation that we have written (or in simple cases, even substitute for it).</p>
+<p>Finally, tests can be a wonderful exploratory aid - sketching out how we <em>want</em> to interact with our code before we write it reveals simpler APIs, and helps us paper over the internal complexity of a domain. <a href="http://en.wikipedia.org/wiki/Test-driven_development">&ldquo;Test Driven Development&rdquo;</a> is the ultimate commitment to this process. In TDD we first write tests to cover our code&rsquo;s functionality and only then do we write that code.</p>
+<p>Tests will make it obvious:</p>
+<ul>
+<li>When code isn&rsquo;t working,</li>
+<li>What code is broken, and</li>
+<li>Why we wrote this code in the first place.</li>
+</ul>
+<p>Every time we go to add a feature to our application, fix a bug or change some code we should make sure our code is adequately covered by tests and that the tests all pass after we&rsquo;re done.</p>
+<p><strong>Do:</strong></p>
+<ul>
+<li>Add tests to cover the basic functionality of your code.</li>
+<li>Add tests to cover as many corner/edge cases of your code that you can think of.</li>
+<li>Add tests to cover the corner/edge cases you didn&rsquo;t think of after you go back and fix them.</li>
+<li>Remind your coding peers to adequately test their code.</li>
+<li>Bug people about code that doesn&rsquo;t pass tests.</li>
+</ul>
+<p><strong>Do Not:</strong></p>
+<ul>
+<li>Commit code without tests.</li>
+<li>Commit code that doesn&rsquo;t pass or breaks tests.</li>
+<li>Change your tests so your code passes without fixing the problem.</li>
+</ul>
+<p>Now that we&rsquo;ve worked out why testing is so important lets start writing some tests for our application.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="setting-up"><h2>Setting up<a class="headerlink" href="#setting-up" title="Permanent link"></a></h2>
+<p>Each chunk of functionality needs to have tests. To do this in a neat and concise way each package will get a <code>tests.py</code> module in it. This way we know where the tests for each package are and that they&rsquo;re contained in the package if we ever need to break it out of our application.</p>
+<p>We&rsquo;ll use <a href="http://pythonhosted.org/Flask-Testing/"><code>Flask-Testing</code></a> extension because it has a bunch of useful testing features that we&rsquo;d be setting up anyways. Go ahead and add <code>Flask-Testing==0.4</code> to the bottom of <code>requirements.txt</code> then run <code>pip install -r requirements.txt</code>.</p>
+<p>Flask-Testing eliminates almost all of the boilerplate of setting up Flask for unit testing. The little bit that remains we will place in a new module <code>test_base.py</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># flask_testing/test_base.py</span>
+<span class="kn">from</span> <span class="nn">flask.ext.testing</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">db</span>
+
+
+<span class="k">class</span> <span class="nc">BaseTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A base test case for flask-tracking.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;config.TestConfiguration&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">app</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">drop_all</span><span class="p">()</span>
+</code></pre></div>
+<p>This test case doesn&rsquo;t do anything spectacular - it just configures the application with our test configuration, creates all of our tables at the start of every test and deletes all of our tables at the end of every test. This way every test case starts out with a clean slate and we can spend more time writing tests and less time debugging our test cases. Since every test case will inherit from our new <code>BaseTestCase()</code> class we will avoid copying and pasting this configuration into every package we create for our application.</p>
+<p>One additional thing we have done is modularize our configurations. The original <code>config.py</code> module supported only one configuration - we can update that to allow for differences between environments. As a reminder, this is what <code>config.py</code> looked like in <a href="https://realpython.com/python-web-applications-with-flask-part-ii/">Part 2</a>:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># config.py</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
+
+<span class="n">_cwd</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;flask-session-insecure-secret-key&#39;</span>
+<span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///&#39;</span> <span class="o">+</span> <span class="n">join</span><span class="p">(</span><span class="n">_cwd</span><span class="p">,</span> <span class="s1">&#39;flask-tracking.db&#39;</span><span class="p">)</span>
+<span class="n">SQLALCHEMY_ECHO</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>It looks almost the same now - we simply created a class that holds all of these configuration values:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
+
+<span class="n">_cwd</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">BaseConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;flask-session-insecure-secret-key&#39;</span>
+    <span class="n">HASH_ROUNDS</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="c1"># ... etc. ...</span>
+</code></pre></div>
+<p>which we can then inherit from:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">TestConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">WTF_CSRF_ENABLED</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///:memory:&#39;</span>  <span class="c1"># + join(_cwd, &#39;testing.db&#39;)</span>
+
+    <span class="c1"># Since we want our unit tests to run quickly</span>
+    <span class="c1"># we turn this down - the hashing is still done</span>
+    <span class="c1"># but the time-consuming part is left out.</span>
+    <span class="n">HASH_ROUNDS</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+<p>This way settings that are common to all environments can be easily shared, and we can easily override what we need to in our environment specific configurations. (This pattern comes directly from <a href="http://flask.pocoo.org/docs/config/#development-production">Flask&rsquo;s excellent documentation</a>.)</p>
+<p>We are using an in-memory <a href="https://realpython.com/python-sqlite-sqlalchemy/">SQLite database</a> for our tests to ensure that our tests execute as quickly as possible. We want to enjoy running our tests, and we can only do that if they execute in a reasonable amount of time. If we really need access to the result of the test run we can override the <code>:memory:</code> setting with the calculated path to <code>tests.db</code>. (That&rsquo;s the commented out <code>+ join(_cwd, 'testing.db')</code> in our <code>TestConfiguration</code>).</p>
+<p>We have also added a <code>HASH_ROUNDS</code> key to our configuration to control how many times a user&rsquo;s password should be hashed before it is stored. We can change <code>flask_tracking.users.models.User</code>&rsquo;s <code>_hash_password</code> method to use this key:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">current_app</span>
+
+<span class="c1"># ... snip ...</span>
+
+<span class="k">def</span> <span class="nf">_hash_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="c1"># ... snip ...</span>
+    <span class="n">rounds</span> <span class="o">=</span> <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;HASH_ROUNDS&quot;</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+    <span class="n">buff</span> <span class="o">=</span> <span class="n">pbkdf2_hmac</span><span class="p">(</span><span class="s2">&quot;sha512&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="p">,</span> <span class="n">salt</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="n">rounds</span><span class="p">)</span>
+</code></pre></div>
+<p>This ensures that our unit tests will run quickly - otherwise, every time we need to create or log in a user we will have to wait for 100,000 rounds of sha512 to complete before we can continue our test.</p>
+<p>Finally, we will need to update our <code>app.from_object</code> call in <code>flask_tracking/__init__.py</code>. Before, we were loading the config using <code>app.from_object('config')</code>. Now that we have two configurations in our config module we will want to change that to <code>app.from_object('config.BaseConfiguration')</code>.</p>
+<p>Now we are ready to test our application.</p>
+</section><section class="section2" id="the-tests"><h2>The Tests<a class="headerlink" href="#the-tests" title="Permanent link"></a></h2>
+<p>We&rsquo;ll start with the <code>users</code> package.</p>
+<p>From <a href="https://realpython.com/python-web-applications-with-flask-part-ii/">last time</a> we know that the <code>users</code> package is responsible for:</p>
+<ul>
+<li>Registration,</li>
+<li>Logging in, and</li>
+<li>Logging out.</li>
+</ul>
+<p>So we need to write tests that cover users signing up, users logging in and then users logging out. Let&rsquo;s start with a simple case - an existing user attempting to log in:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># flask_tracking/users/tests.py</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">url_for</span>
+
+<span class="kn">from</span> <span class="nn">flask_tracking.test_base</span> <span class="kn">import</span> <span class="n">BaseTestCase</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+
+<span class="k">class</span> <span class="nc">UserViewsTests</span><span class="p">(</span><span class="n">BaseTestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_users_can_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s1">&#39;joe@joes.com&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;12345&#39;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;users.login&#39;</span><span class="p">),</span>
+                                    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;joe@joes.com&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;12345&#39;</span><span class="p">})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_redirects</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;tracking.index&#39;</span><span class="p">))</span>
+</code></pre></div>
+<p>Since every test case starts out with a completely clean database we have to create an existing user first. We can then submit the same request that our user (Joe) would submit if he were trying to log in. We want to ensure that if Joe logs in successfully, he will be redirected back to the home page.</p>
+<p>We can run our tests with the <a href="http://docs.python.org/2/library/unittest.html"><code>unittest</code></a> test runner, which comes built-in with Python. Run the following command from the root of the project:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m unittest discover
+</code></pre></div>
+<p>That results in the following output:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 1 test in 0.045s</span>
+
+<span class="go">OK</span>
+</code></pre></div>
+<p>Hurray! We now have a passing test! Let&rsquo;s also test that our integration with Flask-Login is working. <code>current_user</code> should be Joe, so we should be able to do the following:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask.ext.login</span> <span class="kn">import</span> <span class="n">current_user</span>
+
+<span class="c1"># And then inside of our test_users_can_login function:</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Joe&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">())</span>
+</code></pre></div>
+<p>However, if we were to try this we would get the following error:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="go">AttributeError: &#39;AnonymousUserMixin&#39; object has no attribute &#39;name&#39;</span>
+</code></pre></div>
+<p><code>current_user</code> needs to be accessed within the context of a request (it is a thread-local object, just like <code>flask.request</code>). When <code>self.client.post</code> completes the request and every thread-local object is torn down. We need to preserve the request context so we can test our integration with Flask-Login. Fortunately, <code>Flask</code>&rsquo;s <a href="http://flask.pocoo.org/docs/api/#flask.Flask.test_client"><code>test_client</code></a> is a <a href="http://flask.pocoo.org/docs/testing/#keeping-the-context-around">context manager</a>, which means that we can use it in a <a href="https://realpython.com/python-with-statement/"><code>with</code> statement</a> and it will keep the context around as long as we need it:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;users.login&#39;</span><span class="p">),</span>
+                                <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;joe@joes.com&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;12345&#39;</span><span class="p">})</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">assert_redirects</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Joe&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">())</span>
+</code></pre></div>
+<p>Now, when we run our test again, we pass!</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 1 test in 0.053s</span>
+</code></pre></div>
+<p>Let&rsquo;s ensure that when Joe is logged in, he can log out:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">test_users_can_logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Joe&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;joe@joes.com&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;users.login&quot;</span><span class="p">),</span>
+                         <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;joe@joes.com&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;12345&quot;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;users.logout&quot;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">())</span>
+</code></pre></div>
+<p>Once again, we create Joe (remember, the database is reset at the end of every test). Then we log him in (which we know works because our first test is passing). Finally, we log him out by requesting the logout page via <code>self.client.get(url_for("users.logout"))</code> and ensure that the user we have is once again anonymous. Run the tests again and bask in the satisfaction of having two passing tests.</p>
+<p>A couple of other things that we will want to check:</p>
+<ul>
+<li>Can a user register and then log into the application?</li>
+<li>When a user logs out, do they get redirected back to the index page?</li>
+</ul>
+<p>These tests are available in <a href="https://github.com/mjhea0/flask-tracking">the <code>flask-tracking</code> repository</a>, should you want to review them. Since they are similar to what we have already written, we will skip them here.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="mocks-and-integration-tests"><h2>Mocks and Integration Tests<a class="headerlink" href="#mocks-and-integration-tests" title="Permanent link"></a></h2>
+<p>There is one part of our application though, which is a little different from the rest - our <code>add_visit</code> endpoint in the <code>tracking</code> package not only interacts with the database and the user - it also interacts with the third-party service <a href="http://freegeoip.net/">Free GeoIP</a>. As this is a potential source of breakage, we will want to test it thoroughly. Since Free GeoIP is a third party service (which we might not always have access to) it also gives us a good opportunity to talk about the difference between unit and integration tests.</p>
+<section class="section3" id="unit-vs-integration-tests"><h3>Unit vs. Integration Tests<a class="headerlink" href="#unit-vs-integration-tests" title="Permanent link"></a></h3>
+<p>Everything that we have written so far has fallen under the heading of a unit test. A <strong>unit test</strong> is a test of the smallest possible piece of functionality of <em>our</em> code - a test of an indivisible section of code (generally a function or method).</p>
+<p><strong>Integration tests</strong>, on the other hand, test our application at its boundaries - does our application interact correctly with this other application (which may well be something we have written)? Testing that our application properly calls and interacts with Free GeoIP is an integration test. These sorts of tests are very important, as they let us know that the features that we are depending on still work the way we expect them to. (Yes, that doesn&rsquo;t help us if Free GeoIP changes its contract (API), or goes down completely, while we are running our application in production but that is what logging is for - which we will cover a little later on.)</p>
+<p>However, the issue with integration tests is that they are often more than an order of magnitude slower than unit tests. A large number of integration tests can slow down our test suite to the point where it takes more than a minute to run - once it crosses that boundary, our test suite starts to be a hindrance rather than an assistant. Taking the time to run our tests now breaks our flow of concentration, rather than simply verifying that we are on the right track. Also, in the case of distributed services like Free GeoIP, it means we cannot actually run our test suite if we are offline or if Free GeoIP is down.</p>
+<p>This leaves us in a fine quandary - on the one hand, integration tests are very important, and on the other hand, running integration tests is likely to break our work flow.</p>
+<p>The solution is simple - we can create a bare-bones local implementation of the service we are calling (which is called a mock in testing parlance) and run our unit tests using this mock. We can separate out our integration tests into a separate file and run those before we commit changes to our code. That way, we get the speed of good unit tests and retain the certainty that integration tests provide.</p>
+</section><section class="section3" id="mocking-free-geoip"><h3>Mocking Free GeoIP<a class="headerlink" href="#mocking-free-geoip" title="Permanent link"></a></h3>
+<p>If you remember from <a href="https://realpython.com/python-web-applications-with-flask-part-ii/">Part 2</a> we added a <code>geodata</code> module to our <code>tracking</code> package which implemented a single function <code>get_geodata</code>. We use this function in our <code>tracking.add_visit</code> view:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">ip_address</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">access_route</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">remote_addr</span>
+<span class="n">geodata</span> <span class="o">=</span> <span class="n">get_geodata</span><span class="p">(</span><span class="n">ip_address</span><span class="p">)</span>
+</code></pre></div>
+<p>What we want to do in our <em>unit</em> test is ensure that when <code>get_geodata</code> works as expected we will properly record the visit in the database. However, we don&rsquo;t want to call Free GeoIP (otherwise, our test will be slow in comparison to our other tests and we will not be able to run the tests when offline.) We need to replace <code>get_geodata</code> with another function (a mock).</p>
+<p>First, let&rsquo;s install <a href="http://mock.readthedocs.org/en/latest/">a mocking library</a> to make this easier. Add <a href="http://mock.readthedocs.org/en/latest/"><code>mock==1.0.1</code></a> to requirements.txt and <code>pip install -r requirements.txt</code> again. (If you are using Python 3.3 or greater, you already have mock installed as <a href="https://realpython.com/python-mock-library/"><code>unittest.mock</code></a>.)</p>
+<p>Now we can write our unit test:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># flask_tracking/tracking/tests.py</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">url_for</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+<span class="kn">from</span> <span class="nn">werkzeug.datastructures</span> <span class="kn">import</span> <span class="n">Headers</span>
+
+<span class="kn">from</span> <span class="nn">flask_tracking.test_base</span> <span class="kn">import</span> <span class="n">BaseTestCase</span>
+<span class="kn">from</span> <span class="nn">flask_tracking.users.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Site</span><span class="p">,</span> <span class="n">Visit</span>
+<span class="kn">from</span> <span class="nn">..tracking</span> <span class="kn">import</span> <span class="n">views</span>
+
+
+<span class="k">class</span> <span class="nc">TrackingViewsTests</span><span class="p">(</span><span class="n">BaseTestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_visitors_location_is_derived_from_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s1">&#39;joe@joe.com&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;12345&#39;</span><span class="p">)</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="n">Site</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="n">mock_geodata</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_geodata&#39;</span><span class="p">)</span>
+        <span class="n">mock_geodata</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;Los Angeles&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;zipcode&#39;</span><span class="p">:</span> <span class="s1">&#39;90001&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;34.05&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;-118.25&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;tracking.add_visit&#39;</span><span class="p">,</span> <span class="n">site_id</span><span class="o">=</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">wsgi_environment</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">:</span> <span class="s1">&#39;1.2.3.4&#39;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">Headers</span><span class="p">([(</span><span class="s1">&#39;Referer&#39;</span><span class="p">,</span> <span class="s1">&#39;/some/url&#39;</span><span class="p">)])</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">&#39;get_geodata&#39;</span><span class="p">,</span> <span class="n">mock_geodata</span><span class="p">):</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">environ_overrides</span><span class="o">=</span><span class="n">wsgi_environment</span><span class="p">,</span>
+                                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+                <span class="n">visits</span> <span class="o">=</span> <span class="n">Visit</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+                <span class="n">mock_geodata</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s1">&#39;1.2.3.4&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">visits</span><span class="p">))</span>
+
+                <span class="n">first_visit</span> <span class="o">=</span> <span class="n">visits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&quot;/some/url&quot;</span><span class="p">,</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s1">&#39;Los Angeles, 90001&#39;</span><span class="p">,</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mf">34.05</span><span class="p">,</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">latitude</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mf">118.25</span><span class="p">,</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">longitude</span><span class="p">)</span>
+</code></pre></div>
+<p>Don&rsquo;t worry - the pain of testing these sorts of integrations is mitigated by the fact that you generally have fewer of them in your application than you have units of code. Let&rsquo;s walk through this code section by section and break it down into digestible chunks.</p>
+</section><section class="section3" id="set-up-the-test-data-and-mocks"><h3>Set up the test data and mocks<a class="headerlink" href="#set-up-the-test-data-and-mocks" title="Permanent link"></a></h3>
+<p>First, we set up a user and a site since the database is empty at the start of every test:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">test_visitors_location_is_derived_from_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s1">&#39;joe@joe.com&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;12345&#39;</span><span class="p">)</span>
+    <span class="n">site</span> <span class="o">=</span> <span class="n">Site</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre></div>
+<p>Then, we create a mock function, and specify that it should return a dictionary containing the coordinates for Los Angeles every time it is called (we could have simply created a simple function that always returned the dictionary, but mock also provides the <a href="http://mock.readthedocs.org/en/latest/patch.html"><code>patch.*</code></a> context managers, which are extremely useful, so we&rsquo;ll go the whole nine yards with the library):</p>
+<div class="highlight python"><pre><span></span><code><span class="n">mock_geodata</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_geodata&#39;</span><span class="p">)</span>
+<span class="n">mock_geodata</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;Los Angeles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;zipcode&#39;</span><span class="p">:</span> <span class="s1">&#39;90001&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="s1">&#39;34.05&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="s1">&#39;-118.25&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Finally, we set up the URL that we are going to visit and the parts of the WSGI environment that we need for <code>tracking.add_visit</code> to work (which, in this case is just the <a href="https://realpython.com/python-ipaddress-module/">IP address</a> of our fake end user&rsquo;s visitor and the URL they supposedly came from):</p>
+<div class="highlight python"><pre><span></span><code><span class="n">url</span> <span class="o">=</span> <span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;tracking.add_visit&#39;</span><span class="p">,</span> <span class="n">site_id</span><span class="o">=</span><span class="n">site</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="n">wsgi_environment</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">:</span> <span class="s1">&#39;1.2.3.4&#39;</span><span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="n">Headers</span><span class="p">([(</span><span class="s1">&#39;Referer&#39;</span><span class="p">,</span> <span class="s1">&#39;/some/url&#39;</span><span class="p">)])</span>
+</code></pre></div>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="patch-the-mock-into-our-tracking-module"><h3>Patch the mock into our tracking module<a class="headerlink" href="#patch-the-mock-into-our-tracking-module" title="Permanent link"></a></h3>
+<p>We explicitly imported the <code>flask_tracking.tracking.views</code> module into our <code>tests</code> module with:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">..tracking</span> <span class="kn">import</span> <span class="n">views</span>
+</code></pre></div>
+<p>Now we patch that module&rsquo;s <code>get_views</code> name to point to our <code>mock_geodata</code> object rather than the <code>flask_tracking.tracking.geodata.get_geodata</code> function:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">&#39;get_geodata&#39;</span><span class="p">,</span> <span class="n">mock_geodata</span><span class="p">):</span>
+</code></pre></div>
+<p>By using <code>patch.object</code> as a context manager, we ensure that after we exit this <code>with</code> block <code>flask_tracking.tracking.views.get_geodata</code> will once again point to <code>flask_tracking.tracking.geodata.get_geodata</code>. We could also have used <code>patch.object</code> as a decorator:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">mock_geodata</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_geodata&#39;</span><span class="p">)</span>
+<span class="c1"># ... snip return setup ...</span>
+
+<span class="k">class</span> <span class="nc">TrackingViewsTests</span><span class="p">(</span><span class="n">BaseTestCase</span><span class="p">):</span>
+    <span class="nd">@patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">&#39;get_geodata&#39;</span><span class="p">,</span> <span class="n">mock_geodata</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_visitors_location_is_derived_from_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</code></pre></div>
+<p>or even a class decorator:</p>
+<div class="highlight python"><pre><span></span><code><span class="nd">@patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="s1">&#39;get_geodata&#39;</span><span class="p">,</span> <span class="n">mock_geodata</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">TrackingViewsTests</span><span class="p">(</span><span class="n">BaseTestCase</span><span class="p">):</span>
+</code></pre></div>
+<p>The only difference is the scope of the patch. The function decorator version ensures that as long as we are inside the <code>test_visitors_location_is_derived_from_ip</code> function <code>get_geodata</code> points at our mock, while the class decorator version ensures that every function that starts with <code>test</code> inside of <code>TrackingViewsTests</code> will see the mocked version of <code>get_geodata</code>.</p>
+<p><em>Personally, I prefer to keep the scope of my mocks as limited as possible. It helps ensure that I keep my testing scope in mind, and saves me from surprises where I was expecting to have access to the real object and have to de-patch it.</em></p>
+</section><section class="section3" id="run-the-test"><h3>Run the test<a class="headerlink" href="#run-the-test" title="Permanent link"></a></h3>
+<p>Having set up everything we need we can now make our request:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">environ_overrides</span><span class="o">=</span><span class="n">wsgi_environment</span><span class="p">,</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre></div>
+<p>We provide our controller with the viewer&rsquo;s IP address through the <code>wsgi_environment</code> dictionary we created (<code>wsgi_environment = {'REMOTE_ADDR': '1.2.3.4'}</code>). Flask&rsquo;s test client is an instance of Werkzeug&rsquo;s test client - which supports all of the arguments that you can pass to <a href="http://werkzeug.pocoo.org/docs/test/#werkzeug.test.EnvironBuilder"><code>EnvironmentBuilder</code></a>.</p>
+</section><section class="section3" id="assert-that-everything-worked"><h3>Assert that everything worked<a class="headerlink" href="#assert-that-everything-worked" title="Permanent link"></a></h3>
+<p>Finally, we fetch all of the visits from the <code>tracking_visit</code> table:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">visits</span> <span class="o">=</span> <span class="n">Visit</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+<p>and verify that:</p>
+<ul>
+<li>We used the user&rsquo;s IP address to lookup his geodata:</li>
+</ul>
+<div class="highlight python"><pre><span></span><code><span class="n">mock_geodata</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s1">&#39;1.2.3.4&#39;</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>The request only generated one visit:</li>
+</ul>
+<div class="highlight python"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">visits</span><span class="p">))</span>
+</code></pre></div>
+<ul>
+<li>The location data was properly persisted:</li>
+</ul>
+<div class="highlight python"><pre><span></span><code><span class="n">first_visit</span> <span class="o">=</span> <span class="n">visits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s2">&quot;/some/url&quot;</span><span class="p">,</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s1">&#39;Los Angeles, 90001&#39;</span><span class="p">,</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;34.05&quot;</span><span class="p">),</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">latitude</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;-118.25&quot;</span><span class="p">),</span> <span class="n">first_visit</span><span class="o">.</span><span class="n">longitude</span><span class="p">)</span>
+</code></pre></div>
+<p>When we run <code>python -m unittest discover</code> we get the following output:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">F.....</span>
+<span class="go">======================================================================</span>
+<span class="go">FAIL: test_visitors_location_is_derived_from_ip (flask_tracking.tracking.tests.TrackingViewsTests)</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;~/dev/flask-tracking/flask_tracking/tracking/tests.py&quot;, line 41, in test_visitors_location_is_derived_from_ip</span>
+<span class="go">    self.assertEqual(&#39;Los Angeles, 90001&#39;, first_visit.location)</span>
+<span class="go">AssertionError: &#39;Los Angeles, 90001&#39; != None</span>
+
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 6 tests in 0.147s</span>
+
+<span class="go">FAILED (failures=1)</span>
+</code></pre></div>
+<p>Ah, a failure! Apparently, we are not mapping location properly, as the <code>Visit</code>&rsquo;s location is not being persisted in the database. Checking our view code reveals that we are indeed setting <code>location</code> when we construct our <code>VisitForm</code> &hellip; but that we do not actually <em>have</em> a <code>location</code> field set up for our <code>VisitForm</code>! Good thing we caught that before we went live! (This duplication of fields causes problems, and should suggest something to you all - when it does I suggest you take a look at <a href="http://wtforms-alchemy.readthedocs.org/en/latest/"><code>wtforms-alchemy</code></a>.)</p>
+<p>Once we add <code>location</code>, <code>latitude</code>, and <code>longitude</code> fields to our <code>VisitForm</code> we should be able to run our tests and get:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">.....</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 5 tests in 0.150s</span>
+
+<span class="go">OK</span>
+</code></pre></div>
+<p>And that completes our first test with mocks.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section2" id="debugging"><h2>Debugging<a class="headerlink" href="#debugging" title="Permanent link"></a></h2>
+<p>Our unit tests are very useful - but what happens when we try to test something and the test code does not do what we expect it to do? Or even worse, when a user calls us up and complains that he has encountered an error? If it is a system-wide problem, running our unit tests might reveal the issue &hellip; but that could only happen if we checked in <em>and deployed</em> code without running our tests (and we would never do that, now would we?)</p>
+<p>Assume that we always run our tests before committing and deploying, then our unit tests cannot help us when something breaks in production. Instead, we will need to ask the user to provided us with a complete example, so that we can debug it locally.</p>
+<p>Let&rsquo;s say that we engaged in a little bit of refactoring of our login form-</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># If you can see what&#39;s broken already, give yourself a prize</span>
+<span class="c1"># and write a test to ensure it never happens again :-)</span>
+
+<span class="k">class</span> <span class="nc">LoginForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">InputRequired</span><span class="p">(),</span> <span class="n">Email</span><span class="p">()])</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">StringField</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">InputRequired</span><span class="p">()])</span>
+
+    <span class="k">def</span> <span class="nf">validate_login</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="n">form</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">one</span><span class="p">()</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">MultipleResultsFound</span><span class="p">,</span> <span class="n">NoResultFound</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Invalid user&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Invalid user&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_valid_password</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Invalid password&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Make the current user available</span>
+        <span class="c1"># to calling code.</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+</code></pre></div>
+<p>-and when we push it to production our first user sends us an email to let us know that he mis-typed his password and was still logged into the system. We verify that this is the case on our live site. Woah, Nelly, that is not at all acceptable! So we quickly take down the login page and replace it with a message saying we are down for maintenance and we&rsquo;ll be back as soon as possible (<em>Rule #0 of SaaS - always treat your customers the way you would want to be treated</em>).</p>
+<p>Looking at it locally, we don&rsquo;t see any reason that users <em>should</em> be able to log in without a password. However, we haven&rsquo;t written any tests to test that a mis-typed password is rejected with an error message, so we can&rsquo;t be 100% sure that this isn&rsquo;t an error in our code. So let&rsquo;s write a test case and see what happens:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">test_invalid_password_is_rejected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Joe&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;joe@joes.com&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;users.login&quot;</span><span class="p">),</span>
+                                    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;joe@joes.com&quot;</span><span class="p">,</span>
+                                          <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;*****&quot;</span><span class="p">})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_200</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;Invalid password&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+<p>Running the tests results in a failure:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">.F....</span>
+<span class="go">======================================================================</span>
+<span class="go">FAIL: test_invalid_password_is_rejected (app.users.tests.UserViewsTests)</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;~/dev/flask-tracking/flask_tracking/users/tests.py&quot;, line 34, in test_invalid_password_is_rejected</span>
+<span class="go">    self.assertTrue(current_user.is_anonymous())</span>
+<span class="go">AssertionError: False is not true</span>
+</code></pre></div>
+<p>Okay, so we can reproduce it locally. And we have a test case to yell at us until we fix the problem. Good. We&rsquo;re on our way!</p>
+<p>There are several ways we could debug the problem:</p>
+<ul>
+<li>We could scatter <code>print</code> statements throughout the application until we find the source of the error.</li>
+<li>We could generate intentional errors in our code and look at the existing environment using Flask&rsquo;s built-in debugger.</li>
+<li>We could step through the code using a debugger.</li>
+</ul>
+<p>We&rsquo;ll use all three techniques. First, let&rsquo;s add a simple <code>print</code> statement to our <code>app.users.models.LoginForm#validate_login</code> method:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">validate_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="s1">&#39;Validating login&#39;</span>
+</code></pre></div>
+<p>When we run our tests again we do not see the &ldquo;Validating login&rdquo; message at all. That tells us that our method is not being called. Let&rsquo;s add an intentional error to our view and make use of Flask&rsquo;s internal debugger to verify the state of the world. First, we&rsquo;ll create a new configuration for debugging:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># config.py</span>
+<span class="k">class</span> <span class="nc">DebugConfiguration</span><span class="p">(</span><span class="n">BaseConfiguration</span><span class="p">):</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>Then we will update <code>flask_tracking.__init__</code> to use the new debug configuration:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;config.DebugConfiguration&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>And finally, we will add a Arithmetic error to our <code>login_view</code> method:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">login_view</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># KABOOM!</span>
+</code></pre></div>
+<p>Now, if we run:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python run.py
+</code></pre></div>
+<p>And navigate to the login page we will see <a href="https://realpython.com/python-traceback/">a nice traceback</a>. Clicking on the shell icon on the right of the last line of the traceback (<code>1 / 0</code>) will get us an interactive REPL that we can use to test our function:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">validate_login</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># We don&#39;t use the field argument</span>
+</code></pre></div>
+<p>This results in:</p>
+<div class="highlight pytb"><pre><span></span><code><span class="gt">Traceback (most recent call last):</span>
+    <span class="n">File</span> <span class="s2">&quot;&lt;debugger&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">validate_login</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">File</span> <span class="s2">&quot;~/dev/flask-tracking/flask_tracking/users/forms.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">15</span><span class="p">,</span> <span class="ow">in</span> <span class="n">validate_login</span>
+    <span class="k">raise</span> <span class="n">validators</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Invalid user&#39;</span><span class="p">)</span>
+    <span class="n">ValidationError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">user</span>
+</code></pre></div>
+<p>So now we know that our validation function <em>works</em> - it simply is not being called. Let&rsquo;s remove that division by zero error from our login view and replace it with a call to <a href="https://realpython.com/python-debugging-pdb/">the Python debugger <code>pdb</code></a>.</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">login_view</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span> <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+</code></pre></div>
+<p>Now, when we run our tests again we get a debugger:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">python -m unittest discover .</span>
+<span class="go">.&gt; ~/dev/flask-tracking/app/users/views.py(18)login_view()</span>
+<span class="go">-&gt; if form.validate_on_submit():</span>
+<span class="gp gp-VirtualEnv">(Pdb)</span>
+</code></pre></div>
+<p>We can step into the <code>validate_on_submit</code> method by typing &ldquo;s&rdquo; for &ldquo;step&rdquo;, and step over calls we are not interested in with &ldquo;n&rdquo; for &ldquo;next&rdquo; (a full introduction to PDB is beyond the scope of this tutorial - for more information on PDB see it&rsquo;s <a href="http://docs.python.org/2/library/pdb.html">documentation</a> or type &ldquo;h&rdquo; while inside of <code>pdb</code>):</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp gp-VirtualEnv">(Pdb)</span> <span class="go">s</span>
+<span class="go">--Call--</span>
+<span class="gp">&gt;</span> ~/.virtualenvs/realpython/lib/python2.7/site-packages/flask_wtf/form.py<span class="o">(</span><span class="m">120</span><span class="o">)</span>validate_on_submit<span class="o">()</span>
+<span class="go">-&gt; def validate_on_submit(self):</span>
+</code></pre></div>
+<p>I won&rsquo;t walk you through the whole debugging session, but needless to say, the issue was with our code. WTForms allows for inline validators in the form <code>validate_[fieldname]</code>. Our <code>validate_login</code> method is never called because we don&rsquo;t have a field named <code>login</code> in our form. Let&rsquo;s remove the <code>set_trace</code> call from our controller and rename our <code>flask_tracking.users.forms.LoginForm.validate_login</code> method back to <code>LoginForm.validate_password</code> so that WTForms will pick it up as an inline validator for our <code>password</code> field. This ensures that it only gets called after both the name and password fields have been validated to contain user-supplied data.</p>
+<p>Now, when we run our unit tests again, they <em>should</em> pass. Testing locally reveals that we did indeed fix the issue. We can now safely deploy and take down our maintenance message.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="error-handling"><h2>Error Handling<a class="headerlink" href="#error-handling" title="Permanent link"></a></h2>
+<p>As we have discovered, a test suite does not guarantee that we will have no bugs in our application. It is possible for users to still come across errors in production. For example, if we simply blindly accessed <code>request.args['some_optional_key']</code> in one of our controllers and we only wrote tests with that optional key set in the request, the end user would get a <code>400 Bad Request</code> response from Flask by default. We want to show a <em>helpful</em> error message to the user in such cases. We also want to avoid showing the users unbranded or out-of-date pages without much help on where to go, or what to do next.</p>
+<p>We can register error handlers with Flask to explicitly handle these sorts of issues. Let&rsquo;s register one for the most common error - a mis-typed or no-longer existing link:</p>
+<div class="highlight python"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">page_not_found</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;404.html&#39;</span><span class="p">),</span> <span class="mi">404</span>
+</code></pre></div>
+<p>We may want to explicitly handle other kinds of errors as well, such as the 400 Bad Request errors that Flask generates for missing keys and the 500 Internal Server errors that are generated for uncaught exceptions:</p>
+<div class="highlight python"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">key_error</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;400.html&#39;</span><span class="p">),</span> <span class="mi">400</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">internal_server_error</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;generic.html&#39;</span><span class="p">),</span> <span class="mi">500</span>
+</code></pre></div>
+<p>In addition to the HTTP errors that we might have to deal with, Flask also allows us to display different error pages when an uncaught exception bubbles up to its level. For now, let&rsquo;s just register a generic error handler for all uncaught exceptions (but later we may want to register specific ones for more-common error conditions that we cannot do anything about):</p>
+<div class="highlight python"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">unhandled_exception</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;generic.html&#39;</span><span class="p">),</span> <span class="mi">500</span>
+</code></pre></div>
+<p>Now all the most common cases of errors should be handled gracefully by our application.</p>
+<p>However, we can do even better - let&rsquo;s ensure that <em>every</em> error is nicely styled we could register the same error handler for every possible error condition:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># flask_tracking/errors.py</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">current_app</span><span class="p">,</span> <span class="n">Markup</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">werkzeug.exceptions</span> <span class="kn">import</span> <span class="n">default_exceptions</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+
+<span class="k">def</span> <span class="nf">error_handler</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Request resulted in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="n">current_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">):</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get_description</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="p">)</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;We encountered an error &quot;</span>
+                       <span class="s2">&quot;while trying to fulfill your request&quot;</span><span class="p">)</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="mi">500</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Internal Server Error&#39;</span>
+
+    <span class="c1"># Flask supports looking up multiple templates and rendering the first</span>
+    <span class="c1"># one it finds.  This will let us create specific error pages</span>
+    <span class="c1"># for errors where we can provide the user some additional help.</span>
+    <span class="c1"># (Like a 404, for example).</span>
+    <span class="n">templates_to_try</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;errors/</span><span class="si">{}</span><span class="s1">.html&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">code</span><span class="p">),</span> <span class="s1">&#39;errors/generic.html&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">templates_to_try</span><span class="p">,</span>
+                           <span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">,</span>
+                           <span class="n">name</span><span class="o">=</span><span class="n">Markup</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+                           <span class="n">description</span><span class="o">=</span><span class="n">Markup</span><span class="p">(</span><span class="n">description</span><span class="p">),</span>
+                           <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">exception</span> <span class="ow">in</span> <span class="n">default_exceptions</span><span class="p">:</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">register_error_handler</span><span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="n">error_handler</span><span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">register_error_handler</span><span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="n">error_handler</span><span class="p">)</span>
+
+<span class="c1"># This can be used in __init__ with a</span>
+<span class="c1"># import .errors</span>
+<span class="c1"># errors.init_app(app)</span>
+</code></pre></div>
+<p>This ensures that all the HTTP error conditions that Flask knows how to handle (4XX and 5XX level errors) have the <code>error_handler</code> function registered as their handler. Coupled with a <code>app.register_error_handler(Exception, error_handler)</code>, this will cover almost every error that our application might throw. (There are a few exceptions, such as <code>SystemExit</code> that will not be caught this way and C-level segfaults or OS-level events will obviously not be caught and handled in this way, but those sorts of catastrophic events should be act-of-God occasions, not something that our application needs to be prepared to handle on a semi-regular basis).</p>
+</section><section class="section2" id="logging"><h2>Logging<a class="headerlink" href="#logging" title="Permanent link"></a></h2>
+<p>Finally, let&rsquo;s talk about <a href="https://realpython.com/python-logging/">logging</a>. Users will not always have enough time to reach out to us with a fully fleshed-out bug report (not to mention, bad actors will be actively looking for ways to take advantage of us.) We need a way to ensure that we can look back in time and see what happened and when.</p>
+<p>Fortunately, both Python and Flask have logging capabilities, so we do not need to re-invent the wheel here either. A standard Python <code>logging</code> logger is available on the Flask object at <code>app.logger</code>.</p>
+<p>The first place where we could use some logging is in our error handlers. We don&rsquo;t need to log 404s as the proxy server will do that for us if we set it up right, but we will want to log the reasons for our other exceptions (400, 500 and Exception). Let&rsquo;s go ahead and add some more detailed logging to those handlers. Since we are doing using the same handler for all our errors, this is easy:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">error_handler</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+    <span class="n">error_name</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">if</span> <span class="n">error</span> <span class="k">else</span> <span class="s2">&quot;Unknown-Error&quot;</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Request resulted in </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_name</span><span class="p">),</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+    <span class="c1"># ... etc. ...</span>
+</code></pre></div>
+<p>Python&rsquo;s documentation on the logging module has a good breakdown of the various available <a href="http://docs.python.org/2/howto/logging.html#when-to-use-logging">logging levels</a> and what they are most appropriate for.</p>
+<p>For those times when we don&rsquo;t have access to the <code>app</code> (say, inside of our <code>view</code> modules) we can use the thread-local <code>current_app</code> in the exact same way as we would use <code>app</code>. For an example, let&rsquo;s also add a bit of logging to our login and logout handlers:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">current_app</span>
+
+<span class="nd">@users</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/logout/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">logout_view</span><span class="p">():</span>
+    <span class="n">current_app</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Attempting to log out the current user&#39;</span><span class="p">)</span>
+    <span class="n">logout_user</span><span class="p">()</span>
+    <span class="n">current_app</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Successfully logged out the current user&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;tracking.index&#39;</span><span class="p">))</span>
+</code></pre></div>
+<p><em>This code nicely demonstrates an issue we can run into with logging - having too much of it can be as bad as having too little.</em> In this case, we have as much debugging code as we have application code, and it is difficult to follow the flow of the code any more. We&rsquo;ll go ahead and remove this particular logging code, as it doesn&rsquo;t add anything above and beyond what we would see in our proxy server&rsquo;s access logs.</p>
+<p>If we needed to log the entry and exit of each controller, we could add handlers for <a href="http://flask.pocoo.org/docs/api/#flask.Flask.before_request"><code>app.before_request</code></a> and <a href="http://flask.pocoo.org/docs/api/#flask.Flask.teardown_request"><code>app.teardown_request</code></a>. Just for fun, here&rsquo;s how we might log every access to our application:</p>
+<div class="highlight python"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<span class="k">def</span> <span class="nf">log_entry</span><span class="p">():</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+        <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+        <span class="s1">&#39;ip&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REMOTE_ADDR&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Handling </span><span class="si">%(method)s</span><span class="s2"> request from </span><span class="si">%(ip)s</span><span class="s2"> for </span><span class="si">%(url)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div>
+<p>If we run our application in debug mode and access our home page then we will see:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">--------------------------------------------------------------------------------</span>
+<span class="go">DEBUG in __init__ [~/dev/flask-tracking/flask_tracking/__init__.py:68]:</span>
+<span class="go">Handling GET request from 127.0.0.1 for /</span>
+<span class="go">--------------------------------------------------------------------------------</span>
+</code></pre></div>
+<p>As was said above, in production logging this sort of information would be duplicating the logs that our proxy server (Apache with mod_wsgi, ngnix with uwsgi, etc.) will be generating. We should only do this if we are generating a unique value for each request that we absolutely need to keep track of.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="adding-context-and-formatting-to-our-logs"><h3>Adding context and formatting to our logs<a class="headerlink" href="#adding-context-and-formatting-to-our-logs" title="Permanent link"></a></h3>
+<p>However, it would be nice to have the context from our <code>log_entry</code> handler (above) in our exception handlers. Let&rsquo;s go ahead and add a <a href="http://docs.python.org/2/library/logging.html#filter-objects"><code>Filter</code></a> instance to the logger to provide the url, method, IP address, and user id to all loggers that are interested in them (this is called <a href="http://docs.python.org/2/howto/logging-cookbook.html#filters-contextual">&ldquo;contextual logging&rdquo;</a>:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># flask_tracking/logs.py</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">class</span> <span class="nc">ContextualFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_record</span><span class="p">):</span>
+        <span class="n">log_record</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span>
+        <span class="n">log_record</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span>
+        <span class="n">log_record</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REMOTE_ADDR&quot;</span><span class="p">)</span>
+        <span class="n">log_record</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">()</span> <span class="k">else</span> <span class="n">current_user</span><span class="o">.</span><span class="n">get_id</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div>
+<p>This filter doesn&rsquo;t actually filter any of our messages - instead, it provides some additional information that we can make use of in our logs. Here&rsquo;s an example of how we might use this filter:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Create the filter and add it to the base application logger</span>
+<span class="n">context_provider</span> <span class="o">=</span> <span class="n">ContextualFilter</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">context_provider</span><span class="p">)</span>
+
+<span class="c1"># Optionally, remove Flask&#39;s default debug handler</span>
+<span class="c1"># del app.logger.handlers[:]</span>
+
+<span class="c1"># Create a new handler for log messages that will send them to standard error</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+
+<span class="c1"># Add a formatter that makes use of our new contextual information</span>
+<span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="se">\t</span><span class="si">%(levelname)s</span><span class="se">\t</span><span class="si">%(user_id)s</span><span class="se">\t</span><span class="si">%(ip)s</span><span class="se">\t</span><span class="si">%(method)s</span><span class="se">\t</span><span class="si">%(url)s</span><span class="se">\t</span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">log_format</span><span class="p">)</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+<span class="c1"># Finally, attach the handler to our logger</span>
+<span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+</code></pre></div>
+<p>And here&rsquo;s what a log message might look like:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">2013-10-12 09:22:52,764    DEBUG   1   127.0.0.1   GET / Some additional message</span>
+</code></pre></div>
+<p>One thing to note is that the message we pass to <code>app.logger.[LOGLEVEL]</code> is not expanded with the values in the context. So if we had kept our <code>before_request</code> log call and changed our before request log call to just be-</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Note the missing context argument</span>
+<span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Handling </span><span class="si">%(method)s</span><span class="s2"> request from </span><span class="si">%(ip)s</span><span class="s2"> for </span><span class="si">%(url)s</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>-the format strings will be passed through unaltered. But since we have them in our <a href="http://docs.python.org/2/library/logging.html#formatter-objects"><code>Formatter</code></a>, we can remove them from our individual message, leaving just:</p>
+<div class="highlight python"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<span class="k">def</span> <span class="nf">log_entry</span><span class="p">():</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Handling request&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>This is the advantage of contextual logging - we can include important information in all our log entries without needing to collect it manually at the site of every log call.</p>
+</section><section class="section3" id="directing-logs-to-different-places"><h3>Directing logs to different places<a class="headerlink" href="#directing-logs-to-different-places" title="Permanent link"></a></h3>
+<p>Most of the information we will be logging is not immediately actionable. However, there are certain kinds of errors we want to know about immediately. A rash of 500 errors probably means that something is broken with our application, for example. We cannot stay glued to our logs 24/7 so we need to have severe errors shipped to us.</p>
+<p>Fortunately, adding new handlers to our application logger is easy - and since each handler can filter log entries down to only the ones it finds interesting, we can avoid getting deluged by logs, but still get alerts when something breaks horribly.</p>
+<p>By way of an example, let&rsquo;s add another handler that will log ERROR and CRITICAL log messages to a special file. This will not give us the alerting we want, but <a href="https://realpython.com/python-send-email/">email</a> or SMS setup depends on your host (we&rsquo;ll do such a setup in a later article for Heroku). To whet your appetite see the example of how to log to email in <a href="http://flask.pocoo.org/docs/errorhandling/#error-mails">Flask&rsquo;s documentation on logging</a> or <a href="http://stackoverflow.com/q/8616617/135978">these recipes</a>:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">ERROR</span>
+<span class="kn">from</span> <span class="nn">logging.handlers</span> <span class="kn">import</span> <span class="n">TimedRotatingFileHandler</span>
+
+<span class="c1"># Only set up a file handler if we know where to put the logs</span>
+<span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ERROR_LOG_PATH&quot;</span><span class="p">):</span>
+
+    <span class="c1"># Create one file for each day. Delete logs over 7 days old.</span>
+    <span class="n">file_handler</span> <span class="o">=</span> <span class="n">TimedRotatingFileHandler</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ERROR_LOG_PATH&quot;</span><span class="p">],</span> <span class="n">when</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+    <span class="c1"># Use a multi-line format for this logger, for easier scanning</span>
+    <span class="n">file_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    Time: </span><span class="si">%(asctime)s</span><span class="s1"></span>
+<span class="s1">    Level: </span><span class="si">%(levelname)s</span><span class="s1"></span>
+<span class="s1">    Method: </span><span class="si">%(method)s</span><span class="s1"></span>
+<span class="s1">    Path: </span><span class="si">%(url)s</span><span class="s1"></span>
+<span class="s1">    IP: </span><span class="si">%(ip)s</span><span class="s1"></span>
+<span class="s1">    User ID: </span><span class="si">%(user_id)s</span><span class="s1"></span>
+
+<span class="s1">    Message: </span><span class="si">%(message)s</span><span class="s1"></span>
+
+<span class="s1">    ---------------------&#39;&#39;&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Filter out all log messages that are lower than Error.</span>
+    <span class="n">file_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span>
+
+    <span class="n">file_handler</span><span class="o">.</span><span class="n">addFormatter</span><span class="p">(</span><span class="n">file_formatter</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+</code></pre></div>
+<p>If we use this setup ERROR and CRITICAL log messages will appear both on the console and in the file specified in our configuration.</p>
+</section></section><section class="section2" id="wrapping-up"><h2>Wrapping Up<a class="headerlink" href="#wrapping-up" title="Permanent link"></a></h2>
+<p>We have covered a great deal in this article.</p>
+<ol>
+<li>Starting out with unit testing, we covered what testing is and why we need it.</li>
+<li>We moved on to writing tests, both with and without mocks.</li>
+<li>We briefly covered three methods of debugging errors locally (<code>print</code>, intentional errors to trigger Flask&rsquo;s debugger, and <code>pdb</code>.)</li>
+<li>We covered error handling and ensured that our end users should only see styled error pages.</li>
+<li>Finally, we went over logging setups.</li>
+</ol>
+<p>In Part IV we&rsquo;ll do some Test Driven Development to enable our application to accept payments and display simple reports.</p>
+<p>In Part V we will write a RESTful JSON API for others to consume.</p>
+<p>In Part VI we will cover automating deployments (on Heroku) with Fabric and basic A/B Feature Testing.</p>
+<p>Finally, in Part VII we will cover preserving your application for the future with documentation, code coverage and quality metric tools.</p>
+<p>As always, the code is available from <a href="https://github.com/mjhea0/flask-tracking">the repository</a>. Looking forward to continuing this journey with you.</p>
+</section>
+<div class="text-center my-3">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.</p>
+</div>
+<div class="col-xs-12 col-sm-5">
+<img class="img-fluid rounded mb-3" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="7Kslsvic99PTVjYSDggvkVX7wM6zcOXvdP7y34uauEK35cDAM2IFK0W3MHbtpmrk">
+<input type="hidden" name="slug" value="static-python-tricks-footer">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me Python Tricks »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+<div class="col-12 text-center d-block d-md-none">
+<p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</mark></u> With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-1"><img class="w-75" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+<p class="mb-0"><a href="/account/join/?utm_source=rp_article_footer&utm_content=python-web-applications-with-flask-part-iii" class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+</div>
+<div class="col-12 text-center d-none d-md-block">
+<p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-2"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="/account/join/?utm_source=rp_article_footer&utm_content=python-web-applications-with-flask-part-iii" class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+</div>
+</div>
+<div class="card mt-4" id="reader-comments">
+<p class="card-header h3">What Do You Think?</p>
+<div class="text-center mt-3 mb-0 p-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Python%20Web%20Applications%20With%20Flask%20%E2%80%93%20Part%20III by @realpython&url=https%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0APython%20Web%20Applications%20With%20Flask%20%E2%80%93%20Part%20III%0A%0Ahttps%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="card-body">
+<div class="alert alert-dark">
+<p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.</p>
+</div>
+<p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.</p>
+<div class="mb-4" id="disqus_thread">
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<p class="card-header h3">Keep Learning</p>
+<div class="card-body">
+<p class="mb-0">Related Tutorial Categories:
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</p>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="rprw">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header border-0 mt-3">
+<div class="col-12 modal-title text-center">
+<h2 class="my-0 mx-5">Keep reading Real&nbsp;Python by creating a free account or signing&nbsp;in:</h2>
+</div>
+</div>
+<div class="modal-body bg-light">
+<div class="col-12 text-center">
+<p class="mb-2 mt-3"><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fpython-web-applications-with-flask-part-iii%2F"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260" alt="Keep reading"></a></p>
+<p><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fpython-web-applications-with-flask-part-iii%2F" class="btn btn-primary btn-lg px-5"></i>Continue »</a></a>
+</div>
+</div>
+<div class="modal-footer border-0">
+<p class="text-center text-muted mt-2 mb-1">Already have an account? <a href="/account/login/?next=/python-web-applications-with-flask-part-iii/">Sign-In</a></p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.realpython.com/static/frontend/reader/rw.38bf29157dfe.js" async></script>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="7Kslsvic99PTVjYSDggvkVX7wM6zcOXvdP7y34uauEK35cDAM2IFK0W3MHbtpmrk">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+<div class="sidebar-sticky ">
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+<p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+<div class="toc">
+<ul>
+<li><a href="#why-testing">Why Testing</a></li>
+<li><a href="#setting-up">Setting up</a></li>
+<li><a href="#the-tests">The Tests</a></li>
+<li><a href="#mocks-and-integration-tests">Mocks and Integration Tests</a><ul>
+<li><a href="#unit-vs-integration-tests">Unit vs. Integration Tests</a></li>
+<li><a href="#mocking-free-geoip">Mocking Free GeoIP</a></li>
+<li><a href="#set-up-the-test-data-and-mocks">Set up the test data and mocks</a></li>
+<li><a href="#patch-the-mock-into-our-tracking-module">Patch the mock into our tracking module</a></li>
+<li><a href="#run-the-test">Run the test</a></li>
+<li><a href="#assert-that-everything-worked">Assert that everything worked</a></li>
+</ul>
+</li>
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#error-handling">Error Handling</a></li>
+<li><a href="#logging">Logging</a><ul>
+<li><a href="#adding-context-and-formatting-to-our-logs">Adding context and formatting to our logs</a></li>
+<li><a href="#directing-logs-to-different-places">Directing logs to different places</a></li>
+</ul>
+</li>
+<li><a href="#wrapping-up">Wrapping Up</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Python%20Web%20Applications%20With%20Flask%20%E2%80%93%20Part%20III by @realpython&url=https%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0APython%20Web%20Applications%20With%20Flask%20%E2%80%93%20Part%20III%0A%0Ahttps%3A//realpython.com/python-web-applications-with-flask-part-iii/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<div class="w-75 mx-auto mt-4 mb-0">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/toc-refresh.76a102c7d921.js" async></script>
+<script id="js-context" type="application/json">{"is_completed": false, "is_bookmarked": false, "api_article_bookmark_url": "/api/v1/articles/python-web-applications-with-flask-part-iii/bookmark/", "api_article_completion_status_url": "/api/v1/articles/python-web-applications-with-flask-part-iii/completion_status/"}</script>
+<script src="https://cdn.realpython.com/static/frontend/reader/completion-status.352d07abd84a.js" async></script>
+<script id="dsq-count-scr" src="https://realpython.disqus.com/count.js" async></script>
+<script>
+      var disqus_config = function () {
+        this.page.url = 'https://realpython.com/python-web-applications-with-flask-part-iii/';
+        this.page.identifier = 'https://realpython.com/python-web-applications-with-flask-part-iii/';
+        this.callbacks.onReady = [function() {
+          if (window.onDisqusReady) {
+            window.onDisqusReady();
+          }
+        }];
+      };
+      var disqus_script_url = 'https://realpython.disqus.com/embed.js';
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lazy-disqus.07ee9079f4a3.js" defer></script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Python Web Applications With Flask – Part III",
+    
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://cdn.realpython.com/static/real-python-placeholder-1.909137364508.jpg",
+      "width": 1920,
+      "height": 1080
+    },
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://realpython.com/python-web-applications-with-flask-part-iii/"
+    },
+    "datePublished": "2014-02-02T15:20:06+00:00",
+    "dateModified": "2021-06-05T06:41:14.088384+00:00",
+     "publisher": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cdn.realpython.com/static/real-python-logo-square-tiny.b2452b6d3823.png",
+        "width": 60,
+        "height": 60
+      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "url": "https://realpython.com",
+      "logo": "https://cdn.realpython.com/static/real-python-logo-square.146e987bf77c.png"
+    },
+    "description": "In this part of our series on Building a Web Application with Flask we\u0027ll explore unit and integration testing."
+  }
+  </script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a45681c950f52',m:'6oC49bWBlArdjer3VHjJtUq.YS0p2kgiPEbpaJwdpUU-1632636018-0-AT9KtebzgPv7awS4bxUMpvxMPRGOpTvbsGbKxIfWTLK86OJf+PKzfnpWmD3Uxnwiu4cXXjUPd7DkLYdVL99wvZ+HgYjqsGZ5at1veFkTaF96bcqCgTM626OAFeST49QAB15Uc4K5bFxxnO3dvODJ/ZCkz+WpeIbegOb0Ihy4N1cI',s:[0x299cbbf1b8,0x33ca3ea9f3],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link href="https://cdn.realpython.com/" rel="preconnect">
+  <link href="https://files.realpython.com/" rel="preconnect">
+  <title>Python Learning Paths – Real Python</title>
+  <meta name="author" content="Real Python">
+  <meta name="description"
+    content="Take your coding skills to the next level with our Python roadmap including learning paths and study plans for beginner, intermediate, and advanced Python developers.">
+  <meta name="keywords" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+  <link rel="stylesheet" href="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/realpython.css">
+  <link rel="stylesheet" href="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/font.css">
+  <link rel="stylesheet" href="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/glightbox.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'"><noscript>
+    <link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+  <link rel="canonical" href="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image"
+    content="https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg">
+  <meta property="og:image"
+    content="https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg">
+  <meta name="twitter:creator" content="@realpython">
+  <meta name="twitter:site" content="@realpython">
+  <meta property="og:title" content="Python Learning Paths – Real Python">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://realpython.com/learning-paths/">
+  <meta property="og:description"
+    content="Take your coding skills to the next level with our Python roadmap including learning paths and study plans for beginner, intermediate, and advanced Python developers.">
+  <link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+  <link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+  <link rel="manifest" href="https://realpython.com/manifest.json">
+  <script type="text/javascript" src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/main.js"></script>
+  <script type="text/javascript" src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/vendor.js"></script>
+  <script type="text/javascript" async="" src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a"></script>
+  <script async="" src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/analytics.js"></script>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-35184939-1', 'auto', {
+      'allowLinker': true
+    });
+
+
+    ga('set', 'anonymizeIp', true);
+
+
+
+
+
+
+    ga('set', {
+      dimension1: true,
+      dimension2: false
+    });
+
+
+    ga('send', 'pageview');
+  </script>
+  <style hs-beacon="active" data-styled-version="5.1.1"></style>
+  <script type="text/javascript" charset="utf-8" async=""
+    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/container-frame.js"></script>
+</head>
+
+<body cz-shortcut-listen="true">
+  
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+    <div class="container flex-row">
+      <a class="navbar-brand" href="https://realpython.com/">
+        <img src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/real-python-logo.svg"
+          class="d-inline-block align-top" alt="Real Python" width="165" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation"
+        aria-label="Main Navigation">
+        <ul class="navbar-nav mr-2 flex-fill">
+          <li class="nav-item">
+            <a class="nav-link" href="https://realpython.com/start-here/">Start&nbsp;Here</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+              <a class="dropdown-item" href="https://realpython.com/" style="color: #ff7e73; line-height: 110%;"><i
+                  class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small
+                  class="text-secondary">In-depth articles and tutorials</small></a>
+              <a class="dropdown-item" href="https://realpython.com/courses/"
+                style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i>
+                Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+              <a class="dropdown-item" href="https://realpython.com/quizzes/"
+                style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i>
+                Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+              <a class="dropdown-item" href="https://realpython.com/learning-paths/"
+                style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i>
+                Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated
+                  learning</small></a>
+              <a class="dropdown-item" href="https://realpython.com/community/"
+                style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i>
+                Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+              <a class="dropdown-item pb-3" href="https://realpython.com/tutorials/all/"
+                style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i>
+                Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+              <a class="dropdown-item border-top" href="https://realpython.com/account/join/"><i
+                  class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Store
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+              <a class="dropdown-item" href="https://realpython.com/account/join/"><i
+                  class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+              <a class="dropdown-item" href="https://realpython.com/products/python-basics-book/">Python Basics Book</a>
+              <a class="dropdown-item" href="https://realpython.com/products/python-tricks-book/">Python Tricks Book</a>
+              <a class="dropdown-item" href="https://realpython.com/products/cpython-internals-book/">CPython Internals
+                Book</a>
+              <a class="dropdown-item" href="https://realpython.com/products/real-python-course/">The Real Python
+                Course</a>
+              <a class="dropdown-item" href="https://realpython.com/products/managing-python-dependencies/">Managing
+                Python Dependencies</a>
+              <a class="dropdown-item" href="https://realpython.com/products/sublime-python/">Sublime Text + Python
+                Setup</a>
+              <a class="dropdown-item" href="https://realpython.com/products/pythonic-wallpapers/">Pythonic Wallpapers
+                Pack</a>
+              <a class="dropdown-item" href="https://nerdlettering.com/" target="_blank">Python Mugs, T-Shirts, and
+                More</a>
+              <a class="dropdown-item" href="https://www.pythonistacafe.com/" target="_blank">Pythonista Cafe
+                Community</a>
+              <a class="dropdown-item border-top" href="https://realpython.com/products/">Browse All »</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+              <a class="dropdown-item" href="https://realpython.com/newsletter/">Python Newsletter</a>
+              <a class="dropdown-item" href="https://realpython.com/podcasts/rpp/">Python Podcast</a>
+              <a class="dropdown-item" href="https://www.pythonjobshq.com/" target="_blank">Python Job Board</a>
+              <a class="dropdown-item" href="https://realpython.com/team/">Meet the Team</a>
+              <a class="dropdown-item" href="https://realpython.com/write-for-us/">Become a Tutorial Author</a>
+              <a class="dropdown-item" href="https://realpython.com/become-an-instructor/">Become a Video Instructor</a>
+            </div>
+          </li>
+        </ul>
+        <div class="d-block d-xl-none">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="https://realpython.com/search" title="Search"><span class="d-block d-lg-none"><i
+                    class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i
+                    class="fa fa-search" aria-hidden="true"></i></span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="d-none d-xl-flex align-items-center mr-2">
+          <form class="form-inline" action="/search" method="GET">
+            <a class="js-search-form-submit position-absolute" href="https://realpython.com/search" title="Search"><i
+                class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+            <input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;"
+              maxlength="50" type="search" placeholder="Search" aria-label="Search" name="q">
+            <input type="hidden" name="_from" value="nav">
+          </form>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item form-inline mr-2">
+            <a class="btn btn-sm btn-primary px-3" href="https://realpython.com/account/join/">Join</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="ml-2 ml-lg-0 btn text-light p-0 my-2" href="#" id="navbarDropdownAccount" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="My Account">
+              <div class="media">
+                <img class="align-self-center rounded rounded-circle mr-1 flex-shrink-0"
+                  style="width: 45px; height: 45px;"
+                  src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/ca3d43c8318f6208937b1f7325e54aba.png"
+                  alt="User avatar" width="500" height="500">
+                <span id="NO_badge_cont" class="NO_visible"><span id="NO_badge" class="NO_hidden"></span></span>
+                <p class="align-self-center p-0 m-0 dropdown-toggle"></p>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
+              <a class="dropdown-item" href="https://realpython.com/account/notifications/"><i class="fa fa-fw fa-bell"
+                  aria-hidden="true"></i> Notifications </a>
+              <a class="dropdown-item" href="https://realpython.com/account/"><i class="fa fa-fw fa-sliders"
+                  aria-hidden="true"></i> Manage Account</a>
+              <a class="dropdown-item" href="https://realpython.com/account/join/"><i
+                  class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Get Full Access</a>
+              <a class="dropdown-item" href="https://realpython.com/account/bookmarks/"><i class="fa fa-fw fa-bookmark"
+                  aria-hidden="true"></i> Bookmarks</a>
+              <a class="dropdown-item" href="https://realpython.com/account/purchases/"><i
+                  class="fa fa-fw fa-shopping-cart" aria-hidden="true"></i> Purchases</a>
+              <a class="dropdown-item" href="https://realpython.com/account/logout/"><i class="fa fa-fw fa-sign-out"
+                  aria-hidden="true"></i> Sign Out</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container main-content">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8 article">
+        <div class="article-body page-body">
+          <h1 class="text-center" id="python-learning-paths">Python Learning Paths<a class="headerlink"
+              href="#python-learning-paths" title="Permanent link"></a></h1>
+          <p class="text-center text-muted">Take your coding skills to the next
+            level with Real Python’s accelerated study plans for beginner,
+            intermediate, and advanced Python developers.</p>
+          <figure class=""><img loading="lazy" class="img-fluid mx-auto d-block rounded"
+              src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Real-Python-Learning-Paths_Watermarked.jpg"
+              srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a.jpg 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_002.jpg 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Real-Python-Learning-Paths_Watermarked.jpg 1920w"
+              sizes="75vw" alt="Real Python Learning Paths" data-asset="1092" width="1920" height="1080"></figure>
+          <p>At <strong>Real Python</strong> you can learn all things Python from
+            the ground up. Everything from the absolute basics of Python, to web
+            development and web scraping, to data visualization, and beyond.</p>
+          <p>Whether you’re a beginner, intermediate or advanced Pythonista, our custom-made <em>Learning Paths</em>
+            will take your skills to the next level with an accelerated, hands-on study plan.</p>
+          <p>All of the resources in our learning paths were created by
+            professional Python developers with years of experience to ensure you’re
+            learning the skills and techniques that really matter.</p>
+          <p>You’ll find your way through the entire Python curriculum, so you’ll always know what to focus on next.</p>
+          <h2 class="text-center" id="browse-learning-paths">Browse Learning Paths<a class="headerlink"
+              href="#browse-learning-paths" title="Permanent link"></a></h2>
+          <p class="text-center">Ready to continue your Python journey? Pick your Learning Path below and jump right in,
+            or <a href="https://realpython.com/search?kind=path">search &amp; filter learning paths by topic and skill
+              level</a>.</p>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python-interview/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Interview-Questions_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_037.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_004.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Interview-Questions_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="How to Stand Out in a Python Coding Interview"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/python-interview/">
+                  <h2 class="my-0 h3">Ace Your Python Coding Interview</h2>
+                </a>
+                <p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Python, Coding Problems,
+                  Algorithms</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/become-python-web-developer/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Web-Development-Tutorials_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_041.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_006.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Web-Development-Tutorials_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Web Development Tutorials Artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/become-python-web-developer/">
+                  <h2 class="my-0 h3">Become a Python Web Developer</h2>
+                </a>
+                <p class="text-muted mb-0 small">14 Resources ⋅ <strong>Skills:</strong> Web Development, Django, Flask,
+                  APIs</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/data-collection-storage/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Data-Engineer-Interview-Questions-With-Python_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_044.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_023.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Data-Engineer-Interview-Questions-With-Python_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Data Engineer Interview Questions With Python"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/data-collection-storage/">
+                  <h2 class="my-0 h3">Data Collection &amp; Storage</h2>
+                </a>
+                <p class="text-muted mb-0 small">9 Resources ⋅ <strong>Skills:</strong> Data Science, Databases</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/data-science-python-core-skills/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Data-Science_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_042.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_003.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Data-Science_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Data Science Artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/data-science-python-core-skills/">
+                  <h2 class="my-0 h3">Data Science With Python Core Skills</h2>
+                </a>
+                <p class="text-muted mb-0 small">15 Resources ⋅ <strong>Skills:</strong> Pandas, NumPy, Data Cleaning,
+                  Data Visualization</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/data-visualization-python/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python_Histograms_Watermark.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_024.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_013.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python_Histograms_Watermark.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Histogram Plots" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/data-visualization-python/">
+                  <h2 class="my-0 h3">Data Visualization With Python</h2>
+                </a>
+                <p class="text-muted mb-0 small">6 Resources ⋅ <strong>Skills:</strong> NumPy, Matplotlib, Bokeh,
+                  Seaborn, pandas</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python-devops/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-DevOps-Tutorials_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_016.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_021.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-DevOps-Tutorials_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Dev-Ops artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/python-devops/">
+                  <h2 class="my-0 h3">DevOps With Python</h2>
+                </a>
+                <p class="text-muted mb-0 small">7 Resources ⋅ <strong>Skills:</strong> Packaging &amp; Deployment, AWS,
+                  Docker</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/django-web-development/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Get-Started-With-Django_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_033.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_014.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Get-Started-With-Django_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Get Started With Django Part 1: Build a Portfolio App"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/django-web-development/">
+                  <h2 class="my-0 h3">Django for Web Development</h2>
+                </a>
+                <p class="text-muted mb-0 small">16 Resources ⋅ <strong>Skills:</strong> Django, Web Development,
+                  Projects</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/flask-by-example/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Flask-Tutorials_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_043.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_018.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Flask-Tutorials_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Flask Tutorials Artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/flask-by-example/">
+                  <h2 class="my-0 h3">Flask by Example</h2>
+                </a>
+                <p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Web Development, Flask Framework
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/functional-programming/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/TUT19---Functional-Programming_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_017.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_026.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/TUT19---Functional-Programming_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Functional Programming in Python: When and How to Use It"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/functional-programming/">
+                  <h2 class="my-0 h3">Functional Programming With Python</h2>
+                </a>
+                <p class="text-muted mb-0 small">7 Resources ⋅ <strong>Skills:</strong> Functional Programming
+                  Fundamentals</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/pyqt-gui-programming/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/PyQt-Menus-and-Toolbars_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_005.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_029.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/PyQt-Menus-and-Toolbars_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0"
+                    alt="Python and PyQt: Creating Menus, Toolbars, and Status Bars" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/pyqt-gui-programming/">
+                  <h2 class="my-0 h3">GUI Programming With PyQt</h2>
+                </a>
+                <p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Graphical User Interfaces
+                  (GUIs), Databases</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python3-introduction/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Newbie_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_039.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_012.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Newbie_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Basics" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/python3-introduction/">
+                  <h2 class="my-0 h3">Introduction to Python</h2>
+                </a>
+                <p class="text-muted mb-0 small">29 Resources ⋅ <strong>Skills:</strong> Core Python 3, Python Syntax
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/machine-learning-python/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Machine-Learning_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_032.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_031.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Machine-Learning_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Machine Learning Artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/machine-learning-python/">
+                  <h2 class="my-0 h3">Machine Learning With Python</h2>
+                </a>
+                <p class="text-muted mb-0 small">12 Resources ⋅ <strong>Skills:</strong> Image Processing, Text
+                  Classification, Speech Recognition</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/math-data-science/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Linear-Regression-in-Python_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_002.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_015.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Linear-Regression-in-Python_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Linear Regression in Python" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/math-data-science/">
+                  <h2 class="my-0 h3">Math for Data Science</h2>
+                </a>
+                <p class="text-muted mb-0 small">5 Resources ⋅ <strong>Skills:</strong> Statistics, Correlation, Linear
+                  Regression, Logistic Regression</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/object-oriented-programming-oop-python/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_020.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_030.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="OOP in Python 3" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link"
+                  href="https://realpython.com/learning-paths/object-oriented-programming-oop-python/">
+                  <h2 class="my-0 h3">Object-Oriented Programming (OOP) With Python</h2>
+                </a>
+                <p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> OOP Fundamentals, Classes &amp;
+                  Objects, Methods</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/pandas-data-science/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_008.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_009.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Pandas Tricks" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/pandas-data-science/">
+                  <h2 class="my-0 h3">Pandas for Data Science</h2>
+                </a>
+                <p class="text-muted mb-0 small">13 Resources ⋅ <strong>Skills:</strong> Pandas, Data Science, Data
+                  Visualization</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/perfect-your-python-development-setup/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/editors_art.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_040.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_007.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/editors_art.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python IDEs and Code Editors: The Complete Guide"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link"
+                  href="https://realpython.com/learning-paths/perfect-your-python-development-setup/">
+                  <h2 class="my-0 h3">Perfect Your Python Development Setup</h2>
+                </a>
+                <p class="text-muted mb-0 small">12 Resources ⋅ <strong>Skills:</strong> Python Setup, Code Editors
+                  &amp; IDEs, Running Apps</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python-basics-book/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/python-basics-3d-transparent-centered-wide.png"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_025.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_034.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/python-basics-3d-transparent-centered-wide.png 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Basics Book" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/python-basics-book/">
+                  <h2 class="my-0 h3">Python Basics Book</h2>
+                </a>
+                <p class="text-muted mb-0 small">19 Resources ⋅ <strong>Skills:</strong> Python 3 Fundamentals,
+                  Real-World Projects</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python-concurrency-parallel-programming/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/An-Overview-of-Concurrency-in-Python_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_035.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_027.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/An-Overview-of-Concurrency-in-Python_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Speed Up Your Python Program With Concurrency"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link"
+                  href="https://realpython.com/learning-paths/python-concurrency-parallel-programming/">
+                  <h2 class="my-0 h3">Python Concurrency &amp; Parallel Programming</h2>
+                </a>
+                <p class="text-muted mb-0 small">8 Resources ⋅ <strong>Skills:</strong> Multithreading, Multiprocessing,
+                  Async IO</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python-gui-programming/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Building-a-Python-Calculator-With-PyQt_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_036.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_022.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Building-a-Python-Calculator-With-PyQt_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python and PyQt: Building a GUI Desktop Calculator"
+                    sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/python-gui-programming/">
+                  <h2 class="my-0 h3">Python GUI Programming</h2>
+                </a>
+                <p class="text-muted mb-0 small">5 Resources ⋅ <strong>Skills:</strong> Graphical User Interfaces (GUIs)
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/python-web-scraping/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Web-Scraping-Tutorials_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_011.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Web-Scraping-Tutorials_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Web Scraping Category Artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/python-web-scraping/">
+                  <h2 class="my-0 h3">Python Web Scraping</h2>
+                </a>
+                <p class="text-muted mb-0 small">6 Resources ⋅ <strong>Skills:</strong> Web Scraping, HTTP Requests,
+                  Data Parsing</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/test-your-python-apps/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Testing-Tutorials_Watermarked.jpg"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_010.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_019.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Testing-Tutorials_Watermarked.jpg 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Testing" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/test-your-python-apps/">
+                  <h2 class="my-0 h3">Test Your Python Apps</h2>
+                </a>
+                <p class="text-muted mb-0 small">6 Resources ⋅ <strong>Skills:</strong> Testing Python Code, PyTest,
+                  Mocking</p>
+              </div>
+            </div>
+          </div>
+          <div class="container border rounded my-4">
+            <div class="row my-3">
+              <div class="col-xs-12 col-sm-4 col-md-3 align-self-center">
+                <a href="https://realpython.com/learning-paths/writing-pythonic-code/"><img
+                    src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Best-Practices_Watermarked.webp"
+                    srcset="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_038.webp 480w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/a_028.webp 960w, Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/Python-Best-Practices_Watermarked.webp 1920w"
+                    class="rounded img-fluid w-100 my-0" alt="Python Best Practices Artwork" sizes="25vw"></a>
+              </div>
+              <div class="col">
+                <div class="mt-3 d-md-none"></div>
+                <p class="small text-muted mb-0"><strong>Learning Path</strong></p>
+                <a class="stretched-link" href="https://realpython.com/learning-paths/writing-pythonic-code/">
+                  <h2 class="my-0 h3">Write More Pythonic Code</h2>
+                </a>
+                <p class="text-muted mb-0 small">14 Resources ⋅ <strong>Skills:</strong> Best Practices, Writing
+                  Idiomatic Python</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-center small my-4"><a
+              href="https://feedback.realpython.com/realpython-com/?d=eyJwIjoicmVhbHB5dGhvbi1jb20iLCJzaWciOiJWMCM9emFMZUwjN15tRStKejw5bzx3ZGZ6M30pTClTaTtufl5sdClrIiwidCI6IlB5dGhvbiBMZWFybmluZyBQYXRocyIsInUiOiJodHRwczovL3JlYWxweXRob24uY29tL2xlYXJuaW5nLXBhdGhzLyJ9"
+              target="_blank"><i class="fa fa-commenting-o" aria-hidden="true"></i> Got feedback on our learning
+              paths?</a></p>
+              
+          <div class="alert alert-dark my-4">
+            <p class="mb-0">Looking for real-time conversation? Visit the <a href="https://realpython.com/community/"
+                target="_blank">Real Python Community Chat</a> or join the next <a
+                href="https://realpython.com/office-hours/" target="_blank">“Office&nbsp;Hours” Live Q&amp;A
+                Session</a>. Happy Pythoning!</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a
+          href="https://realpython.com/newsletter/">Newsletter</a>&nbsp;⋅ <a
+          href="https://realpython.com/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a
+          href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a
+          href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a
+          href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a
+          href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a
+          href="https://realpython.com/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a
+          href="https://realpython.com/search">Search</a>&nbsp;⋅ <a
+          href="https://realpython.com/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a
+          href="https://realpython.com/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a
+          href="https://realpython.com/sponsorships/">Advertise</a>&nbsp;⋅ <a
+          href="https://realpython.com/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+    </div>
+  </footer>
+  <script>
+    (function (document, history, location) {
+      var HISTORY_SUPPORT = !!(history && history.pushState);
+
+      var anchorScrolls = {
+        ANCHOR_REGEX: /^#[^ ]+$/,
+        OFFSET_HEIGHT_PX: 120,
+
+        /**
+         * Establish events, and fix initial scroll position if a hash is provided.
+         */
+        init: function () {
+          this.scrollToCurrent();
+          window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+          document.body.addEventListener('click', this.delegateAnchors.bind(this));
+        },
+
+        /**
+         * Return the offset amount to deduct from the normal scroll position.
+         * Modify as appropriate to allow for dynamic calculations
+         */
+        getFixedOffset: function () {
+          return this.OFFSET_HEIGHT_PX;
+        },
+
+        /**
+         * If the provided href is an anchor which resolves to an element on the
+         * page, scroll to it.
+         * @param  {String} href
+         * @return {Boolean} - Was the href an anchor.
+         */
+        scrollIfAnchor: function (href, pushToHistory) {
+          var match, rect, anchorOffset;
+
+          if (!this.ANCHOR_REGEX.test(href)) {
+            return false;
+          }
+
+          match = document.getElementById(href.slice(1));
+
+          if (match) {
+            rect = match.getBoundingClientRect();
+            anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+            window.scrollTo(window.pageXOffset, anchorOffset);
+
+            // Add the state to history as-per normal anchor links
+            if (HISTORY_SUPPORT && pushToHistory) {
+              history.pushState({}, document.title, location.pathname + href);
+            }
+          }
+
+          return !!match;
+        },
+
+        /**
+         * Attempt to scroll to the current location's hash.
+         */
+        scrollToCurrent: function () {
+          this.scrollIfAnchor(window.location.hash);
+        },
+
+        /**
+         * If the click event's target was an anchor, fix the scroll position.
+         */
+        delegateAnchors: function (e) {
+          var elem = e.target;
+
+          if (
+            elem.nodeName === 'A' &&
+            this.scrollIfAnchor(elem.getAttribute('href'), true)
+          ) {
+            e.preventDefault();
+          }
+        }
+      };
+
+      window.addEventListener(
+        'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+      );
+    })(window.document, window.history, window.location);
+  </script>
+  <script src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/jquery.js"></script>
+  <script src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/popper.js"></script>
+  <script src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/bootstrap.js"></script>
+  <script>
+    (function () {
+      document.querySelectorAll(".js-search-form-submit").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+  </script>
+  <script src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/repl-toggle.js" async=""></script>
+  <script src="Python%20Learning%20Paths%20%E2%80%93%20Real%20Python_files/lightbox.js" async=""></script>
+  <script>
+    ! function (e, t, n) {
+      function a() {
+        var e = t.getElementsByTagName("script")[0],
+          n = t.createElement("script");
+        n.type = "text/javascript", n.async = !0, n.src = "https://beacon-v2.helpscout.net", e.parentNode.insertBefore(
+          n, e)
+      }
+      if (e.Beacon = n = function (t, n, a) {
+          e.Beacon.readyQueue.push({
+            method: t,
+            options: n,
+            data: a
+          })
+        }, n.readyQueue = [], "complete" === t.readyState) return a();
+      e.attachEvent ? e.attachEvent("onload", a) : e.addEventListener("load", a, !1)
+    }(window, document, window.Beacon || function () {});
+  </script>
+  <script>
+    window.Beacon('init', 'f6ddfa28-ffa8-423f-b3b1-50e29e420c43')
+
+    Beacon("identify", {
+      email: "antedoro@gmail.com",
+      name: "Vincenzo Antedoro",
+      has_active_subscription: "False",
+      username: "antedoro",
+      userid: "88446"
+    });
+  </script>
+
+
+  <div id="beacon-container">
+    <div class="hsds-beacon">
+      <div class="Beacon">
+        <div class="sc-AxheI gkgGqG"></div>
+        <div class="sc-AxhCb cszqFf BeaconContainer is-configDisplayRight" data-css-with-delay="false"></div>
+        <div class="sc-fznyAO hDwbNh BeaconFabButtonFrame"
+          style="border-radius: 55px; height: 55px; position: fixed; transform: scale(1); width: 105px; z-index: 1049;">
+          <iframe aria-label="Toggle Customer Support" id="" data-cy="FrameComponent"></iframe></div>
+        <span></span><span></span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

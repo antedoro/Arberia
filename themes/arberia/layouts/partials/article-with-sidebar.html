@@ -1,0 +1,279 @@
+{{- $params := .Params | merge .Site.Params.page -}}
+
+<div class="container main-content">
+    <div class="row justify-content-center">
+
+        {{/*  Article content  */}}
+        <div class="col-md-11 col-lg-8 article with-headerlinks">
+
+            <figure class="embed-responsive embed-responsive-16by9">
+                <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
+                    alt="Hosting a Django Project on Heroku"
+                    src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
+                    srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
+                    sizes="75vw" width="1920" height="1080">
+            </figure> 
+
+            {{/*  {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+            {{ with $img }}
+            <figure class="embed-responsive embed-responsive-16by9">
+                <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
+                    alt="Hosting a Django Project on Heroku" src="{{ .Permalink }}" 
+                    srcset="{{ .Permalink }}&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, 
+                    {{ .Permalink }}&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, 
+                    {{ .Permalink }} 1920w" sizes="75vw" width="1920" height="1080">
+            </figure>
+            {{ end }}  */}}
+
+
+            <h1>{{ .Title | markdownify }}</h1>
+
+            <div class="mb-0">
+                <span class="text-muted">by <a class="text-muted" href="#author">{{ .Params.author }}</a>
+                    <span class="ml-2 fa fa-clock-o"></span> <time>{{ .PublishDate.Format "January 2, 2006" }}</time>
+
+                    <span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="#reader-comments"><span
+                            class="disqus-comment-count"
+                            data-disqus-identifier="https://realpython.com/django-hosting-on-heroku/">0
+                            Comments</span></a>
+                    <span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+
+                    {{/*  Tag list  */}}
+                    {{ range .Params.tags }}
+                    <a class="badge badge-light text-muted"
+                        href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                    {{ end }}
+
+                    <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
+                        {{ partial "component/completed-mark" . }} {{/*  Mark as completed  */}}
+                        {{ partial "component/share-button" . }} {{/*  Share button  */}}
+                    </div>
+                </span>
+            </div>
+
+            <div class="article-body">
+
+                {{/*  Table of Contents  */}}
+                <div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+                    <p class="h3 mb-2 text-muted"> {{ i18n "tableOfContents" . }}</p>
+                    <div class="toc">
+                        {{ if and (.Params.toc) (gt .WordCount .Site.Params.tocMinWordCount ) }}
+                        {{ .Page.TableOfContents }}
+                        {{ end }}
+                    </div>
+                </div>
+
+                {{/*  {{- partial "component/toc-lg.html"  -}} Table of contents */}}
+                {{- partial "component/adv-lg.html"  -}}
+
+                {{- /* Content */ -}}
+                {{ .Content }}
+
+                {{/*  <div class="text-center my-3">
+                    <div class="jsCompletionStatusWidget btn-group mb-0">
+                        <button title="Click to mark as completed"
+                            class="jsBtnCompletion btn btn-secondary border-right"
+                            style="border-top-right-radius: 0; border-bottom-right-radius: 0;">Mark as
+                            Completed</button>
+                        <button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left"><i
+                                class="fa fa-fw fa-bookmark-o"></i></button>
+                    </div>
+                </div>   */}}
+            </div>
+
+            <p>====================================================================</p>
+
+            {{/*  Python Tricks  */}}
+            <div class="card mt-4 mb-4 bg-secondary">
+                <p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-7">
+                                <p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every
+                                    couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-5">
+                                <img class="img-fluid rounded mb-3"
+                                    src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png"
+                                    alt="Python Tricks Dictionary Merge" width="738" height="490">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <form class="col-12" action="/optins/process/" method="post">
+                                <input type="hidden" name="csrfmiddlewaretoken"
+                                    value="mu27viBsA2Ua0rRFoILlCuXKmYEOOXxb0XXjtD3dEnZ2reyaByXoci2IS0LFUZqx">
+                                <input type="hidden" name="slug" value="static-python-tricks-footer">
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control form-control-lg"
+                                        placeholder="Email Address" required="">
+                                </div>
+                                <button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me
+                                    Python Tricks »</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{- partial "component/author.html"  -}} {{/* Author box  */}}
+
+
+
+            {{/*  <div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+                <div class="col-12 text-center d-block d-md-none">
+                    <p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</span></u> With
+                        Unlimited Access to Real&nbsp;Python</p>
+                    <p class="mb-1"><img class="w-75"
+                            src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510"
+                            height="260"></p>
+                    <p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on
+                            video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+                    <p class="mb-0"><a
+                            href="/account/join/?utm_source=rp_article_footer&amp;utm_content=django-hosting-on-heroku"
+                            class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+                    </p>
+                </div>
+                <div class="col-12 text-center d-none d-md-block">
+                    <p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python
+                                Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+                    <p class="mb-2"><img class="w-50 mb-2"
+                            src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510"
+                            height="260"></p>
+                    <p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video
+                            courses, and a community of expert Pythonistas:</strong></p>
+                    <p><a href="/account/join/?utm_source=rp_article_footer&amp;utm_content=django-hosting-on-heroku"
+                            class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+                    </p>
+                </div>
+            </div>  */}}
+
+            {{/*  <div class="card mt-4" id="reader-comments">
+                <p class="card-header h3">What Do You Think?</p>
+                <div class="text-center mt-3 mb-0 p-0">
+                    <span>
+                        <a target="_blank" rel="nofollow"
+                            href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Hosting%20a%20Django%20Project%20on%20Heroku by @realpython&amp;url=https%3A//realpython.com/django-hosting-on-heroku/"
+                            class="mr-1 badge badge-twitter text-light mb-1"><i
+                                class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+                        <a target="_blank" rel="nofollow"
+                            href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/django-hosting-on-heroku/"
+                            class="mr-1 badge badge-facebook text-light mb-1"><i
+                                class="mr-1 fa fa-facebook text-light"></i>Share</a>
+                        <a target="_blank" rel="nofollow"
+                            href="mailto:?subject=Python article for you&amp;body=Check out this Python tutorial:%0A%0AHosting%20a%20Django%20Project%20on%20Heroku%0A%0Ahttps%3A//realpython.com/django-hosting-on-heroku/"
+                            class="badge badge-red text-light mb-1"><i
+                                class="mr-1 fa fa-envelope text-light"></i>Email</a>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-dark">
+                        <p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those
+                            written with the goal of learning from or helping out other readers—after reading the whole
+                            article and all the earlier comments. Complaints and insults generally won’t make the cut
+                            here.</p>
+                    </div>
+                    <p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound
+                        skills to use? Leave a comment below and let us know.</p>
+                    <div id="disqus_recommendations" style="margin-bottom: 12px;"><iframe id="dsq-app9172"
+                            name="dsq-app9172" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus"
+                            style="width: 100% !important; border: medium none !important; overflow: hidden !important; height: 240px !important; display: inline !important; box-sizing: border-box !important;"
+                            src="https://disqus.com/recommendations/?base=default&amp;f=realpython&amp;t_u=https%3A%2F%2Frealpython.com%2Fdjango-hosting-on-heroku%2F&amp;t_d=Hosting%20a%20Django%20Project%20on%20Heroku&amp;t_t=Hosting%20a%20Django%20Project%20on%20Heroku#version=468b97d62a371c49ae174c537bd78912"
+                            horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div>
+                    <div class="mb-4" id="disqus_thread"><iframe id="dsq-app6631" name="dsq-app6631"
+                            allowtransparency="true" scrolling="no" tabindex="0" title="Disqus"
+                            style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 534px !important;"
+                            src="https://disqus.com/embed/comments/?base=default&amp;f=realpython&amp;t_i=https%3A%2F%2Frealpython.com%2Fdjango-hosting-on-heroku%2F&amp;t_u=https%3A%2F%2Frealpython.com%2Fdjango-hosting-on-heroku%2F&amp;t_d=Hosting%20a%20Django%20Project%20on%20Heroku&amp;t_t=Hosting%20a%20Django%20Project%20on%20Heroku&amp;s_o=default#version=33fd930adde1d4970f3f907d75eb8409"
+                            horizontalscrolling="no" verticalscrolling="no" width="100%"
+                            frameborder="0"></iframe><iframe id="indicator-north" name="indicator-north"
+                            allowtransparency="true" scrolling="no" tabindex="0" title="Disqus"
+                            style="width: 648px !important; border: medium none !important; overflow: hidden !important; top: 0px !important; min-width: 648px !important; max-width: 648px !important; position: fixed !important; z-index: 2147483646 !important; height: 19px !important; min-height: 19px !important; max-height: 19px !important; display: none !important;"
+                            frameborder="0"></iframe><iframe id="indicator-south" name="indicator-south"
+                            allowtransparency="true" scrolling="no" tabindex="0" title="Disqus"
+                            style="width: 648px !important; border: medium none !important; overflow: hidden !important; bottom: 0px !important; min-width: 648px !important; max-width: 648px !important; position: fixed !important; z-index: 2147483646 !important; height: 19px !important; min-height: 19px !important; max-height: 19px !important; display: none !important;"
+                            frameborder="0"></iframe></div>
+                </div>
+            </div>  */}}
+
+            {{/*  <div class="card mt-4 mb-4">
+                <p class="card-header h3">Keep Learning</p>
+                <div class="card-body">
+                    <p class="mb-0">Related Tutorial Categories:
+                        <a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+                        <a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+                    </p>
+                </div>
+            </div>  */}}
+
+            <div class="modal fade" tabindex="-1" role="dialog" id="rpvc">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 mt-3">
+                            <div class="col-12 modal-title text-center">
+                                <h2 class="my-0 mx-5">Master <u>Real-World Python Skills</u> With Unlimited Access to
+                                    Real Python</h2>
+                                <p class="text-center text-muted mt-2 mb-1">Already a member? <a
+                                        href="/account/login/?next=%2Fdjango-hosting-on-heroku%2F">Sign-In</a></p>
+                            </div>
+                        </div>
+                        <div class="modal-body bg-light">
+                            <div class="col-12 text-center">
+                                <p class="mb-2 mt-3"><a
+                                        href="/account/join/?utm_source=rp&amp;utm_medium=web&amp;utm_campaign=pwn&amp;utm_content=v2"><img
+                                            class="w-50 mb-2"
+                                            src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg"
+                                            width="510" height="260"></a></p>
+                                <p class="mx-auto w-66 mb-3"><strong>Join us and get access to hundreds of tutorials,
+                                        hands-on video courses, and a community of expert Pythonistas:</strong></p>
+                                <p><a href="/account/join/?utm_source=rp&amp;utm_medium=web&amp;utm_campaign=pwn&amp;utm_content=v2"
+                                        class="btn btn-primary btn-lg px-4"><i class="fa fa-unlock mr-2"></i>Unlock All
+                                        Content »</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button class="text-muted btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://cdn.realpython.com/static/frontend/reader/pw.72f5b8e31658.js" async=""></script>
+        </div>
+
+        {{/*  Sidebar  */}}
+        <aside class="col-md-7 col-lg-4">
+            {{- partial "component/mailchimp.html"  -}} {{/*  Email Subscription  */}}
+            {{- partial "component/email-subscription.html"  -}}{{/*  Email Subscription  */}}
+            {{/*  {{- partial "component/tag-collection.html"  -}} TAG Topics */}}
+
+            {{/*  TAG Topics  */}}
+            <div class="sidebar-module sidebar-module-inset border">
+                <p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial
+                        Topics</a></p>
+                {{ range (.GetTerms "tags") }}
+                <a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title }}</a>
+                {{ end }}
+            </div>
+
+            <div class="sidebar-sticky ">
+                {{/*  Table of Contents on sidebar  */}}
+                <div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+                    <p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+                    <div class="toc">
+                        {{ if and (.Params.toc) (gt .WordCount .Site.Params.tocMinWordCount ) }}
+                        {{ .Page.TableOfContents }}
+                        {{ end }}
+                    </div>
+                </div>
+
+                {{/*  {{- partial "component/toc-sm.html"  -}} Table of contents small */}}
+                {{- partial "component/completed-mark.html"  -}} {{/*  Mark as completed  */}}
+                {{- partial "component/share-button.html"  -}} {{/*  Share button  */}}
+                {{- partial "component/adv-sd.html"  -}} {{/*  ADV Image  */}}
+            </div>
+        </aside>
+
+    </div>
+</div>

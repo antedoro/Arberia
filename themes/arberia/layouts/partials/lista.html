@@ -1,0 +1,134 @@
+<div class="container main-content">
+    <div class="row justify-content-center">
+        <!-- <aside class="col-md-7 col-lg-4 order-first order-lg-last">
+                <div class="sidebar-sticky">
+                    <div class="d-flex align-items-center"><i aria-hidden="true"
+                            class="fa fa-search fa-fw text-muted position-absolute pl-2"></i> <input
+                            autofocus="autofocus" type="input" placeholder="Search" maxlength="50"
+                            class="form-control form-control-md" style="padding-left: 2rem; padding-right: 2rem;"> <i
+                            title="Clear search query" class="fa fa-close text-muted pr-2 search-field-clear-icon"
+                            hidden="hidden"></i></div>
+                    <div class="custom-control custom-checkbox mt-3"><input type="checkbox" id="chkKindAny"
+                            class="custom-control-input" disabled="disabled"> <label for="chkKindAny"
+                            class="custom-control-label" style="cursor: pointer;"><strong>All Resources</strong></label>
+                    </div>
+                    <div class="custom-control custom-checkbox"><input value="path" type="checkbox" id="chkPaths"
+                            class="custom-control-input"> <label for="chkPaths" class="custom-control-label"
+                            style="cursor: pointer;">Learning Paths</label></div>
+                    <div class="custom-control custom-checkbox"><input value="article" type="checkbox" id="chkArticles"
+                            class="custom-control-input"> <label for="chkArticles" class="custom-control-label"
+                            style="cursor: pointer;">Articles</label></div>
+                    <div class="custom-control custom-checkbox"><input value="course" type="checkbox" id="chkCourses"
+                            class="custom-control-input"> <label for="chkCourses" class="custom-control-label"
+                            style="cursor: pointer;">Courses</label></div>
+                    <div class="custom-control custom-checkbox"><input value="lesson" type="checkbox" id="chkLessons"
+                            class="custom-control-input"> <label for="chkLessons" class="custom-control-label"
+                            style="cursor: pointer;">Course Lessons</label></div>
+                    <div class="custom-control custom-checkbox"><input value="quiz" type="checkbox" id="chkQuizzes"
+                            class="custom-control-input"> <label for="chkQuizzes" class="custom-control-label"
+                            style="cursor: pointer;">Quizzes</label></div>
+                    <div class="custom-control custom-checkbox"><input value="podcast" type="checkbox" id="chkPodcasts"
+                            class="custom-control-input"> <label for="chkPodcasts" class="custom-control-label"
+                            style="cursor: pointer;">Podcasts</label></div>
+                    <div class="custom-control custom-checkbox"><input value="topic" type="checkbox" id="chkTopics"
+                            class="custom-control-input"> <label for="chkTopics" class="custom-control-label"
+                            style="cursor: pointer;">Topics</label></div>
+                    <div class="custom-control custom-checkbox mt-3"><input disabled="disabled" type="checkbox"
+                            id="chkLevelAny" class="custom-control-input"> <label for="chkLevelAny"
+                            class="custom-control-label" style="cursor: pointer;"><strong>All Skill
+                                Levels</strong></label></div>
+                    <div class="custom-control custom-checkbox"><input value="basics" type="checkbox" id="chkBasics"
+                            class="custom-control-input"> <label for="chkBasics" class="custom-control-label"
+                            style="cursor: pointer;"><i class="fa fa-angle-double-up text-warning"></i> Basics</label>
+                    </div>
+                    <div class="custom-control custom-checkbox"><input value="intermediate" type="checkbox"
+                            id="chkIntermediate" class="custom-control-input"> <label for="chkIntermediate"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-angle-double-up text-warning"></i><i
+                                class="fa fa-angle-double-up text-warning"></i> Intermediate</label></div>
+                    <div class="custom-control custom-checkbox"><input value="advanced" type="checkbox" id="chkAdvanced"
+                            class="custom-control-input"> <label for="chkAdvanced" class="custom-control-label"
+                            style="cursor: pointer;"><i class="fa fa-angle-double-up text-warning"></i><i
+                                class="fa fa-angle-double-up text-warning"></i><i
+                                class="fa fa-angle-double-up text-warning"></i> Advanced</label></div>
+                    <div class="custom-control custom-checkbox mt-3"><input type="checkbox" id="chkStatusAny"
+                            class="custom-control-input"> <label for="chkStatusAny" class="custom-control-label"
+                            style="cursor: pointer;"><strong>Any Status</strong></label></div>
+                    <div class="custom-control custom-checkbox"><input value="bookmarked" type="checkbox"
+                            id="chkBookmarked" class="custom-control-input"> <label for="chkBookmarked"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-bookmark text-info"></i> Bookmarked</label></div>
+                    <div class="custom-control custom-checkbox"><input value="completed" type="checkbox"
+                            id="chkCompleted" class="custom-control-input"> <label for="chkCompleted"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-check text-success"></i> Completed</label></div>
+                    <div class="custom-control custom-checkbox"><input value="in-progress" type="checkbox"
+                            id="chkInProgress" class="custom-control-input"> <label for="chkInProgress"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-circle-o text-muted"></i> In-Progress</label></div>
+                    <div class="custom-control custom-checkbox"><input value="not-started" type="checkbox"
+                            id="chkNotStarted" class="custom-control-input"> <label for="chkNotStarted"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-circle-thin text-muted"></i> Not Started</label></div>
+                    <p class="text-left py-3 my-0 small"><a
+                            href="https://feedback.realpython.com/realpython-com/?d=eyJwIjoicmVhbHB5dGhvbi1jb20iLCJzaWciOiJqJmY5IUtsTEVNTTRLQGpSWTU3Z24jOF9pXismXl5fdlM9cXtvZmVxIiwidCI6IlJQIExpYnJhcnkgU2VhcmNoIEZlZWRiYWNrIiwidSI6ImxpYnJhcnkifQ=="
+                            target="_blank"><i aria-hidden="true" class="fa fa-commenting-o"></i> Send Feedback</a></p>
+                </div>
+            </aside> -->
+
+        <!-- Lista -->
+        <div id="listArea" class="col-md-11 col-lg-8 article">
+            <!-- Testata -->
+            <div class="mt-1 mb-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2>Testata</h2>
+
+                </div>
+            </div>
+
+            {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+            <div class="container my-3">
+                {{ range $paginator.Pages }}
+                <div class="row">
+
+                    <div class="col-12 col-sm-4 align-self-top px-0">
+                        <a href="{{.RelPermalink}}">
+                            <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                    src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
+                                    srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
+                                    sizes="5vw" class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                    style="object-fit: contain;">
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0">
+                        <a href="{{.RelPermalink}}" class="stretched-link">
+                            <h2 class="my-0 h5">{{ .Title }}<span title="In-Progress" class="float-right">
+                                    <i class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                        </a>
+                        <p class="small text-muted my-0">
+                            <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
+                            <span aria-hidden="true" class="fa fa-tags"></span>
+                            {{ range .Params.tags }}
+                            <a class="badge badge-light text-muted mr-1"
+                                href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                            {{end}}
+                        </p>
+                        <!-- Usare la funzione truncate -->
+                        <p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>
+                        <!-- TAggiunta da me -->
+                        <div>
+                            <a class="small" href="{{ .RelPermalink }}">Read More…</a>
+                          {{/*  <a class="small" style= "display: flex; justify-content: flex-end" href="{{ .RelPermalink }}">Read More…</a>  */}}
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                {{ end }}
+            </div>
+
+        </div>
+    </div>
+</div>

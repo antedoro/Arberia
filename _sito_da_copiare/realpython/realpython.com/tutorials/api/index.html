@@ -1,0 +1,922 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Python API Tutorials – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="Tutorials related to Python API design or interacting with APIs using Python. REST APIs in web applications would be one example where Python shines.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/tutorials/api/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Python-API-Tutorials_Watermarked.2eee58334c19.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Python-API-Tutorials_Watermarked.2eee58334c19.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Python API Tutorials – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/tutorials/api/">
+<meta property="og:description" content="Tutorials related to Python API design or interacting with APIs using Python. REST APIs in web applications would be one example where Python shines.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Ftutorials%2Fapi%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article ">
+<nav aria-label="breadcrumb" role="navigation">
+<ol class="breadcrumb border-bottom rounded-0">
+<li class="breadcrumb-item"><a href="/">Tutorials</a></li>
+<li class="breadcrumb-item"><a href="/tutorials/all/">Topics</a></li>
+<li class="breadcrumb-item active" aria-current="page">Python API Tutorials</li>
+</ol>
+</nav>
+<div class="mt-4 mb-5"><h1 id="python-api-tutorials">Python API Tutorials<a class="headerlink" href="#python-api-tutorials" title="Permanent link"></a></h1>
+<p>In this section we collect tutorials related to API design or interacting with APIs using Python. REST APIs in web applications would be one example where Python shines.</p>
+<div class="alert alert-warning" role="alert"><p><strong>Free Bonus:</strong> <a href="" class="alert-link" data-toggle="modal" data-target="#modal-rest-api-guide-exampes" data-focus="false">Click here to download a copy of the "REST API Examples" Guide</a> and get a hands-on introduction to Python + REST API principles with actionable examples.</p></div></div>
+<div class="d-flex mb-5">
+<form class="form-inline col pl-0" action="/search" method="GET" id="home-search-form">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="form-control form-control-lg w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search&hellip;" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="home">
+</form>
+<button class="btn btn-primary col-3 px-2" type="submit" form="home-search-form">Search&nbsp;»</button>
+</div>
+<div class="row">
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/api-integration-in-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python API Integration" src="https://files.realpython.com/media/API-Integration-in-Python_watermark.c7945f579b25.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/API-Integration-in-Python_watermark.c7945f579b25.jpg&amp;w=480&amp;sig=116eccf59555f07d11f599e04fcdbc9cbfb9bff5 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/API-Integration-in-Python_watermark.c7945f579b25.jpg&amp;w=960&amp;sig=13c6bf73084884fb49c4d8095dd87b9187699d98 960w, https://files.realpython.com/media/API-Integration-in-Python_watermark.c7945f579b25.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/api-integration-in-python/">
+<h2 class="card-title h4 my-0 py-0">Python and REST APIs: Interacting With Web Services</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 28, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/fastapi-python-web-apis/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Use FastAPI to Build Web APIs" src="https://files.realpython.com/media/Build-a-Project-With-FastAPI_Watermarked.cb19f6b7b108.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Build-a-Project-With-FastAPI_Watermarked.cb19f6b7b108.jpg&amp;w=480&amp;sig=1b335eeaa9033da53051e13cdc5bd3978debce8c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Build-a-Project-With-FastAPI_Watermarked.cb19f6b7b108.jpg&amp;w=960&amp;sig=5a0706f37f45091328b9d5a535b277c0d340d86b 960w, https://files.realpython.com/media/Build-a-Project-With-FastAPI_Watermarked.cb19f6b7b108.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/fastapi-python-web-apis/">
+<h2 class="card-title h4 my-0 py-0">Using FastAPI to Build Python Web APIs</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jul 14, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-django-blog/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Build a Blog Using Django, Vue, and GraphQL" src="https://files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg&amp;w=480&amp;sig=7f5963a1ad25e2f8c391138e285fc5c9fc7436ef 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg&amp;w=960&amp;sig=91c7ebf812095ae17f92474b00df534e091ad4c3 960w, https://files.realpython.com/media/Build-a-blog-using-Django-Vue-and-GraphQL_Watermarked.8b39500c821c.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-django-blog/">
+<h2 class="card-title h4 my-0 py-0">Build a Blog Using Django, Vue, and GraphQL</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">May 24, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/python-api/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python &amp; APIs: A Winning Combo for Reading Public Data" src="https://files.realpython.com/media/Consuming-APIs-in-Python_Watermarked.beb5a262ae01.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Consuming-APIs-in-Python_Watermarked.beb5a262ae01.jpg&amp;w=480&amp;sig=08acb701841d773e97928028f8990a83a44f6aba 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Consuming-APIs-in-Python_Watermarked.beb5a262ae01.jpg&amp;w=960&amp;sig=dd7d6f674fcddf8004ad6e133bb4ac5a14f50b2b 960w, https://files.realpython.com/media/Consuming-APIs-in-Python_Watermarked.beb5a262ae01.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/python-api/">
+<h2 class="card-title h4 my-0 py-0">Python &amp; APIs: A Winning Combo for Reading Public Data</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Feb 22, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/django-rest-framework/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Python Django Tutorials Artwork" src="https://files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg&amp;w=480&amp;sig=1ade3ce6287a30e706a46ebea7b21fcdbba42cec 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg&amp;w=960&amp;sig=501298010fbcc094e4548992989db1eefabdd5a3 960w, https://files.realpython.com/media/Django-Tutorials_Watermarked.2ecff49f3456.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/django-rest-framework/">
+<h2 class="card-title h4 my-0 py-0">Building HTTP APIs With Django REST Framework</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="mr-2">Jan 05, 2021</span>
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/courses/discord-bot-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Make a Discord Bot in Python" src="https://files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg&amp;w=480&amp;sig=0b0e688a343d602f6758387089c3f9095799fc0f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg&amp;w=960&amp;sig=6a17c53fc5a22eec33f2cdf0e61eb055a0c598b3 960w, https://files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg 1920w" sizes="25vw">
+<div class="card-img-overlay d-flex align-items-center">
+<div class="mx-auto">
+<span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play " aria-hidden="true"></i></span>
+</div>
+</div>
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/courses/discord-bot-python/">
+<h2 class="card-title h4 my-0 py-0">Creating a Discord Bot in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/how-to-make-a-discord-bot-python/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Make a Discord Bot in Python" src="https://files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg&amp;w=480&amp;sig=0b0e688a343d602f6758387089c3f9095799fc0f 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg&amp;w=960&amp;sig=6a17c53fc5a22eec33f2cdf0e61eb055a0c598b3 960w, https://files.realpython.com/media/How-to-Make-a-Discord-Bot-With-Python_Watermarked.23887eee3226.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/how-to-make-a-discord-bot-python/">
+<h2 class="card-title h4 my-0 py-0">How to Make a Discord Bot in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/twitter-bot-python-tweepy/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="How to Make a Twitter Bot in Python With Tweepy" src="https://files.realpython.com/media/How-to-Make-a-Twitter-Bot-in-Python-with-Tweepy_Watermarked.e0e3b3e8f6ce.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Make-a-Twitter-Bot-in-Python-with-Tweepy_Watermarked.e0e3b3e8f6ce.jpg&amp;w=480&amp;sig=397be9ee7db9165f56c4a4e3e6e23df0f2e5e9ae 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Make-a-Twitter-Bot-in-Python-with-Tweepy_Watermarked.e0e3b3e8f6ce.jpg&amp;w=960&amp;sig=db51309aa1eb7d568bb12b803dd19ab9909fc625 960w, https://files.realpython.com/media/How-to-Make-a-Twitter-Bot-in-Python-with-Tweepy_Watermarked.e0e3b3e8f6ce.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/twitter-bot-python-tweepy/">
+<h2 class="card-title h4 my-0 py-0">How to Make a Twitter Bot in Python With Tweepy</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/flask-connexion-rest-api-part-3/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Building Flask REST APIs" src="https://files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg&amp;w=480&amp;sig=b2266202f56c1d8f37d1019b4ed4d13ea399041c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg&amp;w=960&amp;sig=fe89240319d6d421895a14340bd0147e0a0fd474 960w, https://files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/flask-connexion-rest-api-part-3/">
+<h2 class="card-title h4 my-0 py-0">Python REST APIs With Flask, Connexion, and SQLAlchemy – Part 3</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/flask-connexion-rest-api-part-2/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Building Flask REST APIs" src="https://files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg&amp;w=480&amp;sig=b2266202f56c1d8f37d1019b4ed4d13ea399041c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg&amp;w=960&amp;sig=fe89240319d6d421895a14340bd0147e0a0fd474 960w, https://files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/flask-connexion-rest-api-part-2/">
+<h2 class="card-title h4 my-0 py-0">Python REST APIs With Flask, Connexion, and SQLAlchemy – Part 2</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/flask-connexion-rest-api/">
+ <div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Building Flask REST APIs" src="https://files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg&amp;w=480&amp;sig=b2266202f56c1d8f37d1019b4ed4d13ea399041c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg&amp;w=960&amp;sig=fe89240319d6d421895a14340bd0147e0a0fd474 960w, https://files.realpython.com/media/Building-and-Documenting-Python-REST-APIs-With-Flask-and-Connexion_Watermarked.4f126f60be3f.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/flask-connexion-rest-api/">
+<h2 class="card-title h4 my-0 py-0">Python REST APIs With Flask, Connexion, and SQLAlchemy</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/building-a-simple-web-app-with-bottle-sqlalchemy-twitter-api/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="PyBites: Daily Python tips" src="https://files.realpython.com/media/pytip-what-we-are-building.8fe3eb19e963.png" width="1314" height="857" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/pytip-what-we-are-building.8fe3eb19e963.png&amp;w=328&amp;sig=fc0ee6b9d881cc8d02fc1acd5287db122b770c1a 328w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/pytip-what-we-are-building.8fe3eb19e963.png&amp;w=657&amp;sig=6bacb66c51f0ab6ab356321154bf22797e7b6a93 657w, https://files.realpython.com/media/pytip-what-we-are-building.8fe3eb19e963.png 1314w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/building-a-simple-web-app-with-bottle-sqlalchemy-twitter-api/">
+<h2 class="card-title h4 my-0 py-0">Building a Simple Web App With Bottle, SQLAlchemy, and the Twitter API</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/test-driven-development-of-a-django-restful-api/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django REST Framework logo" src="https://files.realpython.com/media/drf-logo.37921ea75c09.png" width="600" height="265" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-logo.37921ea75c09.png&amp;w=150&amp;sig=a50eb9db450bf9e3f8a6ac0f3cfe736936780c51 150w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-logo.37921ea75c09.png&amp;w=300&amp;sig=f05e59174b1e19a70406ec6125ab6a96ac9a81c5 300w, https://files.realpython.com/media/drf-logo.37921ea75c09.png 600w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/test-driven-development-of-a-django-restful-api/">
+<h2 class="card-title h4 my-0 py-0">Test Driven Development of a Django RESTful API</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/testing-third-party-apis-with-mock-servers/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Mocking in Python part two" src="https://files.realpython.com/media/python-mocks-part-two.2a6068853b01.png" width="460" height="194" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks-part-two.2a6068853b01.png&amp;w=115&amp;sig=3b903e3062b3b2c5c24732614462dc5ed4874154 115w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks-part-two.2a6068853b01.png&amp;w=230&amp;sig=52144ca07114872bfe8c6b0b8f8732c22290ce52 230w, https://files.realpython.com/media/python-mocks-part-two.2a6068853b01.png 460w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/testing-third-party-apis-with-mock-servers/">
+<h2 class="card-title h4 my-0 py-0">Testing External APIs With Mock Servers</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/testing-third-party-apis-with-mocks/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Mocking in Python part one" src="https://files.realpython.com/media/python-mocks.5791c54daf2b.png" width="460" height="194" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks.5791c54daf2b.png&amp;w=115&amp;sig=cc5b67d97a50cd36ae0a5484753c692a4e71bd89 115w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-mocks.5791c54daf2b.png&amp;w=230&amp;sig=ab4aa6fe447819e7216d5a1c45292ac6fb1b69b0 230w, https://files.realpython.com/media/python-mocks.5791c54daf2b.png 460w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/testing-third-party-apis-with-mocks/">
+<h2 class="card-title h4 my-0 py-0">Mocking External APIs in Python</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/getting-started-with-the-slack-api-using-python-and-flask/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Slack and Python logos" src="https://files.realpython.com/media/slack-python-flask.948159928447.png" width="285" height="92" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/slack-python-flask.948159928447.png&amp;w=71&amp;sig=33fe6a592b340623c565b944e01720bc2c55097b 71w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/slack-python-flask.948159928447.png&amp;w=142&amp;sig=ea1b611b8598a298fe16736f1ad4768fdc39efcd 142w, https://files.realpython.com/media/slack-python-flask.948159928447.png 285w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/getting-started-with-the-slack-api-using-python-and-flask/">
+<h2 class="card-title h4 my-0 py-0">Getting Started With the Slack API Using Python and Flask</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/create-a-rest-api-in-minutes-with-pyramid-and-ramses/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Create a REST API in Minutes With Pyramid and Ramses" src="https://cdn.realpython.com/static/real-python-placeholder-4.d9524cd39927.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-4.d9524cd39927.jpg&amp;w=480&amp;sig=bf98c40f20a02575773eaac902d3372536b7f6f5 480w, https://robocrop.realpython.net/?url=https%3A//cdn.realpython.com/static/real-python-placeholder-4.d9524cd39927.jpg&amp;w=960&amp;sig=37b7caa4bdb60b77248efbc606183c29ecf5f763 960w, https://cdn.realpython.com/static/real-python-placeholder-4.d9524cd39927.jpg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/create-a-rest-api-in-minutes-with-pyramid-and-ramses/">
+<h2 class="card-title h4 my-0 py-0">Create a REST API in Minutes With Pyramid and Ramses</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/setting-up-a-simple-ocr-server/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Optical character recognition demo results" src="https://files.realpython.com/media/results2.5d8d3b8108cd.png" width="455" height="262" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/results2.5d8d3b8108cd.png&amp;w=113&amp;sig=b2e82b05467b6d29c94603d7931f57db5693ad14 113w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/results2.5d8d3b8108cd.png&amp;w=227&amp;sig=84614b8afbbcc46ecf6a52b2272c89a8760587a6 227w, https://files.realpython.com/media/results2.5d8d3b8108cd.png 455w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/setting-up-a-simple-ocr-server/">
+<h2 class="card-title h4 my-0 py-0">Setting up a Simple OCR Server</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/caching-external-api-requests/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Requests cache" src="https://files.realpython.com/media/requests-cache.8b2db1eb4071.png" width="200" height="223" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/requests-cache.8b2db1eb4071.png&amp;w=50&amp;sig=264ef3d1654e1537f3940abdbbc1a910d3e4fb04 50w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/requests-cache.8b2db1eb4071.png&amp;w=100&amp;sig=449d4689a45484e31e5c28ac66574602ecb9e38b 100w, https://files.realpython.com/media/requests-cache.8b2db1eb4071.png 200w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/caching-external-api-requests/">
+<h2 class="card-title h4 my-0 py-0">Caching External API Requests</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/twitter-sentiment-python-docker-elasticsearch-kibana/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Twitter Sentiment Analysis – Overall bar chart" src="https://files.realpython.com/media/twitter-sentiment-overall-pie-chart.b0ec5ebd668f.png" width="509" height="309" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/twitter-sentiment-overall-pie-chart.b0ec5ebd668f.png&amp;w=127&amp;sig=85fc4b3bdbec8bdba80364739fe4cb7b8a56c79f 127w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/twitter-sentiment-overall-pie-chart.b0ec5ebd668f.png&amp;w=254&amp;sig=2309194c90d54f296c1cef0e540d02800dad22a0 254w, https://files.realpython.com/media/twitter-sentiment-overall-pie-chart.b0ec5ebd668f.png 509w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/twitter-sentiment-python-docker-elasticsearch-kibana/">
+<h2 class="card-title h4 my-0 py-0">Twitter Sentiment Analysis – Python, Docker, Elasticsearch, Kibana</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/django-rest-framework-class-based-views/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django Rest Framework CBVs" src="https://files.realpython.com/media/drf-cbv.20a1ca7e17f7.png" width="467" height="242" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-cbv.20a1ca7e17f7.png&amp;w=116&amp;sig=f0a24a9a7c29069cebfdd40fc9a0e12cea498303 116w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/drf-cbv.20a1ca7e17f7.png&amp;w=233&amp;sig=691b4fb2f6734e5542aa256dc22ef7ddfe668f8a 233w, https://files.realpython.com/media/drf-cbv.20a1ca7e17f7.png 467w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/django-rest-framework-class-based-views/">
+<h2 class="card-title h4 my-0 py-0">Django Rest Framework – Class Based Views</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/django-rest-framework-quick-start/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django Rest Framework – An Introduction" src="https://files.realpython.com/media/Django-Rest-Framework-An-Introduction_Watermarked.6050ea8850a3.jpeg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Rest-Framework-An-Introduction_Watermarked.6050ea8850a3.jpeg&amp;w=480&amp;sig=6d30aa019a31a50351cd73a60c9cfda86103af86 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Rest-Framework-An-Introduction_Watermarked.6050ea8850a3.jpeg&amp;w=960&amp;sig=cb678db5a0e9bb37e382dd6b132dc1dfab142670 960w, https://files.realpython.com/media/Django-Rest-Framework-An-Introduction_Watermarked.6050ea8850a3.jpeg 1920w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/django-rest-framework-quick-start/">
+<h2 class="card-title h4 my-0 py-0">Django Rest Framework – An Introduction</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+<div class="col-12 col-md-6 mb-5">
+<div class="card border-0">
+<a href="/create-a-super-basic-rest-api-with-django-tastypie/">
+<div class="embed-responsive embed-responsive-16by9">
+<img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Django tasty pie logo" src="https://files.realpython.com/media/django-tastypie-logo.93a936f89460.png" width="500" height="171" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/django-tastypie-logo.93a936f89460.png&amp;w=125&amp;sig=b92f8cb7c64b66648f01c2e6c2a27809e3310d1d 125w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/django-tastypie-logo.93a936f89460.png&amp;w=250&amp;sig=5c0a813a0068d28230df7b45f2fab7ae5f7f0429 250w, https://files.realpython.com/media/django-tastypie-logo.93a936f89460.png 500w" sizes="25vw">
+</div>
+</a>
+<div class="card-body m-0 p-0 mt-2">
+<a class=" " href="/create-a-super-basic-rest-api-with-django-tastypie/">
+<h2 class="card-title h4 my-0 py-0">Create a Super Basic REST API with Django Tastypie</h2>
+</a>
+<p class="card-text">
+<small class="text-muted">
+<span class="fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+</small>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="1xXbj8ylSCuBzePIxDxcdh6jNjwV6Y2V7CCoUHKjd7pLJ7uqGpZmDm5f3eBPjwwK">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-rest-api-guide-exampes" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+<img class="img-fluid rounded" src="https://files.realpython.com/media/python-rest-api-guide.d45ad1f2e68c.jpg" width="1024" height="768" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-rest-api-guide.d45ad1f2e68c.jpg&amp;w=256&amp;sig=8801b0ffd21153d0cad7e7940062433dc7b40853 256w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-rest-api-guide.d45ad1f2e68c.jpg&amp;w=512&amp;sig=eebafaaa9aac9a108404a449c7bddc172d1eca55 512w, https://files.realpython.com/media/python-rest-api-guide.d45ad1f2e68c.jpg 1024w" sizes="50vw" alt="Python REST API Guide">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">Practical REST API Examples (PDF Guide)</p>
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="1xXbj8ylSCuBzePIxDxcdh6jNjwV6Y2V7CCoUHKjd7pLJ7uqGpZmDm5f3eBPjwwK">
+<input type="hidden" name="slug" value="rest-api-guide-exampes">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Send My Free Download »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a4212e88c3755',m:'Bq93lUaYBCj_l9uP3eRGo70vRTHoBW1w5yb8WK64pyM-1632635881-0-AU1KzNX0dWOJX5wTKZ74214NHfhrlkFwlpwiF6bFignY4fP5nzQDc8vQh0hJ5LbrGcHjx1osIexFxp+ggI/gYRtl1IOEjNvwr1OQsfWBgWSTTpiIOy+iNfEkKL0OIlPhaQ==',s:[0x83700bbb6e,0x3474bbcf39],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

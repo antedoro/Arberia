@@ -1,0 +1,1552 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Arcade: A Primer on the Python Game Framework – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="In this step-by-step tutorial, you&#x27;ll learn how to use arcade, a modern Python framework for crafting games with compelling graphics and sound. Object-oriented and built for Python 3.6 and up, arcade provides you a modern set of tools for crafting great Python game experiences.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/arcade-python-game-framework/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Arcade: A Primer on the Python Game Framework – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/arcade-python-game-framework/">
+<meta property="og:description" content="In this step-by-step tutorial, you&#x27;ll learn how to use arcade, a modern Python framework for crafting games with compelling graphics and sound. Object-oriented and built for Python 3.6 and up, arcade provides you a modern set of tools for crafting great Python game experiences.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Farcade-python-game-framework%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article with-headerlinks">
+<figure class="embed-responsive embed-responsive-16by9">
+<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="Arcade: A Primer on the Python Game Framework" src="https://files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg&amp;w=480&amp;sig=6c96e2c4b3e9136002d8cdc2b837bc77b4d3dde2 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg&amp;w=960&amp;sig=4d2fc51ffb584bc2cfa800e98ef7dae6609fa012 960w, https://files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg 1920w" sizes="75vw">
+</figure>
+<h1>Arcade: A Primer on the Python Game Framework</h1>
+<div class="mb-0">
+<span class="text-muted">by <a class="text-muted" href="#author">Jon Fincher</a>
+<span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="#reader-comments"><span class="disqus-comment-count" data-disqus-identifier="https://realpython.com/arcade-python-game-framework/"></span></a>
+<span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<div class="d-sm-flex flex-row justify-content-between my-3 text-center">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+<div class="align-self-center my-2">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Arcade%3A%20A%20Primer%20on%20the%20Python%20Game%20Framework by @realpython&url=https%3A//realpython.com/arcade-python-game-framework/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/arcade-python-game-framework/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AArcade%3A%20A%20Primer%20on%20the%20Python%20Game%20Framework%0A%0Ahttps%3A//realpython.com/arcade-python-game-framework/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+</div>
+</div>
+<div class="article-body">
+<div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+<p class="h3 mb-2 text-muted">Table of Contents</p>
+<div class="toc">
+<ul>
+<li><a href="#background-and-setup">Background and Setup</a></li>
+<li><a href="#basic-arcade-program">Basic arcade Program</a></li>
+<li><a href="#arcade-concepts">arcade Concepts</a><ul>
+<li><a href="#initialization">Initialization</a></li>
+<li><a href="#windows-and-coordinates">Windows and Coordinates</a></li>
+<li><a href="#drawing">Drawing</a></li>
+<li><a href="#object-oriented-design">Object-Oriented Design</a></li>
+<li><a href="#game-loop">Game Loop</a></li>
+</ul>
+</li>
+<li><a href="#fundamentals-of-python-game-design">Fundamentals of Python Game Design</a><ul>
+<li><a href="#imports-and-constants">Imports and Constants</a></li>
+<li><a href="#window-class">Window Class</a></li>
+<li><a href="#sprites-and-sprite-lists">Sprites and Sprite Lists</a></li>
+<li><a href="#scheduling-functions">Scheduling Functions</a></li>
+<li><a href="#adding-enemies">Adding Enemies</a></li>
+<li><a href="#moving-sprites">Moving Sprites</a></li>
+<li><a href="#removing-sprites">Removing Sprites</a></li>
+<li><a href="#adding-clouds">Adding Clouds</a></li>
+<li><a href="#keyboard-input">Keyboard Input</a></li>
+<li><a href="#updating-the-game-objects">Updating the Game Objects</a></li>
+<li><a href="#drawing-on-the-window">Drawing on the Window</a></li>
+<li><a href="#collision-detection">Collision Detection</a></li>
+</ul>
+</li>
+<li><a href="#extras">Extras</a><ul>
+<li><a href="#sound">Sound</a></li>
+<li><a href="#python-game-speed">Python Game Speed</a></li>
+<li><a href="#tweaks-and-enhancements">Tweaks and Enhancements</a></li>
+</ul>
+</li>
+<li><a href="#a-note-on-sources">A Note on Sources</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p>Computer games are a great way to introduce people to coding and computer science. Since I was a player in my youth, the lure of writing video games was the reason I learned to code. Of course, when I learned Python, my first instinct was to write a Python game.</p>
+<p>While Python makes learning to code more accessible for everyone, the choices for video game writing can be limited, especially if you want to write <strong>arcade games</strong> with great graphics and catchy sound effects. For many years, Python game programmers were limited to the <a href="https://realpython.com/pygame-a-primer/"><code>pygame</code></a> framework. Now, there&rsquo;s another choice.</p>
+<p>The <a href="http://arcade.academy/index.html"><code>arcade</code> library</a> is a modern Python framework for crafting games with compelling graphics and sound. Object-oriented and built for Python 3.6 and up, <code>arcade</code> provides the programmer with a modern set of tools for crafting great Python game experiences.</p>
+<p><strong>In this tutorial, you&rsquo;ll learn how to:</strong></p>
+<ul>
+<li><strong>Install</strong> the <code>arcade</code> library</li>
+<li><strong>Draw</strong> items on the screen</li>
+<li><strong>Work</strong> with the <code>arcade</code> Python game loop</li>
+<li><strong>Manage</strong> on-screen graphic elements</li>
+<li><strong>Handle</strong> user input</li>
+<li><strong>Play</strong> sound effects and music</li>
+<li><strong>Describe</strong> how Python game programming with <code>arcade</code> differs from <code>pygame</code></li>
+</ul>
+<p>This tutorial assumes you have an understanding of writing <a href="https://realpython.com/learning-paths/python3-introduction/">Python programs</a>. Since <code>arcade</code> is an object-oriented library, you should also be familiar with <a href="https://realpython.com/learning-paths/object-oriented-programming-oop-python/">object-oriented programming</a> as well. All of the code, images, and sounds for this tutorial are available for download at the link below:</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Download Assets:</strong> <a href="https://realpython.com/bonus/arcade-framework/" class="alert-link" data-toggle="modal" data-target="#modal-arcade-framework" data-focus="false" markdown="1">Click here to download the assets you&rsquo;ll use</a> to make a game with arcade in this tutorial.</p>
+</div>
+<section class="section2" id="background-and-setup"><h2>Background and Setup<a class="headerlink" href="#background-and-setup" title="Permanent link"></a></h2>
+<p>The <code>arcade</code> library was written by <a href="https://twitter.com/professorcraven">Paul Vincent Craven</a>, a computer science professor at <a href="https://simpson.edu/academics/departments/academics/departments/department-computer-science/computer-science">Simpson College</a> in Iowa, USA. As it&rsquo;s built on top of the <a href="http://pyglet.org/"><code>pyglet</code></a> windowing and multimedia library, <code>arcade</code> features <a href="http://arcade.academy/pygame_comparison.html">various</a> improvements, modernizations, and enhancements over <code>pygame</code>:</p>
+<ul>
+<li>Boasts modern OpenGL graphics</li>
+<li>Supports Python 3 <a href="https://realpython.com/python-type-checking/#hello-types">type hinting</a></li>
+<li>Has better support for animated sprites</li>
+<li>Incorporates consistent command, function, and parameter names</li>
+<li>Encourages separation of game logic from display code</li>
+<li>Requires less boilerplate code</li>
+<li>Maintains more <a href="http://arcade.academy/arcade.html">documentation</a>, including complete Python game <a href="http://arcade.academy/examples/index.html">examples</a></li>
+<li>Has a built-in physics engine for <a href="https://realpython.com/platformer-python-arcade/">platform games</a></li>
+</ul>
+<p>To install <code>arcade</code> and its dependencies, use the appropriate <a href="https://realpython.com/what-is-pip/"><code>pip</code></a> command:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install arcade
+</code></pre></div>
+<p>On the Mac, you also need to install <code>PyObjC</code>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install PyObjC arcade
+</code></pre></div>
+<p>Complete installation instructions based on your <a href="http://arcade.academy/installation.html">platform</a> are available for <a href="http://arcade.academy/installation_windows.html">Windows</a>, <a href="http://arcade.academy/installation_mac.html">Mac</a>, <a href="http://arcade.academy/installation_linux.html">Linux</a>, and even <a href="http://arcade.academy/installation_linux.html#raspberry-pi-instructions">Raspberry Pi</a>. You can even install <code>arcade</code> directly from <a href="http://arcade.academy/installation_from_source.html">source</a> if you&rsquo;d prefer.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> More recent versions of <code>arcade</code> utilize <a href="https://realpython.com/python-data-classes/">data classes</a>, which are included in Python only for version 3.7 and later.</p>
+<p>However, a <a href="https://pypi.org/project/dataclasses/">backport</a> is available on PyPI for Python 3.6 that you can install using <code>pip</code>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install dataclasses
+</code></pre></div>
+<p>See <a href="https://realpython.com/python-data-classes/">The Ultimate Guide to Data Classes in Python 3.7</a> for more information.</p>
+</div>
+<p>This tutorial assumes you&rsquo;re using <code>arcade</code> 2.1 and Python 3.7 throughout.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="basic-arcade-program"><h2>Basic <code>arcade</code> Program<a class="headerlink" href="#basic-arcade-program" title="Permanent link"></a></h2>
+<p>Before you dig in, let&rsquo;s take a look at an <code>arcade</code> program that will open a window, fill it with white, and draw a blue circle in the middle:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 1</span><span class="c1"># Basic arcade program</span>
+<span class="linenos"> 2</span><span class="c1"># Displays a white window with a blue circle in the middle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1"># Imports</span>
+<span class="linenos"> 5</span><span class="kn">import</span> <span class="nn">arcade</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># Constants</span>
+<span class="linenos"> 8</span><span class="n">SCREEN_WIDTH</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="linenos"> 9</span><span class="n">SCREEN_HEIGHT</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="linenos">10</span><span class="n">SCREEN_TITLE</span> <span class="o">=</span> <span class="s2">&quot;Welcome to Arcade&quot;</span>
+<span class="linenos">11</span><span class="n">RADIUS</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="c1"># Open the window</span>
+<span class="linenos">14</span><span class="n">arcade</span><span class="o">.</span><span class="n">open_window</span><span class="p">(</span><span class="n">SCREEN_WIDTH</span><span class="p">,</span> <span class="n">SCREEN_HEIGHT</span><span class="p">,</span> <span class="n">SCREEN_TITLE</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="c1"># Set the background color</span>
+<span class="linenos">17</span><span class="n">arcade</span><span class="o">.</span><span class="n">set_background_color</span><span class="p">(</span><span class="n">arcade</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">WHITE</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="c1"># Clear the screen and start drawing</span>
+<span class="linenos">20</span><span class="n">arcade</span><span class="o">.</span><span class="n">start_render</span><span class="p">()</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="c1"># Draw a blue circle</span>
+<span class="linenos">23</span><span class="n">arcade</span><span class="o">.</span><span class="n">draw_circle_filled</span><span class="p">(</span>
+<span class="linenos">24</span>    <span class="n">SCREEN_WIDTH</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RADIUS</span><span class="p">,</span> <span class="n">arcade</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">BLUE</span>
+<span class="linenos">25</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="c1"># Finish drawing</span>
+<span class="linenos">28</span><span class="n">arcade</span><span class="o">.</span><span class="n">finish_render</span><span class="p">()</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="c1"># Display everything</span>
+<span class="linenos">31</span><span class="n">arcade</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<p>When you run this program, you&rsquo;ll see a window that looks like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-simple.a7ef4e2c5ec5.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-simple.a7ef4e2c5ec5.png" width="688" height="937" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-simple.a7ef4e2c5ec5.png&amp;w=172&amp;sig=48e2172c414a5227175e5b410a6b42384ab637e6 172w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-simple.a7ef4e2c5ec5.png&amp;w=344&amp;sig=8acd483367644b470691e55e7a0667ca36b197dd 344w, https://files.realpython.com/media/arcade-simple.a7ef4e2c5ec5.png 688w" sizes="75vw" alt="A basic program using the arcade library." data-asset="1832" /></a></figure>
+<p>Let&rsquo;s break this down line by line:</p>
+<ul>
+<li><strong>Line 5</strong> imports the <code>arcade</code> library. Without this, nothing else works.</li>
+<li><strong>Lines 8 to 11</strong> define some constants you&rsquo;ll use a little later, for clarity.</li>
+<li><strong>Line 14</strong> opens the main window. You provide the width, height, and title bar text, and <code>arcade</code> does the rest.</li>
+<li><strong>Line 17</strong> sets the background color using a constant from the <code>arcade.color</code> package. You can also specify an RGB color using a <a href="https://realpython.com/courses/lists-tuples-python/">list or tuple</a>.</li>
+<li><strong>Line 20</strong> sets <code>arcade</code> into drawing mode. Anything you draw after this line will be shown on the screen.</li>
+<li><strong>Lines 23 to 25</strong> draw the circle by providing the center X and Y coordinates, the radius, and the color to use.</li>
+<li><strong>Line 28</strong> ends drawing mode.</li>
+<li><strong>Line 31</strong> displays your window for you to see.</li>
+</ul>
+<p>If you&rsquo;re familiar with <code>pygame</code>, then you&rsquo;ll notice a few things are different:</p>
+<ul>
+<li>There is no <code>pygame.init()</code>. All initialization is handled when you run <code>import arcade</code>.</li>
+<li>There is no explicitly-defined display loop. It&rsquo;s handled in <code>arcade.run()</code>.</li>
+<li>There is no event loop here, either. Again, <code>arcade.run()</code> handles events and provides some default behaviors, such as the ability to close the window.</li>
+<li>You can use pre-defined colors for drawing rather than defining them all yourself.</li>
+<li>You have to start and finish drawing in arcade using <code>start_render()</code> and <code>finish_render()</code>.</li>
+</ul>
+<p>Let&rsquo;s take a close look at the fundamental <code>arcade</code> concepts behind this program.</p>
+</section><section class="section2" id="arcade-concepts"><h2><code>arcade</code> Concepts<a class="headerlink" href="#arcade-concepts" title="Permanent link"></a></h2>
+<p>Like <code>pygame</code>, <code>arcade</code> code runs on almost every platform that supports Python. This requires <code>arcade</code> to deal with abstractions for various hardware differences on those platforms. Understanding these concepts and abstractions will help you design and develop your own games while understanding how <code>arcade</code> differs from <code>pygame</code> will help you adapt to its unique point of view.</p>
+<section class="section3" id="initialization"><h3>Initialization<a class="headerlink" href="#initialization" title="Permanent link"></a></h3>
+<p>Since it deals with a variety of platforms, <code>arcade</code> must perform an initialization step before you can use it. This step is automatic and occurs whenever you import <code>arcade</code>, so there&rsquo;s no additional code you need to write. When you import it, <code>arcade</code> does the following:</p>
+<ul>
+<li><strong>Verify</strong> that you&rsquo;re running on Python 3.6 or higher.</li>
+<li><strong>Import</strong> the <code>pyglet_ffmeg2</code> library for sound handling, if it&rsquo;s available.</li>
+<li><strong>Import</strong> the <code>pyglet</code> library for window and multimedia handling.</li>
+<li><strong>Set up</strong> constants for colors and key mappings.</li>
+<li><strong>Import</strong> the remaining <code>arcade</code> library.</li>
+</ul>
+<p>Contrast this with <code>pygame</code>, which requires a separate initialization step for each module.</p>
+</section><section class="section3" id="windows-and-coordinates"><h3>Windows and Coordinates<a class="headerlink" href="#windows-and-coordinates" title="Permanent link"></a></h3>
+<p>Everything in <code>arcade</code> happens in a window, with you create using <code>open_window()</code>. Currently, <code>arcade</code> only supports a single display window. You can make the window resizable when you open it.</p>
+<p><code>arcade</code> uses the same <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian coordinate system</a> you may have learned in algebra class. The window lives in <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Quadrants_and_octants">quadrant I</a>, with the origin point (0, 0) located in the lower-left corner of the screen. The x coordinate increases as you move right, and the y coordinate increases as you move up:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-window-geography.ab29b55bb4dc.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-window-geography.ab29b55bb4dc.png" width="688" height="937" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-window-geography.ab29b55bb4dc.png&amp;w=172&amp;sig=742430ea530d9ed3755aa19cb2a7e983a4966717 172w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-window-geography.ab29b55bb4dc.png&amp;w=344&amp;sig=0516580705cbdf5ee49326f69fd213ada1c420b0 344w, https://files.realpython.com/media/arcade-window-geography.ab29b55bb4dc.png 688w" sizes="75vw" alt="The layout of an arcade window." data-asset="1833" /></a></figure>
+<p>It&rsquo;s important to note that this behavior is the opposite of <code>pygame</code> and many other Python game frameworks. It may take some time for you to adjust to this difference.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="drawing"><h3>Drawing<a class="headerlink" href="#drawing" title="Permanent link"></a></h3>
+<p>Out of the box, <code>arcade</code> has functions for drawing various geometric shapes, including:</p>
+<ul>
+<li>Arcs</li>
+<li>Circles</li>
+<li>Ellipses</li>
+<li>Lines</li>
+<li>Parabolas</li>
+<li>Points</li>
+<li>Polygons</li>
+<li>Rectangles</li>
+<li>Triangles</li>
+</ul>
+<p>All of the drawing functions begin with <code>draw_</code> and follow a consistent naming and parameter pattern. There are different functions for drawing filled and outlined shapes:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-shapes.b9b84c4a725e.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-shapes.b9b84c4a725e.png" width="664" height="787" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-shapes.b9b84c4a725e.png&amp;w=166&amp;sig=d3ca3696cedb96d8888a67c0ae83372d6885c8c2 166w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-shapes.b9b84c4a725e.png&amp;w=332&amp;sig=17937210f168c0d0a6764f417711a327224468c9 332w, https://files.realpython.com/media/arcade-shapes.b9b84c4a725e.png 664w" sizes="75vw" alt="Some sample shapes drawn with arcade" data-asset="1834" /></a></figure>
+<p>Because rectangles are common, there are three separate functions for drawing them in different ways:</p>
+<ul>
+<li><strong><code>draw_rectangle()</code></strong> expects the x and y coordinates of the center of the rectangle, the width, and the height.</li>
+<li><strong><code>draw_lrtb_rectangle()</code></strong> expects the left and right x coordinates, followed by the top and bottom y coordinates.</li>
+<li><strong><code>draw_xywh_rectangle()</code></strong> uses the x and y coordinates of the bottom-left corner, followed by the width and the height.</li>
+</ul>
+<p>Note that each function requires four parameters. You can also draw every shape using <a href="http://arcade.academy/arcade.html#module-arcade.buffered_draw_commands">buffered drawing functions</a>, which utilize vertex buffers to push everything directly to the graphics card for incredible performance improvements. All of the buffered drawing functions begin with <code>create_</code> and follow consistent naming and parameter patterns.</p>
+</section><section class="section3" id="object-oriented-design"><h3>Object-Oriented Design<a class="headerlink" href="#object-oriented-design" title="Permanent link"></a></h3>
+<p>At its core, <code>arcade</code> is an <a href="https://realpython.com/python3-object-oriented-programming/">object-oriented</a> library. Like <code>pygame</code>, you can write <code>arcade</code> code procedurally, as you did in the example above. However, the real power of <code>arcade</code> shows when you create completely <strong>object-oriented programs</strong>.</p>
+<p>When you called <code>arcade.open_window()</code> in the example above, the code creates an <code>arcade.Window</code> object behind the scenes to manage that window. Later, you&rsquo;ll create your own class based on <code>arcade.Window</code> to write a complete Python game.</p>
+<p>First, take a look at the original example code, which now uses object-oriented concepts, to highlight the major differences:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Basic arcade program using objects</span>
+<span class="c1"># Displays a white window with a blue circle in the middle</span>
+
+<span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">arcade</span>
+
+<span class="c1"># Constants</span>
+<span class="n">SCREEN_WIDTH</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">SCREEN_HEIGHT</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">SCREEN_TITLE</span> <span class="o">=</span> <span class="s2">&quot;Welcome to Arcade&quot;</span>
+<span class="n">RADIUS</span> <span class="o">=</span> <span class="mi">150</span>
+
+<span class="c1"># Classes</span>
+<span class="k">class</span> <span class="nc">Welcome</span><span class="p">(</span><span class="n">arcade</span><span class="o">.</span><span class="n">Window</span><span class="p">):</span>
+<span class="hll">    <span class="sd">&quot;&quot;&quot;Main welcome window</span>
+</span><span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="hll">        <span class="sd">&quot;&quot;&quot;Initialize the window</span>
+</span><span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Call the parent class constructor</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">SCREEN_WIDTH</span><span class="p">,</span> <span class="n">SCREEN_HEIGHT</span><span class="p">,</span> <span class="n">SCREEN_TITLE</span><span class="p">)</span>
+<span class="hll">
+</span>        <span class="c1"># Set the background window</span>
+        <span class="n">arcade</span><span class="o">.</span><span class="n">set_background_color</span><span class="p">(</span><span class="n">arcade</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">WHITE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="hll">        <span class="sd">&quot;&quot;&quot;Called whenever you need to draw your window</span>
+</span><span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Clear the screen and start drawing</span>
+        <span class="n">arcade</span><span class="o">.</span><span class="n">start_render</span><span class="p">()</span>
+
+        <span class="c1"># Draw a blue circle</span>
+        <span class="n">arcade</span><span class="o">.</span><span class="n">draw_circle_filled</span><span class="p">(</span>
+            <span class="n">SCREEN_WIDTH</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RADIUS</span><span class="p">,</span> <span class="n">arcade</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">BLUE</span>
+        <span class="p">)</span>
+
+<span class="c1"># Main code entry point</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Welcome</span><span class="p">()</span>
+<span class="hll">    <span class="n">arcade</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</span></code></pre></div>
+<p>Let&rsquo;s take a look at this code line by line:</p>
+<ul>
+<li>
+<p><strong>Lines 1 to 11</strong> are the same as the earlier procedural example.</p>
+</li>
+<li>
+<p><strong>Line 15</strong> is where the differences start. You define a class called <code>Welcome</code> based on the parent class <code>arcade.Window</code>. This allows you to override methods in the parent class as necessary.</p>
+</li>
+<li>
+<p><strong>Lines 18 to 26</strong> define the <a href="https://realpython.com/python3-object-oriented-programming/#instance-attributes"><code>.__init__()</code></a> method. After calling the parent <code>.__init__()</code> method using <a href="https://realpython.com/python-super/"><code>super()</code></a> to set up the window, you set its background color, as you did before.</p>
+</li>
+<li>
+<p><strong>Lines 28 to 38</strong> define <code>.on_draw()</code>. This is one of several <code>Window</code> methods you can override to customize the behavior of your <code>arcade</code> program. This method is called every time <code>arcade</code> wants to draw on the window. It starts with a call to <code>arcade.start_render()</code>, followed by all your drawing code. You don&rsquo;t need to call <code>arcade.finish_render()</code>, however, as <code>arcade</code> will call that implicitly when <code>.on_draw()</code> ends.</p>
+</li>
+<li>
+<p><strong>Lines 41 to 43</strong> are your code&rsquo;s <a href="https://realpython.com/python-main-function/">main entry point</a>. After you first create a new <code>Welcome</code> object called <code>app</code>, you call <code>arcade.run()</code> to display the window.</p>
+</li>
+</ul>
+<p>This object-oriented example is the key to getting the most from <code>arcade</code>. One thing that you may have noticed was the description of <code>.on_draw()</code>. <code>arcade</code> will call this every time it wants to draw on the window. So, how does <code>arcade</code> know when to draw anything? Let&rsquo;s take a look at the implications of this.</p>
+</section><section class="section3" id="game-loop"><h3>Game Loop<a class="headerlink" href="#game-loop" title="Permanent link"></a></h3>
+<p>All of the action in pretty much every game occurs in a central <strong>game loop</strong>. You can even see examples of game loops in physical games like checkers, Old Maid, or baseball. The game loop begins after the game is set up and initialized, and it ends when the game does. Several things happen sequentially inside this loop. At a minimum, a game loop takes the following four actions:</p>
+<ol>
+<li><strong>The program</strong> determines if the game is over. If so, then the loop ends.</li>
+<li><strong>The user input</strong> is processed.</li>
+<li><strong>The states</strong> of game objects are updated based on factors such as user input or time.</li>
+<li><strong>The game</strong> displays visuals and plays sound effects based on the new state.</li>
+</ol>
+<p>In <code>pygame</code>, you must set up and control this loop explicitly. In <code>arcade</code>, the Python game loop is provided for you, encapsulated in the <code>arcade.run()</code> call.</p>
+<p>During the built-in game loop, <code>arcade</code> calls a set of <code>Window</code> methods to implement all of the functionality listed above. The names of these methods all begin with <code>on_</code> and can be thought of as <strong>task or event handlers</strong>. When the <code>arcade</code> game loop needs to update the state of all Python game objects, it calls <code>.on_update()</code>. When it needs to check for mouse movement, it calls <code>.on_mouse_motion()</code>.</p>
+<p>By default, none of these methods do anything useful. When you create your own class based on <code>arcade.Window</code>, you override them as necessary to provide your own game functionality. Some of the methods provided include the following:</p>
+<ul>
+<li><strong>Keyboard Input:</strong> <code>.on_key_press()</code>, <code>.on_key_release()</code></li>
+<li><strong>Mouse Input:</strong> <code>.on_mouse_press()</code>, <code>.on_mouse_release()</code>, <code>.on_mouse_motion()</code></li>
+<li><strong>Updating Game Object:</strong> <code>.on_update()</code></li>
+<li><strong>Drawing:</strong> <code>.on_draw()</code></li>
+</ul>
+<p>You don&rsquo;t need to override all of these methods, just the ones for which you want to provide different behavior. You also don&rsquo;t need to worry about <em>when</em> they&rsquo;re called, just <em>what to do</em> when they&rsquo;re called. Next, you&rsquo;ll explore how you can put all these concepts together to create a game.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section2" id="fundamentals-of-python-game-design"><h2>Fundamentals of Python Game Design<a class="headerlink" href="#fundamentals-of-python-game-design" title="Permanent link"></a></h2>
+<p>Before you start writing any code, it&rsquo;s always a good idea to have a design in place. Since you&rsquo;ll be creating a Python game in this tutorial, you&rsquo;ll design some gameplay for it as well:</p>
+<ul>
+<li><strong>The game</strong> is a horizontally-scrolling enemy avoidance game.<ul>
+<li><strong>The player</strong> starts on the left side of the screen.</li>
+<li><strong>The enemies</strong> enter at regular intervals and at random locations on the right.</li>
+<li><strong>The enemies</strong> move left in a straight line until they are off the screen.</li>
+</ul>
+</li>
+<li><strong>The player</strong> can move left, right, up, or down to avoid the enemies.</li>
+<li><strong>The player</strong> can&rsquo;t move off the screen.</li>
+<li><strong>The game</strong> ends when the player is hit by an enemy, or the user closes the window.</li>
+</ul>
+<p>When he was describing software projects, a former colleague of mine <a href="https://devblogs.microsoft.com/oldnewthing/?p=27543">once said</a>, &ldquo;You don&rsquo;t know what you do until you know what you don&rsquo;t do.&rdquo; With that in mind, here are some things that you won&rsquo;t cover in this tutorial:</p>
+<ul>
+<li>No multiple lives</li>
+<li>No scorekeeping</li>
+<li>No player attack capabilities</li>
+<li>No advancing levels</li>
+<li>No &ldquo;Boss&rdquo; characters</li>
+</ul>
+<p>You&rsquo;re free to try your hand at adding these and other features to your own program.</p>
+<section class="section3" id="imports-and-constants"><h3>Imports and Constants<a class="headerlink" href="#imports-and-constants" title="Permanent link"></a></h3>
+<p>As with any <code>arcade</code> program, you&rsquo;ll start by importing the library:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Basic arcade shooter</span>
+
+<span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">arcade</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Constants</span>
+<span class="n">SCREEN_WIDTH</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">SCREEN_HEIGHT</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">SCREEN_TITLE</span> <span class="o">=</span> <span class="s2">&quot;Arcade Space Shooter&quot;</span>
+<span class="n">SCALING</span> <span class="o">=</span> <span class="mf">2.0</span>
+</code></pre></div>
+<p>In addition to <code>arcade</code>, you also import <code>random</code>, as you&rsquo;ll use <a href="https://realpython.com/courses/generating-random-data-python/">random numbers</a> later. The constants set up the window size and title, but what is <code>SCALING</code>? This constant is used to make the window, and the game objects in it, larger to compensate for high DPI screens. You&rsquo;ll see it used in two places as the tutorial continues. You can change this value to suit the size of your screen.</p>
+</section><section class="section3" id="window-class"><h3>Window Class<a class="headerlink" href="#window-class" title="Permanent link"></a></h3>
+<p>To take full advantage of the <code>arcade</code> Python game loop and event handlers, create a new class based on <code>arcade.Window</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">35</span><span class="k">class</span> <span class="nc">SpaceShooter</span><span class="p">(</span><span class="n">arcade</span><span class="o">.</span><span class="n">Window</span><span class="p">):</span>
+<span class="linenos">36</span>    <span class="sd">&quot;&quot;&quot;Space Shooter side scroller game</span>
+<span class="linenos">37</span><span class="sd">    Player starts on the left, enemies appear on the right</span>
+<span class="linenos">38</span><span class="sd">    Player can move anywhere, but not off screen</span>
+<span class="linenos">39</span><span class="sd">    Enemies fly to the left at variable speed</span>
+<span class="linenos">40</span><span class="sd">    Collisions end the game</span>
+<span class="linenos">41</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="linenos">44</span>        <span class="sd">&quot;&quot;&quot;Initialize the game</span>
+<span class="linenos">45</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">46</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span>        <span class="c1"># Set up the empty sprite lists</span>
+<span class="linenos">49</span>        <span class="bp">self</span><span class="o">.</span><span class="n">enemies_list</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">SpriteList</span><span class="p">()</span>
+<span class="linenos">50</span>        <span class="bp">self</span><span class="o">.</span><span class="n">clouds_list</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">SpriteList</span><span class="p">()</span>
+<span class="linenos">51</span>        <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">SpriteList</span><span class="p">()</span>
+</code></pre></div>
+<p>Your new class starts just like the object-oriented example above. On line 43, you define your constructor, which takes the width, height, and title of the game window, and use <code>super()</code> to pass those to the parent. Then you initialize some empty sprite lists on lines 49 through 51. In the next section, you&rsquo;ll learn more about sprites and sprite lists.</p>
+</section><section class="section3" id="sprites-and-sprite-lists"><h3>Sprites and Sprite Lists<a class="headerlink" href="#sprites-and-sprite-lists" title="Permanent link"></a></h3>
+<p>Your Python game design calls for a single player who starts on the left and can move freely around the window. It also calls for enemies (in other words, more than one) who appear randomly on the right and move to the left. While you could use the <code>draw_</code> commands to draw the player and every enemy, it would quickly become difficult to keep it all straight.</p>
+<p>Instead, most modern games use <a href="https://en.wikipedia.org/wiki/Sprite_%28computer_graphics%29">sprites</a> to represent objects on the screen. Essentially, a <strong>sprite</strong> is a two-dimensional picture of a game object with a defined size that&rsquo;s drawn at a specific position on the screen. In <code>arcade</code>, sprites are objects of class <code>arcade.Sprite</code>, and you&rsquo;ll use them to represent your player as well as the enemies. You&rsquo;ll even throw in some clouds to make the background more interesting.</p>
+<p>Managing all these sprites can be a challenge. You&rsquo;ll create a single-player sprite, but you&rsquo;ll also be creating numerous enemies and cloud sprites. Keeping track of them all is a job for a <a href="http://arcade.academy/arcade.html#module-arcade.sprite_list">sprite list</a>. If you understand how <a href="https://realpython.com/python-lists-tuples/">Python lists</a> work, then you&rsquo;ve got the tools to use <code>arcade</code>&rsquo;s sprite lists. <strong>Sprite lists</strong> do more than just hold onto all the sprites. They enable three important behaviors:</p>
+<ol>
+<li>You can <strong>update</strong> all the sprites in the list with a single call to <code>SpriteList.update()</code>.</li>
+<li>You can <strong>draw</strong> all the sprites in the list with a single call to <code>SpriteList.draw()</code>.</li>
+<li>You can <strong>check</strong> if a single sprite has collided with any sprite in the list.</li>
+</ol>
+<p>You may wonder why you need three different sprite lists if you only need to manage multiple enemies and clouds. The reason is that each of the three different sprite lists exists because you use them for three different purposes:</p>
+<ol>
+<li>You use <strong><code>.enemies_list</code></strong> to update the enemy positions and to check for collisions.</li>
+<li>You use <strong><code>.clouds_list</code></strong> to update the cloud positions.</li>
+<li>Lastly, you use <strong><code>.all_sprites</code></strong> to draw everything.</li>
+</ol>
+<p>Now, a list is only as useful as the data it contains. Here&rsquo;s how you populate your sprite lists:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">53</span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">54</span>    <span class="sd">&quot;&quot;&quot;Get the game ready to play</span>
+<span class="linenos">55</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span>    <span class="c1"># Set the background color</span>
+<span class="linenos">58</span>    <span class="n">arcade</span><span class="o">.</span><span class="n">set_background_color</span><span class="p">(</span><span class="n">arcade</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">SKY_BLUE</span><span class="p">)</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span>    <span class="c1"># Set up the player</span>
+<span class="linenos">61</span>    <span class="bp">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">Sprite</span><span class="p">(</span><span class="s2">&quot;images/jet.png&quot;</span><span class="p">,</span> <span class="n">SCALING</span><span class="p">)</span>
+<span class="linenos">62</span>    <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">center_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="linenos">63</span>    <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos">64</span>    <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">)</span>
+</code></pre></div>
+<p>You define <code>.setup()</code> to initialize the game to a known starting point. While you could do this in <code>.__init__()</code>, having a separate <code>.setup()</code> method is useful.</p>
+<p>Imagine you want your Python game to have multiple levels, or your player to have multiple lives. Rather than restart the entire game by calling <code>.__init__()</code>, you call <code>.setup()</code> instead to reinitialize the game to a known starting point or set up a new level. Even though this Python game won&rsquo;t have those features, setting up the structure makes it quicker to add them later.</p>
+<p>After you set the background color on line 58, you then define the player sprite:</p>
+<ul>
+<li>
+<p><strong>Line 61</strong> creates a new <code>arcade.Sprite</code> object by specifying the image to display and the scaling factor. It&rsquo;s a good idea to organize your images into a single sub-folder, especially on larger projects.</p>
+</li>
+<li>
+<p><strong>Line 62</strong> sets the y position of the sprite to half the height of the window.</p>
+</li>
+<li>
+<p><strong>Line 63</strong> sets the x position of the sprite by placing the left edge a few pixels away from the window&rsquo;s left edge.</p>
+</li>
+<li>
+<p><strong>Line 64</strong> finally uses <a href="https://realpython.com/python-append/"><code>.append()</code></a> to add the sprite to the <code>.all_sprites</code> list you&rsquo;ll use for drawing.</p>
+</li>
+</ul>
+<p>Lines 62 and 63 show two different ways to position your sprite. Let&rsquo;s take a closer look at all the sprite positioning options available.</p>
+<section class="section4" id="sprite-positioning"><h4>Sprite Positioning<a class="headerlink" href="#sprite-positioning" title="Permanent link"></a></h4>
+<p>All <a href="http://arcade.academy/arcade.html#arcade.Sprite">sprites</a> in <code>arcade</code> have a specific size and position in the window:</p>
+<ul>
+<li><strong>The size</strong>, specified by <code>Sprite.width</code> and <code>Sprite.height</code>, is determined by the graphic used when the sprite is created.</li>
+<li><strong>The position</strong> is initially set to have the center of the sprite, specified by <code>Sprite.center_x</code> and <code>Sprite.center_y</code>, at (0,0) in the window.</li>
+</ul>
+<p>Once the <code>.center_x</code> and <code>.center_y</code> coordinates are known, <code>arcade</code> can use the size to calculate the <code>Sprite.left</code>, <code>Sprite.right</code>, <code>Sprite.top</code>, and <code>Sprite.bottom</code> edges as well.</p>
+<p>This also works in reverse. For example, if you set <code>Sprite.left</code> to a given value, then <code>arcade</code> will recalculate the remaining position attributes as well. You can use any of them to locate the sprite or move it in the window. This is an extremely useful and powerful characteristic of <code>arcade</code> sprites. If you use them, then your Python game will require less code than <code>pygame</code>:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-player.314307f764fb.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-player.314307f764fb.png" width="1664" height="1337" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-player.314307f764fb.png&amp;w=416&amp;sig=96c14a60c9ed670a131442ceb43b9073119957ec 416w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-player.314307f764fb.png&amp;w=832&amp;sig=4c1363b784a24acf1d51801ead3ba2cae6102b94 832w, https://files.realpython.com/media/arcade-player.314307f764fb.png 1664w" sizes="75vw" alt="Arcade tutorial game with just a player" data-asset="1835" /></a></figure>
+<p>Now that you&rsquo;ve defined the player sprite, you can work on the enemy sprites. The design calls for you to make enemy sprites appear at <strong>regular intervals</strong>. How can you do that?</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section3" id="scheduling-functions"><h3>Scheduling Functions<a class="headerlink" href="#scheduling-functions" title="Permanent link"></a></h3>
+<p><code>arcade.schedule()</code> is designed exactly for this purpose. It takes two arguments:</p>
+<ol>
+<li><strong>The name</strong> of the function to call</li>
+<li><strong>The time interval</strong> to wait between each call, in seconds</li>
+</ol>
+<p>Since you want both enemies and clouds to appear throughout the game, you set up one scheduled function to create new enemies, and a second to create new clouds. That code goes into <code>.setup()</code>. Here&rsquo;s what that code looks like:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">66</span><span class="c1"># Spawn a new enemy every 0.25 seconds</span>
+<span class="linenos">67</span><span class="n">arcade</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_enemy</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span><span class="c1"># Spawn a new cloud every second</span>
+<span class="linenos">70</span><span class="n">arcade</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_cloud</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</code></pre></div>
+<p>Now all you have to do is define <code>self.add_enemy()</code> and <code>self.add_cloud()</code>.</p>
+</section><section class="section3" id="adding-enemies"><h3>Adding Enemies<a class="headerlink" href="#adding-enemies" title="Permanent link"></a></h3>
+<p>From your Python game design, enemies have three key properties:</p>
+<ol>
+<li><strong>They appear</strong> at random locations on the right side of the window.</li>
+<li><strong>They move left</strong> in a straight line.</li>
+<li><strong>They disappear</strong> when they go off the screen.</li>
+</ol>
+<p>The code to create an enemy sprite is very similar to the code to create the player sprite:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 93</span><span class="k">def</span> <span class="nf">add_enemy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="linenos"> 94</span>    <span class="sd">&quot;&quot;&quot;Adds a new enemy to the screen</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="sd">    Arguments:</span>
+<span class="linenos"> 97</span><span class="sd">        delta_time {float} -- How much time has passed since the last call</span>
+<span class="linenos"> 98</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span>    <span class="c1"># First, create the new enemy sprite</span>
+<span class="linenos">101</span>    <span class="n">enemy</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">Sprite</span><span class="p">(</span><span class="s2">&quot;images/missile.png&quot;</span><span class="p">,</span> <span class="n">SCALING</span><span class="p">)</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span>    <span class="c1"># Set its position to a random height and off screen right</span>
+<span class="linenos">104</span>    <span class="n">enemy</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">80</span><span class="p">)</span>
+<span class="linenos">105</span>    <span class="n">enemy</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<p><code>.add_enemy()</code> takes a single parameter, <code>delta_time</code>, which represents how much time has passed since the last time it was called. This is required by <code>arcade.schedule()</code>, and while you won&rsquo;t use it here, it can be useful for applications that require advanced timing.</p>
+<p>As with the player sprite, you first create a new <code>arcade.Sprite</code> with a picture and a scaling factor. You set the position using <code>.left</code> and <code>.top</code> to a random position somewhere off the screen to the right:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-game-enemies.ec1376be6bc3.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-game-enemies.ec1376be6bc3.png" width="1664" height="1337" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-game-enemies.ec1376be6bc3.png&amp;w=416&amp;sig=484a31a0873af1758a5dc966f059923a185ae523 416w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/arcade-game-enemies.ec1376be6bc3.png&amp;w=832&amp;sig=0baf4b398aaf9b5342343c8e49a05f4b785a2c40 832w, https://files.realpython.com/media/arcade-game-enemies.ec1376be6bc3.png 1664w" sizes="75vw" alt="Several enemies appearing on the screen" data-asset="1836" /></a></figure>
+<p>This allows the enemy to move onto the screen smoothly, rather than just appearing on the screen. Now, how do you make it move?</p>
+</section><section class="section3" id="moving-sprites"><h3>Moving Sprites<a class="headerlink" href="#moving-sprites" title="Permanent link"></a></h3>
+<p>Moving a sprite requires you to change its position during the update phase of the game loop. While you can do this on your own, <code>arcade</code> has some built-in functionality to reduce your workload. Every <code>arcade.Sprite</code> not only has a set of position attributes, but it also has a set of <strong>motion attributes</strong>. Every time the sprite is updated, <code>arcade</code> will use the motion attributes to update the position, imparting relative motion to the sprite.</p>
+<p>The <code>Sprite.velocity</code> attribute is a tuple consisting of the change in x and y positions. You can also access <code>Sprite.change_x</code> and <code>Sprite.change_y</code> directly. As mentioned above, every time the sprite is updated, its <code>.position</code> is changed based on the <code>.velocity</code>. All you need to do in <code>.add_enemy()</code> is set the velocity:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">107</span><span class="c1"># Set its speed to a random speed heading left</span>
+<span class="linenos">108</span><span class="n">enemy</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="c1"># Add it to the enemies list</span>
+<span class="linenos">111</span><span class="bp">self</span><span class="o">.</span><span class="n">enemies_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enemy</span><span class="p">)</span>
+<span class="linenos">112</span><span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enemy</span><span class="p">)</span>
+</code></pre></div>
+<p>After you set the velocity to a random speed moving left on line 108, you add the new enemy to the appropriate lists. When you later call <code>sprite.update()</code>, <code>arcade</code> will handle the rest:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-flying-enemies-v3.3d8c21be83ba.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-flying-enemies-v3.3d8c21be83ba.gif" width="412" height="323" srcset="https://files.realpython.com/media/arcade-flying-enemies-v3.3d8c21be83ba.gif 103w, https://files.realpython.com/media/arcade-flying-enemies-v3.3d8c21be83ba.gif 206w, https://files.realpython.com/media/arcade-flying-enemies-v3.3d8c21be83ba.gif 412w" sizes="75vw" alt="Enemies flying by in the tutorial game" data-asset="1839" /></a></figure>
+<p>In your Python game design, enemies move in a straight line from right to left. Since your enemies are always moving left, once they&rsquo;re off the screen, they&rsquo;re not coming back. It would be good if you could get rid of an off-screen enemy sprite to free up memory and speed updates. Luckily, <code>arcade</code> has you covered.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="removing-sprites"><h3>Removing Sprites<a class="headerlink" href="#removing-sprites" title="Permanent link"></a></h3>
+<p>Because your enemies are always moving left, their x positions are always getting smaller, and their y positions are always constant. Therefore, you can determine an enemy is off-screen when <code>enemy.right</code> is smaller than zero, which is the left edge of the window. Once you determine the enemy is off-screen, you call <code>enemy.remove_from_sprite_lists()</code> to remove it from all the lists to which it belongs and <strong>release that object from memory</strong>:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">if</span> <span class="n">enemy</span><span class="o">.</span><span class="n">right</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">enemy</span><span class="o">.</span><span class="n">remove_from_sprite_lists</span><span class="p">()</span>
+</code></pre></div>
+<p>But when do you perform this check? Normally, this would happen right after the sprite moved. However, remember what was said earlier about the <code>.all_enemies</code> sprite list:</p>
+<blockquote>
+<p>You use <code>.enemies_list</code> to update the enemy positions and to check for collisions.</p>
+</blockquote>
+<p>This means that in <code>SpaceShooter.on_update()</code>, you&rsquo;ll call <code>enemies_list.update()</code> to handle the enemy movement automatically, which essentially does the following:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">for</span> <span class="n">enemy</span> <span class="ow">in</span> <span class="n">enemies_list</span><span class="p">:</span>
+    <span class="n">enemy</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+<p>It would be nice if you could add the off-screen check directly to the <code>enemy.update()</code> call, and you can! Remember, <code>arcade</code> is an object-oriented library. This means you can create your own classes based on <code>arcade</code> classes, and override the methods you want to modify. In this case, you create a new class based on <code>arcade.Sprite</code> and override <code>.update()</code> only:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">17</span><span class="k">class</span> <span class="nc">FlyingSprite</span><span class="p">(</span><span class="n">arcade</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+<span class="linenos">18</span>    <span class="sd">&quot;&quot;&quot;Base class for all flying sprites</span>
+<span class="linenos">19</span><span class="sd">    Flying sprites include enemies and clouds</span>
+<span class="linenos">20</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">23</span>        <span class="sd">&quot;&quot;&quot;Update the position of the sprite</span>
+<span class="linenos">24</span><span class="sd">        When it moves off screen to the left, remove it</span>
+<span class="linenos">25</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="c1"># Move the sprite</span>
+<span class="linenos">28</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>        <span class="c1"># Remove if off the screen</span>
+<span class="linenos">31</span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">32</span>            <span class="bp">self</span><span class="o">.</span><span class="n">remove_from_sprite_lists</span><span class="p">()</span>
+</code></pre></div>
+<p>You define <code>FlyingSprite</code> as anything that will be flying in your game, like enemies and clouds. You then override <code>.update()</code>, first calling <code>super().update()</code> to process the motion properly. Then, you perform the off-screen check.</p>
+<p>Since you have a new class, you&rsquo;ll also need to make a small change to <code>.add_enemy()</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">add_enemy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds a new enemy to the screen</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        delta_time {float} -- How much time as passed since the last call</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First, create the new enemy sprite</span>
+<span class="hll">    <span class="n">enemy</span> <span class="o">=</span> <span class="n">FlyingSprite</span><span class="p">(</span><span class="s2">&quot;images/missile.png&quot;</span><span class="p">,</span> <span class="n">SCALING</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Rather than creating a new <code>Sprite</code>, you create a new <code>FlyingSprite</code> to take advantage of the new <code>.update()</code>.</p>
+</section><section class="section3" id="adding-clouds"><h3>Adding Clouds<a class="headerlink" href="#adding-clouds" title="Permanent link"></a></h3>
+<p>To make your Python game more appealing visually, you can add clouds to the sky. Clouds fly through the sky, just like your enemies, so you can create and move them in a similar fashion.</p>
+<p><code>.add_cloud()</code> follows the same pattern as <code>.add_enemy()</code>, although the random speed is slower:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">add_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds a new cloud to the screen</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        delta_time {float} -- How much time has passed since the last call</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First, create the new cloud sprite</span>
+    <span class="n">cloud</span> <span class="o">=</span> <span class="n">FlyingSprite</span><span class="p">(</span><span class="s2">&quot;images/cloud.png&quot;</span><span class="p">,</span> <span class="n">SCALING</span><span class="p">)</span>
+
+    <span class="c1"># Set its position to a random height and off screen right</span>
+    <span class="n">cloud</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="n">cloud</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Set its speed to a random speed heading left</span>
+    <span class="n">cloud</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Add it to the enemies list</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">clouds_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cloud</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cloud</span><span class="p">)</span>
+</code></pre></div>
+<p>Clouds move slower than enemies, so you calculate a lower random velocity on line 129.</p>
+<p>Now your Python game looks a bit more complete:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-flying-clouds-v3.961ec0ba975c.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-flying-clouds-v3.961ec0ba975c.gif" width="412" height="323" srcset="https://files.realpython.com/media/arcade-flying-clouds-v3.961ec0ba975c.gif 103w, https://files.realpython.com/media/arcade-flying-clouds-v3.961ec0ba975c.gif 206w, https://files.realpython.com/media/arcade-flying-clouds-v3.961ec0ba975c.gif 412w" sizes="75vw" alt="Clouds flying on the game window" data-asset="1838" /></a></figure>
+<p>Your enemies and clouds are created and move on their own now. Time to make the player move as well using the keyboard.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="keyboard-input"><h3>Keyboard Input<a class="headerlink" href="#keyboard-input" title="Permanent link"></a></h3>
+<p>The <code>arcade.Window</code> class has two functions for processing keyboard input. Your Python game will call <strong><code>.on_key_press()</code></strong> whenever a key is pressed and <strong><code>.on_key_release()</code></strong> whenever a key is released. Both functions accept two integer parameters:</p>
+<ol>
+<li><strong><code>symbol</code></strong> represents the actual key that was pressed or released.</li>
+<li><strong><code>modifiers</code></strong> denotes which modifiers were down. These include the <span class="keys"><kbd class="key-shift">Shift</kbd></span>, <span class="keys"><kbd class="key-control">Ctrl</kbd></span>, and <span class="keys"><kbd class="key-alt">Alt</kbd></span> keys.</li>
+</ol>
+<p>Luckily, you don&rsquo;t need to know which integers represent which keys. The <code>arcade.key</code> module contains all of the keyboard constants you might want to use. Traditionally, moving a player with the keyboard uses one or more of three different sets of keys:</p>
+<ol>
+<li>The four arrow keys for <span class="keys"><kbd class="key-arrow-up">Up</kbd></span>, <span class="keys"><kbd class="key-arrow-down">Down</kbd></span>, <span class="keys"><kbd class="key-arrow-left">Left</kbd></span>, and <span class="keys"><kbd class="key-arrow-right">Right</kbd></span></li>
+<li>The keys <span class="keys"><kbd class="key-i">I</kbd></span>, <span class="keys"><kbd class="key-j">J</kbd></span>, <span class="keys"><kbd class="key-k">K</kbd></span>, and <span class="keys"><kbd class="key-l">L</kbd></span>, which map to Up, Left, Down, and Right</li>
+<li>For left-hand control, the keys <span class="keys"><kbd class="key-w">W</kbd></span>, <span class="keys"><kbd class="key-a">A</kbd></span>, <span class="keys"><kbd class="key-s">S</kbd></span>, and <span class="keys"><kbd class="key-d">D</kbd></span>, which also map to Up, Left, Down, and Right</li>
+</ol>
+<p>For this game, you&rsquo;ll use the arrows and <span class="keys"><kbd class="key-i">I</kbd></span>/<span class="keys"><kbd class="key-j">J</kbd></span>/<span class="keys"><kbd class="key-k">K</kbd></span>/<span class="keys"><kbd class="key-l">L</kbd></span>. Whenever the user presses a movement key, the player sprite moves in that direction. When the user releases a movement key, the sprite stops moving in that direction. You also provide a way to quit the game using <span class="keys"><kbd class="key-q">Q</kbd></span>, and a way to pause the game using <span class="keys"><kbd class="key-p">P</kbd></span>. To accomplish this, you need to respond to keypresses and releases:</p>
+<ul>
+<li><strong>When a key is pressed</strong>, call <code>.on_key_press()</code>. In that method, you check which key was pressed:<ul>
+<li>If it&rsquo;s <span class="keys"><kbd class="key-q">Q</kbd></span>, then you simply quit the game.</li>
+<li>If it&rsquo;s <span class="keys"><kbd class="key-p">P</kbd></span>, then you set a flag to indicate the game is paused.</li>
+<li>If it&rsquo;s a movement key, then you set the player&rsquo;s <code>.change_x</code> or <code>.change_y</code> accordingly.</li>
+<li>If it&rsquo;s any other key, then you ignore it.</li>
+</ul>
+</li>
+<li><strong>When a key is released</strong>, call <code>.on_key_release()</code>. Again, you check which key was released:<ul>
+<li>If it&rsquo;s a movement key, then you set the player&rsquo;s <code>.change_x</code> or <code>.change_y</code> to 0 accordingly.</li>
+<li>If it&rsquo;s any other key, then you ignore it.</li>
+</ul>
+</li>
+</ul>
+<p>Here&rsquo;s what the code looks like:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">134</span><span class="k">def</span> <span class="nf">on_key_press</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">):</span>
+<span class="linenos">135</span>    <span class="sd">&quot;&quot;&quot;Handle user keyboard input</span>
+<span class="linenos">136</span><span class="sd">    Q: Quit the game</span>
+<span class="linenos">137</span><span class="sd">    P: Pause/Unpause the game</span>
+<span class="linenos">138</span><span class="sd">    I/J/K/L: Move Up, Left, Down, Right</span>
+<span class="linenos">139</span><span class="sd">    Arrows: Move Up, Left, Down, Right</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span><span class="sd">    Arguments:</span>
+<span class="linenos">142</span><span class="sd">        symbol {int} -- Which key was pressed</span>
+<span class="linenos">143</span><span class="sd">        modifiers {int} -- Which modifiers were pressed</span>
+<span class="linenos">144</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">145</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">Q</span><span class="p">:</span>
+<span class="linenos">146</span>        <span class="c1"># Quit immediately</span>
+<span class="linenos">147</span>        <span class="n">arcade</span><span class="o">.</span><span class="n">close_window</span><span class="p">()</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">P</span><span class="p">:</span>
+<span class="linenos">150</span>        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">I</span> <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">UP</span><span class="p">:</span>
+<span class="linenos">153</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">K</span> <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">DOWN</span><span class="p">:</span>
+<span class="linenos">156</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="linenos">157</span>
+<span class="linenos">158</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">J</span> <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">LEFT</span><span class="p">:</span>
+<span class="linenos">159</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">L</span> <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">:</span>
+<span class="linenos">162</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span><span class="k">def</span> <span class="nf">on_key_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="linenos">165</span>    <span class="sd">&quot;&quot;&quot;Undo movement vectors when movement keys are released</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="sd">    Arguments:</span>
+<span class="linenos">168</span><span class="sd">        symbol {int} -- Which key was pressed</span>
+<span class="linenos">169</span><span class="sd">        modifiers {int} -- Which modifiers were pressed</span>
+<span class="linenos">170</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">171</span>    <span class="k">if</span> <span class="p">(</span>
+<span class="linenos">172</span>        <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">I</span>
+<span class="linenos">173</span>        <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">K</span>
+<span class="linenos">174</span>        <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">UP</span>
+<span class="linenos">175</span>        <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">DOWN</span>
+<span class="linenos">176</span>    <span class="p">):</span>
+<span class="linenos">177</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_y</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span>    <span class="k">if</span> <span class="p">(</span>
+<span class="linenos">180</span>        <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">J</span>
+<span class="linenos">181</span>        <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">L</span>
+<span class="linenos">182</span>        <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">LEFT</span>
+<span class="linenos">183</span>        <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">RIGHT</span>
+<span class="linenos">184</span>    <span class="p">):</span>
+<span class="linenos">185</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_x</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<p>In <code>.on_key_release()</code>, you only check for keys that will impact your player sprite movement. There&rsquo;s no need to check if the Pause or Quit keys were released.</p>
+<p>Now you can move around the screen and quit the game immediately:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/arcade-moving-player-v3.77b0ae3e0b34.gif" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/arcade-moving-player-v3.77b0ae3e0b34.gif" width="412" height="323" srcset="https://files.realpython.com/media/arcade-moving-player-v3.77b0ae3e0b34.gif 103w, https://files.realpython.com/media/arcade-moving-player-v3.77b0ae3e0b34.gif 206w, https://files.realpython.com/media/arcade-moving-player-v3.77b0ae3e0b34.gif 412w" sizes="75vw" alt="Moving the player around the screen" data-asset="1837" /></a></figure>
+<p>You may be wondering how the pause functionality works. To see that in action, you first need to learn to update all your Python game objects.</p>
+</section><section class="section3" id="updating-the-game-objects"><h3>Updating the Game Objects<a class="headerlink" href="#updating-the-game-objects" title="Permanent link"></a></h3>
+<p>Just because you&rsquo;ve set a velocity on all your sprites doesn&rsquo;t mean they will move. To make them move, you have to <strong>update</strong> them over and over again in the game loop.</p>
+<p>Since <code>arcade</code> controls the Python game loop, it also controls when updates are needed by calling <code>.on_update()</code>. You can override this method to provide the proper behavior for your game, including game movement and other behavior. For this game, you need to do a few things to update everything properly:</p>
+<ol>
+<li><strong>You check</strong> if the game is paused. If so, then you can just exit, so no further updates happen.</li>
+<li><strong>You update</strong> all your sprites to make them move.</li>
+<li><strong>You check</strong> if the player sprite has moved off-screen. If so, then simply move them back on screen.</li>
+</ol>
+<p>That&rsquo;s it for now. Here&rsquo;s what this code looks like:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">189</span><span class="k">def</span> <span class="nf">on_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="linenos">190</span>    <span class="sd">&quot;&quot;&quot;Update the positions and statuses of all game objects</span>
+<span class="linenos">191</span><span class="sd">    If paused, do nothing</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="sd">    Arguments:</span>
+<span class="linenos">194</span><span class="sd">        delta_time {float} -- Time since the last update</span>
+<span class="linenos">195</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span>    <span class="c1"># If paused, don&#39;t update anything</span>
+<span class="linenos">198</span>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+<span class="linenos">199</span>        <span class="k">return</span>
+<span class="linenos">200</span>
+<span class="linenos">201</span>    <span class="c1"># Update everything</span>
+<span class="linenos">202</span>    <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span>    <span class="c1"># Keep the player on screen</span>
+<span class="linenos">205</span>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">top</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">:</span>
+<span class="linenos">206</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
+<span class="linenos">207</span>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">right</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">:</span>
+<span class="linenos">208</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
+<span class="linenos">209</span>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">bottom</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">210</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">211</span>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">left</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">212</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<p>Line 198 is where you check if the game is paused, and simply return if so. That skips all the remaining code, so there will be no movement. All sprite movement is handled by line 202. This single line works for three reasons:</p>
+<ol>
+<li><strong>Every sprite</strong> is a member of the <code>self.all_sprites</code> list.</li>
+<li><strong>The call</strong> to <code>self.all_sprites.update()</code> results in calling <code>.update()</code> on every sprite in the list.</li>
+<li><strong>Every sprite</strong> in the list has <code>.velocity</code> (consisting of the <code>.change_x</code> and <code>.change_y</code> attributes) and will process its own movement when its <code>.update()</code> is called.</li>
+</ol>
+<p>Finally, you check if the player sprite is off-screen in lines 205 to 212 by comparing the edges of the sprites with the edges of the window. For example, on lines 205 and 206, if <code>self.player.top</code> is beyond the top of the screen, then you reset <code>self.player.top</code> to the top of the screen. Now that everything is updated, you can draw everything.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="drawing-on-the-window"><h3>Drawing on the Window<a class="headerlink" href="#drawing-on-the-window" title="Permanent link"></a></h3>
+<p>Since updates to game objects happen in <code>.on_update()</code>, it seems appropriate that drawing the game objects would take place in a method called <code>.on_draw()</code>. Because you&rsquo;ve organized everything into sprite lists, your code for this method is very short:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">231</span><span class="k">def</span> <span class="nf">on_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">232</span>    <span class="sd">&quot;&quot;&quot;Draw all game objects</span>
+<span class="linenos">233</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">234</span>    <span class="n">arcade</span><span class="o">.</span><span class="n">start_render</span><span class="p">()</span>
+<span class="linenos">235</span>    <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</code></pre></div>
+<p>All drawing starts with the call to <code>arcade.start_render()</code> on line 234. Just like updating, you can draw all your sprites at once by simply calling <code>self.all_sprites.draw()</code> on line 235. Now there&rsquo;s just one final part of your Python game to work on, and it&rsquo;s the very last part of the initial design:</p>
+<blockquote>
+<p><em>When the player is hit by an obstacle</em>, or the user closes the window, the game ends.</p>
+</blockquote>
+<p>This is the actual game part! Right now, enemies will fly through your player sprite doing nothing. Let&rsquo;s see how you can add this functionality.</p>
+</section><section class="section3" id="collision-detection"><h3>Collision Detection<a class="headerlink" href="#collision-detection" title="Permanent link"></a></h3>
+<p>Games are all about collisions of one form or another, even in non-computer games. Without real or virtual collisions, there would be no slap-shot hockey goals, no double-sixes in backgammon, and no way in chess to capture your opponent&rsquo;s queen on the end of a <a href="https://en.wikipedia.org/wiki/Fork_(chess)">knight fork</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Collision_detection"><strong>Collision detection</strong></a> in computer games requires the programmer to detect if two game objects are partially occupying the same space on the screen. You use collision detection to shoot enemies, limit player movement with walls and floors, and provide obstacles to avoid. Depending on the game objects involved and the desired behavior, collision detection logic can require potentially complicated math.</p>
+<p>However, you don&rsquo;t have to write your own collision detection code with <code>arcade</code>. You can use one of three different <code>Sprite</code> methods to detect collisions quickly:</p>
+<ol>
+<li><strong><code>Sprite.collides_with_point((x,y))</code></strong> returns <code>True</code> if the given point <code>(x,y)</code> is within the boundary of the current sprite, and <code>False</code> otherwise.</li>
+<li><strong><code>Sprite.collides_with_sprite(Sprite)</code></strong> returns <code>True</code> if the given sprite overlaps with the current sprite, and <code>False</code> otherwise.</li>
+<li><strong><code>Sprite.collides_with_list(SpriteList)</code></strong> returns a list containing all the sprites in the <code>SpriteList</code> that overlap with the current sprite. If there are no overlapping sprites, then the list will be empty, meaning it will have a length of zero.</li>
+</ol>
+<p>Since you&rsquo;re interested in whether or not the single-player sprite has collided with any of the enemy sprites, the last method is exactly what you need. You call <code>self.player.collides_with_list(self.enemies_list)</code> and check if the list it returns contains any sprites. If so, then you end the game.</p>
+<p>So, where do you make this call? The best place is in <code>.on_update()</code>, just before you update the positions of everything:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">189</span><span class="k">def</span> <span class="nf">on_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="linenos">190</span>    <span class="sd">&quot;&quot;&quot;Update the positions and statuses of all game objects</span>
+<span class="linenos">191</span><span class="sd">    If paused, do nothing</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="sd">    Arguments:</span>
+<span class="linenos">194</span><span class="sd">        delta_time {float} -- Time since the last update</span>
+<span class="linenos">195</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span>    <span class="c1"># If paused, don&#39;t update anything</span>
+<span class="linenos">198</span>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+<span class="linenos">199</span>        <span class="k">return</span>
+<span class="linenos">200</span>
+<span class="linenos">201</span><span class="hll">    <span class="c1"># Did you hit anything? If so, end the game</span>
+</span><span class="linenos">202</span><span class="hll">    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">collides_with_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enemies_list</span><span class="p">):</span>
+</span><span class="linenos">203</span><span class="hll">        <span class="n">arcade</span><span class="o">.</span><span class="n">close_window</span><span class="p">()</span>
+</span><span class="linenos">204</span>
+<span class="linenos">205</span>    <span class="c1"># Update everything</span>
+<span class="linenos">206</span>    <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+<p>Lines 202 and 203 check for a collision between the <code>player</code> and any sprite in <code>.enemies_list</code>. If the returned list contains any sprites, then that indicates a collision, and you can end the game. Now, why would you check <em>before</em> updating the positions of everything? Remember the sequence of action in the Python game loop:</p>
+<ol>
+<li><strong>You update</strong> the states of the game objects. You do this in <code>.on_update()</code>.</li>
+<li><strong>You draw</strong> all the game objects in their new positions. You do this in <code>.on_draw()</code>.</li>
+</ol>
+<p>If you check for collisions after you update everything in <code>.on_update()</code>, then any new positions won&rsquo;t be drawn if a collision is detected. You&rsquo;re actually checking for a collision based on sprite positions that haven&rsquo;t been shown to the user yet. It may appear to the player as though the game ended before there was an actual collision! When you check first, you ensure that what&rsquo;s visible to the player is the same as the game state you&rsquo;re checking.</p>
+<p>Now you have a Python game that looks good and provides a challenge! Now you can add some extra features to help make your Python game stand out.</p>
+</section></section><section class="section2" id="extras"><h2>Extras<a class="headerlink" href="#extras" title="Permanent link"></a></h2>
+<p>There are many more features you can add to your Python game to make it stand out. In addition to the features the game design called out that you didn&rsquo;t implement, you may have others in mind as well. This section will cover two features that will give your Python game some added impact by adding sound effects and controlling the game speed.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section3" id="sound"><h3>Sound<a class="headerlink" href="#sound" title="Permanent link"></a></h3>
+<p>Sound is an important part of any computer game. From explosions to enemy taunts to background music, your Python game is a little flat without sound. Out of the box, <code>arcade</code> provides support for <a href="https://en.wikipedia.org/wiki/WAV">WAV</a> files. If the <a href="https://ffmpeg.org/">ffmpeg library</a> is installed and available, then <code>arcade</code> also supports <a href="https://en.wikipedia.org/wiki/Ogg">Ogg</a> and <a href="https://en.wikipedia.org/wiki/MP3">MP3</a> format files. You&rsquo;ll add three different sound effects and some background music:</p>
+<ol>
+<li><strong>The first sound effect</strong> plays as the player moves up.</li>
+<li><strong>The second sound effect</strong> plays when the player moves down.</li>
+<li><strong>The third sound effect</strong> plays when there is a collision.</li>
+<li><strong>The background music</strong> is the last thing you&rsquo;ll add.</li>
+</ol>
+<p>You&rsquo;ll start with the sound effects.</p>
+<section class="section4" id="sound-effects"><h4>Sound Effects<a class="headerlink" href="#sound-effects" title="Permanent link"></a></h4>
+<p>Before you can play any of these sounds, you have to load them. You do so in <code>.setup()</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">66</span><span class="c1"># Spawn a new enemy every 0.25 seconds</span>
+<span class="linenos">67</span><span class="n">arcade</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_enemy</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span><span class="c1"># Spawn a new cloud every second</span>
+<span class="linenos">70</span><span class="n">arcade</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_cloud</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span><span class="hll"><span class="c1"># Load your sounds</span>
+</span><span class="linenos">73</span><span class="hll"><span class="c1"># Sound sources: Jon Fincher</span>
+</span><span class="linenos">74</span><span class="hll"><span class="bp">self</span><span class="o">.</span><span class="n">collision_sound</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span><span class="s2">&quot;sounds/Collision.wav&quot;</span><span class="p">)</span>
+</span><span class="linenos">75</span><span class="hll"><span class="bp">self</span><span class="o">.</span><span class="n">move_up_sound</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span><span class="s2">&quot;sounds/Rising_putter.wav&quot;</span><span class="p">)</span>
+</span><span class="linenos">76</span><span class="hll"><span class="bp">self</span><span class="o">.</span><span class="n">move_down_sound</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span><span class="s2">&quot;sounds/Falling_putter.wav&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Like your sprite images, it&rsquo;s good practice to place all your sounds in a single sub-folder.</p>
+<p>With the sounds loaded, you can play them at the appropriate time. For <code>.move_up_sound</code> and <code>.move_down_sound</code>, this happens during the <code>.on_key_press()</code> handler:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">134</span><span class="k">def</span> <span class="nf">on_key_press</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">):</span>
+<span class="linenos">135</span>    <span class="sd">&quot;&quot;&quot;Handle user keyboard input</span>
+<span class="linenos">136</span><span class="sd">    Q: Quit the game</span>
+<span class="linenos">137</span><span class="sd">    P: Pause the game</span>
+<span class="linenos">138</span><span class="sd">    I/J/K/L: Move Up, Left, Down, Right</span>
+<span class="linenos">139</span><span class="sd">    Arrows: Move Up, Left, Down, Right</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span><span class="sd">    Arguments:</span>
+<span class="linenos">142</span><span class="sd">        symbol {int} -- Which key was pressed</span>
+<span class="linenos">143</span><span class="sd">        modifiers {int} -- Which modifiers were pressed</span>
+<span class="linenos">144</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">145</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">Q</span><span class="p">:</span>
+<span class="linenos">146</span>        <span class="c1"># Quit immediately</span>
+<span class="linenos">147</span>        <span class="n">arcade</span><span class="o">.</span><span class="n">close_window</span><span class="p">()</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">P</span><span class="p">:</span>
+<span class="linenos">150</span>        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">I</span> <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">UP</span><span class="p">:</span>
+<span class="linenos">153</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="linenos">154</span><span class="hll">        <span class="n">arcade</span><span class="o">.</span><span class="n">play_sound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_up_sound</span><span class="p">)</span>
+</span><span class="linenos">155</span>
+<span class="linenos">156</span>    <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">K</span> <span class="ow">or</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">arcade</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">DOWN</span><span class="p">:</span>
+<span class="linenos">157</span>        <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">change_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="linenos">158</span><span class="hll">        <span class="n">arcade</span><span class="o">.</span><span class="n">play_sound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_down_sound</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Now, whenever the player moves up or down, your Python game will play a sound.</p>
+<p>The collision sound will play whenever <code>.on_update()</code> detects a collision:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">on_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update the positions and statuses of all game objects</span>
+<span class="sd">    If paused, do nothing</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        delta_time {float} -- Time since the last update</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># If paused, don&#39;t update anything</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Did you hit anything? If so, end the game</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">collides_with_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enemies_list</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="hll">        <span class="n">arcade</span><span class="o">.</span><span class="n">play_sound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collision_sound</span><span class="p">)</span>
+</span>        <span class="n">arcade</span><span class="o">.</span><span class="n">close_window</span><span class="p">()</span>
+
+    <span class="c1"># Update everything</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+<p>Just before the window closes, a collision sound will play.</p>
+</section><section class="section4" id="background-music"><h4>Background Music<a class="headerlink" href="#background-music" title="Permanent link"></a></h4>
+<p>Adding background music follows the same pattern as adding sound effects. The only difference is when it starts to play. For background music, you normally start it when the level starts, so load and start the sound in <code>.setup()</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">66</span><span class="c1"># Spawn a new enemy every 0.25 seconds</span>
+<span class="linenos">67</span><span class="n">arcade</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_enemy</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span><span class="c1"># Spawn a new cloud every second</span>
+<span class="linenos">70</span><span class="n">arcade</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_cloud</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span><span class="hll"><span class="c1"># Load your background music</span>
+</span><span class="linenos">73</span><span class="hll"><span class="c1"># Sound source: http://ccmixter.org/files/Apoxode/59262</span>
+</span><span class="linenos">74</span><span class="hll"><span class="c1"># License: https://creativecommons.org/licenses/by/3.0/</span>
+</span><span class="linenos">75</span><span class="hll"><span class="bp">self</span><span class="o">.</span><span class="n">background_music</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span>
+</span><span class="linenos">76</span><span class="hll">    <span class="s2">&quot;sounds/Apoxode_-_Electric_1.wav&quot;</span>
+</span><span class="linenos">77</span><span class="hll"><span class="p">)</span>
+</span><span class="linenos">78</span>
+<span class="linenos">79</span><span class="c1"># Load your sounds</span>
+<span class="linenos">80</span><span class="c1"># Sound sources: Jon Fincher</span>
+<span class="linenos">81</span><span class="bp">self</span><span class="o">.</span><span class="n">collision_sound</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span><span class="s2">&quot;sounds/Collision.wav&quot;</span><span class="p">)</span>
+<span class="linenos">82</span><span class="bp">self</span><span class="o">.</span><span class="n">move_up_sound</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span><span class="s2">&quot;sounds/Rising_putter.wav&quot;</span><span class="p">)</span>
+<span class="linenos">83</span><span class="bp">self</span><span class="o">.</span><span class="n">move_down_sound</span> <span class="o">=</span> <span class="n">arcade</span><span class="o">.</span><span class="n">load_sound</span><span class="p">(</span><span class="s2">&quot;sounds/Falling_putter.wav&quot;</span><span class="p">)</span>
+<span class="linenos">84</span>
+<span class="linenos">85</span><span class="hll"><span class="c1"># Start the background music</span>
+</span><span class="linenos">86</span><span class="hll"><span class="n">arcade</span><span class="o">.</span><span class="n">play_sound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background_music</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Now, you not only have sound effects, but also some nifty background music as well!</p>
+</section><section class="section4" id="sound-limitations"><h4>Sound Limitations<a class="headerlink" href="#sound-limitations" title="Permanent link"></a></h4>
+<p>There are some limitations on what <code>arcade</code> can currently do with sound:</p>
+<ol>
+<li>There is no <strong>volume control</strong> on any sounds.</li>
+<li>There is no way to <strong>repeat</strong> a sound, such as looping background music.</li>
+<li>There is no way to tell if a sound is <strong>currently playing</strong> before you try to stop it.</li>
+<li>Without <code>ffmpeg</code>, you are <strong>limited to WAV sounds</strong>, which can be large.</li>
+</ol>
+<p>Despite these limitations, it&rsquo;s well worth the effort to add sound to your <code>arcade</code> Python game.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section3" id="python-game-speed"><h3>Python Game Speed<a class="headerlink" href="#python-game-speed" title="Permanent link"></a></h3>
+<p>The speed of any game is dictated by its <strong>frame rate</strong>, which is the frequency at which the graphics on the screen are updated. Higher frame rates normally result in smoother gameplay, while lower frame rates give you more time to perform complex calculations.</p>
+<p>The frame rate of an <code>arcade</code> Python game is managed by the game loop in <code>arcade.run()</code>. The Python game loop calls <code>.on_update()</code> and <code>.on_draw()</code> roughly 60 times per second. Therefore, the game has a frame rate of 60 frames per second or <strong>60 FPS</strong>.</p>
+<p>Notice the description above says that the frame rate is <strong>roughly</strong> 60 FPS. This frame rate is not guaranteed to be exact. It may fluctuate up or down based on many factors, such as load on the machine or longer-than-normal update times. As a Python game programmer, you want to ensure your Python game acts the same, whether it&rsquo;s running at 60 FPS, 30 FPS, or any other rate. So how do you do this?</p>
+<section class="section4" id="time-based-movement"><h4>Time-Based Movement<a class="headerlink" href="#time-based-movement" title="Permanent link"></a></h4>
+<p>Imagine an object moving in space at 60 kilometers per minute. You can calculate how far the object will travel in any length of time by multiplying that time by the object&rsquo;s speed:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/distance-calc.269b9fb15c95.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-50" src="https://files.realpython.com/media/distance-calc.269b9fb15c95.png" width="692" height="92" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/distance-calc.269b9fb15c95.png&amp;w=173&amp;sig=efbc8f64a418a5e162ad549dd5b63c2fcda6bcb2 173w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/distance-calc.269b9fb15c95.png&amp;w=346&amp;sig=8f686d6076eb3194ddc8458d4098b19dda289baf 346w, https://files.realpython.com/media/distance-calc.269b9fb15c95.png 692w" sizes="75vw" alt="Calculating distance based on speed and time." data-asset="2093" /></a></figure>
+<p>The object moves 120 kilometers in 2 minutes and 30 kilometers in half a minute.</p>
+<p>You can use this same calculation to move your sprites at a <strong>constant speed</strong> no matter what the frame rate. If you specify the sprite&rsquo;s speed in terms of pixels per second, then you can calculate how many pixels it moves every frame if you know how much time has passed since the last frame appeared. How do you know that?</p>
+<p>Recall that <code>.on_update()</code> takes a single parameter, <code>delta_time</code>. This is the amount of time in seconds that have passed since the last time <code>.on_update()</code> was called. For a game running at 60 FPS, <code>delta_time</code> will be 1/60 of a second or roughly 0.0167 seconds. If you multiply the time that&rsquo;s passed by the amount a sprite will move, then you&rsquo;ll ensure sprite movement is based on the time elapsed and not the frame rate.</p>
+</section><section class="section4" id="updating-sprite-movement"><h4>Updating Sprite Movement<a class="headerlink" href="#updating-sprite-movement" title="Permanent link"></a></h4>
+<p>There&rsquo;s just one problem&mdash;neither <code>Sprite.on_update()</code> nor <code>SpriteList.on_update()</code> accept the <code>delta_time</code> parameter. This means there&rsquo;s no way to pass this on to your sprites to handle automatically. Therefore, to implement this feature, you need to <strong>update your sprite positions manually</strong>. Replace the call to <code>self.all_sprites.update()</code> in <code>.on_update()</code> with the following code:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">def</span> <span class="nf">on_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update the positions and statuses of all game objects</span>
+<span class="sd">    If paused, do nothing</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        delta_time {float} -- Time since the last update</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># If paused, don&#39;t update anything</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Did you hit anything? If so, end the game</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">collides_with_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enemies_list</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">arcade</span><span class="o">.</span><span class="n">play_sound</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collision_sound</span><span class="p">)</span>
+        <span class="n">arcade</span><span class="o">.</span><span class="n">close_window</span><span class="p">()</span>
+
+    <span class="c1"># Update everything</span>
+<span class="hll">    <span class="k">for</span> <span class="n">sprite</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_sprites</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">sprite</span><span class="o">.</span><span class="n">center_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+</span><span class="hll">            <span class="n">sprite</span><span class="o">.</span><span class="n">center_x</span> <span class="o">+</span> <span class="n">sprite</span><span class="o">.</span><span class="n">change_x</span> <span class="o">*</span> <span class="n">delta_time</span>
+</span><span class="hll">        <span class="p">)</span>
+</span><span class="hll">        <span class="n">sprite</span><span class="o">.</span><span class="n">center_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+</span><span class="hll">            <span class="n">sprite</span><span class="o">.</span><span class="n">center_y</span> <span class="o">+</span> <span class="n">sprite</span><span class="o">.</span><span class="n">change_y</span> <span class="o">*</span> <span class="n">delta_time</span>
+</span><span class="hll">        <span class="p">)</span>
+</span></code></pre></div>
+<p>In this new code, you modify the position of each sprite manually, multiplying <code>.change_x</code> and <code>.change_y</code> by <code>delta_time</code>. This ensures that the sprite moves a constant distance every second, rather than a constant distance every frame, which can smooth out gameplay.</p>
+</section><section class="section4" id="updating-sprite-parameters"><h4>Updating Sprite Parameters<a class="headerlink" href="#updating-sprite-parameters" title="Permanent link"></a></h4>
+<p>Of course, this also means you should re-evaluate and adjust the initial position and speed of all your sprites as well. Recall the position and <code>.velocity</code> your enemy sprites are given when they&rsquo;re created:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 93</span><span class="k">def</span> <span class="nf">add_enemy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="linenos"> 94</span>    <span class="sd">&quot;&quot;&quot;Adds a new enemy to the screen</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="sd">    Arguments:</span>
+<span class="linenos"> 97</span><span class="sd">        delta_time {float} -- How much time as passed since the last call</span>
+<span class="linenos"> 98</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span>    <span class="c1"># First, create the new enemy sprite</span>
+<span class="linenos">101</span>    <span class="n">enemy</span> <span class="o">=</span> <span class="n">FlyingSprite</span><span class="p">(</span><span class="s2">&quot;images/missile.png&quot;</span><span class="p">,</span> <span class="n">SCALING</span><span class="p">)</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span>    <span class="c1"># Set its position to a random height and off screen right</span>
+<span class="linenos">104</span><span class="hll">    <span class="n">enemy</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">80</span><span class="p">)</span>
+</span><span class="linenos">105</span>    <span class="n">enemy</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span>    <span class="c1"># Set its speed to a random speed heading left</span>
+<span class="linenos">108</span><span class="hll">    <span class="n">enemy</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div>
+<p>With the new movement calculations based on time, your enemies will now move at a maximum speed of 20 pixels every second. This means that on an 800-pixel-wide window, the fastest enemy will take forty seconds to fly across the screen. Further, if the enemy starts eighty pixels to the right of the window, then the fastest will take four full seconds just to appear!</p>
+<p>Adjusting the position and velocity is part of making your Python game interesting and playable. Start by adjusting each by a factor of ten, and readjust from there. The same reevaluation and adjustments should be done with the clouds, as well as the movement velocity of the player.</p>
+</section></section><section class="section3" id="tweaks-and-enhancements"><h3>Tweaks and Enhancements<a class="headerlink" href="#tweaks-and-enhancements" title="Permanent link"></a></h3>
+<p>During your Python game design, there were several features that you didn&rsquo;t add. To add to that list, here are some additional enhancements and tweaks that you may have noticed during Python gameplay and testing:</p>
+<ol>
+<li>When the game is paused, enemies and clouds are still generated by the scheduled functions. This means that, when the game is unpaused, a huge wave of them are waiting for you. <strong>How do you prevent that from happening?</strong></li>
+<li>As mentioned above, due to some limitations of the <code>arcade</code> sound engine, the background music does not repeat itself. <strong>How do you work around that issue?</strong></li>
+<li>When the player collides with an enemy, the game ends abruptly without playing the collision sound. <strong>How do you keep the game open for a second or two before it closes the window?</strong></li>
+</ol>
+<p>There may be other tweaks you could add. Try to implement some of them as an exercise, and share your results down in the comments!</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section2" id="a-note-on-sources"><h2>A Note on Sources<a class="headerlink" href="#a-note-on-sources" title="Permanent link"></a></h2>
+<p>You may have noticed a comment when the background music was loaded, listing the source of the music and a link to the Creative Commons license. This was done because the creator of that sound requires it. The license requirements state that, in order to use the sound, both proper attribution and a link to the license must be provided.</p>
+<p>Here are some sources for music, sound, and art that you can search for useful content:</p>
+<ul>
+<li><a href="https://opengameart.org"><strong>OpenGameArt.org:</strong></a> sounds, sound effects, sprites, and other artwork</li>
+<li><a href="https://kenney.nl"><strong>Kenney.nl:</strong></a> sounds, sound effects, sprites, and other artwork</li>
+<li><a href="https://www.gameart2d.com/"><strong>Gamer Art 2D:</strong></a> sprites and other artwork</li>
+<li><a href="http://ccmixter.org"><strong>CC Mixter:</strong></a> sounds and sound effects</li>
+<li><a href="https://freesound.org/"><strong>Freesound:</strong></a> sounds and sound effects</li>
+</ul>
+<p>As you make your games and use downloaded content such as art, music, or code from other sources, please be sure that you&rsquo;re complying with the licensing terms of those sources.</p>
+</section><section class="section2" id="conclusion"><h2>Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<p>Computer games are a great introduction to coding, and the <code>arcade</code> library is a great first step. Designed as a modern Python framework for crafting games, you can create compelling Python game experiences with great graphics and sound.</p>
+<p><strong>Throughout this tutorial, you learned how to:</strong></p>
+<ul>
+<li>Install the <code>arcade</code> library</li>
+<li>Draw items on the screen</li>
+<li>Work with the <code>arcade</code> Python game loop</li>
+<li>Manage on-screen graphic elements</li>
+<li>Handle user input</li>
+<li>Play sound effects and music</li>
+<li>Describe how Python game programming in <code>arcade</code> differs from <code>pygame</code></li>
+</ul>
+<p>I hope you give <code>arcade</code> a try. If you do, then please leave a comment below, and Happy Pythoning! You can download all the materials used in this tutorial at the link below:</p>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Download Assets:</strong> <a href="https://realpython.com/bonus/arcade-framework/" class="alert-link" data-toggle="modal" data-target="#modal-arcade-framework" data-focus="false" markdown="1">Click here to download the assets you&rsquo;ll use</a> to make a game with arcade in this tutorial.</p>
+</div>
+</section>
+<div class="text-center my-3">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.</p>
+</div>
+<div class="col-xs-12 col-sm-5">
+<img class="img-fluid rounded mb-3" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="gafPFGo29tNlZcgxhWrFdw7k7H3dq1K4mfU2gfA0uYIv95VfqITPDB6gnC87DzeT">
+<input type="hidden" name="slug" value="static-python-tricks-footer">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me Python Tricks »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="card mt-3" id="author">
+<p class="card-header h3">About <strong>Jon Fincher</strong></p>
+<div class="card-body">
+<div class="container p-0">
+<div class="row">
+<div class="col-12 col-md-3 align-self-center">
+<a href="/team/jfincher/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=336&amp;h=336&amp;mode=crop&amp;sig=81af17102bb9a3bbad9168ef7238a4d624eeed66" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=84&amp;h=84&amp;mode=crop&amp;sig=c6b19a6bcf8df677f2ab95850bb967c0bb4e05da 84w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=168&amp;h=168&amp;mode=crop&amp;sig=d31d31c38382810b640cda0071dde29cda1695de 168w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=336&amp;h=336&amp;mode=crop&amp;sig=81af17102bb9a3bbad9168ef7238a4d624eeed66 336w" sizes="25vw" width="336" height="336" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto" alt="Jon Fincher"></a>
+<a href="/team/jfincher/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=336&amp;h=336&amp;mode=crop&amp;sig=81af17102bb9a3bbad9168ef7238a4d624eeed66" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=84&amp;h=84&amp;mode=crop&amp;sig=c6b19a6bcf8df677f2ab95850bb967c0bb4e05da 84w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=168&amp;h=168&amp;mode=crop&amp;sig=d31d31c38382810b640cda0071dde29cda1695de 168w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Running_headshot.20bba3e79e1c.jpg&amp;w=336&amp;h=336&amp;mode=crop&amp;sig=81af17102bb9a3bbad9168ef7238a4d624eeed66 336w" sizes="25vw" width="336" height="336" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0" alt="Jon Fincher"></a>
+</div>
+<div class="col mt-3">
+<p>Jon taught Python and Java in two high schools in Washington State. Previously, he was a Program Manager at Microsoft.</p>
+<a href="/team/jfincher/" class="card-link">» More about Jon</a>
+</div>
+</div>
+</div>
+</div>
+<hr class="my-0">
+<div class="card-body pb-0">
+<div class="container">
+<div class="row">
+<p><em>Each tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:</em></p>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/asantos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=175&amp;h=175&amp;mode=crop&amp;sig=30253487c673fd67bb45ea6bef95b3c57e115e46 175w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=350&amp;h=350&amp;mode=crop&amp;sig=a43bd9ea30a6f61a4fc2451ab9abfc6faec8a2c0 350w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c 700w" sizes="10vw" width="336" height="336" class="rounded-circle img-fluid w-100" alt="Aldren Santos"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/asantos/" class="card-link small"><p>Aldren</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/gahjelle/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=c6390201e73d3e09429d73da5bb29c17ab10403a 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=fcea459ee24a7b320573cadee324cf75509dc1d6 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1 800w" sizes="10vw" width="336" height="336" class="rounded-circle img-fluid w-100" alt="Geir Arne Hjelle"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/gahjelle/" class="card-link small"><p>Geir Arne</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jayazhane/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/author-jpowell.ecce5da51b65.jpg&amp;w=572&amp;h=572&amp;mode=crop&amp;sig=470fc95873961cae0d7aa2ade0d7ba7e2a1c000c" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/author-jpowell.ecce5da51b65.jpg&amp;w=143&amp;h=143&amp;mode=crop&amp;sig=ecfc9b8b8a06ab615832480701300a71a9bb1415 143w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/author-jpowell.ecce5da51b65.jpg&amp;w=286&amp;h=286&amp;mode=crop&amp;sig=1ce326cbdd6a73e2b78c11a6c0b71603118da884 286w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/author-jpowell.ecce5da51b65.jpg&amp;w=572&amp;h=572&amp;mode=crop&amp;sig=470fc95873961cae0d7aa2ade0d7ba7e2a1c000c 572w" sizes="10vw" width="336" height="336" class="rounded-circle img-fluid w-100" alt="Jaya Zhané"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jayazhane/" class="card-link small"><p>Jaya</p></a>
+</div>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jjablonski/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=706b16de3cb88a8f353f4a98d7c7bc7234229bd0 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=6d7aa672ca3f1ac5f7cd62ed1641b60f98d04d8b 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858 800w" sizes="10vw" width="336" height="336" class="rounded-circle img-fluid w-100" alt="Joanna Jablonski"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jjablonski/" class="card-link small"><p>Joanna</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/mdriscoll/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=13058d69f737cb34c4cb973e7c412bf68ee9de63" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=225&amp;h=225&amp;mode=crop&amp;sig=b40467470e5fc7815bdfbf8a4923a95092f16bb8 225w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=450&amp;h=450&amp;mode=crop&amp;sig=07adbea6844e4f6c8bc4cfabca33d6a84795ea6c 450w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=13058d69f737cb34c4cb973e7c412bf68ee9de63 900w" sizes="10vw" width="336" height="336" class="rounded-circle img-fluid w-100" alt="Mike Driscoll"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/mdriscoll/" class="card-link small"><p>Mike</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center"></div>
+<div class="col pl-0 d-none d-sm-block"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+<div class="col-12 text-center d-block d-md-none">
+<p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</mark></u> With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-1"><img class="w-75" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+<p class="mb-0"><a href="/account/join/?utm_source=rp_article_footer&utm_content=arcade-python-game-framework" class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+</div>
+<div class="col-12 text-center d-none d-md-block">
+<p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-2"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="/account/join/?utm_source=rp_article_footer&utm_content=arcade-python-game-framework" class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+</div>
+</div>
+<div class="card mt-4" id="reader-comments">
+<p class="card-header h3">What Do You Think?</p>
+<div class="text-center mt-3 mb-0 p-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Arcade%3A%20A%20Primer%20on%20the%20Python%20Game%20Framework by @realpython&url=https%3A//realpython.com/arcade-python-game-framework/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/arcade-python-game-framework/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AArcade%3A%20A%20Primer%20on%20the%20Python%20Game%20Framework%0A%0Ahttps%3A//realpython.com/arcade-python-game-framework/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="card-body">
+<div class="alert alert-dark">
+<p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.</p>
+</div>
+<p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.</p>
+<div class="mb-4" id="disqus_thread">
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<p class="card-header h3">Keep Learning</p>
+<div class="card-body">
+<p class="mb-0">Related Tutorial Categories:
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+</p>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="rprw">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header border-0 mt-3">
+<div class="col-12 modal-title text-center">
+<h2 class="my-0 mx-5">Keep reading Real&nbsp;Python by creating a free account or signing&nbsp;in:</h2>
+</div>
+</div>
+<div class="modal-body bg-light">
+<div class="col-12 text-center">
+<p class="mb-2 mt-3"><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Farcade-python-game-framework%2F"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260" alt="Keep reading"></a></p>
+<p><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Farcade-python-game-framework%2F" class="btn btn-primary btn-lg px-5"></i>Continue »</a></a>
+</div>
+</div>
+<div class="modal-footer border-0">
+<p class="text-center text-muted mt-2 mb-1">Already have an account? <a href="/account/login/?next=/arcade-python-game-framework/">Sign-In</a></p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.realpython.com/static/frontend/reader/rw.38bf29157dfe.js" async></script>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="gafPFGo29tNlZcgxhWrFdw7k7H3dq1K4mfU2gfA0uYIv95VfqITPDB6gnC87DzeT">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+<div class="sidebar-sticky ">
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+<p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+<div class="toc">
+<ul>
+<li><a href="#background-and-setup">Background and Setup</a></li>
+<li><a href="#basic-arcade-program">Basic arcade Program</a></li>
+<li><a href="#arcade-concepts">arcade Concepts</a><ul>
+<li><a href="#initialization">Initialization</a></li>
+<li><a href="#windows-and-coordinates">Windows and Coordinates</a></li>
+<li><a href="#drawing">Drawing</a></li>
+<li><a href="#object-oriented-design">Object-Oriented Design</a></li>
+<li><a href="#game-loop">Game Loop</a></li>
+</ul>
+</li>
+<li><a href="#fundamentals-of-python-game-design">Fundamentals of Python Game Design</a><ul>
+<li><a href="#imports-and-constants">Imports and Constants</a></li>
+<li><a href="#window-class">Window Class</a></li>
+<li><a href="#sprites-and-sprite-lists">Sprites and Sprite Lists</a></li>
+<li><a href="#scheduling-functions">Scheduling Functions</a></li>
+<li><a href="#adding-enemies">Adding Enemies</a></li>
+<li><a href="#moving-sprites">Moving Sprites</a></li>
+<li><a href="#removing-sprites">Removing Sprites</a></li>
+<li><a href="#adding-clouds">Adding Clouds</a></li>
+<li><a href="#keyboard-input">Keyboard Input</a></li>
+<li><a href="#updating-the-game-objects">Updating the Game Objects</a></li>
+<li><a href="#drawing-on-the-window">Drawing on the Window</a></li>
+<li><a href="#collision-detection">Collision Detection</a></li>
+</ul>
+</li>
+<li><a href="#extras">Extras</a><ul>
+<li><a href="#sound">Sound</a></li>
+<li><a href="#python-game-speed">Python Game Speed</a></li>
+<li><a href="#tweaks-and-enhancements">Tweaks and Enhancements</a></li>
+</ul>
+</li>
+<li><a href="#a-note-on-sources">A Note on Sources</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: Arcade%3A%20A%20Primer%20on%20the%20Python%20Game%20Framework by @realpython&url=https%3A//realpython.com/arcade-python-game-framework/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/arcade-python-game-framework/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0AArcade%3A%20A%20Primer%20on%20the%20Python%20Game%20Framework%0A%0Ahttps%3A//realpython.com/arcade-python-game-framework/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-arcade-framework" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+<img class="img-fluid rounded" src="https://files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg&amp;w=480&amp;sig=0e759ea0b1b64df4459d4fd3269617adde32c010 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg&amp;w=960&amp;sig=c740c36abd2ef75a62c6dcd274f40eec1bafe9ea 960w, https://files.realpython.com/media/Python-Best-Practices_Watermarked.0d6bf5b46881.jpg 1920w" sizes="50vw" alt="Python Best Practices Artwork">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">Arcade Game (Assets)</p>
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="gafPFGo29tNlZcgxhWrFdw7k7H3dq1K4mfU2gfA0uYIv95VfqITPDB6gnC87DzeT">
+<input type="hidden" name="slug" value="arcade-framework">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Download Assets</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<div class="w-75 mx-auto mt-4 mb-0">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/toc-refresh.76a102c7d921.js" async></script>
+<script id="js-context" type="application/json">{"is_completed": false, "is_bookmarked": false, "api_article_bookmark_url": "/api/v1/articles/arcade-python-game-framework/bookmark/", "api_article_completion_status_url": "/api/v1/articles/arcade-python-game-framework/completion_status/"}</script>
+<script src="https://cdn.realpython.com/static/frontend/reader/completion-status.352d07abd84a.js" async></script>
+<script id="dsq-count-scr" src="https://realpython.disqus.com/count.js" async></script>
+<script>
+      var disqus_config = function () {
+        this.page.url = 'https://realpython.com/arcade-python-game-framework/';
+        this.page.identifier = 'https://realpython.com/arcade-python-game-framework/';
+        this.callbacks.onReady = [function() {
+          if (window.onDisqusReady) {
+            window.onDisqusReady();
+          }
+        }];
+      };
+      var disqus_script_url = 'https://realpython.disqus.com/embed.js';
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lazy-disqus.07ee9079f4a3.js" defer></script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Arcade: A Primer on the Python Game Framework",
+    
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://files.realpython.com/media/Arcade-vs-PyGame_Watermarked.7e349a93249c.jpg",
+      "width": 1920,
+      "height": 1080
+    },
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://realpython.com/arcade-python-game-framework/"
+    },
+    "datePublished": "2020-01-15T14:00:00+00:00",
+    "dateModified": "2021-04-30T21:38:41.549329+00:00",
+     "publisher": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cdn.realpython.com/static/real-python-logo-square-tiny.b2452b6d3823.png",
+        "width": 60,
+        "height": 60
+      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "url": "https://realpython.com",
+      "logo": "https://cdn.realpython.com/static/real-python-logo-square.146e987bf77c.png"
+    },
+    "description": "In this step\u002Dby\u002Dstep tutorial, you\u0027ll learn how to use arcade, a modern Python framework for crafting games with compelling graphics and sound. Object\u002Doriented and built for Python 3.6 and up, arcade provides you a modern set of tools for crafting great Python game experiences."
+  }
+  </script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a457e7d923762',m:'enLMjWN8_9_KbrYowgcT6r33wCRAtGlBAbBQZcrqLo4-1632636021-0-AY6BHwveOUrDpCyZmz0Wgz3xe1ZJmgrgbsTidWQikOapA8s78r6wLEieul9gh9FYsDa4swpIB2fIUlo/S6sVpf1yX0LYLJGR8BlpeYzhqb+FbiibSQC0gdxA3mCW8UeOXocN90avL0MMwtZ5/6TJzgo=',s:[0x4e98b10b07,0x9aadcc2456],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

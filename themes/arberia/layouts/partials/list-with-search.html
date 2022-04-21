@@ -1,0 +1,432 @@
+<div class="container main-content">
+    <div id="library-ui-app">
+        <div class="row justify-content-center">
+            <aside class="col-md-7 col-lg-4 order-first order-lg-last">
+                <div class="sidebar-sticky">
+                    <div class="d-flex align-items-center"><i aria-hidden="true"
+                            class="fa fa-search fa-fw text-muted position-absolute pl-2"></i> <input
+                            autofocus="autofocus" type="input" placeholder="Search" maxlength="50"
+                            class="form-control form-control-md" style="padding-left: 2rem; padding-right: 2rem;"> <i
+                            title="Clear search query" class="fa fa-close text-muted pr-2 search-field-clear-icon"
+                            hidden="hidden"></i></div>
+                    <div class="custom-control custom-checkbox mt-3"><input type="checkbox" id="chkKindAny"
+                            class="custom-control-input" disabled="disabled"> <label for="chkKindAny"
+                            class="custom-control-label" style="cursor: pointer;"><strong>All Resources</strong></label>
+                    </div>
+                    <div class="custom-control custom-checkbox"><input value="path" type="checkbox" id="chkPaths"
+                            class="custom-control-input"> <label for="chkPaths" class="custom-control-label"
+                            style="cursor: pointer;">Learning Paths</label></div>
+                    <div class="custom-control custom-checkbox"><input value="article" type="checkbox" id="chkArticles"
+                            class="custom-control-input"> <label for="chkArticles" class="custom-control-label"
+                            style="cursor: pointer;">Articles</label></div>
+                    <div class="custom-control custom-checkbox"><input value="course" type="checkbox" id="chkCourses"
+                            class="custom-control-input"> <label for="chkCourses" class="custom-control-label"
+                            style="cursor: pointer;">Courses</label></div>
+                    <div class="custom-control custom-checkbox"><input value="lesson" type="checkbox" id="chkLessons"
+                            class="custom-control-input"> <label for="chkLessons" class="custom-control-label"
+                            style="cursor: pointer;">Course Lessons</label></div>
+                    <div class="custom-control custom-checkbox"><input value="quiz" type="checkbox" id="chkQuizzes"
+                            class="custom-control-input"> <label for="chkQuizzes" class="custom-control-label"
+                            style="cursor: pointer;">Quizzes</label></div>
+                    <div class="custom-control custom-checkbox"><input value="podcast" type="checkbox" id="chkPodcasts"
+                            class="custom-control-input"> <label for="chkPodcasts" class="custom-control-label"
+                            style="cursor: pointer;">Podcasts</label></div>
+                    <div class="custom-control custom-checkbox"><input value="topic" type="checkbox" id="chkTopics"
+                            class="custom-control-input"> <label for="chkTopics" class="custom-control-label"
+                            style="cursor: pointer;">Topics</label></div>
+                    <div class="custom-control custom-checkbox mt-3"><input disabled="disabled" type="checkbox"
+                            id="chkLevelAny" class="custom-control-input"> <label for="chkLevelAny"
+                            class="custom-control-label" style="cursor: pointer;"><strong>All Skill
+                                Levels</strong></label></div>
+                    <div class="custom-control custom-checkbox"><input value="basics" type="checkbox" id="chkBasics"
+                            class="custom-control-input"> <label for="chkBasics" class="custom-control-label"
+                            style="cursor: pointer;"><i class="fa fa-angle-double-up text-warning"></i> Basics</label>
+                    </div>
+                    <div class="custom-control custom-checkbox"><input value="intermediate" type="checkbox"
+                            id="chkIntermediate" class="custom-control-input"> <label for="chkIntermediate"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-angle-double-up text-warning"></i><i
+                                class="fa fa-angle-double-up text-warning"></i> Intermediate</label></div>
+                    <div class="custom-control custom-checkbox"><input value="advanced" type="checkbox" id="chkAdvanced"
+                            class="custom-control-input"> <label for="chkAdvanced" class="custom-control-label"
+                            style="cursor: pointer;"><i class="fa fa-angle-double-up text-warning"></i><i
+                                class="fa fa-angle-double-up text-warning"></i><i
+                                class="fa fa-angle-double-up text-warning"></i> Advanced</label></div>
+                    <div class="custom-control custom-checkbox mt-3"><input type="checkbox" id="chkStatusAny"
+                            class="custom-control-input"> <label for="chkStatusAny" class="custom-control-label"
+                            style="cursor: pointer;"><strong>Any Status</strong></label></div>
+                    <div class="custom-control custom-checkbox"><input value="bookmarked" type="checkbox"
+                            id="chkBookmarked" class="custom-control-input"> <label for="chkBookmarked"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-bookmark text-info"></i> Bookmarked</label></div>
+                    <div class="custom-control custom-checkbox"><input value="completed" type="checkbox"
+                            id="chkCompleted" class="custom-control-input"> <label for="chkCompleted"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-check text-success"></i> Completed</label></div>
+                    <div class="custom-control custom-checkbox"><input value="in-progress" type="checkbox"
+                            id="chkInProgress" class="custom-control-input"> <label for="chkInProgress"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-circle-o text-muted"></i> In-Progress</label></div>
+                    <div class="custom-control custom-checkbox"><input value="not-started" type="checkbox"
+                            id="chkNotStarted" class="custom-control-input"> <label for="chkNotStarted"
+                            class="custom-control-label" style="cursor: pointer;"><i
+                                class="fa fa-fw fa-circle-thin text-muted"></i> Not Started</label></div>
+                    <p class="text-left py-3 my-0 small"><a
+                            href="https://feedback.realpython.com/realpython-com/?d=eyJwIjoicmVhbHB5dGhvbi1jb20iLCJzaWciOiJqJmY5IUtsTEVNTTRLQGpSWTU3Z24jOF9pXismXl5fdlM9cXtvZmVxIiwidCI6IlJQIExpYnJhcnkgU2VhcmNoIEZlZWRiYWNrIiwidSI6ImxpYnJhcnkifQ=="
+                            target="_blank"><i aria-hidden="true" class="fa fa-commenting-o"></i> Send Feedback</a></p>
+                </div>
+            </aside>
+            <div id="resultsArea" class="col-md-11 col-lg-8 article">
+                <div class="mt-1 mb-4">
+                    <div class="d-flex align-items-center justify-content-between"><span
+                            class="text-muted"><strong>9</strong><span> results</span>
+                            <!----></span>
+                        <div role="group" class="btn-group btn-group-sm"><button type="button"
+                                class="text-muted btn btn-light border-right border-secondary"
+                                style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">Relevance</button>
+                            <button type="button"
+                                class="text-muted btn btn-light border-left border-secondary">Newest</button> <button
+                                type="button"
+                                class="text-muted btn btn-light border-left border-secondary active">Recently
+                                Viewed</button></div>
+                    </div>
+                </div>
+                <!---->
+                <!---->
+                <div infinite-scroll-disabled="loadMoreDisabled" infinite-scroll-distance="10">
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a href="/django-hosting-on-heroku/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <!---->
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/django-hosting-on-heroku/" class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->Hosting a Django Project on Heroku
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Sep 29, 2021</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="django"
+                                            class="badge badge-light text-muted mr-1">django</a><a href="web-dev"
+                                            class="badge badge-light text-muted mr-1">web-dev</a><a href="projects"
+                                            class="badge badge-light text-muted mr-1">projects</a><a href="intermediate"
+                                            class="badge badge-light text-muted mr-1">intermediate</a></p>
+                                    <p class="text-muted my-0 mt-1 small">In this step-by-step project, you'll learn
+                                        about hosting Django projects in the cloud using Heroku, which is the favorite
+                                        cloud platform provider of many startups and developers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a href="/django-setup/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Django_Setup_Watermark.6c4def7c5b2f.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django_Setup_Watermark.6c4def7c5b2f.jpg&amp;w=480&amp;sig=f3e4310af34fae189f24319095a7600eed869727 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django_Setup_Watermark.6c4def7c5b2f.jpg&amp;w=960&amp;sig=0a927c3d4f64e33f97f7ebce11f038299b82ea78 960w, https://files.realpython.com/media/Django_Setup_Watermark.6c4def7c5b2f.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <!---->
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a href="/django-setup/"
+                                        class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->Your First Steps With Django: Set Up a Django Project
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Jul 21, 2021</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="basics"
+                                            class="badge badge-light text-muted mr-1">basics</a><a href="web-dev"
+                                            class="badge badge-light text-muted mr-1">web-dev</a><a
+                                            href="best-practices"
+                                            class="badge badge-light text-muted mr-1">best-practices</a><a href="django"
+                                            class="badge badge-light text-muted mr-1">django</a></p>
+                                    <p class="text-muted my-0 mt-1 small">This tutorial provides a walkthrough and a
+                                        reference for starting a Django project and app. You can use it as a quick setup
+                                        guide for any future Django project and tutorial you'll work on.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a
+                                        href="/django-templates-tags-filters/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Django-Templates-Tags-and-Filters_Watermarked.c04f50ff5534.jpeg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Templates-Tags-and-Filters_Watermarked.c04f50ff5534.jpeg&amp;w=480&amp;sig=780ab0797d4be1dbbfc54d1fb8b1b95609342bc7 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Django-Templates-Tags-and-Filters_Watermarked.c04f50ff5534.jpeg&amp;w=960&amp;sig=bed216ca88bb8915ac53cacfaf9ba44e818b6426 960w, https://files.realpython.com/media/Django-Templates-Tags-and-Filters_Watermarked.c04f50ff5534.jpeg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <!---->
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/django-templates-tags-filters/" class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->The Django Template Language: Tags and Filters
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Sep 22, 2021</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="django"
+                                            class="badge badge-light text-muted mr-1">django</a><a href="intermediate"
+                                            class="badge badge-light text-muted mr-1">intermediate</a></p>
+                                    <p class="text-muted my-0 mt-1 small">Django templates use their own mini-language
+                                        that's inspired by Python. This tutorial covers Django template tags and
+                                        filters, explaining how to compile and use templates. It covers conditional
+                                        blocks, looping, and inheritance in tags as well as filters for strings and
+                                        filters for lists.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a href="/python-versions-docker/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Run-Different-Python-Versions-With-Docker_Watermarked.341ab433e5a0.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Run-Different-Python-Versions-With-Docker_Watermarked.341ab433e5a0.jpg&amp;w=480&amp;sig=39f73f009df65c17083605414e8ec094bcd12bec 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Run-Different-Python-Versions-With-Docker_Watermarked.341ab433e5a0.jpg&amp;w=960&amp;sig=594fe2fcd9f22627af384af52a8cdf6e146a9c45 960w, https://files.realpython.com/media/Run-Different-Python-Versions-With-Docker_Watermarked.341ab433e5a0.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <!---->
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/python-versions-docker/" class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->Run Python Versions in Docker: How to Try the Latest Python Release
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Dec 18, 2019</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="docker"
+                                            class="badge badge-light text-muted mr-1">docker</a><a href="intermediate"
+                                            class="badge badge-light text-muted mr-1">intermediate</a></p>
+                                    <p class="text-muted my-0 mt-1 small">In this tutorial, you'll learn how to run
+                                        different Python versions in Docker. By following the examples, you'll see how
+                                        you can play with the latest development version of Python, and how to use
+                                        Dockerfiles to set up Python environments and package your own scripts.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a href="/pandas-sort-python/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Pandas-Sort_Watermarked.e9dd9f02765d.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pandas-Sort_Watermarked.e9dd9f02765d.jpg&amp;w=480&amp;sig=d007b884c7a2515e5cc38a488fa0ef2e5c1e7a89 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pandas-Sort_Watermarked.e9dd9f02765d.jpg&amp;w=960&amp;sig=9046cc4a496bb19b73c030af7a96cfa0352b0282 960w, https://files.realpython.com/media/Pandas-Sort_Watermarked.e9dd9f02765d.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <!---->
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a href="/pandas-sort-python/"
+                                        class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->Pandas Sort: Your Guide to Sorting Data in Python
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Feb 15, 2021</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="data-science"
+                                            class="badge badge-light text-muted mr-1">data-science</a><a
+                                            href="intermediate"
+                                            class="badge badge-light text-muted mr-1">intermediate</a></p>
+                                    <p class="text-muted my-0 mt-1 small">In this tutorial, you'll learn how to sort
+                                        data in a pandas DataFrame using the pandas sort functions sort_values() and
+                                        sort_index(). You'll learn how to sort by one or more columns and by index in
+                                        ascending or descending order.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a
+                                        href="/courses/how-to-publish-your-own-python-package-pypi/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg&amp;w=480&amp;sig=aeff552d2d95cd366a87369ac9bdb15650cf6cac 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg&amp;w=960&amp;sig=381c8b6b05005f46f17f9bba2514aebfcdfb98f8 960w, https://files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <div class="card-img-overlay d-flex align-items-center">
+                                                <div class="mx-auto"><span class="text-light" style="opacity: 0.9;"><i
+                                                            class="fa fa-3x fa-play"></i></span></div>
+                                            </div>
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/courses/how-to-publish-your-own-python-package-pypi/"
+                                        class="stretched-link">
+                                        <h2 class="my-0 h5"><strong>Course: </strong>How to Publish Your Own Python
+                                            Package to PyPI
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Jun 18, 2019</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="best-practices"
+                                            class="badge badge-light text-muted mr-1">best-practices</a><a href="tools"
+                                            class="badge badge-light text-muted mr-1">tools</a><a href="intermediate"
+                                            class="badge badge-light text-muted mr-1">intermediate</a></p>
+                                    <p class="text-muted my-0 mt-1 small">Learn how to create a Python package for your
+                                        project and how to publish it to PyPI, the Python Package Repository with this
+                                        step-by-step course. Quickly get up to speed on everything from naming your
+                                        package to configuring it using setup.py.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a
+                                        href="/lessons/pypi-overview-sample-project-setup/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg&amp;w=480&amp;sig=aeff552d2d95cd366a87369ac9bdb15650cf6cac 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg&amp;w=960&amp;sig=381c8b6b05005f46f17f9bba2514aebfcdfb98f8 960w, https://files.realpython.com/media/How-to-publish-an-open-source-Python-package-to-PyPI_Watermark.0f9c2da132aa.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <div class="card-img-overlay d-flex align-items-center">
+                                                <div class="mx-auto"><span class="text-light" style="opacity: 0.9;"><i
+                                                            class="fa fa-3x fa-play"></i></span></div>
+                                            </div>
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/lessons/pypi-overview-sample-project-setup/" class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->How to Publish Your Own Python Package to PyPI › PyPI Overview &amp;
+                                            Sample Project Setup
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Jun 18, 2019</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="best-practices"
+                                            class="badge badge-light text-muted mr-1">best-practices</a><a href="tools"
+                                            class="badge badge-light text-muted mr-1">tools</a><a href="intermediate"
+                                            class="badge badge-light text-muted mr-1">intermediate</a></p>
+                                    <p class="text-muted my-0 mt-1 small">Course lesson from: "How to Publish Your Own
+                                        Python Package to PyPI"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a
+                                        href="/courses/functional-programming-python/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg&amp;w=480&amp;sig=360a2ddc0864f581f35398bddf046eb8ff973cf4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg&amp;w=960&amp;sig=7775f7d38f3b1e317b73d70a0a28d568253b6562 960w, https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <div class="card-img-overlay d-flex align-items-center">
+                                                <div class="mx-auto"><span class="text-light" style="opacity: 0.9;"><i
+                                                            class="fa fa-3x fa-play"></i></span></div>
+                                            </div>
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/courses/functional-programming-python/" class="stretched-link">
+                                        <h2 class="my-0 h5"><strong>Course: </strong>Functional Programming in Python
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Jul 02, 2019</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="python"
+                                            class="badge badge-light text-muted mr-1">python</a><a href="advanced"
+                                            class="badge badge-light text-muted mr-1">advanced</a></p>
+                                    <p class="text-muted my-0 mt-1 small">In this course, you'll learn how to approach
+                                        functional programming in Python. You'll cover what functional programming is,
+                                        how you can use immutable data structures to represent your data, as well as how
+                                        to use filter(), map(), and reduce().</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="container my-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 align-self-top px-0"><a
+                                        href="/lessons/mutable-data-structures-lists-dictionaries/">
+                                        <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                                                src="https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg"
+                                                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg&amp;w=480&amp;sig=360a2ddc0864f581f35398bddf046eb8ff973cf4 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg&amp;w=960&amp;sig=7775f7d38f3b1e317b73d70a0a28d568253b6562 960w, https://files.realpython.com/media/Core-Python-Tutorials_Watermarked.d6103c02c67c.jpg 1920w"
+                                                sizes="5vw"
+                                                class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
+                                                style="object-fit: contain;">
+                                            <div class="card-img-overlay d-flex align-items-center">
+                                                <div class="mx-auto"><span class="text-light" style="opacity: 0.9;"><i
+                                                            class="fa fa-3x fa-play"></i></span></div>
+                                            </div>
+                                        </div>
+                                    </a></div>
+                                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0"><a
+                                        href="/lessons/mutable-data-structures-lists-dictionaries/"
+                                        class="stretched-link">
+                                        <h2 class="my-0 h5">
+                                            <!---->Functional Programming in Python › Mutable Data Structures: Lists and
+                                            Dictionaries
+                                            <!---->
+                                            <!----> <span title="In-Progress" class="float-right"><i
+                                                    class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+                                    </a>
+                                    <p class="small text-muted my-0"><span class="mr-2">Jul 02, 2019</span> <span
+                                            aria-hidden="true" class="fa fa-tags"></span> <a href="python"
+                                            class="badge badge-light text-muted mr-1">python</a><a href="advanced"
+                                            class="badge badge-light text-muted mr-1">advanced</a></p>
+                                    <p class="text-muted my-0 mt-1 small">Course lesson from: "Functional Programming in
+                                        Python"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                    <!---->
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

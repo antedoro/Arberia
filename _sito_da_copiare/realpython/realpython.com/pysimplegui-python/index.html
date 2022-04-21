@@ -1,0 +1,1327 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>PySimpleGUI: The Simple Way to Create a GUI With Python – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="In this step-by-step tutorial, you&#x27;ll learn how to create a cross-platform graphical user interface (GUI) using Python and PySimpleGUI. A graphical user interface is an application that has buttons, windows, and lots of other elements that the user can use to interact with your application.">
+<meta name="keywords" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/pysimplegui-python/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="PySimpleGUI: The Simple Way to Create a GUI With Python – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/pysimplegui-python/">
+<meta property="og:description" content="In this step-by-step tutorial, you&#x27;ll learn how to create a cross-platform graphical user interface (GUI) using Python and PySimpleGUI. A graphical user interface is an application that has buttons, windows, and lots of other elements that the user can use to interact with your application.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+ <ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Fpysimplegui-python%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article with-headerlinks">
+<figure class="embed-responsive embed-responsive-16by9">
+<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="PySimpleGUI: The Simple Way to Create a GUI With Python" src="https://files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg&amp;w=480&amp;sig=ade470c4eb834f908a3d889814f88d9929b749b5 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg&amp;w=960&amp;sig=81cf426c4aa7fd560b43f386b168e839ad6ec408 960w, https://files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg 1920w" sizes="75vw">
+</figure>
+<h1>PySimpleGUI: The Simple Way to Create a GUI With Python</h1>
+<div class="mb-0">
+<span class="text-muted">by <a class="text-muted" href="#author">Mike Driscoll</a>
+<span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="#reader-comments"><span class="disqus-comment-count" data-disqus-identifier="https://realpython.com/pysimplegui-python/"></span></a>
+<span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<div class="d-sm-flex flex-row justify-content-between my-3 text-center">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+<div class="align-self-center my-2">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: PySimpleGUI%3A%20The%20Simple%20Way%20to%20Create%20a%20GUI%20With%20Python by @realpython&url=https%3A//realpython.com/pysimplegui-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/pysimplegui-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0APySimpleGUI%3A%20The%20Simple%20Way%20to%20Create%20a%20GUI%20With%20Python%0A%0Ahttps%3A//realpython.com/pysimplegui-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+</div>
+</div>
+<div class="article-body">
+<div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+<p class="h3 mb-2 text-muted">Table of Contents</p>
+<div class="toc">
+<ul>
+<li><a href="#getting-started-with-pysimplegui">Getting Started With PySimpleGUI</a></li>
+<li><a href="#installing-pysimplegui">Installing PySimpleGUI</a></li>
+<li><a href="#creating-basic-ui-elements-in-pysimplegui">Creating Basic UI Elements in PySimpleGUI</a></li>
+<li><a href="#creating-simple-applications">Creating Simple Applications</a></li>
+<li><a href="#creating-a-pysimplegui-image-viewer">Creating a PySimpleGUI Image Viewer</a></li>
+<li><a href="#integrating-matplotlib-with-pysimplegui">Integrating Matplotlib With PySimpleGUI</a></li>
+<li><a href="#integrating-opencv-with-pysimplegui">Integrating OpenCV With PySimpleGUI</a></li>
+<li><a href="#packaging-your-pysimplegui-application-for-windows">Packaging Your PySimpleGUI Application for Windows</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<div class="border rounded p-3 card mb-2">
+<p class="mb-0"><span class="badge badge-pill badge-success"><i class="fa fa-play-circle" aria-hidden="true"></i> Watch Now</span> This tutorial has a related video course created by the Real Python team. Watch it together with the written tutorial to deepen your understanding: <a class="stretched-link text-success" href="/courses/simplify-gui-dev-pysimplegui/"><strong>Simplify Python GUI Development With PySimpleGUI</strong></a></p>
+</div>
+<p>Creating a simple graphical user interface (GUI) that works across multiple platforms can be complicated. But it doesn&rsquo;t have to be that way. You can use Python and the PySimpleGUI package to create nice-looking user interfaces that you and your users will enjoy! PySimpleGUI is a new Python GUI library that has been gaining a lot of interest recently.</p>
+<p><strong>In this tutorial, you&rsquo;ll learn how to:</strong></p>
+<ul>
+<li><strong>Install</strong> the PySimpleGUI package</li>
+<li>Create basic <strong>user interface</strong> elements with PySimpleGUI</li>
+<li>Create applications, such as a PySimpleGUI <strong>image viewer</strong></li>
+<li>Integrate PySimpleGUI with <strong>Matplotlib</strong></li>
+<li>Use <strong>computer vision</strong> in PySimpleGUI</li>
+<li>Package your PySimpleGUI application for <strong>Windows</strong></li>
+</ul>
+<p>Now it&rsquo;s time to get started!</p>
+<div class="alert alert-warning" role="alert"><p><strong>Free Bonus:</strong> <a href="" class="alert-link" data-toggle="modal" data-target="#modal-python-cheat-sheet-experiment" data-focus="false">Click here to get our free Python Cheat Sheet</a> that shows you the basics of Python 3, like working with data types, dictionaries, lists, and Python functions.</p></div>
+<section class="section2" id="getting-started-with-pysimplegui"><h2>Getting Started With PySimpleGUI<a class="headerlink" href="#getting-started-with-pysimplegui" title="Permanent link"></a></h2>
+<p>PySimpleGUI was launched in 2018, so it&rsquo;s a relatively new package compared with the likes of <a href="https://realpython.com/python-gui-with-wxpython/">wxPython</a> or <a href="https://realpython.com/python-pyqt-gui-calculator/">PyQt</a>. </p>
+<p>PySimpleGUI has four ports:</p>
+<ol>
+<li><a href="https://docs.python.org/3/library/tkinter.html">Tkinter</a></li>
+<li><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a></li>
+<li><a href="https://www.wxpython.org/pages/overview/">wxPython</a> </li>
+<li><a href="https://pypi.org/project/remi/">Remi</a> </li>
+</ol>
+<p>PySimpleGUI wraps portions of each of these other <a href="https://realpython.com/python-modules-packages/">packages</a> and makes them easier to use. However, each of the ports has to be installed separately.</p>
+<p>PySimpleGUI wraps the entirety of Tkinter, which comes with Python. PySimpleGUI has wrapped most of PySide2, but only a small portion of wxPython. When you install PySimpleGUI, you get the <strong>Tkinter</strong> variant by default. For more information about Tkinter, check out <a href="https://realpython.com/python-gui-tkinter/">Python GUI Programming With Tkinter</a>.</p>
+<p>Depending on which variant of PySimpleGUI you use, applications that you create with PySimpleGUI may not look native to their platform. But don&rsquo;t let this stop you from giving PySimpleGUI a try. PySimpleGUI is still quite powerful and can get most things done with a little work.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="installing-pysimplegui"><h2>Installing PySimpleGUI<a class="headerlink" href="#installing-pysimplegui" title="Permanent link"></a></h2>
+<p>Installing PySimpleGUI is easy if you use <a href="https://realpython.com/what-is-pip/">pip</a>. For the purposes of this tutorial, you&rsquo;ll learn how to install the regular PySimpleGUI port, which is the Tkinter variant.</p>
+<p>Here&rsquo;s how to do it:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install pysimplegui
+</code></pre></div>
+<p>This will install PySimpleGUI to whatever your system Python is set to. You can also install PySimpleGUI to a Python virtual environment. If you&rsquo;re unfamiliar with Python virtual environments, then you should read <a href="https://realpython.com/python-virtual-environments-a-primer/">Python Virtual Environments: A Primer</a>.</p>
+<p>If you prefer to try the PyQt variant, then you can use <code>pip install PySimpleGUIQt</code> instead. Now that you have PySimpleGUI installed, it&rsquo;s time to find out how to use it!</p>
+</section><section class="section2" id="creating-basic-ui-elements-in-pysimplegui"><h2>Creating Basic UI Elements in PySimpleGUI<a class="headerlink" href="#creating-basic-ui-elements-in-pysimplegui" title="Permanent link"></a></h2>
+<p>If you&rsquo;ve ever used a GUI toolkit before, then you may have heard the term <strong>widgets</strong>. A widget is a generic term used to describe the elements that make up the user interface (UI), such as buttons, labels, windows, and more. In PySimpleGUI, widgets are referred to as <strong>elements</strong>, which you may sometimes see capitalized elsewhere as <strong>Elements</strong>.</p>
+<p>One of the basic building blocks of PySimpleGUI is the <code>Window()</code>. To create a <code>Window()</code>, you can do the following:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># hello_world.py</span>
+
+<span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+
+<span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">[[]],</span> <span class="n">margins</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre></div>
+<p><code>Window()</code> takes lots of different arguments&mdash;too many to be listed here. However, for this example you can give the <code>Window()</code> a <code>title</code> and a <code>layout</code> and set the <code>margins</code>, which is how big the UI window will be in pixels.</p>
+<p><code>read()</code> returns any events that are triggered in the <code>Window()</code> as a <a href="https://realpython.com/python-data-types/#strings">string</a> as well as a <code>values</code> <a href="https://realpython.com/python-dicts/">dictionary</a>. You&rsquo;ll learn more about these in later sections of this tutorial.</p>
+<p>When you run this code, you should see something like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/hello_world_psg.4e8bd27f1d6f.jpg" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-33" src="https://files.realpython.com/media/hello_world_psg.4e8bd27f1d6f.jpg" width="410" height="254" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hello_world_psg.4e8bd27f1d6f.jpg&amp;w=102&amp;sig=fe13f564722d5c0b0a4cc402e03c42d861ae6cc7 102w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hello_world_psg.4e8bd27f1d6f.jpg&amp;w=205&amp;sig=e963a9ca40572b7c7bf257e837367d52d05de13e 205w, https://files.realpython.com/media/hello_world_psg.4e8bd27f1d6f.jpg 410w" sizes="75vw" alt="Hello World in PySimpleGUI" data-asset="2600" /></a></figure>
+<p>This example doesn&rsquo;t really do much of anything other than possibly displaying a message to the user. </p>
+<p>Normally, you would have other elements besides a <code>Window()</code> in your application, so let&rsquo;s add some text and a button to the mix.</p>
+<p>Create a new file named <code>hello_psg.py</code> and add this code:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># hello_psg.py</span>
+
+<span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Hello from PySimpleGUI&quot;</span><span class="p">)],</span> <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;OK&quot;</span><span class="p">)]]</span>
+
+<span class="c1"># Create the window</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
+
+<span class="c1"># Create an event loop</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># End program if user closes window or</span>
+    <span class="c1"># presses the OK button</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;OK&quot;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WIN_CLOSED</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>Most GUI toolkits allow you to lay out the elements using <strong>absolute positioning</strong> or by allowing the GUI to lay them out <strong>dynamically</strong>. For example, wxPython uses <code>Sizers</code> to lay out elements dynamically. If you&rsquo;d like to learn more about wxPython, then check out <a href="https://realpython.com/python-gui-with-wxpython/">How to Build a Python GUI Application With wxPython</a>.</p>
+<p>PySimpleGUI uses nested <a href="https://realpython.com/python-lists-tuples/">Python lists</a> to lay out its elements. In this case, you add a <code>Text()</code> element and a <code>Button()</code> element. Then you create the <code>window</code> and pass in your custom <code>layout</code>.</p>
+<p>The last block of code is the <strong>event loop</strong>. A graphical user interface needs to run inside a loop and wait for the user to do something. For example, the user might need to press a button in your UI or type something with their keyboard. When they do that, those events are processed by the event loop.</p>
+<p>When you use PySimpleGUI, you make an event loop by creating an infinite <a href="https://realpython.com/python-while-loop/"><code>while</code> loop</a> that reads events from the <code>window</code> object. If the user presses the <code>OK</code> button or the Exit button, then you want the program to end. To accomplish that, you <code>break</code> out of the loop and <code>close()</code> the <code>window</code>.</p>
+<p>The code above creates an application that looks like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/hello_psg.8416fdc346b6.jpg" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-33" src="https://files.realpython.com/media/hello_psg.8416fdc346b6.jpg" width="312" height="170" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hello_psg.8416fdc346b6.jpg&amp;w=78&amp;sig=655a1546c262e96e45a91f4e3f1258ac4adbf0cf 78w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hello_psg.8416fdc346b6.jpg&amp;w=156&amp;sig=7587b3e095a7dcb2f5dcfe07ba28a5da425f0658 156w, https://files.realpython.com/media/hello_psg.8416fdc346b6.jpg 312w" sizes="75vw" alt="Hello World in PySimpleGUI" data-asset="2599" /></a></figure>
+<p>Now you&rsquo;re ready to create an actual application!</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="creating-simple-applications"><h2>Creating Simple Applications<a class="headerlink" href="#creating-simple-applications" title="Permanent link"></a></h2>
+<p>You can create a large variety of different cross-platform GUIs using PySimpleGUI. The demos that are included with the package are extensive. You can create anything from desktop widgets to full-blown user interfaces.</p>
+<p>In the next few sections, you&rsquo;ll see a few different ways to use PySimpleGUI. However, there&rsquo;s a lot more that you can do beyond what can be covered in a single tutorial. If you want more detail, be sure to check out the <a href="https://github.com/PySimpleGUI/PySimpleGUI/tree/master/DemoPrograms">other demos</a> that are included with PySimpleGUI.</p>
+</section><section class="section2" id="creating-a-pysimplegui-image-viewer"><h2>Creating a PySimpleGUI Image Viewer<a class="headerlink" href="#creating-a-pysimplegui-image-viewer" title="Permanent link"></a></h2>
+<p>One of the demos on PySimpleGUI&rsquo;s GitHub page is an image viewer. Being able to write your own custom image viewer with Python is fun. You can use this code to view your own photos or incorporate it to view photos that you download or read from a database.</p>
+<p>To keep things simple, you&rsquo;ll use PySimpleGUI&rsquo;s built-in <code>Image()</code> element for viewing images. Unfortunately, the <code>Image()</code> element can only display PNG and GIF formats in the regular version of PySimpleGUI. </p>
+<p>If you&rsquo;d like to be able to open other image file types, then you can download <a href="https://pillow.readthedocs.io/en/stable/">Pillow</a>, which supports TIFF, JPG, and BMP formats. Check out the PySimpleGUI demo folder on GitHub for an example that shows how to do this.</p>
+<p>On the other hand, if you install the PySimpleGUIQt port, then you&rsquo;ll find that Qt supports more image formats out of the box than Tkinter.</p>
+<p>Here&rsquo;s a mock-up of what the image viewer should look like at the end:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/image_viewer_mockup.96334ef5eb7d.png" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/image_viewer_mockup.96334ef5eb7d.png" width="707" height="400" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/image_viewer_mockup.96334ef5eb7d.png&amp;w=176&amp;sig=2e212a1d2205adc4641fe215ba4edf4ede39a9fd 176w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/image_viewer_mockup.96334ef5eb7d.png&amp;w=353&amp;sig=faaf3a28ef582edd6fc11df049866baffb77270b 353w, https://files.realpython.com/media/image_viewer_mockup.96334ef5eb7d.png 707w" sizes="75vw" alt="Image Viewer Mockup" data-asset="2644" /></a></figure>
+<p>There will be a lot of code for this example, but don&rsquo;t worry. You&rsquo;ll go over it in smaller chunks afterward.</p>
+<p>You can create a file named <code>img_viewer.py</code> in your Python editor of choice. Then add the following code:</p>
+<div class="card mb-3" id="collapse_cardc326f2">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapsec326f2" aria-expanded="false" aria-controls="collapsec326f2" markdown="1"><span class="float-left" markdown="1">Full Source Code for Image Viewer Example</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse js-collapsible-section" data-parent="#collapse_cardc326f2" id="collapsec326f2">
+<div class="card-body">
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 1</span><span class="c1"># img_viewer.py</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1"># First the window layout in 2 columns</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">file_list_column</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 9</span>    <span class="p">[</span>
+<span class="linenos">10</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Image Folder&quot;</span><span class="p">),</span>
+<span class="linenos">11</span>        <span class="n">sg</span><span class="o">.</span><span class="n">In</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">enable_events</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-FOLDER-&quot;</span><span class="p">),</span>
+<span class="linenos">12</span>        <span class="n">sg</span><span class="o">.</span><span class="n">FolderBrowse</span><span class="p">(),</span>
+<span class="linenos">13</span>    <span class="p">],</span>
+<span class="linenos">14</span>    <span class="p">[</span>
+<span class="linenos">15</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Listbox</span><span class="p">(</span>
+<span class="linenos">16</span>            <span class="n">values</span><span class="o">=</span><span class="p">[],</span> <span class="n">enable_events</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-FILE LIST-&quot;</span>
+<span class="linenos">17</span>        <span class="p">)</span>
+<span class="linenos">18</span>    <span class="p">],</span>
+<span class="linenos">19</span><span class="p">]</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="c1"># For now will only show the name of the file that was chosen</span>
+<span class="linenos">22</span><span class="n">image_viewer_column</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">23</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Choose an image from list on left:&quot;</span><span class="p">)],</span>
+<span class="linenos">24</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-TOUT-&quot;</span><span class="p">)],</span>
+<span class="linenos">25</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">)],</span>
+<span class="linenos">26</span><span class="p">]</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="c1"># ----- Full layout -----</span>
+<span class="linenos">29</span><span class="n">layout</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">30</span>    <span class="p">[</span>
+<span class="linenos">31</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">file_list_column</span><span class="p">),</span>
+<span class="linenos">32</span>        <span class="n">sg</span><span class="o">.</span><span class="n">VSeperator</span><span class="p">(),</span>
+<span class="linenos">33</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">image_viewer_column</span><span class="p">),</span>
+<span class="linenos">34</span>    <span class="p">]</span>
+<span class="linenos">35</span><span class="p">]</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="n">window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;Image Viewer&quot;</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="c1"># Run the Event Loop</span>
+<span class="linenos">40</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">41</span>    <span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos">42</span>    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;Exit&quot;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WIN_CLOSED</span><span class="p">:</span>
+<span class="linenos">43</span>        <span class="k">break</span>
+<span class="linenos">44</span>    <span class="c1"># Folder name was filled in, make a list of files in the folder</span>
+<span class="linenos">45</span>    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;-FOLDER-&quot;</span><span class="p">:</span>
+<span class="linenos">46</span>        <span class="n">folder</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-FOLDER-&quot;</span><span class="p">]</span>
+<span class="linenos">47</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">48</span>            <span class="c1"># Get list of files in folder</span>
+<span class="linenos">49</span>            <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="linenos">50</span>        <span class="k">except</span><span class="p">:</span>
+<span class="linenos">51</span>            <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span>        <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">54</span>            <span class="n">f</span>
+<span class="linenos">55</span>            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span>
+<span class="linenos">56</span>            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+<span class="linenos">57</span>            <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="s2">&quot;.gif&quot;</span><span class="p">))</span>
+<span class="linenos">58</span>        <span class="p">]</span>
+<span class="linenos">59</span>        <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-FILE LIST-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fnames</span><span class="p">)</span>
+<span class="linenos">60</span>    <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;-FILE LIST-&quot;</span><span class="p">:</span>  <span class="c1"># A file was chosen from the listbox</span>
+<span class="linenos">61</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">62</span>            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+<span class="linenos">63</span>                <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-FOLDER-&quot;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-FILE LIST-&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">64</span>            <span class="p">)</span>
+<span class="linenos">65</span>            <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-TOUT-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="linenos">66</span>            <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span>        <span class="k">except</span><span class="p">:</span>
+<span class="linenos">69</span>            <span class="k">pass</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span><span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Phew! That&rsquo;s quite a few lines of code! Let&rsquo;s go over it piece by piece.</p>
+<p>Here are the first few lines:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 1</span><span class="c1"># img_viewer.py</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1"># First the window layout in 2 columns</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">file_list_column</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 9</span>    <span class="p">[</span>
+<span class="linenos">10</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Image Folder&quot;</span><span class="p">),</span>
+<span class="linenos">11</span>        <span class="n">sg</span><span class="o">.</span><span class="n">In</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">enable_events</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-FOLDER-&quot;</span><span class="p">),</span>
+<span class="linenos">12</span>        <span class="n">sg</span><span class="o">.</span><span class="n">FolderBrowse</span><span class="p">(),</span>
+<span class="linenos">13</span>    <span class="p">],</span>
+<span class="linenos">14</span>    <span class="p">[</span>
+<span class="linenos">15</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Listbox</span><span class="p">(</span>
+<span class="linenos">16</span>            <span class="n">values</span><span class="o">=</span><span class="p">[],</span> <span class="n">enable_events</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-FILE LIST-&quot;</span>
+<span class="linenos">17</span>        <span class="p">)</span>
+<span class="linenos">18</span>    <span class="p">],</span>
+<span class="linenos">19</span><span class="p">]</span>
+</code></pre></div>
+<p>Here, on <strong>lines 3 and 4</strong>, you import <code>PySimpleGUI</code> and Python&rsquo;s <code>os</code> module. Then, on <strong>lines 8 through 19</strong>, you create a nested list of elements that represent a vertical column of the user interface. This will create a Browse button that you&rsquo;ll use to find a folder that has images in it. </p>
+<p>The <code>key</code> parameter is important. This is what you use to identify a specific element in your GUI. For the <code>In()</code> input text control, you give it an identity of <code>"-FOLDER-"</code>. You&rsquo;ll use this later to access the contents of the element. You can turn events on or off for each element via the <code>enable_events</code> parameter.</p>
+<p>The <code>Listbox()</code> element will display a list of paths to the images that you can then choose from to display. You can prefill the <code>Listbox()</code> with values by passing in a list of strings. </p>
+<p>When you first load up your user interface, you want the <code>Listbox()</code> to be empty, so you pass it an empty list. You turn on events for this element, set its <code>size</code>, and give it a unique identifier like you did with the input element.</p>
+<p>Now you can look at the right-hand column of elements:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">21</span><span class="c1"># For now will only show the name of the file that was chosen</span>
+<span class="linenos">22</span><span class="n">image_viewer_column</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">23</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Choose an image from list on left:&quot;</span><span class="p">)],</span>
+<span class="linenos">24</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-TOUT-&quot;</span><span class="p">)],</span>
+<span class="linenos">25</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">)],</span>
+<span class="linenos">26</span><span class="p">]</span>
+</code></pre></div>
+<p>The list of lists on <strong>lines 22 through 26</strong> creates three elements. The first element tells the user that they should choose an image to display. The second element displays the name of the selected file. The third displays the <code>Image()</code>. </p>
+<p>Note that the <code>Image()</code> element also has a <code>key</code> set so you can easily refer back to the element later. For more information on the <code>Image()</code> element, check out the <a href="https://pysimplegui.readthedocs.io/en/latest/#image-element">documentation</a>.</p>
+<p>The next piece of code defines your layout:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">28</span><span class="c1"># ----- Full layout -----</span>
+<span class="linenos">29</span><span class="n">layout</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">30</span>    <span class="p">[</span>
+<span class="linenos">31</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">file_list_column</span><span class="p">),</span>
+<span class="linenos">32</span>        <span class="n">sg</span><span class="o">.</span><span class="n">VSeperator</span><span class="p">(),</span>
+<span class="linenos">33</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">image_viewer_column</span><span class="p">),</span>
+<span class="linenos">34</span>    <span class="p">]</span>
+<span class="linenos">35</span><span class="p">]</span>
+</code></pre></div>
+<p>The last list, on <strong>lines 29 to 35</strong>, contains the code that controls how the elements are laid out on the screen. This code contains two <code>Column()</code> elements with a <code>VSeperator()</code> between them. <code>VSeperator()</code> is an alias for <code>VerticalSeparator()</code>. You can learn more about how <a href="https://pysimplegui.readthedocs.io/en/latest/#column-element-frame-tab-container-elements"><code>Column()</code></a> and <a href="https://pysimplegui.readthedocs.io/en/latest/call%20reference/#verticalseparator-element"><code>VSeperator()</code></a> work by reading their respective documentation pages.</p>
+<p>To add the <code>layout</code> to your <code>window</code>, you can do this:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">37</span><span class="n">window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;Image Viewer&quot;</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
+</code></pre></div>
+<p>Now that you have the user interface figured out, you can look at the event loop code. Here&rsquo;s the first piece:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">39</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">40</span>    <span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos">41</span>    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;Exit&quot;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WIN_CLOSED</span><span class="p">:</span>
+<span class="linenos">42</span>        <span class="k">break</span>
+</code></pre></div>
+<p>The event loop contains the <strong>logic</strong> of your program. Here, you extract the events and <code>values</code> from the <code>window</code>. The <code>event</code> will be the <code>key</code> string of whichever element the user interacts with. The <code>values</code> <a href="https://realpython.com/python-variables/">variable</a> contains a Python dictionary that maps the element <code>key</code> to a value. For example, if the user picks a folder, then <code>"-FOLDER-"</code> will map to the folder path.</p>
+<p>The <a href="https://realpython.com/python-conditional-statements/">conditional statements</a> are used to control what happens. If the <code>event</code> equals <code>"Exit"</code> or the user closes the <code>window</code>, then you break out of the loop.</p>
+<p>Now you can take a look at the first part of the next conditional statement in the loop:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">44</span><span class="c1"># Folder name was filled in, make a list of files in the folder</span>
+<span class="linenos">45</span><span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;-FOLDER-&quot;</span><span class="p">:</span>
+<span class="linenos">46</span>    <span class="n">folder</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-FOLDER-&quot;</span><span class="p">]</span>
+<span class="linenos">47</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">48</span>        <span class="c1"># Get list of files in folder</span>
+<span class="linenos">49</span>        <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="linenos">50</span>    <span class="k">except</span><span class="p">:</span>
+<span class="linenos">51</span>        <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span>    <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">54</span>        <span class="n">f</span>
+<span class="linenos">55</span>        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span>
+<span class="linenos">56</span>        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+<span class="linenos">57</span>        <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="s2">&quot;.gif&quot;</span><span class="p">))</span>
+<span class="linenos">58</span>    <span class="p">]</span>
+<span class="linenos">59</span>    <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-FILE LIST-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fnames</span><span class="p">)</span>
+</code></pre></div>
+<p>This time you check the <code>event</code> against the <code>"-FOLDER-"</code> <code>key</code>, which refers to the <code>In()</code> element you created earlier. If the event exists, then you know the user has chosen a folder, and you use <code>os.listdir()</code> to get a file listing. Then you filter that list down to only the files with the extension <code>".png"</code> or <code>".gif"</code>.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> As mentioned earlier, you can avoid having to narrow down your image file types by using Pillow or PySimpleGUIQt instead.</p>
+</div>
+<p>Now you can take a look at the next part of the conditional statement:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">60</span><span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;-FILE LIST-&quot;</span><span class="p">:</span>  <span class="c1"># A file was chosen from the listbox</span>
+<span class="linenos">61</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">62</span>        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+<span class="linenos">63</span>            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-FOLDER-&quot;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-FILE LIST-&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">64</span>        <span class="p">)</span>
+<span class="linenos">65</span>        <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-TOUT-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="linenos">66</span>        <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+<span class="linenos">67</span>    <span class="k">except</span><span class="p">:</span>
+<span class="linenos">68</span>        <span class="k">pass</span>
+</code></pre></div>
+<p>If the <code>event</code> equals <code>"-FILE LIST-"</code>, then you know the user has chosen a file in the <code>Listbox()</code>, and you want to update the <code>Image()</code> element as well as the <code>Text()</code> element that shows the selected <code>filename</code> on the right.</p>
+<p>The last bit of code is how you end the program:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">71</span><span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>When the user presses the Exit button, the application must close. To do that, you can use <code>window.close()</code>. </p>
+<p>You can technically leave this line off your code and Python will still end the program, but it&rsquo;s always a good idea to clean up after yourself. Also, if you&rsquo;re using the web port of PySimpleGUI and you don&rsquo;t close the window properly, then you&rsquo;ll end up leaving a port open.</p>
+<p>Now run the code, and you should see an interface like this:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/psg_image_viewer.4c4ca055b433.jpg" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block " src="https://files.realpython.com/media/psg_image_viewer.4c4ca055b433.jpg" width="1220" height="694" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/psg_image_viewer.4c4ca055b433.jpg&amp;w=305&amp;sig=ffc44f792ea11b33b4ad24ce360d1bc624d30eb6 305w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/psg_image_viewer.4c4ca055b433.jpg&amp;w=610&amp;sig=f292ae8853c5ce9077a97117acc31ce0f6eab34d 610w, https://files.realpython.com/media/psg_image_viewer.4c4ca055b433.jpg 1220w" sizes="75vw" alt="PySimpleGUI Image Viewer" data-asset="2601" /></a></figure>
+<p>You can use the Browse button to find a folder on your computer with images in it so that you can try this code out. Or you can copy and paste a path to a file into the <code>Text()</code> element.</p>
+<p>Once you&rsquo;re done viewing your images, you&rsquo;re ready to learn how to use Matplotlib with PySimpleGUI.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="integrating-matplotlib-with-pysimplegui"><h2>Integrating Matplotlib With PySimpleGUI<a class="headerlink" href="#integrating-matplotlib-with-pysimplegui" title="Permanent link"></a></h2>
+<p>Creating graphs is a great way to share information with your colleagues. One of the most popular graphing packages for Python is <a href="https://matplotlib.org/">Matplotlib</a>. Matplotlib can create all kinds of different graphs. If you&rsquo;d like to know more about it, check out <a href="https://realpython.com/python-matplotlib-guide/">Python Plotting With Matplotlib (Guide)</a>.</p>
+<p>Matplotlib can be integrated with PySimpleGUI, so you can add graphs to your GUI fairly easily if you already know how to use Matplotlib.</p>
+<p>If you don&rsquo;t have Matplotlib installed, then you can do so using <a href="https://realpython.com/what-is-pip/"><code>pip</code></a>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install matplotlib
+</code></pre></div>
+<p>For this example, you use one of <a href="https://github.com/PySimpleGUI/PySimpleGUI/blob/master/DemoPrograms/Demo_Matplotlib.py">PySimpleGUI&rsquo;s demos</a>. Matplotlib uses <a href="https://numpy.org/">NumPy</a>, so you&rsquo;ll want to install it as well:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install numpy
+</code></pre></div>
+<p>Now that you have all the pieces you need to write the code, you can create a new file and name it <code>psg_matplotlib.py</code>.</p>
+<p>The demo code is a little long, so you add the code in pieces starting with this:</p>
+<div class="highlight python"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_tkagg</span> <span class="kn">import</span> <span class="n">FigureCanvasTkAgg</span>
+<span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">.</span><span class="mi">01</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+</code></pre></div>
+<p>These are the imports that you&rsquo;ll need to make your code work. This code also sets up the Matplotlib <code>Figure()</code> and adds a plot using <code>add_subplot()</code>. For more details, you may want to refer to the <a href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.figure.html">documentation</a>. The PySimpleGUIQt port doesn&rsquo;t work in the same way currently, but that&rsquo;s being worked on for a future release.</p>
+<p>In both PySimpleGUI and Tkinter, you use the <code>Canvas()</code> element for drawing. You can read more about this element in the <a href="https://pysimplegui.readthedocs.io/en/latest/#canvas-element">documentation</a>.</p>
+<p>Now you can create a helper function to draw the figure on PySimpleGUI&rsquo;s <code>Canvas()</code>. A <strong>helper function</strong> is repetitive code that you don&rsquo;t want to write multiple times. Take a look:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;TkAgg&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">draw_figure</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">figure</span><span class="p">):</span>
+    <span class="n">figure_canvas_agg</span> <span class="o">=</span> <span class="n">FigureCanvasTkAgg</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">canvas</span><span class="p">)</span>
+    <span class="n">figure_canvas_agg</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="n">figure_canvas_agg</span><span class="o">.</span><span class="n">get_tk_widget</span><span class="p">()</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">figure_canvas_agg</span>
+</code></pre></div>
+<p>You&rsquo;ll use <code>figure_canvas_agg.draw()</code> to draw the plots to PySimpleGUI&rsquo;s <code>Canvas()</code> element.</p>
+<p>To use PySimpleGUI&rsquo;s <code>Canvas()</code>, you need to pass it into <code>FigureCanvasTkAgg()</code> along with the Matplotlib <code>figure</code> object. <code>FigureCanvasTkAgg()</code> comes from Matplotlib and is used by Tkinter to embed the plots in PySimpleGUI. This would work differently if you were using PySimpleGUIQt.</p>
+<p>The last step is to write the user interface with PySimpleGUI:</p>
+<div class="highlight python"><pre><span></span><code><span class="c1"># Define the window layout</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Plot test&quot;</span><span class="p">)],</span>
+    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANVAS-&quot;</span><span class="p">)],</span>
+    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Ok&quot;</span><span class="p">)],</span>
+<span class="p">]</span>
+
+<span class="c1"># Create the form and show it without the plot</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span>
+    <span class="s2">&quot;Matplotlib Single Graph&quot;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="p">,</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">element_justification</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+    <span class="n">font</span><span class="o">=</span><span class="s2">&quot;Helvetica 18&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add the plot to the window</span>
+<span class="n">draw_figure</span><span class="p">(</span><span class="n">window</span><span class="p">[</span><span class="s2">&quot;-CANVAS-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">TKCanvas</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+
+<span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>To create the user interface, all you need is a <code>Text()</code> element, a <code>Canvas()</code> element, and a <code>Button()</code> element. Then you add all of those to a <code>Window()</code> and call your <code>draw_figure()</code> helper function to draw the plot.</p>
+<p>You don&rsquo;t need the event loop here because you won&rsquo;t be interacting with the elements in this user interface.</p>
+<p>Here&rsquo;s what the graph will look like:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/psg_matplot.094fc93d8763.jpg" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block w-75" src="https://files.realpython.com/media/psg_matplot.094fc93d8763.jpg" width="1068" height="1018" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/psg_matplot.094fc93d8763.jpg&amp;w=267&amp;sig=e037341bc93924deb8602eb0ee6f55e8fcc153c1 267w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/psg_matplot.094fc93d8763.jpg&amp;w=534&amp;sig=afdf032211f9e7d43bbd285026491e7008ab40e9 534w, https://files.realpython.com/media/psg_matplot.094fc93d8763.jpg 1068w" sizes="75vw" alt="PySimpleGUI with Matplotlib Graph" data-asset="2602" /></a></figure>
+<p>There are <a href="https://github.com/PySimpleGUI/PySimpleGUI/tree/master/DemoPrograms">other Matplotlib demos</a> included with PySimpleGUI that you should check out.</p>
+<p>Now you can learn how to use OpenCV with PySimpleGUI.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="integrating-opencv-with-pysimplegui"><h2>Integrating OpenCV With PySimpleGUI<a class="headerlink" href="#integrating-opencv-with-pysimplegui" title="Permanent link"></a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer vision</a> is a hot topic right now. Python allows you get into computer vision by using the <a href="https://pypi.org/project/opencv-python/">opencv-python package</a>, which is a wrapper around the popular <strong>OpenCV</strong> application. If you&rsquo;re interested in learning more about computer vision, then check out <a href="https://realpython.com/face-recognition-with-python/">Face Recognition with Python, in Under 25 Lines of Code</a>.</p>
+<p>PySimpleGUI features straightforward integration with the OpenCV library. However, you&rsquo;ll first need to install OpenCV using <code>pip</code>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install opencv-python
+</code></pre></div>
+<p>Now that you have OpenCV installed, you can write a fun application!</p>
+<p>You&rsquo;ll look at another <a href="https://github.com/PySimpleGUI/PySimpleGUI/blob/master/DemoPrograms/Demo_OpenCV_Simple_GUI.py">PySimpleGUI demo</a> that uses OpenCV and your computer&rsquo;s webcam. This application will let you apply some common filters to your video in real time.</p>
+<p>The code for this example is long, but no need to worry. It&rsquo;ll be explained in smaller chunks afterwards. Go ahead and create a file named <code>psg_opencv.py</code> and add the following code:</p>
+<div class="card mb-3" id="collapse_card012853">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapse012853" aria-expanded="false" aria-controls="collapse012853" markdown="1"><span class="float-left" markdown="1">Full Source Code for OpenCV Example</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse js-collapsible-section" data-parent="#collapse_card012853" id="collapse012853">
+<div class="card-body">
+<div class="highlight python"><pre><span></span><code><span class="linenos">  1</span><span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+<span class="linenos">  2</span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="linenos">  3</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="linenos">  6</span>    <span class="n">sg</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="s2">&quot;LightGreen&quot;</span><span class="p">)</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span>    <span class="c1"># Define the window layout</span>
+<span class="linenos">  9</span>    <span class="n">layout</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 10</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;OpenCV Demo&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">justification</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)],</span>
+<span class="linenos"> 11</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">)],</span>
+<span class="linenos"> 12</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+<span class="linenos"> 13</span>        <span class="p">[</span>
+<span class="linenos"> 14</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;threshold&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-THRESH-&quot;</span><span class="p">),</span>
+<span class="linenos"> 15</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos"> 16</span>                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos"> 17</span>                <span class="mi">128</span><span class="p">,</span>
+<span class="linenos"> 18</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 19</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos"> 20</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos"> 21</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-THRESH SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos"> 22</span>            <span class="p">),</span>
+<span class="linenos"> 23</span>        <span class="p">],</span>
+<span class="linenos"> 24</span>        <span class="p">[</span>
+<span class="linenos"> 25</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;canny&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANNY-&quot;</span><span class="p">),</span>
+<span class="linenos"> 26</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos"> 27</span>                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos"> 28</span>                <span class="mi">128</span><span class="p">,</span>
+<span class="linenos"> 29</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 30</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos"> 31</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos"> 32</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANNY SLIDER A-&quot;</span><span class="p">,</span>
+<span class="linenos"> 33</span>            <span class="p">),</span>
+<span class="linenos"> 34</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos"> 35</span>                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos"> 36</span>                <span class="mi">128</span><span class="p">,</span>
+<span class="linenos"> 37</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 38</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos"> 39</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos"> 40</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANNY SLIDER B-&quot;</span><span class="p">,</span>
+<span class="linenos"> 41</span>            <span class="p">),</span>
+<span class="linenos"> 42</span>        <span class="p">],</span>
+<span class="linenos"> 43</span>        <span class="p">[</span>
+<span class="linenos"> 44</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-BLUR-&quot;</span><span class="p">),</span>
+<span class="linenos"> 45</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos"> 46</span>                <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+<span class="linenos"> 47</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 48</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 49</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos"> 50</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos"> 51</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-BLUR SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos"> 52</span>            <span class="p">),</span>
+<span class="linenos"> 53</span>        <span class="p">],</span>
+<span class="linenos"> 54</span>        <span class="p">[</span>
+<span class="linenos"> 55</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;hue&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-HUE-&quot;</span><span class="p">),</span>
+<span class="linenos"> 56</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos"> 57</span>                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">225</span><span class="p">),</span>
+<span class="linenos"> 58</span>                <span class="mi">0</span><span class="p">,</span>
+<span class="linenos"> 59</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 60</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos"> 61</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos"> 62</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-HUE SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos"> 63</span>            <span class="p">),</span>
+<span class="linenos"> 64</span>        <span class="p">],</span>
+<span class="linenos"> 65</span>        <span class="p">[</span>
+<span class="linenos"> 66</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;enhance&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-ENHANCE-&quot;</span><span class="p">),</span>
+<span class="linenos"> 67</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos"> 68</span>                <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos"> 69</span>                <span class="mi">128</span><span class="p">,</span>
+<span class="linenos"> 70</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 71</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos"> 72</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos"> 73</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-ENHANCE SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos"> 74</span>            <span class="p">),</span>
+<span class="linenos"> 75</span>        <span class="p">],</span>
+<span class="linenos"> 76</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Exit&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+<span class="linenos"> 77</span>    <span class="p">]</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span>    <span class="c1"># Create the window and show it without the plot</span>
+<span class="linenos"> 80</span>    <span class="n">window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;OpenCV Integration&quot;</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span>    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos"> 85</span>        <span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos"> 86</span>        <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;Exit&quot;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WIN_CLOSED</span><span class="p">:</span>
+<span class="linenos"> 87</span>            <span class="k">break</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span>        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span>        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-THRESH-&quot;</span><span class="p">]:</span>
+<span class="linenos"> 92</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LAB</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 93</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span>
+<span class="linenos"> 94</span>                <span class="n">frame</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-THRESH SLIDER-&quot;</span><span class="p">],</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span>
+<span class="linenos"> 95</span>            <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 96</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-CANNY-&quot;</span><span class="p">]:</span>
+<span class="linenos"> 97</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Canny</span><span class="p">(</span>
+<span class="linenos"> 98</span>                <span class="n">frame</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-CANNY SLIDER A-&quot;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-CANNY SLIDER B-&quot;</span><span class="p">]</span>
+<span class="linenos"> 99</span>            <span class="p">)</span>
+<span class="linenos">100</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-BLUR-&quot;</span><span class="p">]:</span>
+<span class="linenos">101</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-BLUR SLIDER-&quot;</span><span class="p">])</span>
+<span class="linenos">102</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-HUE-&quot;</span><span class="p">]:</span>
+<span class="linenos">103</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+<span class="linenos">104</span>            <span class="n">frame</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;-HUE SLIDER-&quot;</span><span class="p">])</span>
+<span class="linenos">105</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2BGR</span><span class="p">)</span>
+<span class="linenos">106</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-ENHANCE-&quot;</span><span class="p">]:</span>
+<span class="linenos">107</span>            <span class="n">enh_val</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-ENHANCE SLIDER-&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">40</span>
+<span class="linenos">108</span>            <span class="n">clahe</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">createCLAHE</span><span class="p">(</span><span class="n">clipLimit</span><span class="o">=</span><span class="n">enh_val</span><span class="p">,</span> <span class="n">tileGridSize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="linenos">109</span>            <span class="n">lab</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LAB</span><span class="p">)</span>
+<span class="linenos">110</span>            <span class="n">lab</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">clahe</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">lab</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="linenos">111</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_LAB2BGR</span><span class="p">)</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>        <span class="n">imgbytes</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imencode</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<span class="linenos">114</span>        <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">imgbytes</span><span class="p">)</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span>    <span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>That is a long piece of code! Let&rsquo;s go over the example one piece at a time:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="linenos"> 6</span>    <span class="n">sg</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="s2">&quot;LightGreen&quot;</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Define the window layout</span>
+<span class="linenos"> 9</span>    <span class="n">layout</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">10</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;OpenCV Demo&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">justification</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)],</span>
+<span class="linenos">11</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">)],</span>
+<span class="linenos">12</span>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+<span class="linenos">13</span>        <span class="p">[</span>
+<span class="linenos">14</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;threshold&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-THRESH-&quot;</span><span class="p">),</span>
+<span class="linenos">15</span>            <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos">16</span>                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos">17</span>                <span class="mi">128</span><span class="p">,</span>
+<span class="linenos">18</span>                <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">19</span>                <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos">20</span>                <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos">21</span>                <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-THRESH SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos">22</span>            <span class="p">),</span>
+<span class="linenos">23</span>        <span class="p">],</span>
+</code></pre></div>
+<p><strong>Lines 1 through 3</strong> are the imports for the Python libraries that you&rsquo;ll need. Then you set the <code>theme</code> on <strong>line 6</strong>. </p>
+<p>The next step, starting on <strong>line 9</strong>, is to create a <code>layout</code> for all the elements in the GUI. The first set of elements includes a <code>Text()</code> element, an <code>Image()</code> element, and a <code>Radio()</code> element. You set the identifier key for the <code>Image</code> element to <code>"-IMAGE-"</code>. You also nest a <code>Radio()</code> element and a <code>Slider()</code> element and set their identifier keys to <code>"-THRESH-"</code> and <code>"-THRESH SLIDER-"</code>, respectively.</p>
+<p>Now you&rsquo;ll add some more elements to the <code>layout</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">24</span><span class="p">[</span>
+<span class="linenos">25</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;canny&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANNY-&quot;</span><span class="p">),</span>
+<span class="linenos">26</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos">27</span>        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos">28</span>        <span class="mi">128</span><span class="p">,</span>
+<span class="linenos">29</span>        <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">30</span>        <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos">31</span>        <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos">32</span>        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANNY SLIDER A-&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>    <span class="p">),</span>
+<span class="linenos">34</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos">35</span>        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos">36</span>        <span class="mi">128</span><span class="p">,</span>
+<span class="linenos">37</span>        <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">38</span>        <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos">39</span>        <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos">40</span>        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-CANNY SLIDER B-&quot;</span><span class="p">,</span>
+<span class="linenos">41</span>    <span class="p">),</span>
+<span class="linenos">42</span><span class="p">],</span>
+</code></pre></div>
+<p>On <strong>lines 24 through 42</strong>, you add another <code>Radio()</code> element and two <code>Slider()</code> elements to control <a href="https://docs.opencv.org/trunk/da/d22/tutorial_py_canny.html">canny edge detection</a> with the user interface. You also set the identifiers appropriately.</p>
+<p>Now you&rsquo;ll add a way to blur images: </p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">43</span><span class="p">[</span>
+<span class="linenos">44</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-BLUR-&quot;</span><span class="p">),</span>
+<span class="linenos">45</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos">46</span>        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+<span class="linenos">47</span>        <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">48</span>        <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">49</span>        <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos">50</span>        <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos">51</span>        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-BLUR SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos">52</span>    <span class="p">),</span>
+<span class="linenos">53</span><span class="p">],</span>
+</code></pre></div>
+<p>Here, you only need to add a couple of elements to control <strong>image blurring</strong>, which is also known as <strong>image smoothing</strong>. You can read more about this technique in the <a href="https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html">OpenCV documentation</a>.</p>
+<p>You only have two more sets of controls to add. You&rsquo;ll add the hue controls next:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">54</span><span class="p">[</span>
+<span class="linenos">55</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;hue&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-HUE-&quot;</span><span class="p">),</span>
+<span class="linenos">56</span>    <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos">57</span>        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">225</span><span class="p">),</span>
+<span class="linenos">58</span>        <span class="mi">0</span><span class="p">,</span>
+<span class="linenos">59</span>        <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">60</span>        <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos">61</span>        <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos">62</span>        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-HUE SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos">63</span>    <span class="p">),</span>
+<span class="linenos">64</span><span class="p">],</span>
+</code></pre></div>
+<p>These elements allow you to convert between different <strong>color spaces</strong>. Color spaces are outside the scope of this tutorial, but you can read more about them in the <a href="https://docs.opencv.org/trunk/df/d9d/tutorial_py_colorspaces.html">Changing Colorspaces</a> tutorial over on the OpenCV website.</p>
+<p>The last elements to add are for controlling contrast:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos">65</span>    <span class="p">[</span>
+<span class="linenos">66</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span><span class="s2">&quot;enhance&quot;</span><span class="p">,</span> <span class="s2">&quot;Radio&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-ENHANCE-&quot;</span><span class="p">),</span>
+<span class="linenos">67</span>        <span class="n">sg</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+<span class="linenos">68</span>            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="linenos">69</span>            <span class="mi">128</span><span class="p">,</span>
+<span class="linenos">70</span>            <span class="mi">1</span><span class="p">,</span>
+<span class="linenos">71</span>            <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+<span class="linenos">72</span>            <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="linenos">73</span>            <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-ENHANCE SLIDER-&quot;</span><span class="p">,</span>
+<span class="linenos">74</span>        <span class="p">),</span>
+<span class="linenos">75</span>    <span class="p">],</span>
+<span class="linenos">76</span>    <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Exit&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+<span class="linenos">77</span><span class="p">]</span>
+<span class="linenos">78</span>
+<span class="linenos">79</span><span class="c1"># Create the window and show it without the plot</span>
+<span class="linenos">80</span><span class="n">window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;OpenCV Integration&quot;</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="linenos">81</span>
+<span class="linenos">82</span><span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<p>These last few elements will allow you to enhance the video stream&rsquo;s contrast using the <a href="https://docs.opencv.org/master/d6/dc7/group__imgproc__hist.html">Contrast Limited Adaptive Histogram Equalization</a> algorithm.</p>
+<p>This finishes the <code>layout</code>. Then you pass your <code>layout</code> to the <code>Window()</code> so that you can see your UI onscreen.</p>
+<p>Finally, you use <code>cv2.VideoCapture(0)</code> to access the webcam on your machine. You may see a pop-up asking you for permission to use your camera. If you do, then you&rsquo;ll need to grant permission, or else this code won&rsquo;t work.</p>
+<p>Now take a look at the rest of the code:</p>
+<div class="highlight python"><pre><span></span><code><span class="linenos"> 84</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos"> 85</span>        <span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos"> 86</span>        <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;Exit&quot;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WIN_CLOSED</span><span class="p">:</span>
+<span class="linenos"> 87</span>            <span class="k">break</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span>        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span>        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-THRESH-&quot;</span><span class="p">]:</span>
+<span class="linenos"> 92</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LAB</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 93</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span>
+<span class="linenos"> 94</span>                <span class="n">frame</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-THRESH SLIDER-&quot;</span><span class="p">],</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span>
+<span class="linenos"> 95</span>            <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 96</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-CANNY-&quot;</span><span class="p">]:</span>
+<span class="linenos"> 97</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Canny</span><span class="p">(</span>
+<span class="linenos"> 98</span>                <span class="n">frame</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-CANNY SLIDER A-&quot;</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-CANNY SLIDER B-&quot;</span><span class="p">]</span>
+<span class="linenos"> 99</span>            <span class="p">)</span>
+<span class="linenos">100</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-BLUR-&quot;</span><span class="p">]:</span>
+<span class="linenos">101</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-BLUR SLIDER-&quot;</span><span class="p">])</span>
+<span class="linenos">102</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-HUE-&quot;</span><span class="p">]:</span>
+<span class="linenos">103</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+<span class="linenos">104</span>            <span class="n">frame</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;-HUE SLIDER-&quot;</span><span class="p">])</span>
+<span class="linenos">105</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2BGR</span><span class="p">)</span>
+<span class="linenos">106</span>        <span class="k">elif</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-ENHANCE-&quot;</span><span class="p">]:</span>
+<span class="linenos">107</span>            <span class="n">enh_val</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;-ENHANCE SLIDER-&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">40</span>
+<span class="linenos">108</span>            <span class="n">clahe</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">createCLAHE</span><span class="p">(</span><span class="n">clipLimit</span><span class="o">=</span><span class="n">enh_val</span><span class="p">,</span> <span class="n">tileGridSize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="linenos">109</span>            <span class="n">lab</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2LAB</span><span class="p">)</span>
+<span class="linenos">110</span>            <span class="n">lab</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">clahe</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">lab</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="linenos">111</span>            <span class="n">frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_LAB2BGR</span><span class="p">)</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>        <span class="n">imgbytes</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imencode</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<span class="linenos">114</span>        <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-IMAGE-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">imgbytes</span><span class="p">)</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span>    <span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>This is the event loop for your PySimpleGUI interface. When you change a slider in your UI, PySimpleGUI will grab the <code>event</code> and <code>values</code> and use them to determine which OpenCV function to apply to your webcam stream. </p>
+<p>This code is a bit different from the others you&rsquo;ve seen because it&rsquo;s encapsulated within a <code>main()</code> function. This type of function is used as the main entry point of the program. To learn more on this topic, check out <a href="https://realpython.com/python-main-function/">Defining Main Functions in Python</a>.</p>
+<p>Here&rsquo;s an example of what the GUI will look like:</p>
+<figure class="js-lightbox"><a href="https://files.realpython.com/media/psg_opencv_sm.ab7f962324a2.jpg" target="_blank"><img loading="lazy" class="img-fluid mx-auto d-block border " src="https://files.realpython.com/media/psg_opencv_sm.ab7f962324a2.jpg" width="657" height="438" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/psg_opencv_sm.ab7f962324a2.jpg&amp;w=164&amp;sig=f4475283e181bb09aa1369e847989acb8385050b 164w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/psg_opencv_sm.ab7f962324a2.jpg&amp;w=328&amp;sig=224a57b6dc5b6fe3fbb37003581c85d6dfefdfc5 328w, https://files.realpython.com/media/psg_opencv_sm.ab7f962324a2.jpg 657w" sizes="75vw" alt="PySimpleGUI with OpenCV Webcam" data-asset="2604" /></a></figure>
+<p>Now it&rsquo;s time learn how to create an executable of your application for Windows.</p>
+<div><div class="rounded border border-light" style="display:block;position:relative;"><div style="display:block;width:100%;padding-top:12.5%;"></div><div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div></div><a class="small text-muted" href="/account/join/" rel="nofollow"><i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section2" id="packaging-your-pysimplegui-application-for-windows"><h2>Packaging Your PySimpleGUI Application for Windows<a class="headerlink" href="#packaging-your-pysimplegui-application-for-windows" title="Permanent link"></a></h2>
+<p>There are many different <a href="https://realpython.com/python-modules-packages/">Python packages</a> that you can use to convert your Python code into an executable for Windows. One of the most popular is <a href="https://pyinstaller.readthedocs.io/en/stable/operating-mode.html">PyInstaller</a>.</p>
+<p>You can install PyInstaller using <code>pip</code>:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>python -m pip install pyinstaller
+</code></pre></div>
+<p>To learn more about how to use PyInstaller, check out <a href="https://realpython.com/pyinstaller-python/">Using PyInstaller to Easily Distribute Python Applications</a>.</p>
+<p>You&rsquo;ll use PyInstaller to convert the image viewer application that you created earlier into an executable.</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>pyinstaller img_viewer.py
+</code></pre></div>
+<p>When you run this command, you&rsquo;ll see a lot of output similar to the following:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">177 INFO: PyInstaller: 3.6</span>
+<span class="go">178 INFO: Python: 3.8.2</span>
+<span class="go">179 INFO: Platform: Windows-10-10.0.10586-SP0</span>
+<span class="go">186 INFO: wrote C:\Users\mike\OneDrive\Documents\image_viewer_psg.spec</span>
+<span class="go">192 INFO: UPX is not available.</span>
+<span class="go">221 INFO: Extending PYTHONPATH with paths</span>
+<span class="go">---- output snipped ----</span>
+<span class="go">13476 INFO: Building COLLECT because COLLECT-00.toc is non existent</span>
+<span class="go">13479 INFO: Building COLLECT COLLECT-00.toc</span>
+<span class="go">25851 INFO: Building COLLECT COLLECT-00.toc completed successfully.</span>
+</code></pre></div>
+<p>This output is abbreviated since PyInstaller is quite verbose. When it&rsquo;s done, you&rsquo;ll have a subfolder named <code>dist</code> in the same folder that contains <code>img_viewer.py</code>. You can go into the <code>dist</code> folder to find <code>img_viewer.exe</code> and try running it.</p>
+<p>There will be a lot of other files in the <code>dist</code> folder that the executable uses. </p>
+<p>If you prefer to have only a single executable file, then you can rerun the command using the <code>--onefile</code> flag:</p>
+<div class="highlight sh"><pre><span></span><code><span class="gp">$ </span>pyinstaller --onefile img_viewer.py
+</code></pre></div>
+<p>This will still generate the <code>dist</code> folder, but this time there should be a single executable in it.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> Windows Defender may flag your executable as having a virus if you use the <code>--onefile</code> flag. If it does, then you&rsquo;ll need to add an exclusion to Windows Security to get it to run. This is because Windows executables need to be <strong>signed</strong> in Windows 10.</p>
+</div>
+<p>When you run the executable, you&rsquo;ll see a console window appear in addition to your user interface. To remove the console, you can use the <code>--noconsole</code> or the <code>--windowed</code> flag when running PyInstaller.</p>
+</section><section class="section2" id="conclusion"><h2>Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<p>You learned a lot about the PySimpleGUI package in this tutorial! Above all, you became familiar with the basics of using PySimpleGUI to create applications.</p>
+<p><strong>In this tutorial, you learned how to:</strong></p>
+<ul>
+<li><strong>Install</strong> the PySimpleGUI package</li>
+<li>Create basic <strong>user interface elements</strong> with PySimpleGUI</li>
+<li>Create some <strong>applications</strong>, such as an <strong>image viewer</strong>, with PySimpleGUI</li>
+<li>Integrate PySimpleGUI with <strong>Matplotlib</strong></li>
+<li>Use <strong>computer vision</strong> in PySimpleGUI</li>
+<li>Package your PySimpleGUI application for <strong>Windows</strong></li>
+</ul>
+<p>You can use what you learned in this tutorial to create your own interesting and useful applications.</p>
+<p>The PySimpleGUI package offers many more <a href="https://github.com/PySimpleGUI/PySimpleGUI/blob/master/DemoPrograms">example demos</a> that you can use to build your skills and discover how to use all the tools in the library more effectively. Be sure to check them out, and you&rsquo;ll soon find yourself creating your own cross-platform GUI applications</p>
+<p>If you&rsquo;d like to learn more about PySimpleGUI, then you can check out any of the following resources:</p>
+<ul>
+<li><a href="https://pysimplegui.readthedocs.io/en/latest/">The PySimpleGUI documentation</a></li>
+<li><a href="https://pysimplegui.readthedocs.io/en/latest/cookbook/">The PySimpleGUI Cookbook</a></li>
+<li><a href="https://pysimplegui.trinket.io/demo-programs#/demo-programs/the-basic-pysimplegui-program">The PySimpleGUI demos</a></li>
+</ul>
+</section>
+<div class="text-center my-3">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+<div class="border rounded p-3 card mb-2">
+<p class="mb-0"><span class="badge badge-pill badge-success"><i class="fa fa-play-circle" aria-hidden="true"></i> Watch Now</span> This tutorial has a related video course created by the Real Python team. Watch it together with the written tutorial to deepen your understanding: <a class="stretched-link text-success" href="/courses/simplify-gui-dev-pysimplegui/"><strong>Simplify Python GUI Development With PySimpleGUI</strong></a></p>
+</div>
+</div>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.</p>
+</div>
+<div class="col-xs-12 col-sm-5">
+<img class="img-fluid rounded mb-3" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="NWWWzmOD3ftiOsd6trbHq5k9bl5QrUyxT1B9aV0BoKosYlSOCdDRQaj5rgaKEs2m">
+<input type="hidden" name="slug" value="static-python-tricks-footer">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me Python Tricks »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="card mt-3" id="author">
+<p class="card-header h3">About <strong>Mike Driscoll</strong></p>
+<div class="card-body">
+<div class="container p-0">
+<div class="row">
+<div class="col-12 col-md-3 align-self-center">
+<a href="/team/mdriscoll/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=13058d69f737cb34c4cb973e7c412bf68ee9de63" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=225&amp;h=225&amp;mode=crop&amp;sig=b40467470e5fc7815bdfbf8a4923a95092f16bb8 225w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=450&amp;h=450&amp;mode=crop&amp;sig=07adbea6844e4f6c8bc4cfabca33d6a84795ea6c 450w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=13058d69f737cb34c4cb973e7c412bf68ee9de63 900w" sizes="25vw" width="900" height="900" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto" alt="Mike Driscoll"></a>
+<a href="/team/mdriscoll/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=13058d69f737cb34c4cb973e7c412bf68ee9de63" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=225&amp;h=225&amp;mode=crop&amp;sig=b40467470e5fc7815bdfbf8a4923a95092f16bb8 225w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=450&amp;h=450&amp;mode=crop&amp;sig=07adbea6844e4f6c8bc4cfabca33d6a84795ea6c 450w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/mdriscoll.db44df0df864.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=13058d69f737cb34c4cb973e7c412bf68ee9de63 900w" sizes="25vw" width="900" height="900" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0" alt="Mike Driscoll"></a>
+</div>
+<div class="col mt-3">
+<p>Mike has been programming in Python for over a decade and loves writing about Python!</p>
+<a href="/team/mdriscoll/" class="card-link">» More about Mike</a>
+</div>
+</div>
+</div>
+</div>
+<hr class="my-0">
+<div class="card-body pb-0">
+<div class="container">
+<div class="row">
+<p><em>Each tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:</em></p>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/asantos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=175&amp;h=175&amp;mode=crop&amp;sig=30253487c673fd67bb45ea6bef95b3c57e115e46 175w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=350&amp;h=350&amp;mode=crop&amp;sig=a43bd9ea30a6f61a4fc2451ab9abfc6faec8a2c0 350w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c 700w" sizes="10vw" width="900" height="900" class="rounded-circle img-fluid w-100" alt="Aldren Santos"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/asantos/" class="card-link small"><p>Aldren</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/damos/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=522ebc378492fd2228f8a9980bf89544b51aba2c" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=100&amp;h=100&amp;mode=crop&amp;sig=4e832705873c990ccc3fe2459dcd2b081613ecb1 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=ecc773a7a56114ed2831d281156669f0d7f1ab68 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=522ebc378492fd2228f8a9980bf89544b51aba2c 400w" sizes="10vw" width="900" height="900" class="rounded-circle img-fluid w-100" alt="David Amos"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/damos/" class="card-link small"><p>David</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/gahjelle/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=c6390201e73d3e09429d73da5bb29c17ab10403a 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=fcea459ee24a7b320573cadee324cf75509dc1d6 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/gahjelle.470149ee709e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=e9b761c6cf1359953014dba05554f5424eb116e1 800w" sizes="10vw" width="900" height="900" class="rounded-circle img-fluid w-100" alt="Geir Arne Hjelle"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/gahjelle/" class="card-link small"><p>Geir Arne</p></a>
+</div>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jjablonski/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=706b16de3cb88a8f353f4a98d7c7bc7234229bd0 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=6d7aa672ca3f1ac5f7cd62ed1641b60f98d04d8b 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858 800w" sizes="10vw" width="900" height="900" class="rounded-circle img-fluid w-100" alt="Joanna Jablonski"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jjablonski/" class="card-link small"><p>Joanna</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="/team/jschmitt/"><img loading="lazy" src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=d10d9fc35ba4a6608969e71b4c24c1e61176ee2d" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=100&amp;h=100&amp;mode=crop&amp;sig=ef40d1115d3b4c306b16314b5555d5dc55361da9 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=e1df2f238effe79f5750fc75258642036de498c3 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=d10d9fc35ba4a6608969e71b4c24c1e61176ee2d 400w" sizes="10vw" width="900" height="900" class="rounded-circle img-fluid w-100" alt="Jacob Schmitt"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="/team/jschmitt/" class="card-link small"><p>Jacob</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center"></div>
+<div class="col pl-0 d-none d-sm-block"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+<div class="col-12 text-center d-block d-md-none">
+<p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</mark></u> With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-1"><img class="w-75" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+<p class="mb-0"><a href="/account/join/?utm_source=rp_article_footer&utm_content=pysimplegui-python" class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+</div>
+<div class="col-12 text-center d-none d-md-block">
+<p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-2"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260"></p>
+<p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="/account/join/?utm_source=rp_article_footer&utm_content=pysimplegui-python" class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+</div>
+</div>
+<div class="card mt-4" id="reader-comments">
+<p class="card-header h3">What Do You Think?</p>
+<div class="text-center mt-3 mb-0 p-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: PySimpleGUI%3A%20The%20Simple%20Way%20to%20Create%20a%20GUI%20With%20Python by @realpython&url=https%3A//realpython.com/pysimplegui-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/pysimplegui-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0APySimpleGUI%3A%20The%20Simple%20Way%20to%20Create%20a%20GUI%20With%20Python%0A%0Ahttps%3A//realpython.com/pysimplegui-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="card-body">
+<div class="alert alert-dark">
+<p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.</p>
+</div>
+<p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.</p>
+<div class="mb-4" id="disqus_thread">
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<p class="card-header h3">Keep Learning</p>
+<div class="card-body">
+<p class="mb-0">Related Tutorial Categories:
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+</p>
+<p class="mt-3 mb-0">Recommended Video Course: <a class="text-success" href="/courses/simplify-gui-dev-pysimplegui/">Simplify Python GUI Development With PySimpleGUI</a></p>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="rprw">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header border-0 mt-3">
+<div class="col-12 modal-title text-center">
+<h2 class="my-0 mx-5">Keep reading Real&nbsp;Python by creating a free account or signing&nbsp;in:</h2>
+</div>
+</div>
+<div class="modal-body bg-light">
+<div class="col-12 text-center">
+<p class="mb-2 mt-3"><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fpysimplegui-python%2F"><img class="w-50 mb-2" src="https://cdn.realpython.com/static/videos/lesson-locked.f5105cfd26db.svg" width="510" height="260" alt="Keep reading"></a></p>
+<p><a href="/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fpysimplegui-python%2F" class="btn btn-primary btn-lg px-5"></i>Continue »</a></a>
+</div>
+</div>
+<div class="modal-footer border-0">
+<p class="text-center text-muted mt-2 mb-1">Already have an account? <a href="/account/login/?next=/pysimplegui-python/">Sign-In</a></p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.realpython.com/static/frontend/reader/rw.38bf29157dfe.js" async></script>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="NWWWzmOD3ftiOsd6trbHq5k9bl5QrUyxT1B9aV0BoKosYlSOCdDRQaj5rgaKEs2m">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email&hellip;" required>
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="/tutorials/all/">All Tutorial Topics</a></p>
+<a href="/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="/tutorials/gamedev/" class="badge badge-light text-muted">gamedev</a>
+<a href="/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+<div class="sidebar-sticky ">
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+<p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+<div class="toc">
+<ul>
+<li><a href="#getting-started-with-pysimplegui">Getting Started With PySimpleGUI</a></li>
+<li><a href="#installing-pysimplegui">Installing PySimpleGUI</a></li>
+<li><a href="#creating-basic-ui-elements-in-pysimplegui">Creating Basic UI Elements in PySimpleGUI</a></li>
+<li><a href="#creating-simple-applications">Creating Simple Applications</a></li>
+<li><a href="#creating-a-pysimplegui-image-viewer">Creating a PySimpleGUI Image Viewer</a></li>
+<li><a href="#integrating-matplotlib-with-pysimplegui">Integrating Matplotlib With PySimpleGUI</a></li>
+<li><a href="#integrating-opencv-with-pysimplegui">Integrating OpenCV With PySimpleGUI</a></li>
+<li><a href="#packaging-your-pysimplegui-application-for-windows">Packaging Your PySimpleGUI Application for Windows</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<div class="jsCompletionStatusWidget btn-group mb-0">
+<button title="Click to mark as completed" class="jsBtnCompletion btn btn-secondary border-right " style="border-top-right-radius: 0; border-bottom-right-radius: 0;" disabled>Mark as Completed</button>
+<button title="Add bookmark" class="jsBtnBookmark btn btn-secondary border-left" disabled><i class="fa fa-fw fa-bookmark-o"></i></button>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check out this %23Python tutorial: PySimpleGUI%3A%20The%20Simple%20Way%20to%20Create%20a%20GUI%20With%20Python by @realpython&url=https%3A//realpython.com/pysimplegui-python/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/pysimplegui-python/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python article for you&body=Check out this Python tutorial:%0A%0APySimpleGUI%3A%20The%20Simple%20Way%20to%20Create%20a%20GUI%20With%20Python%0A%0Ahttps%3A//realpython.com/pysimplegui-python/" class="badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="sidebar-module sidebar-module-inset border card">
+<p><span class="badge badge-pill badge-success"><i class="fa fa-play-circle mr-1" aria-hidden="true"></i> Recommended Video Course</span><br><a class="stretched-link text-success" href="/courses/simplify-gui-dev-pysimplegui/">Simplify Python GUI Development With PySimpleGUI</a></p>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-python-cheat-sheet-experiment" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+<img class="img-fluid rounded" src="https://files.realpython.com/media/python-logo.8eb72ea6927b.png" width="1000" height="1000" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-logo.8eb72ea6927b.png&amp;w=250&amp;sig=3922247197a4a17add6954dd288123a4df30e55a 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-logo.8eb72ea6927b.png&amp;w=500&amp;sig=40c3b1b474ae94aec528188714ba5878a77362ea 500w, https://files.realpython.com/media/python-logo.8eb72ea6927b.png 1000w" sizes="50vw" alt="Python Logo">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">Get the Python Cheat Sheet (Free PDF)</p>
+<form class="col-12" action="/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="NWWWzmOD3ftiOsd6trbHq5k9bl5QrUyxT1B9aV0BoKosYlSOCdDRQaj5rgaKEs2m">
+<input type="hidden" name="slug" value="python-cheat-sheet-experiment">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus>
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Send My Python Cheat Sheet »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<div class="w-75 mx-auto mt-4 mb-0">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+</div>
+<a class="small text-muted" href="/account/join/" rel="nofollow"> <i class="fa fa-info-circle" aria-hidden="true"> </i> Remove ads</a>
+</div>
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="https://srv.realpython.net/tag.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/toc-refresh.76a102c7d921.js" async></script>
+<script id="js-context" type="application/json">{"is_completed": false, "is_bookmarked": false, "api_article_bookmark_url": "/api/v1/articles/pysimplegui-python/bookmark/", "api_article_completion_status_url": "/api/v1/articles/pysimplegui-python/completion_status/"}</script>
+<script src="https://cdn.realpython.com/static/frontend/reader/completion-status.352d07abd84a.js" async></script>
+<script id="dsq-count-scr" src="https://realpython.disqus.com/count.js" async></script>
+<script>
+      var disqus_config = function () {
+        this.page.url = 'https://realpython.com/pysimplegui-python/';
+        this.page.identifier = 'https://realpython.com/pysimplegui-python/';
+        this.callbacks.onReady = [function() {
+          if (window.onDisqusReady) {
+            window.onDisqusReady();
+          }
+        }];
+      };
+      var disqus_script_url = 'https://realpython.disqus.com/embed.js';
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lazy-disqus.07ee9079f4a3.js" defer></script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "PySimpleGUI: The Simple Way to Create a GUI With Python",
+    
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://files.realpython.com/media/Get-Started-with-PySimpleGUI_Watermarked.a54f8fd0b42e.jpg",
+      "width": 1920,
+      "height": 1080
+    },
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://realpython.com/pysimplegui-python/"
+    },
+    "datePublished": "2020-06-17T14:00:00+00:00",
+    "dateModified": "2021-04-03T06:57:23.007629+00:00",
+     "publisher": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cdn.realpython.com/static/real-python-logo-square-tiny.b2452b6d3823.png",
+        "width": 60,
+        "height": 60
+      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "url": "https://realpython.com",
+      "logo": "https://cdn.realpython.com/static/real-python-logo-square.146e987bf77c.png"
+    },
+    "description": "In this step\u002Dby\u002Dstep tutorial, you\u0027ll learn how to create a cross\u002Dplatform graphical user interface (GUI) using Python and PySimpleGUI. A graphical user interface is an application that has buttons, windows, and lots of other elements that the user can use to interact with your application."
+  }
+  </script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a45926de33762',m:'uWYNT0sNJoTrWDknHPKIpNxTre3Xebe.cIvE8b6LjIc-1632636024-0-AbQFZLemz9t9w8+21r6T86xvY5V1v33bKKDS5k13XLI+TTeZ5V08uQYnIYJrePB2tb6DpcaFQplmiNWJKfJXfZQDLE1rKj4ouDdbp+qxG4fVKXvx4EItCog5Tmw2qW5c6MnzDk3gaSxHrc1U7iDEOjg=',s:[0x61cfaa3591,0xa56d6dfc51],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

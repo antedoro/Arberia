@@ -1,0 +1,405 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<link href="https://cdn.realpython.com" rel="preconnect">
+<link href="https://files.realpython.com" rel="preconnect">
+<title>Episode #8: Docker + Python for Data Science and Machine Learning – The Real Python Podcast</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="Docker is a common tool for Python developers creating and deploying applications, but what do you need to know if you want to use Docker for data science and machine learning? What are the best practices if you want to start using containers for your scientific projects? This week we have Tania Allard on the show. She is a Sr. Developer Advocate at Microsoft focusing on Machine Learning, scientific computing, research and open source.">
+<meta name="keywords" content="">
+<link type="application/rss+xml" rel="alternate" title="The Real Python Podcast" href="https://realpython.com/podcasts/rpp/feed" />
+<meta name="apple-itunes-app" content="app-id=1501905538, affiliate-data=1000lqsw&ct=show_detail_rpp">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/realpython.min.1ecfd4a9d422.css">
+<link rel="stylesheet" href="https://cdn.realpython.com/static/gfonts/font.08e909e5f3d4.css">
+<link rel="preload" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://cdn.realpython.com/static/glightbox.min.f69035b3cab2.css"></noscript>
+<link rel="canonical" href="https://realpython.com/podcasts/rpp/8/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Real-Python-Podcast_BLUE_Waterkmarked.b5ff55c349bd.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Real-Python-Podcast_BLUE_Waterkmarked.b5ff55c349bd.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Episode #8: Docker + Python for Data Science and Machine Learning – The Real Python Podcast">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/podcasts/rpp/8/">
+<meta property="og:description" content="Docker is a common tool for Python developers creating and deploying applications, but what do you need to know if you want to use Docker for data science and machine learning? What are the best practices if you want to start using containers for your scientific projects? This week we have Tania Allard on the show. She is a Sr. Developer Advocate at Microsoft focusing on Machine Learning, scientific computing, research and open source.">
+<link href="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="/manifest.json">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+    ga('set', 'anonymizeIp', true);
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js'></script></head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
+<div class="container flex-row">
+<a class="navbar-brand" href="/">
+<img src="https://cdn.realpython.com/static/real-python-logo.893c30edea53.svg" width="165" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation" aria-label="Main Navigation">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap" aria-hidden="true"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap" aria-hidden="true"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film" aria-hidden="true"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy" aria-hidden="true"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o" aria-hidden="true"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack" aria-hidden="true"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags" aria-hidden="true"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="/account/join/"><i class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> RP Membership</a>
+<a class="dropdown-item" href="/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="/team/">Meet the Team</a>
+<a class="dropdown-item" href="/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search" aria-hidden="true"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength=50 type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="/account/login/?next=%2Fpodcasts%2Frpp%2F8%2F">Sign&#8209;In</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-10 col-lg-8 article">
+<div class="article-body page-body">
+<figure class="embed-responsive embed-responsive-1by1 mb-4 w-50 mx-auto rounded">
+<img class="card-img-top m-0 p-0 embed-responsive-item" style="object-fit: contain;" alt="Real Python Logo" src="https://files.realpython.com/media/real-python-logo-square.28474fda9228.png" width="1500" height="1500" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/real-python-logo-square.28474fda9228.png&amp;w=375&amp;sig=63b1902b1a7aab334cdf77c17b087777c93eed72 375w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/real-python-logo-square.28474fda9228.png&amp;w=750&amp;sig=43098782d487dd64229435da04c792c4255a9f50 750w, https://files.realpython.com/media/real-python-logo-square.28474fda9228.png 1500w" sizes="75vw">
+</figure>
+<h1 class="text-center mb-0">Episode 8: Docker + Python for Data Science and Machine Learning</h1>
+<h2 class="text-center mt-2 mb-2 text-muted h3"><a class="text-muted" href="/podcasts/rpp/">The Real Python Podcast</a></h2>
+<h2 class="text-center mt-2 mb-2 text-muted h5">May 08, 2020<span class="ml-2"><i class="fa fa-clock-o"></i> 55m</span></h2>
+<audio id="player" class="my-3 w-100" controls controlsList="nodownload" preload="none">
+<source src="https://chtbl.com/track/92DB94/files.realpython.com/podcasts/RPP_E008_Tania_Allard.d9d985170b01.mp3" type="audio/mpeg">
+</audio>
+<div class="mb-4 text-center">
+<a class="btn btn-secondary my-1 mr-2" href="https://realpython.com/podcasts/rpp/feed"><i class="fa mr-2 fa-rss"></i>RSS</a>
+<a class="btn btn-secondary my-1 mr-2" href="https://podcasts.apple.com/us/podcast/feed/id1501905538"><i class="fa mr-2 fa-apple"></i>Apple Podcasts</a>
+<a class="btn btn-secondary my-1 mr-2" href="https://podcasts.google.com/?feed=aHR0cHM6Ly9yZWFscHl0aG9uLmNvbS9wb2RjYXN0cy9ycHAvZmVlZA=="><i class="fa mr-2 fa-google"></i>Google Podcasts</a>
+<a class="btn btn-secondary my-1 mr-2" href="https://open.spotify.com/show/41Av6Rq81LfOT3Volz7W9D"><i class="fa mr-2 fa-spotify"></i>Spotify</a>
+<span class="dropdown">
+<button class="btn btn-secondary dropdown-toggle mr-2 my-1" type="button" id="supportingMaterialButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa mr-2 fa-podcast"></i>More</button>
+<div class="dropdown-menu bg-light" aria-labelledby="supportingMaterialButton">
+<a class="dropdown-item text-body bg-light" href="https://www.stitcher.com/s?fid=511770&amp;refid=stpr"><i class="fa mr-2 fa-podcast"></i>Stitcher</a>
+<a class="dropdown-item text-body bg-light" href="https://podplayer.net/?podId=2561845"><i class="fa mr-2 fa-podcast"></i>Podcast Addict</a>
+<a class="dropdown-item text-body bg-light" href="https://overcast.fm/itunes1501905538"><i class="fa mr-2 fa-podcast"></i>Overcast</a>
+<a class="dropdown-item text-body bg-light" href="https://pca.st/itunes/1501905538"><i class="fa mr-2 fa-podcast"></i>Pocket Casts</a>
+<a class="dropdown-item text-body bg-light" href="https://castbox.fm/vic/1501905538"><i class="fa mr-2 fa-podcast"></i>CastBox</a>
+<a class="dropdown-item text-body bg-light" href="https://files.realpython.com/podcasts/RPP_E008_Tania_Allard.d9d985170b01.mp3" download><i class="fa mr-2 fa-download"></i>Download MP3</a>
+</div>
+</span>
+</div>
+<div class="container mb-2">
+<div class="row d-flex justify-content-center">
+<div class=" text-center mx-2 mb-3" style="width: 7rem;">
+<div class="embed-responsive embed-responsive-1by1 mb-2">
+<a href="/team/cbailey/" target="_blank"><img src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=1770&amp;h=1770&amp;mode=crop&amp;sig=ce02935882c3c09ed67bdf4e7dc7475b792d05a9" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=442&amp;h=442&amp;mode=crop&amp;sig=180ec8ab6c852c98d93730288807684d021103cb 442w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=885&amp;h=885&amp;mode=crop&amp;sig=895b3b2fdb680d1ccde0b87482270d5abcfa6f78 885w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=1770&amp;h=1770&amp;mode=crop&amp;sig=ce02935882c3c09ed67bdf4e7dc7475b792d05a9 1770w" sizes="20vw" class="rounded-circle img-fluid embed-responsive-item mb-0" title="Christopher Bailey" alt="Christopher Bailey"></a>
+</div>
+<div class="d-block" style="line-height: 1;"><small><a href="/team/cbailey/" target="_blank" class="text-body">Christopher Bailey</a><br><span class="text-muted">Host</span></small></div>
+</div>
+<div class=" text-center mx-2 mb-3" style="width: 7rem;">
+<div class="embed-responsive embed-responsive-1by1 mb-2">
+<a href="https://twitter.com/ixek" target="_blank"><img src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Tania_Allard_3.f3c3f15da71f.jpg&amp;w=1673&amp;h=1673&amp;mode=crop&amp;sig=6a83febad3f78c871cea9103df8de46acf46e691" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Tania_Allard_3.f3c3f15da71f.jpg&amp;w=418&amp;h=418&amp;mode=crop&amp;sig=c750b37530e91271746ce78caac5d2587517ea12 418w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Tania_Allard_3.f3c3f15da71f.jpg&amp;w=836&amp;h=836&amp;mode=crop&amp;sig=f5508a4ba4249ea7ac19bcd99fa0a69b6e4a0844 836w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Tania_Allard_3.f3c3f15da71f.jpg&amp;w=1673&amp;h=1673&amp;mode=crop&amp;sig=6a83febad3f78c871cea9103df8de46acf46e691 1673w" sizes="20vw" class="rounded-circle img-fluid embed-responsive-item mb-0" title="Tania Allard" alt="Tania Allard"></a>
+</div>
+<div class="d-block" style="line-height: 1;"><small><a href="https://twitter.com/ixek" target="_blank" class="text-body">Tania Allard</a><br><span class="text-muted">Guest</span></small></div>
+</div>
+</div>
+</div>
+<p>Docker is a common tool for Python developers creating and deploying applications, but what do you need to know if you want to use Docker for data science and machine learning? What are the best practices if you want to start using containers for your scientific projects? This week we have Tania Allard on the show. She is a Sr. Developer Advocate at Microsoft focusing on Machine Learning, scientific computing, research and open source.</p>
+<p>Tania has created a talk for the PyCon US 2020 which is now online. The talk is titled “Docker and Python: Making them Play Nicely and Securely for Data Science and ML.” Her talk draws on her expertise in the improvement of processes, reproducibility and transparency in research and data science. We discuss a variety of tools for making your containers more secure and results reproducible.</p>
+<p>Tania is passionate about mentoring, open-source, and its community. She is an organizer for Mentored Sprints for Diverse Beginners, and she talks about the upcoming online sprints for PyCon US 2020. We also discuss her plans to start a podcast.</p>
+<p>Topics:</p>
+<ul>
+<li><a class="timestamp" href="#t=0">00:00:00</a> &ndash; Introduction</li>
+<li><a class="timestamp" href="#t=103">00:01:43</a> &ndash; Microsoft Senior Developer Advocate Role</li>
+<li><a class="timestamp" href="#t=247">00:04:07</a> &ndash; PyCon 2020 Talk - Docker and Python: making them play nicely</li>
+<li><a class="timestamp" href="#t=334">00:05:34</a> &ndash; What is Docker?</li>
+<li><a class="timestamp" href="#t=608">00:10:08</a> &ndash; Reproducibility of project results</li>
+<li><a class="timestamp" href="#t=723">00:12:03</a> &ndash; What are the challenges of using Docker for machine learning?</li>
+<li><a class="timestamp" href="#t=906">00:15:06</a> &ndash; Getting started suggestions</li>
+<li><a class="timestamp" href="#t=986">00:16:26</a> &ndash; What metadata should be included?</li>
+<li><a class="timestamp" href="#t=1068">00:17:48</a> &ndash; Creating images through stages</li>
+<li><a class="timestamp" href="#t=1276">00:21:16</a> &ndash; What about your data?</li>
+<li><a class="timestamp" href="#t=1360">00:22:40</a> &ndash; Kubernetes: Orchestrating containers</li>
+<li><a class="timestamp" href="#t=1477">00:24:37</a> &ndash; Continuing stages into testing</li>
+<li><a class="timestamp" href="#t=1537">00:25:37</a> &ndash; What are tools for testing security?</li>
+<li><a class="timestamp" href="#t=1627">00:27:07</a> &ndash; Challenges in using containers for ML</li>
+<li><a class="timestamp" href="#t=1732">00:28:52</a> &ndash; What types of databases?</li>
+<li><a class="timestamp" href="#t=1779">00:29:39</a> &ndash; Are you doing initial research on a local machine?</li>
+<li><a class="timestamp" href="#t=1859">00:30:59</a> &ndash; An example of a recent ML project</li>
+<li><a class="timestamp" href="#t=1936">00:32:16</a> &ndash; Papermill: parameterizing and executing notebooks</li>
+<li><a class="timestamp" href="#t=1996">00:33:16</a> &ndash; NLP: Natural Language Processing</li>
+<li><a class="timestamp" href="#t=2038">00:33:58</a> &ndash; Kaggle: Help us better understand COVID-19</li>
+<li><a class="timestamp" href="#t=2082">00:34:42</a> &ndash; What are other best practices for data intensive projects?</li>
+<li><a class="timestamp" href="#t=2353">00:39:13</a> &ndash; Resources to get started in machine learning?</li>
+<li><a class="timestamp" href="#t=2430">00:40:30</a> &ndash; Mentored Sprints for Diverse Beginners </li>
+<li><a class="timestamp" href="#t=2734">00:45:34</a> &ndash; Tania&rsquo;s upcoming podcast</li>
+<li><a class="timestamp" href="#t=2918">00:48:38</a> &ndash; A visiting fellow at the Alan Turing Institute</li>
+<li><a class="timestamp" href="#t=2948">00:49:08</a> &ndash; Weight lifting</li>
+<li><a class="timestamp" href="#t=3016">00:50:16</a> &ndash; Craft beer</li>
+<li><a class="timestamp" href="#t=3129">00:52:09</a> &ndash; What is something you thought you knew in Python but were wrong about?</li>
+<li><a class="timestamp" href="#t=3230">00:53:50</a> &ndash; What are excited about in the world of Python?</li>
+<li><a class="timestamp" href="#t=3282">00:54:42</a> &ndash; Thank you and Goodbye</li>
+</ul>
+<p>Show links:</p>
+<ul>
+<li><a href="https://www.trallard.dev">Tania Allard: Personal site</a></li>
+<li><a href="https://www.youtube.com/watch?v=Jq68axbKIbg&amp;feature=youtu.be">Docker and Python: making them play nicely and securely for Data Science and ML - Tania Allard</a></li>
+<li><a href="https://speakerdeck.com/trallard/docker-and-python-making-them-play-nicely-and-securely-for-data-science-and-machine-learning">Slides for Docker and Python Talk</a></li>
+<li><a href="https://www.docker.com">Docker</a></li>
+<li><a href="https://xkcd.com/1987/">XKCD: Python Superfund Site</a></li>
+<li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Best practices for writing Dockerfiles</a></li>
+<li><a href="https://realpython.com/python-versions-docker/">Run Python Versions in Docker: How to Try the Latest Python Release</a></li>
+<li><a href="https://kubernetes.io">Kubernetes: Production-Grade Container Orchestration</a></li>
+<li><a href="https://snyk.io">Snyk: Securing open source and containers</a></li>
+<li><a href="https://papermill.readthedocs.io/en/latest/">papermill: A tool for parameterizing and executing Jupyter Notebooks</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Natural_language_processing">Natural Language Processing: Wikipedia article</a></li>
+<li><a href="https://realpython.com/natural-language-processing-spacy-python/">Natural Language Processing With spaCy in Python: Real Python article</a></li>
+<li><a href="https://www.kaggle.com/covid19">Kaggle: Help us better understand COVID-19</a></li>
+<li><a href="https://www.datree.io/product">datree.io: Scale Engineering organization</a></li>
+<li><a href="https://repo2docker.readthedocs.io/en/latest/">repo2docker: Build, Run, and Push Docker Images from Source Code Repositories</a></li>
+<li><a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html">Jupyter Docker Stacks: A set of ready-to-run Docker images</a></li>
+<li><a href="https://mybinder.org/">binder: Turn a Git Repo into a Collection of Interactive Notebooks</a></li>
+<li><a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781491962282/">Hands-On Machine Learning with Scikit-Learn and TensorFlow: O&rsquo;Reilly</a></li>
+<li><a href="https://www.oreilly.com/library/view/data-science-from/9781491901410/">Data Science from Scratch: O&rsquo;Reilly</a></li>
+<li><a href="https://wesmckinney.com/pages/book.html">Python for Data Analysis: Wes McKinney - Creator of Pandas</a></li>
+<li><a href="https://us.pycon.org/2020/hatchery/mentoredsprints/">Mentored Sprints for Diverse Beginners</a></li>
+<li><a href="https://www.turing.ac.uk">The Alan Turing Institute</a></li>
+<li><a href="https://www.youtube.com/watch?v=PV7iy6FPjAY">Easy Data Processing With Azure Fun - Tania Allard - PyCon 2020</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0581/">PEP 581 &ndash; Using GitHub Issues for CPython</a></li>
+<li><a href="https://t.co/bfSZvZFkw7?amp=1">Python’s migration to GitHub - Request for Project Manager Resumes</a></li>
+</ul>
+<p class="mb-4 text-center">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Docker%20%2B%20Python%20for%20Data%20Science%20and%20Machine%20Learning%20on%20The%20Real%20Python%20Podcast&url=https%3A//realpython.com/podcasts/rpp/8/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/podcasts/rpp/8/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Check out this podcast&body=%0A%0ADocker%20%2B%20Python%20for%20Data%20Science%20and%20Machine%20Learning%20on%20The%20Real%20Python%20Podcast%0A%0Ahttps%3A//realpython.com/podcasts/rpp/8/" class="mr-1 badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</p>
+<div class="alert alert-warning mb-4">
+<h4 class="mt-3 mb-0 text-center">Level Up Your Python Skills With&nbsp;These&nbsp;Courses:</h4>
+<div class="container">
+<div class="row">
+<div class="col-md px-0 text-center my-3 mb-0">
+<figure class="mx-auto embed-responsive embed-responsive-16by9 my-0 w-75 rounded  shadow-sm">
+<a href="/courses/using-jupyter-notebooks/?utm_source=podcast_detail&amp;utm_content=rpp-8"><img loading="lazy" src="https://files.realpython.com/media/Introduction-to-Jupyter-Notebooks_Watermarked.16bb2cf21ca5.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Introduction-to-Jupyter-Notebooks_Watermarked.16bb2cf21ca5.jpg&amp;w=480&amp;sig=ee227e6aa194dea181949e0901c2e87f5f7cc14c 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Introduction-to-Jupyter-Notebooks_Watermarked.16bb2cf21ca5.jpg&amp;w=960&amp;sig=4bf2a89f9f6f27303462bab6105b0aa7b9accfda 960w, https://files.realpython.com/media/Introduction-to-Jupyter-Notebooks_Watermarked.16bb2cf21ca5.jpg 1920w" class="embed-responsive-item card-img-top" alt="Jupyter Notebook: An Introduction" sizes="25vw"></a>
+</figure>
+<p class="mb-0 mt-2" style="line-height: normal;"><a class="small alert-link" href="/courses/using-jupyter-notebooks/?utm_source=podcast_detail&amp;utm_content=rpp-8">Using Jupyter Notebooks</a></p>
+</div>
+<div class="col-md px-0 text-center my-3 mb-0">
+<figure class="mx-auto embed-responsive embed-responsive-16by9 my-0 w-75 rounded  shadow-sm">
+<a href="/courses/python-histograms/?utm_source=podcast_detail&amp;utm_content=rpp-8"><img loading="lazy" src="https://files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg&amp;w=480&amp;sig=783b873487def2aea3fdfe35ab6dc5bfdb85bbde 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg&amp;w=960&amp;sig=b12228170000458357a92f522c8541245d0c5599 960w, https://files.realpython.com/media/Python_Histograms_Watermark.c4daed2c983b.jpg 1920w" class="embed-responsive-item card-img-top" alt="Python Histogram Plots" sizes="25vw"></a>
+</figure>
+<p class="mb-0 mt-2" style="line-height: normal;"><a class="small alert-link" href="/courses/python-histograms/?utm_source=podcast_detail&amp;utm_content=rpp-8">Python Histogram Plotting: NumPy, Matplotlib, Pandas &amp; Seaborn</a></p>
+</div>
+<div class="col-md px-0 text-center my-3 mb-0">
+<figure class="mx-auto embed-responsive embed-responsive-16by9 my-0 w-75 rounded  shadow-sm">
+<a href="/courses/idiomatic-pandas-tricks-features-you-may-not-know/?utm_source=podcast_detail&amp;utm_content=rpp-8"><img loading="lazy" src="https://files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg&amp;w=480&amp;sig=04c14b4948a5b98eb558b1789ef348e9b038d749 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg&amp;w=960&amp;sig=ecc3a818a495a55eb361092f4d345469431f631a 960w, https://files.realpython.com/media/Python-Pandas-10-Tricks--Features-You-May-Not-Know-Watermark.e58bb5ce9835.jpg 1920w" class="embed-responsive-item card-img-top" alt="Pandas Tricks" sizes="25vw"></a>
+</figure>
+<p class="mb-0 mt-2" style="line-height: normal;"><a class="small alert-link" href="/courses/idiomatic-pandas-tricks-features-you-may-not-know/?utm_source=podcast_detail&amp;utm_content=rpp-8">Idiomatic Pandas: Tricks &amp; Features You May Not Know</a></p>
+</div>
+</div>
+</div>
+</div>
+<p class="text-center mb-4"><a href="/podcasts/rpp/">« Browse All Episodes</a></p>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="/newsletter/">Newsletter</a>&nbsp;⋅ <a href="/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="/search">Search</a>&nbsp;⋅ <a href="/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="/sponsorships/">Advertise</a>&nbsp;⋅ <a href="/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="https://cdn.realpython.com/static/jquery.min.8fb8fee4fcc3.js"></script>
+<script src="https://cdn.realpython.com/static/popper.min.1022eaf388cc.js"></script>
+<script src="https://cdn.realpython.com/static/bootstrap.min.f0c2bcf5ef0c.js"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="https://cdn.realpython.com/static/frontend/reader/repl-toggle.de6c7bf44788.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/reader/lightbox.49cdac39212e.js" async></script>
+<script src="https://cdn.realpython.com/static/frontend/podcasts/episode-player.9444621387c4.js" async></script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'694a43b5aa350f6e',m:'Au4uXoMPtZh3JlrHWDZ4gXbC.A0XNC0pcxVOup79MUM-1632635948-0-AYwcH8u8JFsQ4lNv4EkkmhV0diaYI3lgp/EEz9/fbljfAlzXVEgkSOcUxGznMzHdxO5YfhJdNodGiQfVzfCeZDYimHG/tL7Ji4Z4S/oNbIe8UMILutWbcdAe/ICyg0EbyA==',s:[0x2ec0d5834d,0xa6645cb9c6],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body>
+</html>

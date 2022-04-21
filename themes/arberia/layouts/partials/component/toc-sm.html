@@ -1,0 +1,80 @@
+{{/*  Table of Contents  */}}
+{{/*  <div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+    <p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+    <div class="toc">
+        {{ if and (.Params.toc) (gt .WordCount .Site.Params.tocMinWordCount ) }}
+        {{ .Page.TableOfContents }}
+        {{ end }}
+    </div>
+</div>  */}}
+
+{{/*  Table of contents  */}}
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+    <p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
+    <div class="toc">
+
+        <ul>
+            <li class=""><a href="#demo-what-youll-build">Demo: What You’ll Build</a></li>
+            <li class=""><a href="#project-overview">Project Overview</a></li>
+            <li class=""><a href="#prerequisites">Prerequisites</a></li>
+            <li class=""><a href="#step-1-scaffold-a-django-project-for-hosting">Step 1: Scaffold a
+                    Django Project for Hosting</a>
+                <ul>
+                    <li><a href="#create-a-virtual-environment">Create a Virtual Environment</a></li>
+                    <li><a href="#install-project-dependencies">Install Project Dependencies</a></li>
+                    <li><a href="#bootstrap-a-django-project">Bootstrap a Django Project</a></li>
+                    <li><a href="#update-local-database-schema-optional">Update Local Database Schema
+                            (Optional)</a></li>
+                    <li><a href="#run-a-local-development-server">Run a Local Development Server</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a href="#step-2-create-a-local-git-repository">Step 2: Create a Local Git
+                    Repository</a>
+                <ul>
+                    <li><a href="#initialize-an-empty-git-repository">Initialize an Empty Git
+                            Repository</a></li>
+                    <li><a href="#specify-untracked-files">Specify Untracked Files</a></li>
+                    <li><a href="#make-the-first-commit">Make the First Commit</a></li>
+                </ul>
+            </li>
+            <li class=""><a href="#step-3-create-a-free-heroku-account">Step 3: Create a Free Heroku
+                    Account</a>
+                <ul>
+                    <li><a href="#sign-up">Sign Up</a></li>
+                    <li><a href="#enable-multi-factor-authentication-optional">Enable Multi-Factor
+                            Authentication (Optional)</a></li>
+                    <li><a href="#add-a-payment-method-optional">Add a Payment Method (Optional)</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=""><a href="#step-4-install-the-heroku-cli">Step 4: Install the Heroku CLI</a>
+            </li>
+            <li class=""><a href="#step-5-log-in-with-the-heroku-cli">Step 5: Log In With the Heroku
+                    CLI</a></li>
+            <li class=""><a href="#step-6-create-a-heroku-app">Step 6: Create a Heroku App</a></li>
+            <li class=""><a href="#step-7-deploy-your-django-project-to-heroku">Step 7: Deploy Your
+                    Django Project to Heroku</a>
+                <ul>
+                    <li><a href="#choose-a-buildpack">Choose a Buildpack</a></li>
+                    <li><a href="#choose-the-python-version-optional">Choose the Python Version
+                            (Optional)</a></li>
+                    <li><a href="#specify-processes-to-run">Specify Processes to Run</a></li>
+                    <li><a href="#configure-django">Configure Django</a></li>
+                    <li><a href="#configure-the-heroku-app">Configure the Heroku App</a></li>
+                    <li><a href="#make-an-app-release">Make an App Release</a></li>
+                </ul>
+            </li>
+            <li class=""><a href="#step-8-set-up-a-relational-database">Step 8: Set Up a Relational
+                    Database</a>
+                <ul>
+                    <li><a href="#provision-a-postgresql-server">Provision a PostgreSQL Server</a></li>
+                    <li><a href="#update-remote-database-schema">Update Remote Database Schema</a></li>
+                    <li><a href="#populate-the-database">Populate the Database</a></li>
+                </ul>
+            </li>
+            <li class=""><a href="#conclusion">Conclusion</a></li>
+            <li class=""><a href="#next-steps">Next Steps</a></li>
+        </ul>
+    </div>
+</div>
