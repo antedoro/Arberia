@@ -52,7 +52,7 @@
 	{{ $style = slice $style | resources.Concat "all.css" | toCSS | minify | fingerprint }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-	<link href="css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href={{"css/all.css" | absURL}}> //fontawesome
 
 	{{/*  <link rel="stylesheet" type="text/css" href="{{"fontawesome/css/all.css" | absURL}}"> */}}
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -61,7 +61,7 @@
 	<!--load all styles -->
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/brands.css" | absURL }}"> */}}
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/solid.css" | absURL }}"> */}}
-	<script src="https://kit.fontawesome.com/43e283368b.js" crossorigin="anonymous"></script>
+	{{/*  <script src="https://kit.fontawesome.com/43e283368b.js" crossorigin="anonymous"></script>  */}}
 
 	<link rel="stylesheet" type="text/css" href="{{"gfonts/font.08e909e5f3d4.css" | absURL}}">
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/glightbox.css" | absURL }}">  */}}
