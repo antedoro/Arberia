@@ -5,7 +5,7 @@ features:
   card:
     # card
     - title : "Learning Paths"
-      icon : "fa fa-fw mr-1 fa-map-o"
+      icon : "fas mr-1 fa-map"
       link : "post-with-sidebar/"
       description : "Guided study plans for accelerated learning"
     # card
@@ -25,7 +25,7 @@ features:
       description : "Focus on a specific area or skill level"
     # card
     - title : "Community Chat"
-      icon : "fa fa-fw mr-1 fa-slack"
+      icon : "fab mr-1 fa-slack "
       link : "comunity-chat/"
       description : "Learn with other Pythonistas"
     # card
