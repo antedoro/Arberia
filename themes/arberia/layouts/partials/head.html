@@ -48,6 +48,8 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous"> 
 
+
+
 	{{ "<!-- CSS -->" | safeHTML }}
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | absURL }}"> */}}
 	{{ $style := resources.Get "css/realpython.css" }}
@@ -58,9 +60,9 @@
 	{{ $style = slice $style | resources.Concat "all.css" | toCSS | minify | fingerprint }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-	<link rel="stylesheet" href={{"css/all.css" | absURL}}> //fontawesome
+	<link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}> //fontawesome
 
-	{{/*  <link rel="stylesheet" type="text/css" href="{{"fontawesome/css/all.css" | absURL}}"> */}}
+	{{/*  <link rel="stylesheet" type="text/css" href="{{"fontawesome/css/all.css" | absURL}}">  */}}
 
 	
 	<!--load all styles -->
