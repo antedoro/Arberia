@@ -48,13 +48,10 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous"> 
 
-	
 
 
 	{{ "<!-- CSS -->" | safeHTML }}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | absURL }}">  */}}
-
-
+	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | absURL }}"> */}}
 	{{ $style := resources.Get "css/realpython.css" }}
 	{{ $components := resources.Match "css/" }}
 	{{ range $components }}
@@ -65,12 +62,16 @@
 
 	<link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}> //fontawesome
 
+	{{/*  <link rel="stylesheet" type="text/css" href="{{"fontawesome/css/all.css" | absURL}}">  */}}
+
+	
 	<!--load all styles -->
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/brands.css" | absURL }}"> */}}
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/solid.css" | absURL }}"> */}}
 	{{/*  <script src="https://kit.fontawesome.com/43e283368b.js" crossorigin="anonymous"></script>  */}}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{"gfonts/font.08e909e5f3d4.css" | absURL}}">
-	<link rel="stylesheet" type="text/css" href="{{ "css/glightbox.css" | absURL }}">   */}}
+
+	<link rel="stylesheet" type="text/css" href="{{"gfonts/font.08e909e5f3d4.css" | absURL}}">
+	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/glightbox.css" | absURL }}">  */}}
 
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "lib/bootstrap/bootstrap.min.css" | absURL }}"> */}}
 
