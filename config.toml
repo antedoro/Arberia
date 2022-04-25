@@ -105,57 +105,61 @@ post = ""
 name = "Start Here"
 url = "/start-here/"
 title = ""
-description = "In deep menu 1"
 weight = 1
 
 [[menu.main]]
 identifier = "learn_python"
 pre = "fa-trophy"
-post = "fa-trophy"
+post = ""
 name = "Learn Python"
 url = "#"
-title = ""
+title = "Prova"
 weight = 2
 
 [[menu.main]]
 identifier = "python_tutorials"
 pre = "fa-trophy"
-post = ""
+post = "In deep articles and tutorials"
 name = "Python Tutorials"
 url = "/python-tutorials/"
 title = ""
-description = "In deep menu 3"
 weight = 3
 parent = "learn_python"
 
-
-
 [[menu.main]]
 identifier = "python_topics"
-pre = ""
+pre = "fas fa-tag"
 post = "Focus on specific area level"
 name = "Python Topics →"
 url = "/python-topics/"
 title = ""
-description = "In deep menu 4"
 weight = 4
 parent = "learn_python"
 
 [[menu.main]]
+identifier = "film"
+pre = "fas fa-film"
+post = "Step-by-step video lesson"
+name = "Video"
+url = "/video/"
+title = ""
+weight = 5
+parent = "learn_python"
+
+[[menu.main]]
 identifier = "quizzies"
-pre = "Ciao"
-post = "Vincenzo"
+pre = "fas fa-trophy"
+post = "Check your learning progress"
 name = "Quizzies→"
 url = "/quizzies/"
 title = ""
-description = "In deep menu 5"
-weight = 5
+weight = 6
 parent = "learn_python"
 
 
 [[menu.main]]
 identifier = "more"
-pre = "fa fa-fw mr-1 fa-film"
+pre = "fas fa-fw mr-1 fa-film"
 post = ""
 name = "More"
 url = "/more/"
@@ -163,30 +167,30 @@ title = ""
 weight = 6
 
 [[menu.main]]
-identifier = "Python Newsletter"
+identifier = "python_newsletter"
 pre = ""
 post = ""
-name = "Python Newsletter 1"
+name = "Python Newsletter"
 url = "/more/"
 title = ""
 weight = 7
 parent = "more"
 
 [[menu.main]]
-identifier = "Python Podcast"
+identifier = "python_podcast"
 pre = ""
-post = "post 9"
-name = "Python Podcast 1 →"
+post = ""
+name = "Python Podcast →"
 url = "/more/"
 title = ""
 weight = 8
 parent = "more"
 
 [[menu.main]]
-identifier = "Python Job Board"
+identifier = "python_job_board"
 pre = ""
 post = ""
-name = "Python Job Board1"
+name = "Python Job Board"
 url = "/more/"
 title = ""
 weight = 9
