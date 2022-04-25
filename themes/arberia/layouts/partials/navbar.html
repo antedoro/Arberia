@@ -30,20 +30,20 @@
 
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
 						{{ range .Children }}
-						<a class="dropdown-item" href="{{ .URL | relURL }}"
-							style="color: {{ .Params.color }}; line-height: 110%;"><i class="{{ .Pre }}"
-								aria-hidden="true"></i> {{.Name}} <br><small
-								class="text-secondary">{{ .Post }}</small>
-							</a>
-								{{/*  Menu con linea separatrice  */}}
-								{{ if .Params.bordertop  }}
-								<a class="dropdown-item border-top" href="/account/join/"><i
+								{{ if .Params.bordertop  }} 	{{/*  Menu con linea separatrice  */}}
+								<a class="dropdown-item border-top" href="{{ .URL | relURL }}"><i
 									class="{{.Pre}}" aria-hidden="true"></i> {{ .Name}}</a>
+								{{ else }} 									{{/*  Menu senza linea separatrice  */}}
+									<a class="dropdown-item" href="{{ .URL | relURL }}"
+									style="color: {{ .Params.color }}; line-height: 110%;"><i class="{{ .Pre }}"
+										aria-hidden="true"></i> {{.Name}} <br><small
+										class="text-secondary">{{ .Post }}</small>
+									</a>
 								{{ end }}
 						{{ end }}							
 					</div>
 				</li>
-				
+
 				{{else}}
 				{{/*  Menu senza cascata  */}}
 				<li class="nav-item">
@@ -52,14 +52,6 @@
 				{{end}}
 				{{end}}
 			</ul>
-
-			{{/*  Elenco colori da usare nel  menu  */}}
-			{{/*  "color: #ff7e73;
-			"color: #abe5b1;
-			"color: #abe0e5;
-			"color: #ffc873;
-			"color: #e5c6ab;
-			"color: #b8abe5;   */}}
 
 			{{/*  Search  */}}
 			<div class="d-block d-xl-none">
@@ -119,7 +111,6 @@
 								class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign Out</a>
 					</div>
 				</li>
-
 
 			</ul>  */}}
 

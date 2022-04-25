@@ -126,8 +126,8 @@ url = "/python-tutorials/"
 title = ""
 weight = 3
 parent = "learn_python"
-  [menu.main.params]
-   color = "#ff7e73"
+[menu.main.params]
+  color = "#ff7e73"
 
 [[menu.main]]
 identifier = "python_topics"
@@ -138,8 +138,8 @@ url = "/python-topics/"
 title = ""
 weight = 4
 parent = "learn_python"
-  [menu.main.params]
-   color = "#abe5b1"
+[menu.main.params]
+  color = "#abe5b1"
 
 [[menu.main]]
 identifier = "film"
@@ -172,16 +172,16 @@ post = ""
 name = "More"
 url = "/more/"
 title = ""
-weight = 6
+weight = 7
 
 [[menu.main]]
 identifier = "unlock"
-pre = "fa fa-fw fa-star text-warning"
+pre = "fas fa-star text-warning"
 post = ""
 name = "Unlock All Content"
 url = "/quizzies/"
 title = ""
-weight = 7
+weight = 8
 parent = "learn_python"
 [menu.main.params]
   color = ""
@@ -194,7 +194,7 @@ post = ""
 name = "Python Newsletter"
 url = "/more/"
 title = ""
-weight = 7
+weight = 9
 parent = "more"
 
 [[menu.main]]
@@ -204,7 +204,7 @@ post = ""
 name = "Python Podcast"
 url = "/more/"
 title = ""
-weight = 8
+weight = 10
 parent = "more"
 
 [[menu.main]]
@@ -214,8 +214,16 @@ post = ""
 name = "Python Job Board →"
 url = "/more/"
 title = ""
-weight = 9
+weight = 11
 parent = "more"
+
+# Elenco colori da usare nel  menu 
+			# "color: #ff7e73;
+			# "color: #abe5b1;
+			# "color: #abe0e5;
+			# "color: #ffc873;
+			# "color: #e5c6ab;
+			# "color: #b8abe5; 
 
 # Footer config
 [footer]
