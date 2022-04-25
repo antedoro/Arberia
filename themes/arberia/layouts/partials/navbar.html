@@ -30,17 +30,16 @@
 
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
 						{{ range .Children }}
-								{{ if .Params.bordertop  }} 	{{/*  Menu con linea separatrice  */}}
-								<a class="dropdown-item border-top" href="{{ .URL | relURL }}"><i
-									class="{{.Pre}}" aria-hidden="true"></i> {{ .Name}}</a>
-								{{ else }} 									{{/*  Menu senza linea separatrice  */}}
-									<a class="dropdown-item" href="{{ .URL | relURL }}"
-									style="color: {{ .Params.color }}; line-height: 110%;"><i class="{{ .Pre }}"
-										aria-hidden="true"></i> {{.Name}} <br><small
-										class="text-secondary">{{ .Post }}</small>
-									</a>
-								{{ end }}
-						{{ end }}							
+						{{ if .Params.bordertop  }} {{/*  Menu con linea separatrice  */}}
+						<a class="dropdown-item border-top" href="{{ .URL | relURL }}"><i class="{{.Pre}}"
+								aria-hidden="true"></i> {{ .Name}}</a>
+						{{ else }} {{/*  Menu senza linea separatrice  */}}
+						<a class="dropdown-item" href="{{ .URL | relURL }}"
+							style="color: {{ .Params.color }}; line-height: 110%;"><i class="{{ .Pre }}"
+								aria-hidden="true"></i> {{.Name}} <br><small class="text-secondary">{{ .Post }}</small>
+						</a>
+						{{ end }}
+						{{ end }}
 					</div>
 				</li>
 
@@ -77,11 +76,14 @@
 			</div>
 
 			{{/*  Menu Utente  */}}
-			{{/*  <ul class="navbar-nav">
-				<li class="nav-item form-inline mr-2">
+			<ul class="navbar-nav">
+				{{/*  Join button  */}}
+				{{/*  <li class="nav-item form-inline mr-2">
 					<a class="btn btn-sm btn-primary px-3" href="https://realpython.com/account/join/">Join</a>
-				</li>
-				<li class="nav-item dropdown">
+				</li>  */}}
+
+				{{/*  Menu utente  */}}
+				{{/*  <li class="nav-item dropdown">
 					<a class="ml-2 ml-lg-0 btn text-light p-0 my-2" href="#" id="navbarDropdownAccount" role="button"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="My Account">
 						<div class="media">
@@ -110,9 +112,8 @@
 						<a class="dropdown-item" href="https://realpython.com/account/logout/"><i
 								class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign Out</a>
 					</div>
-				</li>
-
-			</ul>  */}}
+				</li>  */}}
+			</ul>
 
 		</div>
 	</div>
