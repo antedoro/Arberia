@@ -22,33 +22,31 @@
 				{{/*  Menu con cascata  */}}
 				{{- if .HasChildren }}
 				<li class="nav-item dropdown">
+					{{/*  Primo elemento del menu  */}}
 					<a class="nav-link dropdown-toggle" href="{{ .URL | relURL }}" id="navbarDropdownLibrary"
 						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="fas fa-graduation-cap" aria-hidden="true"></span> {{.Name}}
+						<span class="{{ .Pre }}" aria-hidden="true"></span> {{.Name}}
 					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
-						{{/*  {{ range .Children }}
-						<a class="dropdown-item" href="{{ .URL | relURL }}"
-							style="color: #ff7e73; line-height: 110%;"><i class="fas fa-fw mr-1 fa-graduation-cap"
-								aria-hidden="true"></i> {{.Name}} <br><small class="text-secondary">Inserisci il testo
-								idoneo</small></a>
-						{{ end }}  */}}
 
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
 						{{ range .Children }}
 						<a class="dropdown-item" href="{{ .URL | relURL }}"
-						style="color: #ff7e73; line-height: 110%;"><i class="{{ .Pre }}"
-						aria-hidden="true"></i> {{.Name}} <br><small class="text-secondary">{{ .Post }}</small></a>
-						{{ end }}
-
-
-						{{/*  Menu con inea separatrice  */}}
-						<a class="dropdown-item border-top" href="/account/join/"><i
-								class="fa fa-fw fa-star text-warning" aria-hidden="true"></i> Unlock All Content</a>
+							style="color: {{ .Params.color }}; line-height: 110%;"><i class="{{ .Pre }}"
+								aria-hidden="true"></i> {{.Name}} <br><small
+								class="text-secondary">{{ .Post }}</small>
+							</a>
+								{{/*  Menu con linea separatrice  */}}
+								{{ if .Params.bordertop  }}
+								<a class="dropdown-item border-top" href="/account/join/"><i
+									class="{{.Pre}}" aria-hidden="true"></i> {{ .Name}}</a>
+								{{ end }}
+						{{ end }}							
 					</div>
 				</li>
+				
 				{{else}}
+				{{/*  Menu senza cascata  */}}
 				<li class="nav-item">
-					{{/*  Menu senza cascata  */}}
 					<a class="nav-link" href="{{ .URL }}">{{.Name}}</a>
 				</li>
 				{{end}}

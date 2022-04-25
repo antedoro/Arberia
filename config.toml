@@ -109,22 +109,25 @@ weight = 1
 
 [[menu.main]]
 identifier = "learn_python"
-pre = "fa-trophy"
+pre = "fas fa-graduation-cap"
 post = ""
 name = "Learn Python"
 url = "#"
 title = "Prova"
 weight = 2
 
+
 [[menu.main]]
 identifier = "python_tutorials"
-pre = "fa-trophy"
+pre = "fas fa-graduation-cap"
 post = "In deep articles and tutorials"
 name = "Python Tutorials"
 url = "/python-tutorials/"
 title = ""
 weight = 3
 parent = "learn_python"
+  [menu.main.params]
+   color = "#ff7e73"
 
 [[menu.main]]
 identifier = "python_topics"
@@ -135,6 +138,8 @@ url = "/python-topics/"
 title = ""
 weight = 4
 parent = "learn_python"
+  [menu.main.params]
+   color = "#abe5b1"
 
 [[menu.main]]
 identifier = "film"
@@ -145,6 +150,8 @@ url = "/video/"
 title = ""
 weight = 5
 parent = "learn_python"
+[menu.main.params]
+  color = "#abe0e5"
 
 [[menu.main]]
 identifier = "quizzies"
@@ -155,16 +162,30 @@ url = "/quizzies/"
 title = ""
 weight = 6
 parent = "learn_python"
-
+[menu.main.params]
+  color = "#ffc873"
 
 [[menu.main]]
 identifier = "more"
-pre = "fas fa-fw mr-1 fa-film"
+pre = ""
 post = ""
 name = "More"
 url = "/more/"
 title = ""
 weight = 6
+
+[[menu.main]]
+identifier = "unlock"
+pre = "fa fa-fw fa-star text-warning"
+post = ""
+name = "Unlock All Content"
+url = "/quizzies/"
+title = ""
+weight = 7
+parent = "learn_python"
+[menu.main.params]
+  color = ""
+  bordertop = true
 
 [[menu.main]]
 identifier = "python_newsletter"
@@ -180,7 +201,7 @@ parent = "more"
 identifier = "python_podcast"
 pre = ""
 post = ""
-name = "Python Podcast →"
+name = "Python Podcast"
 url = "/more/"
 title = ""
 weight = 8
@@ -190,7 +211,7 @@ parent = "more"
 identifier = "python_job_board"
 pre = ""
 post = ""
-name = "Python Job Board"
+name = "Python Job Board →"
 url = "/more/"
 title = ""
 weight = 9
