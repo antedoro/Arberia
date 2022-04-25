@@ -13,7 +13,7 @@ logo = "img/real-python-logo.svg"
 logo_width = "200px"
 tagline = "New way of sound!"
 description = "Learn Python online: Python tutorials for developers of all skill levels, Python books and courses, Python news, code examples, articles, and more."
-keywords = "python, tutorials, figa"
+keywords = "python, tutorials, video"
 author = "Vincenzo Antedoro"
 author_resume = "Vincenzo Antedoro è un ingegnere che aiuta chi vuole investire nelle rinnovabili. Per il resto si diverte insegnando col metodo del learning by doing."
 contact_form_action = "https://formspree.io/f/mvovbvga"
@@ -97,8 +97,7 @@ safari_pinned_tab = "favicon/safari-pinned-tab.svg>"
 
 youtubeID = "UClA8GwWzurVCprEY6OsCvhw"
 
-
-
+#  Menu
 [[menu.main]]
 identifier = "start-here"
 pre = ""
@@ -106,6 +105,7 @@ post = ""
 name = "Start Here"
 url = "/start-here/"
 title = ""
+description = "In deep menu 1"
 weight = 1
 
 [[menu.main]]
@@ -124,16 +124,20 @@ post = ""
 name = "Python Tutorials"
 url = "/python-tutorials/"
 title = ""
+description = "In deep menu 3"
 weight = 3
 parent = "learn_python"
+
+
 
 [[menu.main]]
 identifier = "python_topics"
 pre = ""
-post = ""
+post = "Focus on specific area level"
 name = "Python Topics →"
 url = "/python-topics/"
 title = ""
+description = "In deep menu 4"
 weight = 4
 parent = "learn_python"
 
@@ -144,11 +148,10 @@ post = "Vincenzo"
 name = "Quizzies→"
 url = "/quizzies/"
 title = ""
-description = "In deep menu"
+description = "In deep menu 5"
 weight = 5
 parent = "learn_python"
-[menu.main.params]
-  class = 'Inserire testo'
+
 
 [[menu.main]]
 identifier = "more"
