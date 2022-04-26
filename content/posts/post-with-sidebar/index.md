@@ -33,11 +33,7 @@ license: ""
 
 As a novice [web developer](https://antedoro.it), you’ve built your portfolio app and shared your code on GitHub. Perhaps, you’re hoping to attract technical recruiters to land your first programming job. 
 
-
-
 Many coding bootcamp graduates are likely doing the same thing. To differentiate yourself from the crowd and boost your chances of getting noticed, you can start hosting your Django project online.
-
-
 
 For a hobby Django project, you’ll want a hosting service that’s free of charge, quick to set up, user-friendly, and well-integrated with your existing technology stack. While GitHub Pages is perfect for hosting static websites and websites with JavaScript, you’ll need a web server to run your Flask or Django project.
 
@@ -54,18 +50,17 @@ In this tutorial, you’ll learn how to:
 To follow along, you can download the code and other resources by clicking the link below:
 
 > **[Get Source Code](https://antedoro.it): Click here to get the companion Django project as well as snapshots of the individual steps** followed in this tutorial.
-> 
-
+>
 
 ## Demo: What You’ll Build
 
 You’re going to create a bare-bones Django project and deploy it to the cloud straight from the terminal. By the end, you’ll have a public and shareable link to your first Heroku app.
 
-### Titolo di prova
+## Titolo di prova
 
 Here’s a one-minute video demonstrating the necessary steps, from initializing an empty Git repository to viewing your finished project in the browser. Hang on and watch till the end for a quick preview of what you’re about to find in this tutorial:
 
-![](immagine)
+![Real-Python-Learning-Paths_Watermarked.webp](immagine)
 
 In addition to the steps shown in the screencast above, you’ll find a few more later on, but this should be enough to give you a general idea about how you’ll be working with Heroku in this tutorial.
 

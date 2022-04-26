@@ -22,7 +22,7 @@ resources:
 - name: "featured-image-preview"
   src: "Real-Python-Learning-Paths_Watermarked.webp"
 
-featured: true
+featured: false
 sidebar: false
 toc: true 
 math:

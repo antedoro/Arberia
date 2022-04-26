@@ -1,10 +1,10 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Video Grid View"
 subtitle: "Insert a subtitle here"
-date: {{ .Date }}
-lastmod: {{ .Date }}
+date: 2022-04-26T18:04:46+02:00
+lastmod: 2022-04-26T18:04:46+02:00
 draft: true
-author: "author"
+author: "Vincenzo Antedoro"
 authorLink: ""
 description: "Descrizione da rivedere se è un doppione subtitle"
 weight: 
