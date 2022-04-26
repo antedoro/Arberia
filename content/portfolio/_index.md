@@ -1,14 +1,15 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
-subtitle: "Insert a subtitle here"
-date: {{ .Date }}
-lastmod: {{ .Date }}
+title: "Portfolio"
+subtitle: "Let me speak about me"
+date: 2022-04-26T21:28:23+02:00
+lastmod: 2022-04-26T21:28:23+02:00
 draft: true
-weight: 
-
-author: "author"
+author: "Vincenzo Antedoro"
 authorLink: ""
 description: "Descrizione da rivedere se è un doppione subtitle"
+weight: 12
+
+type: "about"
 
 tags: [tag1, tag2, tag3, tag4]
 categories: [category]
@@ -18,17 +19,15 @@ hiddenFromSearch: false
 
 resources:
 - name: "featured-image"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
+  src: ""
 - name: "featured-image-preview"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
+  src: ""
 
-type:  # Nothing for default, or video 
 featured: false
-sidebar: true
-toc: true 
+sidebar: false
+toc: false
 math:
   enable: false
 lightgallery: false
 license: ""
 ---
-

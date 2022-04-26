@@ -1,9 +1,10 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Videos"
 subtitle: "Insert a subtitle here"
-date: {{ .Date }}
-lastmod: {{ .Date }}
+date: 2022-04-26T22:42:59+02:00
+lastmod: 2022-04-26T22:42:59+02:00
 draft: true
+type: "video"
 weight: 
 
 author: "author"
@@ -22,7 +23,6 @@ resources:
 - name: "featured-image-preview"
   src: "Real-Python-Learning-Paths_Watermarked.webp"
 
-type:  # Nothing for default, or video 
 featured: false
 sidebar: true
 toc: true 

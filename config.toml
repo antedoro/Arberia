@@ -99,22 +99,32 @@ youtubeID = "UClA8GwWzurVCprEY6OsCvhw"
 
 #  Menu
 [[menu.main]]
-identifier = "start-here"
+identifier = "home"
 pre = ""
 post = ""
-name = "Start Here"
-url = "/start-here/"
+name = "Home"
+url = "/"
 title = ""
 weight = 1
 
 [[menu.main]]
-identifier = "learn_python"
+identifier = "portfolio"
+pre = "fal fa-drafting-compass"
+post = ""
+name = "Portfolio"
+url = "/portfolio/"
+title = ""
+weight = 2
+
+
+[[menu.main]]
+identifier = "tutorial"
 pre = "fas fa-graduation-cap"
 post = ""
-name = "Learn Python"
+name = "Tutorial"
 url = "#"
-title = "Prova"
-weight = 2
+title = ""
+weight = 3
 
 
 [[menu.main]]
@@ -124,8 +134,8 @@ post = "In deep articles and tutorials"
 name = "Python Tutorials"
 url = "/python-tutorials/"
 title = ""
-weight = 3
-parent = "learn_python"
+weight = 4
+parent = "tutorial"
 [menu.main.params]
   color = "#ff7e73"
 
@@ -136,20 +146,20 @@ post = "Focus on specific area level"
 name = "Python Topics →"
 url = "/python-topics/"
 title = ""
-weight = 4
-parent = "learn_python"
+weight = 5
+parent = "tutorial"
 [menu.main.params]
   color = "#abe5b1"
 
 [[menu.main]]
-identifier = "film"
+identifier = "video"
 pre = "fas fa-film"
 post = "Step-by-step video lesson"
-name = "Video"
-url = "/video/"
+name = "Video Tutorial"
+url = "/portfolio/"
 title = ""
-weight = 5
-parent = "learn_python"
+weight = 6
+parent = "tutorial"
 [menu.main.params]
   color = "#abe0e5"
 
@@ -160,19 +170,10 @@ post = "Check your learning progress"
 name = "Quizzies→"
 url = "/quizzies/"
 title = ""
-weight = 6
-parent = "learn_python"
+weight = 7
+parent = "tutorial"
 [menu.main.params]
   color = "#ffc873"
-
-[[menu.main]]
-identifier = "more"
-pre = ""
-post = ""
-name = "More"
-url = "/more/"
-title = ""
-weight = 7
 
 [[menu.main]]
 identifier = "unlock"
@@ -182,40 +183,78 @@ name = "Unlock All Content"
 url = "/quizzies/"
 title = ""
 weight = 8
-parent = "learn_python"
+parent = "tutorial"
 [menu.main.params]
   color = ""
   bordertop = true
 
 [[menu.main]]
-identifier = "python_newsletter"
+identifier = "libri"
 pre = ""
 post = ""
-name = "Python Newsletter"
-url = "/more/"
+name = "Libri"
+url = "/libri/"
 title = ""
 weight = 9
-parent = "more"
 
 [[menu.main]]
-identifier = "python_podcast"
+identifier = "contact"
 pre = ""
 post = ""
-name = "Python Podcast"
-url = "/more/"
+name = "Contatti"
+url = "/contatti/"
 title = ""
 weight = 10
-parent = "more"
 
 [[menu.main]]
-identifier = "python_job_board"
+identifier = "about"
 pre = ""
 post = ""
-name = "Python Job Board →"
-url = "/more/"
+name = "About "
+url = "/about/"
 title = ""
 weight = 11
-parent = "more"
+
+
+# [[menu.main]]
+# identifier = "more"
+# pre = ""
+# post = ""
+# name = "More"
+# url = "/more/"
+# title = ""
+# weight = 10
+
+# [[menu.main]]
+# identifier = "python_newsletter"
+# pre = ""
+# post = ""
+# name = "Python Newsletter"
+# url = "/more/"
+# title = ""
+# weight = 11
+# parent = "more"
+
+# [[menu.main]]
+# identifier = "python_podcast"
+# pre = ""
+# post = ""
+# name = "Python Podcast"
+# url = "/more/"
+# title = ""
+# weight = 11
+# parent = "more"
+
+# [[menu.main]]
+# identifier = "python_job_board"
+# pre = ""
+# post = ""
+# name = "Python Job Board →"
+# url = "/more/"
+# title = ""
+# weight = 12
+# parent = "more"
+
 
 # Elenco colori da usare nel  menu 
 			# "color: #ff7e73;
