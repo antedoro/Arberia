@@ -3,14 +3,14 @@ weight: 1
 title: "Post without sidebar"
 subtitle: "Take your coding skills to the next level with Real Python’s
             accelerated study plans for beginner, intermediate, and advanced Python developers."
-date: 2020-10-15T20:58:53+02:00
-lastmod: 2020-10-15T20:58:53+02:00
+date: 2021-10-15T20:58:53+02:00
+lastmod: 2021-10-15T20:58:53+02:00
 draft: false
 author: "Vincenzo Antedoro"
 authorLink: ""
 description: "Abbiamo selezionato alcuni accesori indispensabili se decidi di acquistare un portabici per automobile"
 
-tags: [django, intermediate, projects, web-dev]
+tags: [tag1, tag2, tag3, tag4]
 categories: [lesson-path]
 
 hiddenFromHomePage: false
@@ -22,10 +22,9 @@ resources:
 - name: "featured-image-preview"
   src: "Real-Python-Learning-Paths_Watermarked.webp"
 
-sidebar: false
 featured: true
-toc:
-  enable: true
+sidebar: false
+toc: true 
 math:
   enable: false
 lightgallery: false
@@ -37,6 +36,8 @@ As a novice [web developer](https://antedoro.it), you’ve built your portfolio 
 
 
 Many coding bootcamp graduates are likely doing the same thing. To differentiate yourself from the crowd and boost your chances of getting noticed, you can start hosting your Django project online.
+
+
 
 For a hobby Django project, you’ll want a hosting service that’s free of charge, quick to set up, user-friendly, and well-integrated with your existing technology stack. While GitHub Pages is perfect for hosting static websites and websites with JavaScript, you’ll need a web server to run your Flask or Django project.
 
@@ -60,13 +61,13 @@ To follow along, you can download the code and other resources by clicking the l
 
 You’re going to create a bare-bones Django project and deploy it to the cloud straight from the terminal. By the end, you’ll have a public and shareable link to your first Heroku app.
 
+### Titolo di prova
+
 Here’s a one-minute video demonstrating the necessary steps, from initializing an empty Git repository to viewing your finished project in the browser. Hang on and watch till the end for a quick preview of what you’re about to find in this tutorial:
 
 ![](immagine)
 
 In addition to the steps shown in the screencast above, you’ll find a few more later on, but this should be enough to give you a general idea about how you’ll be working with Heroku in this tutorial.
-
-<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/58257184031/?c=31941813441&amp;p=58946116052&amp;r=79479" rel="nofollow" target="_blank"><img style="max-width: 100%; max-height: 100%; width: 100%;" src="https://img.realpython.net/16bf1efe41b538fae54711c58c701f0e"></a></div>
 
 ## Project Overview
 

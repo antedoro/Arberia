@@ -69,8 +69,6 @@ Here’s a one-minute video demonstrating the necessary steps, from initializing
 
 In addition to the steps shown in the screencast above, you’ll find a few more later on, but this should be enough to give you a general idea about how you’ll be working with Heroku in this tutorial.
 
-<div class="rpad rounded border" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/58257184031/?c=31941813441&amp;p=58946116052&amp;r=79479" rel="nofollow" target="_blank"><img style="max-width: 100%; max-height: 100%; width: 100%;" src="https://img.realpython.net/16bf1efe41b538fae54711c58c701f0e"></a></div>
-
 ## Project Overview
 
 This tutorial isn’t so much about building any particular project, but rather **hosting** one in the cloud using **Heroku**. While Heroku supports [various languages](https://antedoro.it) and web frameworks, you’ll stick to Python and Django. Don’t worry if you don’t have any Django projects on hand. The first step will walk you through scaffolding a new Django project to get you started quickly. Alternatively, you can use a ready-made sample project that you’ll find later.
