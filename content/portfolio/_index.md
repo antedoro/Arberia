@@ -1,6 +1,6 @@
 ---
 title: "Portfolio"
-subtitle: "Let me speak about me"
+subtitle: "Let me speak about my past work"
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
 draft: true
@@ -9,7 +9,7 @@ authorLink: ""
 description: "Descrizione da rivedere se è un doppione subtitle"
 weight: 12
 
-type: "about"
+type: "portfolio"
 
 tags: [tag1, tag2, tag3, tag4]
 categories: [category]
