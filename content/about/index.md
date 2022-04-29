@@ -8,13 +8,22 @@ draft: true
 
 type: "about"
 
-author: "Vincenzo Antedoro"
-author-image: "about/me.jpg"
+
+author: Vincenzo Antedoro
+avatar: "me.jpg"
 website: "https://antedoro.it"
 twitter: "https://twitter.com/antedoro"
 github: "https://github.com/antedoro"
 linkedin: "https://www.linkedin.com/in/antedoro/"
 instagram: "https://www.instagram.com/antedoro/"
+alt: "IO"
+
+resources:
+- name: "featured-image"
+  src: "me.jpg"
+- name: "featured-image-preview"
+  src: "me.jpg"
+
 weight: 1
 
 # tags: [tag1, tag2, tag3, tag4]
@@ -23,19 +32,13 @@ weight: 1
 # hiddenFromHomePage: false
 # hiddenFromSearch: false
 
-# resources:
-# - name: "featured-image"
-#   src: "about/me.jpg"
-# - name: "featured-image-preview"
-#   src: "about/me.jpg"
-
-featured: false
-sidebar: false
-toc: false
-math:
-  enable: false
-lightgallery: false
-license: ""
+# featured: false
+# sidebar: false
+# toc: false
+# math:
+#   enable: false
+# lightgallery: false
+# license: ""
 ---
 
 My name is **Vincenzo Antedoro**. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.
