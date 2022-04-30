@@ -10,7 +10,7 @@ type: "about"
 
 
 author: Vincenzo Antedoro
-avatar: "me.jpg"
+avatar: "avatar.webp"
 website: "https://antedoro.it"
 twitter: "https://twitter.com/antedoro"
 github: "https://github.com/antedoro"
@@ -20,9 +20,9 @@ alt: "IO"
 
 resources:
 - name: "featured-image"
-  src: "me.jpg"
+  src: "tu.jpg"
 - name: "featured-image-preview"
-  src: "me.jpg"
+  src: "tu.jpg"
 
 weight: 1
 
