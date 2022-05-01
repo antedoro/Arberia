@@ -36,19 +36,11 @@ license: ""
 slug: theme-shortcode
 ---
 
-<<<<<<< HEAD
-{{< alert-dark "messaggio">}}
-{{< alert "Allerta meteo!">}}
-=======
 {{< alert-dark "Alert grey">}}
 {{< alert "Alert message">}}
->>>>>>> dev
 
 {{< list-element  title="Who I am?"  link="/about/" photo="artwork.webp" summary="My name is Vincenzo Antedoro. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.">}}
 
 {{< learning-path >}}
-<<<<<<< HEAD
-=======
 
 {{< playlist >}} 
->>>>>>> dev
