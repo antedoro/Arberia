@@ -1,35 +1,44 @@
 ---
 title: "About Me"
 subtitle: "Let me speak about me"
+description: "Descrizione da rivedere se è un doppione subtitle"
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
 draft: true
-author: "Vincenzo Antedoro"
-authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
-weight: 12
 
 type: "about"
 
-tags: [tag1, tag2, tag3, tag4]
-categories: [category]
 
-hiddenFromHomePage: false
-hiddenFromSearch: false
+author: Vincenzo Antedoro
+avatar: "avatar.webp"
+website: "https://antedoro.it"
+twitter: "https://twitter.com/antedoro"
+github: "https://github.com/antedoro"
+linkedin: "https://www.linkedin.com/in/antedoro/"
+instagram: "https://www.instagram.com/antedoro/"
+alt: "IO"
 
 resources:
 - name: "featured-image"
-  src: ""
+  src: "tu.jpg"
 - name: "featured-image-preview"
-  src: ""
+  src: "tu.jpg"
 
-featured: false
-sidebar: false
-toc: false
-math:
-  enable: false
-lightgallery: false
-license: ""
+weight: 1
+
+# tags: [tag1, tag2, tag3, tag4]
+# categories: [category]
+
+# hiddenFromHomePage: false
+# hiddenFromSearch: false
+
+# featured: false
+# sidebar: false
+# toc: false
+# math:
+#   enable: false
+# lightgallery: false
+# license: ""
 ---
 
 My name is **Vincenzo Antedoro**. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.
