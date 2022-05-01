@@ -2,5 +2,6 @@
     "frontMatter.framework.startCommand": "hugo server -D",
     "frontMatter.preview.host": "https://localhost:1313/",
     "[markdown]": {
-    }
+    },
+    "frontMatter.content.autoUpdateDate": true
 }
