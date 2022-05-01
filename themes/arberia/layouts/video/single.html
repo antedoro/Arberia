@@ -264,6 +264,26 @@
         </div>
       </div>
     </div>
+
+
+    {{/*  Inserire codice dello short code playlist. Usare file playlist.yml  */}}
+
+    {{/*  {{ $data := .Page.Resources.GetMatch "playlist.yml" | transform.Unmarshal }}   */}}
+
+{{/*  {{ with $data.playlist }}
+{{len $data.playlist.item}}
+{{ .pl_title | markdownify }}
+{{ .total_duration | markdownify }}
+
+{{ range $index, $item :=  .item }}
+{{ $index :=add $index 1 }}
+<p>{{$index}}</p>
+<p>{{.icon}}</p>
+<p >{{ .link | absURL }}</p>
+<p>{{.duration  | markdownify}}</p>
+{{ end }}
+{{end}}  */}}
+
     <aside class="col-md-7 col-lg-4 order-2 order-lg-3">
       <h3 class="text-center mt-1 mb-4">Course Contents</h3>
       <div class="d-flex justify-content-between mb-4">
@@ -357,9 +377,11 @@
         </div>
       </div>
     </aside>
+
+
   </div>
-  <input name="csrfmiddlewaretoken" type="hidden"
-    value="x3sEiO83KjNJb7SDHmlGtJFgncgHcHyK1LVQOkguXZhE4jc3xDM5BXqkwSgsZpvA" id="csrf" ic-global-include="#csrf">
+  {{/*  <input name="csrfmiddlewaretoken" type="hidden"
+    value="x3sEiO83KjNJb7SDHmlGtJFgncgHcHyK1LVQOkguXZhE4jc3xDM5BXqkwSgsZpvA" id="csrf" ic-global-include="#csrf">  */}}
 </div>
 
 {{end}}
