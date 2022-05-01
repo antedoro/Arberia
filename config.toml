@@ -126,7 +126,6 @@ url = "#"
 title = ""
 weight = 3
 
-
 [[menu.main]]
 identifier = "python_tutorials"
 pre = "fas fa-graduation-cap"
