@@ -37,7 +37,6 @@ I build a professional curriculum in mechanical engineering studies during I obt
 
 Visualize my LinkedIn profile o get my resume (sorry only in italian for now!).
 
-
 **In italiano**
 
 Mi chiamo Vincenzo Antedoro, sono nato e cresciuto nel sud Italia. Nella mia ricerca della creatività, sono stato ispirato da vicino dall’antica cultura magno-greca e mediterranea in generale.
