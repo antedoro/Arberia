@@ -41,7 +41,7 @@ weight: 1
 # license: ""
 ---
 
-My name is **Vincenzo Antedoro**. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.
+My name is **Vincenzo Antedoro**. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.theme
 I build a professional curriculum in mechanical engineering studies during I obtained Mechanical Engineering Degree at Università della Calabria. My’s career in Mechanical  designs has spanned 18 years, during whitch I was involved in several projects. Now I’m a teacher of mechanical technology at Istituto Tecnico Industriale “E. Fermi” of Castrovillari, Italy. And I am interested in new exciting projects…
 
 Visualize my LinkedIn profile o get my resume (sorry only in italian for now!).
