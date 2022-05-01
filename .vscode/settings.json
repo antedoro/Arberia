@@ -2,8 +2,14 @@
     "frontMatter.framework.startCommand": "hugo server -D",
     "frontMatter.preview.host": "https://localhost:1313/",
     "[markdown]": {
+<<<<<<< HEAD
     }
 }
 "[markdown]": {
     "editor.quickSuggestions": true
   }
+=======
+    },
+    "frontMatter.content.autoUpdateDate": true
+}
+>>>>>>> dev

@@ -1,0 +1,15 @@
+##################### Playlist##########################
+playlist:
+  pl_title : "Playlist title"
+  total_duration : "9:38"
+  item:
+    # item1
+    - title : "Learning Paths"
+      icon : "fa fa-film"
+      link : "post-with-sidebar/"
+      duration : "7:34"
+    # item2
+    - title : "Python Tutorials"
+      icon : "fa fa-film"
+      link : "python-tutorials/"
+      duration : "2:04"
