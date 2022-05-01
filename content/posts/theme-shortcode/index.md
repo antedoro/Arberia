@@ -2,7 +2,7 @@
 title: Theme Shortcode
 subtitle: Specific theme shortcode
 date: 2022-05-01T18:19:27+02:00
-lastmod: 2022-05-01T17:06:19.366Z
+lastmod: 2022-05-01T20:05:50.953Z
 draft: true
 weight: null
 
@@ -43,4 +43,6 @@ slug: theme-shortcode
 
 {{< learning-path >}}
 
-{{< playlist >}} 
+{{< playlist >}}
+
+{{< download_file "file.pdf" "1.3 MB" >}}

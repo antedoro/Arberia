@@ -1,5 +1,5 @@
 ---
-title: "Videos"
+title: "Videos Example"
 subtitle: "Insert a subtitle here"
 date: 2022-04-26T22:42:59+02:00
 lastmod: 2022-04-26T22:42:59+02:00
