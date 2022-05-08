@@ -1,6 +1,6 @@
 ##################### Playlist##########################
 playlist:
-  pl_title : "Playlist title"
+  pl_title : "Playlist Title"
   total_duration : "9:38"
   item:
     # item1

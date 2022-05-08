@@ -3,6 +3,10 @@ languageName = "En"
 languageCode = "en-us"
 theme = "arberia"
 
+
+[outputs]
+home = ["HTML", "AMP", "RSS", "JSON"]
+
 title = "Real Python"
 relativeURLs = "True"
 
