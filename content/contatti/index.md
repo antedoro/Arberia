@@ -11,4 +11,13 @@ type: "contact"
 ---
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor.
+Thank you for your interest!
+If you’ve read this far, thank you very much: it means that you care what I do on a professional level! Why you do not write me now for more information, or simply to get in touch with me?
+
+---
+
+***In italian***
+
+Grazie del tuo interessamento!
+Se sei arrivato a leggere fino a qui, grazie di cuore: vuol dire che ti interessa ciò che faccio a livello professionale!
+Perché allora non mi scrivi subito per avere maggiori informazioni, oppure semplicemente per entrare in contatto con me?

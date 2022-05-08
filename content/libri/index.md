@@ -1,6 +1,6 @@
 ---
 title: "Tutti i libri consigliati"
-subtitle: "Un elenco mai definitivo di tutti i libri discussi."
+subtitle: "Un elenco mai definitivo di tutti i libri che ho letto."
 description: "Descrizione da rivedere se è un doppione subtitle"
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
@@ -15,7 +15,6 @@ twitter: "https://twitter.com/antedoro"
 github: "https://github.com/antedoro"
 linkedin: "https://www.linkedin.com/in/antedoro/"
 instagram: "https://www.instagram.com/antedoro/"
-alt: "IO"
 
 resources:
 - name: "featured-image"
@@ -23,12 +22,12 @@ resources:
 - name: "featured-image-preview"
   src: "book.jpg"
 
-weight: 1
+weight: 
 
 # tags: [tag1, tag2, tag3, tag4]
 # categories: [category]
 
-# hiddenFromHomePage: false
+hiddenFromHomePage: false
 # hiddenFromSearch: false
 
 # featured: false
@@ -39,6 +38,20 @@ weight: 1
 # lightgallery: false
 # license: ""
 ---
+
+E allora ecco i libri di cui ho parlato nelle puntate dei podcast, più qualche extra. Ho lasciato fuori certe ovvietà e ho tolto i titoli che a distanza di tempo ricordo con meno entusiasmo; quelli con il trattino rosso, invece, mi sono piaciuti di più. I link portano all'affiliazione di Amazon perché questo mi aiuta a campare.
+
+
+## STO LEGGENDO
+
+    Delitto e castigo, di Fëdor Dostoevskij.
+
+## APPENA FINITI
+
+    Altre menti di Peter Godfrey-Smith.
+    Dracula di Bram Stoker.
+    Il piacere di scoprire di Richard P. Feynman.
+    Il Minotauro esce a fumarsi una sigaretta di Steven Sherrill.
 
 ## SCIENZE UMANE
 
