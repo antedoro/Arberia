@@ -1,19 +1,18 @@
 baseURL = "https://realpython.com/"
+relativeURLs = "True"
 languageName = "En"
 languageCode = "en-us"
 theme = "arberia"
 
-
 [outputs]
 home = ["HTML", "AMP", "RSS", "JSON"]
 
-title = "Real Python"
-relativeURLs = "True"
-
+title = "Arberia Theme"
 
 #################### default parameters ################################
 [params]
 logo = "img/real-python-logo.svg"
+# logo = "img/kodra-logo.jpg"
 logo_width = "200px"
 tagline = "New way of sound!"
 description = "Learn Python online: Python tutorials for developers of all skill levels, Python books and courses, Python news, code examples, articles, and more."

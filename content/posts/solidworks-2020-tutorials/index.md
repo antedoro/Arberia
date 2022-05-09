@@ -1,5 +1,5 @@
 ---
-title: "Solidworks"
+title: "Solidworks 2020 Tutorials"
 subtitle: "Impara Solidworks 2020 con 5 mini-tutorial"
 date: 2022-04-26T22:42:59+02:00
 lastmod: 2022-04-26T22:42:59+02:00
@@ -19,7 +19,7 @@ hiddenFromHomePage: false
 hiddenFromSearch: false
 
 video:
-  title: "Titolo video"
+  title: "Solidworks: Modelliamo un supporto"
   link: "https://www.youtube.com/embed/taxItkTlY_0"
   duration: "14:16"
 
@@ -51,8 +51,6 @@ Anche tu come me in questi giorni ti trovi bloccato a casa e sei in cerca di imp
 Mentre tu impari la modellazione 3D, io imparo a registrare e montare piccoli video tutorial. Come vedi si tratta comunque di uno scambio alla pari. Per registrare lo schermo sto usando OBS e per montare i video sto famigliarizzando con DaVinci Resolve.
 
 Molto probabilmente i miei tutorial sono lontani dall’essere perfetti e per questo gradirei che le tue critiche fossero anche aspre ma sincere. Ti chiedo pertanto di segnalarmi nei commenti qualsiasi errore o concetto poco chiaro e nella prossima tornata ce la metterò tutta per migliorare. 
-
----
 
 In questa serie di 5 video modelliamo un supporto per un albero composto da due parti:
 

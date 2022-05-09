@@ -1,13 +1,8 @@
 <!-- 	Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column ">
-	<div class="container flex-row">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column">
+	<div class="container flex-row mt-2">
 		{{/*  Logo + site name  */}}
-		{{ with site.Params }}
-		<a class="navbar-brand" href="{{ .Site.BaseURL }}">
-			<img src="{{ .logo | relURL }}" class="d-inline-block align-top" alt="{{.Site.Title}}" width="165"
-				height="40">
-		</a>
-		{{end}}
+		{{ partial "component/logo.html" . }}
 
 		{{/*  Hamburger menu  */}}
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -15,7 +10,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse navbar-nav-scroll" id="navbarSupportedContent" role="navigation"
+		<div class="collapse navbar-collapse navbar-nav-scroll"style="margin-left: 100px"  id="navbarSupportedContent" role="navigation"
 			aria-label="Main Navigation">
 			<ul class="navbar-nav mr-2 flex-fill">
 				{{- range .Site.Menus.main.ByWeight }}

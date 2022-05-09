@@ -1,0 +1,58 @@
+		{{/*  Logo + site name  */}}
+		{{ with site.Params }}
+		<a class="navbar-brand" href="{{ .Site.BaseURL }}">
+			<img src="{{ .logo | relURL }}" class="d-inline-block align-top" alt="{{.Site.Title}}" width="165"
+				height="40">
+		</a>
+
+        <style>
+            .nav-brand{
+                /* margin: 30px; */
+                /*  margin-top: 26px;  */
+                padding: 20px 15px 15px;
+                vertical-align: middle;
+                box-sizing: content-box;
+                transform: scale(1.);
+                transform-origin: left;
+                overflow: hidden;
+                position: absolute;
+            }
+            
+            .brand-logo{
+                border: 4px solid white;
+                border-radius: 50%;
+                padding: 1px;
+                max-width: 78px;
+                max-height: 78px;
+            }
+            
+            .brand {
+                display: inline-block;
+                max-width: 215px;
+                text-align: left;
+                vertical-align: middle;
+                color: white;
+            }
+            
+            .brand-name {
+                font-size: 1.25rem;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            
+            .brand-tagline {
+                font-size: 1.115rem;
+                font-weight: 400;
+                line-height: 1.2;
+            }
+        </style>
+
+
+                {{/*  <a class="nav-brand" href="{{ .Site.relURL }}">
+                    <img class="brand-logo shadow-lg" class="d-inline-block align-top" src="{{ .logo | relURL }}" alt="logo">
+                    <div class="brand">
+                        <div class="brand-name">ANTEDORODESIGN</div>
+                        <div class="brand-tagline">TECH INSIDE!</div>
+                    </div>
+                </a>  */}}
+		{{end}}
