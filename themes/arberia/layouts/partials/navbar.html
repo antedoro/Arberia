@@ -1,6 +1,6 @@
 <!-- 	Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column">
-	<div class="container flex-row mt-2">
+	<div class="container flex-row">
 		{{/*  Logo + site name  */}}
 		{{ partial "component/logo.html" . }}
 
@@ -10,7 +10,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse navbar-nav-scroll"style="margin-left: 100px"  id="navbarSupportedContent" role="navigation"
+		<div class="collapse navbar-collapse navbar-nav-scroll"  id="navbarSupportedContent" role="navigation"
 			aria-label="Main Navigation">
 			<ul class="navbar-nav mr-2 flex-fill">
 				{{- range .Site.Menus.main.ByWeight }}
