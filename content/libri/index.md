@@ -18,9 +18,9 @@ instagram: "https://www.instagram.com/antedoro/"
 
 resources:
 - name: "featured-image"
-  src: "book.jpg"
+  src: "book.png"
 - name: "featured-image-preview"
-  src: "book.jpg"
+  src: "book.png"
 
 weight: 
 
