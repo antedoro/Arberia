@@ -44,14 +44,14 @@ E allora ecco i libri di cui ho parlato nelle puntate dei podcast, più qualche 
 
 ## STO LEGGENDO
 
-    Delitto e castigo, di Fëdor Dostoevskij.
+[Delitto e castigo](https://amzn.to/3P7Jyvm), di Fëdor Dostoevskij.
 
 ## APPENA FINITI
 
-    Altre menti di Peter Godfrey-Smith.
-    Dracula di Bram Stoker.
-    Il piacere di scoprire di Richard P. Feynman.
-    Il Minotauro esce a fumarsi una sigaretta di Steven Sherrill.
+Altre menti di Peter Godfrey-Smith.
+Dracula di Bram Stoker.
+Il piacere di scoprire di Richard P. Feynman.
+Il Minotauro esce a fumarsi una sigaretta di Steven Sherrill.
 
 ## SCIENZE UMANE
 
