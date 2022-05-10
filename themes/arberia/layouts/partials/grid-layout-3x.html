@@ -34,7 +34,7 @@
             <a class="badge badge-light text-muted" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
             {{ end }}
           </small>
-          {{/*  <small><p class="my-1">{{ .Summary }}</p></small>  */}}
+          {{/*  <small><p class="my-1">{{ .Summary | truncate 140 | safeHTML }}</p></small>  */}}
         </p>
       </div>
     </div>
@@ -42,13 +42,13 @@
   {{end}}
 
 
-<!-- <div class="w-100" hx-get="/api/v1/frontpage_tutorials/1632146400/" hx-trigger="revealed" hx-swap="outerHTML">
+{{/*  <div class="w-100" hx-get="/api/v1/frontpage_tutorials/1632146400/" hx-trigger="revealed" hx-swap="outerHTML">
   <div class="mb-4 text-center text-dark htmx-indicator">
     <img class="img-fluid mx-auto d-block rounded-circle fa-spin mb-2" style="width: 4rem;"
       src="Python%20Tutorials%20%E2%80%93%20Real%20Python_files/real-python-logo-square.webp" alt="Real Python Logo"
       width="1500" height="1500">
     <p>Loading More Tutorials…</p>
   </div>
-</div>  -->
+</div>  */}}
 
 </div>
