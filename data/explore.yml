@@ -1,45 +1,45 @@
 ##################### Features ##########################
 features:
   enable : true
-  title : "Explore Real Python"
+  title : "Explore AntedoroDesign"
   card:
     # card
-    - title : "Learning Paths"
-      icon : "fas mr-1 fa-map"
+    - title : "All Blog Post"
+      icon : "fas mr-1 fa-blog"
       link : "post-with-sidebar/"
-      description : "Guided study plans for accelerated learning"
+      description : "View all site post ordered by time"
     # card
-    - title : "Python Tutorials"
+    - title : "Video Tutorials"
       icon : "fa fa-fw mr-1 fa-graduation-cap"
-      link : "python-tutorials/"
-      description : "In-depth articles and step-by-step video courses"
+      link : "portfolio/"
+      description : "In-depth step-by-step video courses"
     # card
-    - title : "Quizzes"
-      icon : "fa fa-fw mr-1 fa-graduation-cap"
-      link : "quizzes/"
-      description : "Check your learning progress"
-    # card
-    - title : "Browse Topics"
-      icon : "fa fa-fw mr-1 fa-tags"
-      link : "browse-topics/"
-      description : "Focus on a specific area or skill level"
-    # card
-    - title : "Community Chat"
-      icon : "fab mr-1 fa-slack "
-      link : "comunity-chat/"
-      description : "Learn with other Pythonistas"
-    # card
-    - title : "Office Hours"
-      icon : "fa fa-fw mr-1 fa-users"
-      link : "office-hours/"
-      description : "Live Q&A calls with an expert from the Real Python Team"
-    # card
-    - title : "Podcast"
-      icon : "fa fa-fw mr-1 fa-podcast"
-      link : "podcast/"
-      description : "Hear what's new in the world of Python programming"
-    # card
+    - title : "Portfolio"
+      icon : "fas fa-fw mr-1 fa-drafting-compass"
+      link : "portfolio/"
+      description : "Some projects I was involved"
+      # card
     - title : "Books"
       icon : "fa fa-fw mr-1 fa-book"
-      link : "books/"
+      link : "libri/"
       description : "Round out your knowledge and learn offline"
+    # card
+    # - title : "Browse Topics"
+    #   icon : "fa fa-fw mr-1 fa-tags"
+    #   link : "browse-topics/"
+    #   description : "Focus on a specific area or skill level"
+    # # card
+    # - title : "Community Chat"
+    #   icon : "fab mr-1 fa-slack "
+    #   link : "comunity-chat/"
+    #   description : "Learn with other Pythonistas"
+    # # card
+    # - title : "Office Hours"
+    #   icon : "fa fa-fw mr-1 fa-users"
+    #   link : "office-hours/"
+    #   description : "Live Q&A calls with an expert from the Real Python Team"
+    # # card
+    # - title : "Podcast"
+    #   icon : "fa fa-fw mr-1 fa-podcast"
+    #   link : "podcast/"
+    #   description : "Hear what's new in the world of Python programming"
