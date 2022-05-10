@@ -1,8 +1,8 @@
 ---
 title: "Esempio2"
 subtitle: "Insert a subtitle here"
-date: 2022-05-10T22:25:26+02:00
-lastmod: 2022-05-10T22:25:26+02:00
+date: 2022-05-10T23:08:01+02:00
+lastmod: 2022-05-10T23:08:01+02:00
 draft: true
 weight: 
 
@@ -32,10 +32,12 @@ lightgallery: false
 license: ""
 ---
 
-You can write regular [markdown](http://markdowntutorial.com/) here and [Hugo](https://gohugo.io) will automatically convert it to a nice webpage.  I strongly encourage you to [take 5 minutes to learn how to write in markdown](http://markdowntutorial.com/) - it'll teach you how to transform regular text into bold/italics/headings/tables/etc.
+The following is a code sample using the "highlight" shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.
 
-**Here is some bold text**
-
-## Here is a secondary heading
-
-Here's a useless table:
+{{< highlight javascript >}}
+    var num1, num2, sum
+    num1 = prompt("Enter first number")
+    num2 = prompt("Enter second number")
+    sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+    alert("Sum = " + sum)  // "+" means combine into a string
+{{</ highlight >}}
