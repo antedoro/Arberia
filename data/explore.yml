@@ -1,7 +1,7 @@
 ##################### Features ##########################
 features:
   enable : true
-  title : "Explore AntedoroDesign"
+  title : "Explore Arberia Theme"
   card:
     # card
     - title : "All Blog Post"
