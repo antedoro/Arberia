@@ -22,7 +22,7 @@ author_resume = "Vincenzo Antedoro è un ingegnere che aiuta chi vuole investire
 contact_form_action = "https://formspree.io/f/mvovbvga"
 
 # post pagination
-paginate = "3"
+paginate = "5"
 # post excerpt
 summaryLength = "20"
 # disqus short name

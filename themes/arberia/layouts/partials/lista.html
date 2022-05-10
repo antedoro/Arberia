@@ -81,12 +81,12 @@
             <!-- Testata -->
             <div class="mt-1 mb-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h2>Blog</h2>
+                        <h2>Blog Post</h2>
                 </div>
             </div>
 
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-            {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}  */}}
+            {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
             <div class="container my-3">
                 {{ range $paginator.Pages.ByDate.Reverse }}
                 <div class="row">
@@ -128,9 +128,20 @@
                 </div>
                 <hr>
                 <div>
-                {{ end }}
-                <!-- Hugo's default pagination template. -->
-                {{ template "_internal/pagination.html" . }}
+                    {{ end }}
+
+                    {{/*  creare una css class per il paginator  */}}
+                    <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                        {{ partial "pagination.html" . }}
+                    </div>
+                    <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                        {{ partial "paginator.html" . }}
+                    </div>
+                    <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                        <!-- Hugo's default pagination template. -->
+                        {{ template "_internal/pagination.html" . }}
+                    </div>
+
                 </div>
             </div>
 
