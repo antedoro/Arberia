@@ -127,7 +127,14 @@
                 </div>
                 <hr>
                 {{ end }}
-                {{ partial "pagination.html" . }}
+                {{/*  creare una css class per il paginator  */}}
+                <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                    {{ partial "pagination.html" . }}
+                </div>
+                <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                    {{ partial "paginator.html" . }}
+                </div>
+
             </div>
 
         </div>
