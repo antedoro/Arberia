@@ -2,22 +2,33 @@
 
 <div class="container main-content">
     <div class="row justify-content-center">
-
+        <!-- Sidebar -->
+        {{ if .Params.sidebar }}
         <aside class="col-md-7 col-lg-4 order-first order-lg-last">
             <div class="sidebar-sticky">
                 <p class="h4 text-center">Sidebar</p>
 
             </div>
-        </aside> 
+        </aside>         
+        {{ end }}
 
-        <!-- Lista -->
+        <!-- All Post List-->
         <div id="listArea" class="col-md-11 col-lg-8 article">
-            <!-- Testata -->
-            <div class="mt-1 mb-4">
-                <div class="d-flex align-items-center justify-content-between">
-                        <h2>Blog Post</h2>
-                </div>
-            </div>
+            {{/*  Title  */}}
+            <h1 class="text-center" id="python-learning-paths">{{ .Title | markdownify }}
+                <a class="headerlink" href="{{- .RelPermalink -}}" title="Permanent link"></a></h1>
+
+            {{/*  Subtitle */}}
+            {{ with .Params.subtitle }}
+            <p class="text-center text-muted">{{ . | markdownify }}</p>
+            {{ end }}
+
+            {{- /* Featured Image */ -}}
+            <figure class="mb-5">
+                <img loading="lazy" class="img-fluid mx-auto d-block rounded" src="blog.jpg" 
+                srcset="blog.jpg 480w, blog.jpg 960w, blog.jpg 1920w" 
+                sizes="75vw" alt="Blog" data-asset="1092" width="1920" height="1080">
+            </figure>
 
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
             {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
@@ -66,21 +77,18 @@
 
                     {{/*  creare una css class per il paginator  */}}
                     {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        {{ partial "pagination.html" . }}
-                    </div>  */}}
-                    <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        {{ partial "paginator.html" . }}
-                    </div>
-                    {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        <!-- Hugo's default pagination template. -->
-                        {{ template "_internal/pagination.html" . }}
-                    </div>  */}}
-
+                {{ partial "pagination.html" . }}
+                </div> */}}
+                <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                    {{ partial "paginator.html" . }}
                 </div>
-            </div>
+                {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                    <!-- Hugo's default pagination template. -->
+                        { template "_internal/pagination.html" . }}
+            </div> */}}
         </div>
 
     </div>
 </div>
-
+</div>
 {{end}}

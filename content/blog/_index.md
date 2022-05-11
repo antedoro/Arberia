@@ -7,7 +7,7 @@ draft: true
 author: "Vincenzo Antedoro"
 authorLink: ""
 description: "Descrizione da rivedere se è un doppione subtitle"
-weight: 12
+weight: 1
 
 type: "blog"
 
@@ -19,12 +19,12 @@ hiddenFromSearch: false
 
 resources:
 - name: "featured-image"
-  src: ""
+  src: "blog.jpg"
 - name: "featured-image-preview"
-  src: ""
+  src: "blog.jpg"
 
 featured: false
-sidebar: true
+sidebar: false
 toc: false
 math:
   enable: false
