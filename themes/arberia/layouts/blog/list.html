@@ -34,9 +34,9 @@
             {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
             <div class="container my-3">
                 {{ range $paginator.Pages.ByDate.Reverse }}
-                <div class="row">
+                <div class="row py-3" style="border-bottom: 1px solid #dee2e6;">
 
-                    <div class="col-12 col-sm-4 align-self-top px-0">
+                    <div class="col-12 col-sm-4 align-self-top px-0 py-2">
                         <a href="{{.RelPermalink}}">
                             <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
                                     src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
@@ -71,7 +71,7 @@
                     </div>
 
                 </div>
-                <hr>
+                {{/*  <hr>  */}}
                 <div>
                     {{ end }}
 
