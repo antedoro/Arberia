@@ -1,34 +1,72 @@
-{{/*  <div class="container main-content">  */}}
-    <div class="row justify-content-center">
+{{ define "main" }}
 
+<div class="container main-content">
+    <div class="row justify-content-center">
+        <!-- Sidebar -->
+        {{ if .Params.sidebar }}
         {{/*  <aside class="col-md-7 col-lg-4 order-first order-lg-last">
             <div class="sidebar-sticky">
-                <div class="custom-control custom-checkbox mt-3"><input type="checkbox" id="chkKindAny"
-                        class="custom-control-input" disabled="disabled"> <label for="chkKindAny"
-                        class="custom-control-label" style="cursor: pointer;"><strong>All Resources</strong></label>
-                </div>
-                <p class="text-left py-3 my-0 small"><a
-                        href="https://feedback.realpython.com/realpython-com/?d=eyJwIjoicmVhbHB5dGhvbi1jb20iLCJzaWciOiJqJmY5IUtsTEVNTTRLQGpSWTU3Z24jOF9pXismXl5fdlM9cXtvZmVxIiwidCI6IlJQIExpYnJhcnkgU2VhcmNoIEZlZWRiYWNrIiwidSI6ImxpYnJhcnkifQ=="
-                        target="_blank"><i aria-hidden="true" class="fa fa-commenting-o"></i> Send Feedback</a></p>
+                <p class="h4 text-center">Sidebar</p>
+
             </div>
         </aside>   */}}
 
-        <!-- Lista -->
-        <div id="listArea" class="col-md-11 col-lg-8 article">
-            <!-- Testata -->
-            <div class="mt-1 mb-4">
-                <div class="d-flex align-items-center justify-content-between">
-                        <h2>Blog Post</h2>
+        <aside class="col-md-7 col-lg-4 order-first order-lg-last">
+            <div class="card sidebar-sticky mb-3" style="margin-top: 62px">
+                <p class="h4 text-left">CHI SONO</p>
+                <div class="textwidget">
+                    <p class="text-muted my-0 mt-1 small" style="text-align: justify;">
+                        <img class=" wp-image-667 size-thumbnail alignleft"
+                            title="vincenzo antedoro"
+                            src="http://antedoro.it/wp-content/uploads/2013/06/255ed6f-150x150.jpg"
+                            alt="ing. Vincenzo Antedoro" width="72" height="72"> Ciao, mi chiamo <strong>Vincenzo
+                            Antedoro</strong>. Sono un ingegnere che aiuta chi vuole investire nelle <em>rinnovabili</em>.
+                        Per il resto mi diverto insegnando col metodo del <em>learning by doing</em>. </p>
                 </div>
             </div>
+        </aside> 
+
+        <div class="col-md-7 col-lg-4 order-first order-lg-last">
+            <div class="sidebar-sticky">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="h4 text-center">Welcome Back, Vincenzo!</p>
+                    <hr>
+                    <p class="mb-0"><i class="fa fa-fw fa-bell text-muted" aria-hidden="true"></i> <a href="https://realpython.com/account/notifications/">Notifications &amp; Updates</a></p>
+                
+                </div>
+            </div>
+        </div>
+        </div>
+
+        {{ end }}
+
+
+        <!-- All Post List-->
+        <div id="listArea" class="col-md-11 col-lg-8 article">
+            {{/*  Title  */}}
+            <h1 class="text-center" id="python-learning-paths">{{ .Title | markdownify }}
+                <a class="headerlink" href="{{- .RelPermalink -}}" title="Permanent link"></a></h1>
+
+            {{/*  Subtitle */}}
+            {{ with .Params.subtitle }}
+            <p class="text-center text-muted">{{ . | markdownify }}</p>
+            {{ end }}
+
+            {{- /* Featured Image */ -}}
+            <figure class="mb-5">
+                <img loading="lazy" class="img-fluid mx-auto d-block rounded" src="blog.jpg" 
+                srcset="blog.jpg 480w, blog.jpg 960w, blog.jpg 1920w" 
+                sizes="75vw" alt="Blog" data-asset="1092" width="1920" height="1080">
+            </figure>
 
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
             {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
             <div class="container my-3">
                 {{ range $paginator.Pages.ByDate.Reverse }}
-                <div class="row">
+                <div class="row py-3" style="border-bottom: 1px solid #dee2e6;">
 
-                    <div class="col-12 col-sm-4 align-self-top px-0">
+                    <div class="col-12 col-sm-4 align-self-top px-0 py-2">
                         <a href="{{.RelPermalink}}">
                             <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
                                     src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
@@ -42,7 +80,7 @@
                     <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0">
                         <a href="{{.RelPermalink}}" class="stretched-link">
                             <h2 class="my-0 h5">{{ .Title }}<span title="In-Progress" class="float-right">
-                                <i class="fas fa-circle-notch text-muted"></i></span></h2>
+                                    <i class="fas fa-circle-notch text-muted"></i></span></h2>
                         </a>
                         <p class="small text-muted my-0">
                             <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
@@ -63,26 +101,24 @@
                     </div>
 
                 </div>
-                <hr>
+                {{/*  <hr>  */}}
                 <div>
                     {{ end }}
 
                     {{/*  creare una css class per il paginator  */}}
                     {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        {{ partial "pagination.html" . }}
-                    </div>  */}}
-                    <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        {{ partial "paginator.html" . }}
-                    </div>
-                    {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        <!-- Hugo's default pagination template. -->
-                        {{ template "_internal/pagination.html" . }}
-                    </div>  */}}
-
+                {{ partial "pagination.html" . }}
+                </div> */}}
+                <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                    {{ partial "paginator.html" . }}
                 </div>
-            </div>
-
+                {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                    <!-- Hugo's default pagination template. -->
+                        { template "_internal/pagination.html" . }}
+            </div> */}}
         </div>
 
     </div>
-{{/*  </div>  */}}
+</div>
+</div>
+{{end}}

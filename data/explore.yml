@@ -6,7 +6,7 @@ features:
     # card
     - title : "All Blog Post"
       icon : "fas mr-1 fa-blog"
-      link : "post-with-sidebar/"
+      link : "blog/"
       description : "View all site post ordered by time"
     # card
     - title : "Video Tutorials"

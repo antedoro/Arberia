@@ -6,5 +6,6 @@
     {
       "path": "[[workspace]]/content"
     }
-  ]
+  ],
+  "frontMatter.framework.startCommand": "hugo server -D"
 }
