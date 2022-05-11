@@ -4,13 +4,43 @@
     <div class="row justify-content-center">
         <!-- Sidebar -->
         {{ if .Params.sidebar }}
-        <aside class="col-md-7 col-lg-4 order-first order-lg-last">
+        {{/*  <aside class="col-md-7 col-lg-4 order-first order-lg-last">
             <div class="sidebar-sticky">
                 <p class="h4 text-center">Sidebar</p>
 
             </div>
-        </aside>         
+        </aside>   */}}
+
+        <aside class="col-md-7 col-lg-4 order-first order-lg-last">
+            <div class="card sidebar-sticky mb-3" style="margin-top: 62px">
+                <p class="h4 text-left">CHI SONO</p>
+                <div class="textwidget">
+                    <p class="text-muted my-0 mt-1 small" style="text-align: justify;">
+                        <img class=" wp-image-667 size-thumbnail alignleft"
+                            title="vincenzo antedoro"
+                            src="http://antedoro.it/wp-content/uploads/2013/06/255ed6f-150x150.jpg"
+                            alt="ing. Vincenzo Antedoro" width="72" height="72"> Ciao, mi chiamo <strong>Vincenzo
+                            Antedoro</strong>. Sono un ingegnere che aiuta chi vuole investire nelle <em>rinnovabili</em>.
+                        Per il resto mi diverto insegnando col metodo del <em>learning by doing</em>. </p>
+                </div>
+            </div>
+        </aside> 
+
+        <div class="col-md-7 col-lg-4 order-first order-lg-last">
+            <div class="sidebar-sticky">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="h4 text-center">Welcome Back, Vincenzo!</p>
+                    <hr>
+                    <p class="mb-0"><i class="fa fa-fw fa-bell text-muted" aria-hidden="true"></i> <a href="https://realpython.com/account/notifications/">Notifications &amp; Updates</a></p>
+                
+                </div>
+            </div>
+        </div>
+        </div>
+
         {{ end }}
+
 
         <!-- All Post List-->
         <div id="listArea" class="col-md-11 col-lg-8 article">
