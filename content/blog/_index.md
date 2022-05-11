@@ -24,7 +24,7 @@ resources:
   src: "blog.jpg"
 
 featured: false
-sidebar: false
+sidebar: true
 toc: false
 math:
   enable: false
