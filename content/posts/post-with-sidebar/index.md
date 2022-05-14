@@ -24,7 +24,7 @@ resources:
 
 featured: true
 sidebar: true
-toc: true 
+toc: true
 math:
   enable: false
 lightgallery: false

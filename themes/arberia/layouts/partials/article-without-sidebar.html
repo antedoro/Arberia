@@ -17,6 +17,11 @@
                 sizes="75vw" alt="Real Python Learning Paths" data-asset="1092" width="1920" height="1080">
         </figure>
 
+        {{ if .Params.toc }}
+        {{- partial "component/toc.html"  -}}
+        {{ end }}
+        
+
         {{/*  {{- partial "component/search.html"  -}}  */}}
 
         {{- /* Content */ -}}

@@ -53,7 +53,9 @@
 
             <div class="article-body">
                 {{/*  Table of Contents  */}}
+                {{ if .Params.toc }}
                 {{- partial "component/toc.html" . -}}
+                {{ end }}
 
                 {{/*  {{- partial "component/adv-lg.html" . -}}  */}}
 
@@ -252,7 +254,9 @@
 
             <div class="sidebar-sticky ">
                 {{/*  Table of Contents on sidebar  */}}
+                {{ if .Params.toc }}
                 {{- partial "component/toc.html" . -}}
+                {{ end }}
                 {{/*  {{- partial "component/completed-mark.html" . -}}   */}}
                 {{/*  {{- partial "component/share-button.html"  -}} Share button  */}}
                 {{/*  {{- partial "component/adv-sd.html"  -}} ADV Image  */}}
