@@ -1,4 +1,4 @@
-baseURL = "https://realpython.com/"
+baseURL = "https://example.com/"
 relativeURLs = "True"
 languageName = "En"
 languageCode = "en-us"

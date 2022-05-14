@@ -65,7 +65,7 @@
 	{{ $style = slice $style | resources.Concat "all.css" | toCSS | minify | fingerprint }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-	<link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}> //fontawesome
+	<link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}>
 
 	<!--load all styles -->
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/brands.css" | absURL }}"> */}}
