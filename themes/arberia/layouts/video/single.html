@@ -7,14 +7,14 @@
 
       {{ with .Params.video }}
       <div class="embed-responsive embed-responsive-16by9 mb-4 rounded bg-light" id="videoWrapper">
-        {{/*  <button id="jsEnterFullscreenButton" class="btn text-muted border-0 btn-outline-secondary rounded-bottom"
+        <button id="jsEnterFullscreenButton" class="btn text-muted border-0 btn-outline-secondary rounded-bottom"
           style="z-index: 1; position: absolute; top: 0; right:0;" title="Enter fullscreen mode"><i
-            class="fa fa-expand"></i></button>  */}}
-        {{/*  <button id="jsExitFullscreenButton"
+            class="fa fa-expand"></i></button>
+        <button id="jsExitFullscreenButton"
           class="btn text-muted border-0 btn-outline-secondary w-100 rounded d-none text-small"
           style="z-index: 1; position: absolute; top: 0; left: 0; right: 0;" title="Exit fullscreen mode"><i
-            class="fa fa-compress"></i> <span id="jsExitFullscreenExplainer">Exit&nbsp;Fullscreen</span></button>  */}}
-        <iframe width="560" height="315" src="{{ .link | markdownify }}" title="{{ .title | markdownify }}"
+            class="fa fa-compress"></i> <span id="jsExitFullscreenExplainer">Exit&nbsp;Fullscreen</span></button>
+        <iframe width="560" height="315" src="{{ .link | relLangURL }}" title="{{ .title | markdownify }}"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
@@ -22,21 +22,21 @@
       {{end}}
 
 
-      {{/*  <div id="jsVideoPlaybackSpeedNotice" class="d-none alert alert-dismissible alert-primary mt-n2">
+      <div id="jsVideoPlaybackSpeedNotice" class="d-none alert alert-dismissible alert-primary mt-n2">
         <strong>Hint:</strong> You can adjust the default video playback speed in <a class="alert-link"
           href="/account/">your account settings</a>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-      </div>  */}}
+      </div>
 
-      {{/*  <div id="jsVideoSubtitlesLanguageNotice" class="d-none alert alert-dismissible alert-primary mt-n2">
+      <div id="jsVideoSubtitlesLanguageNotice" class="d-none alert alert-dismissible alert-primary mt-n2">
         <strong>Hint:</strong> You can set the default subtitles language in <a class="alert-link" href="/account/">your
           account settings</a>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-      </div>  */}}
+      </div>
 
       {{/*  <div id="jsVideoErrorNotice" class="d-none alert alert-dismissible alert-danger mt-n3">
         <strong>Sorry!</strong> Looks like there’s an issue with video playback 🙁 This might be due to a temporary
@@ -93,7 +93,7 @@
     </div>
 
     {{/*  sidebar playlist  */}}
-<aside class="col-md-7 col-lg-4 order-2 order-lg-3">
+    <aside class="col-md-7 col-lg-4 order-2 order-lg-3">
       <h3 class="text-center mt-1 mb-4">Course Contents</h3>
 
       <div class="mb-4">
@@ -121,7 +121,7 @@
 
       </div>
   </div>
-  </aside> 
+  </aside>
 
 </div>
 </div>
