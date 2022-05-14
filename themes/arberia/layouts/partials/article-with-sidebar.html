@@ -45,9 +45,9 @@
                     {{ end }}
 
                     <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
-                        {{ partial "component/completed-mark" . }} {{/*  Mark as completed  */}}
-                        {{ partial "component/share-button" . }} {{/*  Share button  */}}
-                    </div>
+                        {{/*  {{ partial "component/completed-mark" . }} Mark as completed  */}}
+                        {{/*  {{ partial "component/share-button" . }} Share button
+                    </div>  */}}
                 </span>
             </div>
 
@@ -99,6 +99,7 @@
                                     alt="Python Tricks Dictionary Merge" width="738" height="490">
                             </div>
                         </div>
+                        
                         <div class="row mb-3">
                             <form class="col-12" action="/optins/process/" method="post">
                                 <input type="hidden" name="csrfmiddlewaretoken"
@@ -112,6 +113,7 @@
                                     Python Tricks »</button>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
