@@ -22,6 +22,7 @@ author_resume = "Vincenzo Antedoro è un ingegnere che aiuta chi vuole investire
 YTChannelID = "UClA8GwWzurVCprEY6OsCvhw"
 contact_form_action = "https://formspree.io/f/mvovbvga"
 
+
 # post pagination
 paginate = "5"
 # post excerpt
@@ -86,20 +87,20 @@ safari_pinned_tab = "favicon/safari-pinned-tab.svg>"
 
 
 
-# [markup]
-#   [markup.tableOfContents]
-#     startLevel = 2
-#     endLevel = 5
-#     ordered = false
-#     tocMinWordCount = 100 # Minimum word count to display the Table of Contents
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 5
+    ordered = false
+    tocMinWordCount = 100 # Minimum word count to display the Table of Contents
 
-[tableOfContents]
-  startLevel = 2
-  endLevel = 5
-  ordered = false
-  tocMinWordCount = 500
+# [tableOfContents]
+#   startLevel = 2
+#   endLevel = 5
+#   ordered = false
+#   tocMinWordCount = 500
 
-youtubeID = "UClA8GwWzurVCprEY6OsCvhw"
+
 
 #  Menu
 [[menu.main]]

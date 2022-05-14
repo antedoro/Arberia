@@ -46,24 +46,18 @@
 
                     <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
                         {{/*  {{ partial "component/completed-mark" . }} Mark as completed  */}}
-                        {{/*  {{ partial "component/share-button" . }} Share button
-                    </div>  */}}
+                        {{/*  {{ partial "component/share-button" . }} Share button  */}}
+                    </div>
                 </span>
             </div>
 
             <div class="article-body">
                 {{/*  Table of Contents  */}}
-                <div class="bg-light sidebar-module sidebar-module-inset" id="toc">
-                    <p class="h3 mb-2 text-muted"> {{ i18n "tableOfContents" . }}</p>
-                    <div class="toc">
-                        {{ if and (.Params.toc) (gt .WordCount .Site.Params.tocMinWordCount ) }}
-                        {{ .Page.TableOfContents }}
-                        {{ end }}
-                    </div>
-                </div>
+                {{ if .Params.toc }}
+                {{- partial "component/toc.html" . -}}
+                {{ end }}
 
-                {{/*  {{- partial "component/toc-lg.html"  -}} Table of contents  */}}
-                {{/*  {{- partial "component/adv-lg.html"  -}}  */}}
+                {{/*  {{- partial "component/adv-lg.html" . -}}  */}}
 
                 {{- /* Content */ -}}
                 {{ .Content }}
@@ -80,7 +74,7 @@
                 </div>   */}}
             </div>
 
-            <p>====================================================================</p>
+            <p>=============================================================</p>
 
             {{/*  Python Tricks  */}}
             <div class="card mt-4 mb-4 bg-secondary">
@@ -118,9 +112,7 @@
                 </div>
             </div>
 
-            {{- partial "component/author.html"  -}} {{/* Author box  */}}
-
-
+            {{- partial "component/author.html" . -}} {{/* Author box  */}}
 
             {{/*  <div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
                 <div class="col-12 text-center d-block d-md-none">
@@ -246,7 +238,7 @@
         {{/*  Sidebar  */}}
         <aside class="col-md-7 col-lg-4">
             {{- partial "component/mailchimp.html"  -}} {{/*  Email Subscription  */}}
-            {{- partial "component/email-subscription.html"  -}}{{/*  Email Subscription  */}}
+            {{/*  {{- partial "component/email-subscription.html"  -}}Email Subscription  */}}
             {{/*  {{- partial "component/tag-collection.html"  -}} TAG Topics */}}
 
             {{/*  TAG Topics  */}}
@@ -260,19 +252,12 @@
 
             <div class="sidebar-sticky ">
                 {{/*  Table of Contents on sidebar  */}}
-                <div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
-                    <p class="h4 text-muted"><a class="link-unstyled" href="#toc">Table of Contents</a></p>
-                    <div class="toc">
-                        {{ if and (.Params.toc) (gt .WordCount .Site.Params.tocMinWordCount ) }}
-                        {{ .Page.TableOfContents }}
-                        {{ end }}
-                    </div>
-                </div>
-
-                {{/*  {{- partial "component/toc-sm.html"  -}} Table of contents small   */}}
-                {{- partial "component/completed-mark.html"  -}} {{/*  Mark as completed  */}}
-                {{- partial "component/share-button.html"  -}} {{/*  Share button  */}}
-                {{- partial "component/adv-sd.html"  -}} {{/*  ADV Image  */}}
+                {{ if .Params.toc }}
+                {{- partial "component/toc.html" . -}}
+                {{ end }}
+                {{/*  {{- partial "component/completed-mark.html" . -}}   */}}
+                {{/*  {{- partial "component/share-button.html"  -}} Share button  */}}
+                {{/*  {{- partial "component/adv-sd.html"  -}} ADV Image  */}}
             </div>
         </aside>
 

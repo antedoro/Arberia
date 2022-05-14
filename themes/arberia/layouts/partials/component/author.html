@@ -1,36 +1,29 @@
-{{/*  {{- $params := .Params | merge .Site.Params.page -}}  */}}
-
-<div class="card mt-3" id="author">
-    <p class="card-header h3">About <strong>{{ .params.author }}</strong></p>
+<div class="card mt-3 mb-3" id="author">
+    <p class="card-header h3">About <strong>{{ .Params.author  | markdownify }}</strong></p>
     
     <div class="card-body">
         <div class="container p-0">
             <div class="row">
                 <div class="col-12 col-md-3 align-self-center">
-                    <a href="/team/bzaczynski/"><img loading="lazy"
-                            src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=84695876e8b66be5e91aa5eb72f25a3fb4dcceeb"
-                            srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=225&amp;h=225&amp;mode=crop&amp;sig=8e1a0d84149944be3c2615404fb46e7da001c17f 225w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=450&amp;h=450&amp;mode=crop&amp;sig=2e7c93ebefa8a958432160f29cd4a09c889ae8d3 450w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=84695876e8b66be5e91aa5eb72f25a3fb4dcceeb 900w"
-                            sizes="25vw"
-                            class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto"
-                            alt="Bartosz Zaczyński" width="900" height="900"></a>
-                    <a href="/team/bzaczynski/"><img loading="lazy"
-                            src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=84695876e8b66be5e91aa5eb72f25a3fb4dcceeb"
-                            srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=225&amp;h=225&amp;mode=crop&amp;sig=8e1a0d84149944be3c2615404fb46e7da001c17f 225w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=450&amp;h=450&amp;mode=crop&amp;sig=2e7c93ebefa8a958432160f29cd4a09c889ae8d3 450w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-picture.9b78351e1462.jpg&amp;w=900&amp;h=900&amp;mode=crop&amp;sig=84695876e8b66be5e91aa5eb72f25a3fb4dcceeb 900w"
-                            sizes="25vw" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0"
-                            alt="Bartosz Zaczyński" width="900" height="900"></a>
+                    <a href="/about"><img loading="lazy"
+                        src="/img/me.jpg"
+                        srcset="me.jpg 225w, 
+                        /img/me.jpg 450w, 
+                        /img/me.jpg 900w"
+                        sizes="25vw" 
+                        class="d-none d-md-block rounded-circle img-fluid w-100 mb-0"
+                        alt="{{ .Params.author  | markdownify }}" width="900" height="900"></a>
                 </div>
                 <div class="col mt-3">
-                    <p>Bartosz is a bootcamp instructor, author, and polyglot programmer in love with
-                        Python. He helps his students get into software engineering by sharing over a decade
-                        of commercial experience in the IT industry.</p>
-                    <a href="/team/bzaczynski/" class="card-link">» More about Bartosz</a>
+                    <p> {{- .Site.Params.author_resume| markdownify -}} .</p>
+                    <a href="/about" class="card-link">» More about {{ .Params.author  | markdownify }}</a>
                 </div>
             </div>
         </div>
     </div>
-    <hr class="my-0">
+    {{/*  <hr class="my-0">  */}}
 
-    <div class="card-body pb-0">
+    {{/*  <div class="card-body pb-0">
         <div class="container">
             <div class="row">
                 <p><em>Each tutorial at Real Python is created by a team of developers so that it meets our
@@ -93,5 +86,5 @@
                 <div class="col pl-0 d-none d-sm-block"></div>
             </div>
         </div>
-    </div>
+    </div>  */}}
 </div>
