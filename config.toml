@@ -38,7 +38,7 @@ unsafe = true
   posts = "/:title/"
 
 [minify]
-  minifyOutput = false
+  minifyOutput = true
 
 ############################# Plugins ##############################
 # CSS Plugins

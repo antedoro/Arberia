@@ -1,9 +1,9 @@
-<h1 align=center>Hugo Arberia | <a href="https://adityatelange.github.io/hugo-PaperMod/" rel="nofollow">Demo</a></h1>
+<h1 align=center>Hugo Arberia | <a href="https://antedoro.github.io/hugo-Arberia/" rel="nofollow">Demo</a></h1>
 
 <h4 align=center>☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive</h4>
 <br>
 
-> Hugo PaperMod is a theme based on [hugo-paper](https://github.com/nanxiaobei/hugo-paper).
+> Hugo Arberia is a theme based on [hugo-paper](https://github.com/nanxiaobei/hugo-paper).
 > The goal of this project is to add more features and customization to the og theme.
 
 The [demo](https://adityatelange.github.io/hugo-PaperMod/) includes a lot of documentation about Installation, Features with a few more stuff. Make sure you visit it, to get an awesome hands-on experience and get to know about the features ...
