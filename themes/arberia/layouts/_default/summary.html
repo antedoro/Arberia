@@ -32,23 +32,19 @@
 						</div>
 					</div>
 				</a></div>
+
 			<div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0">
 				<a href="{{ .Permalink }}" class="stretched-link">
 					<h2 class="my-0 h5">{{ .Title }}<span title="In-Progress" class="float-right">
-							<i class="fa fa-fw fa-circle-o text-muted"></i></span></h2>
+							<i class="fas fa-circle-notch text-muted mx-1"></i></span></h2>
 				</a>
 				<p class="small text-muted my-0">
-					<span class="mr-2">{{ .Date.Format "02.01.2006 15:04" }}<time>{{ .PublishDate.Format "January 2, 2006 15:04" }}</time></span>
+					<span class="mr-2"><time>{{ .PublishDate.Format "2 January 2006 15:04" }}</time></span>
+					{{ range .Params.tags }}
 					<span aria-hidden="true" class="fa fa-tags"></span>
-					<a href="python" class="badge badge-light text-muted mr-1">python</a>
-					<a href="advanced" class="badge badge-light text-muted mr-1">advanced</a>
+					<a class="badge badge-light text-muted mr-1" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					{{end}}
 				</p>
-
-				{{ range .Params.tags }}
-				<a href="python" class="badge badge-light text-muted mr-1">python</a>
-				<a href="advanced" class="badge badge-light text-muted mr-1">advanced</a></p>
-				{{ end }}
-
 
 				<p class="text-muted my-0 mt-1 small">{{ .Summary }}
 					{{ if .Truncated }}
