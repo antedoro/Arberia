@@ -246,7 +246,7 @@
                 <p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial
                         Topics</a></p>
                 {{ range (.GetTerms "tags") }}
-                <a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title }}</a>
+                <a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title | markdownify }}</a>
                 {{ end }}
             </div>
 
