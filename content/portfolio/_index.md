@@ -7,7 +7,7 @@ draft: true
 author: "Vincenzo Antedoro"
 authorLink: ""
 description: "Descrizione da rivedere se è un doppione subtitle"
-weight: 12
+weight: 1
 
 type: "portfolio"
 

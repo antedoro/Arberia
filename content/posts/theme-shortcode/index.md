@@ -28,7 +28,7 @@ type: # Nothing for default, or video
   null
 featured: false
 sidebar: false
-toc: true
+toc: false
 math:
   enable: false
 lightgallery: false

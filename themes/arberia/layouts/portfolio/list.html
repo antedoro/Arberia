@@ -9,21 +9,6 @@
 				<h2 class="text-center h1" id="available">—&nbsp;{{.Page.Title | markdownify}}&nbsp;—</h2>
 				{{/*  First post  */}}
 				<div class="card bg-white rounded border shadow-sm my-4 w-100">
-					
-					{{- $pages := where .Site.RegularPages "Type" "portfolio" -}}
-					{{- range $pages -}}
-					<li>{{ .Title }}</li>
-					<p>{{ .Params.author }}</p>
-					{{ range .Params.tags }}
-					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-					{{end}}
-					<p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>
-					<a class="small" href="{{ .RelPermalink }}">Read More…</a>
-
-                	{{/*  {{- .Render "summary" -}}  */}}
-					{{/*  {{ .Summary | truncate 240 | safeHTML }}  */}}
-            		{{- end -}}
-            		{{- partial "paginator.html" . -}}
 			
 					<figure class="embed-responsive embed-responsive-16by9 my-0">
 						<a href="/courses/python-rock-paper-scissors-game/"><img loading="lazy"
@@ -32,10 +17,14 @@
 								class="embed-responsive-item card-img-top" alt="Make Your First Python Game: Rock, Paper, Scissors!"
 								sizes="66vw"></a>
 					</figure>
+
 					{{/*  Ciccia  */}}
+
+					{{- $pages := first 1 (where .Site.RegularPages "Type" "portfolio") -}}
+					{{- range $pages -}}
 					<div class="card-body d-flex flex-column">
-						<h2 class="card-title mt-0 "><a class="link-unstyled" href="/courses/python-rock-paper-scissors-game/">Rock,
-								Paper, Scissors With Python: A Command Line Game</a></h2>
+						<h2 class="card-title mt-0 "><a class="link-unstyled" href="/courses/python-rock-paper-scissors-game/">
+							{{ .Title | markdownify }}</a></h2>
 						<div class="container">
 							<div class="row">
 								<div class="col-2 col-md-1 p-0 align-self-center">
@@ -48,32 +37,48 @@
 									<p class="my-0">
 										<span class="text-muted">
 											<span class="mr-2"><a class="text-muted"
-													href="/courses/python-rock-paper-scissors-game/#team">Christopher
-													Trudeau</a></span>
+													href="/courses/python-rock-paper-scissors-game/#team">{{ .Params.author | markdownify }}</a></span>
 											<span class="mr-2">5 Lessons</span>
 											<span class="mr-2"><i class="fa fa-clock-o"></i> 26m</span>
 											<br>
 											<span class="fa fa-tags" aria-hidden="true"></span>
-											<a href="/tutorials/basics/" target="_blank"
-												class="badge badge-light text-muted">basics</a>
-											<a href="/tutorials/gamedev/" target="_blank"
-												class="badge badge-light text-muted">gamedev</a>
-											<a href="/tutorials/python/" target="_blank"
-												class="badge badge-light text-muted">python</a>
+												{{ range .Params.tags }}
+												<a class="badge badge-light text-muted" target="_blank" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+												{{end}}
 										</span>
 									</p>
 								</div>
 							</div>
 						</div>
-						<p class="card-text text-muted mt-3">In this course, you'll learn to program rock paper scissors in Python
-							from scratch. You'll learn how to take in user input, make the computer choose a random action,
-							determine a winner, and split your code into functions.</p>
+						<p class="card-text text-muted mt-3">{{ .Summary | truncate 240 | safeHTML }}</p>
 						<div class="text-center mt-auto">
-							<a href="/courses/python-rock-paper-scissors-game/" class="btn btn-primary btn-lg px-4 "><i
-									class="fa fa-play fa-fw"></i> Get Started</a>
+							<a href="{{ .RelPermalink }}" class="btn btn-primary btn-lg px-4 "><i
+									class="fa fa-play fa-fw"></i> Read More...</a>
 						</div>
 					</div> 
 				</div>
+				{{- end -}}
+
+
+
+
+
+
+
+				{{- $pages := where .Site.RegularPages "Type" "portfolio" -}}
+
+				{{- range $pages -}}
+				<li>{{ .Title }}</li>
+				<p>{{ .Params.author }}</p>
+					{{ range .Params.tags }}
+					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					{{end}}
+
+				<p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>
+				<a class="small" href="{{ .RelPermalink }}">Read More…</a>
+				{{- end -}}
+
+				{{- partial "paginator.html" . -}}
 			
 				<div class="card-deck">
 					{{/*  secondo post */}}
