@@ -54,7 +54,7 @@
 						<p class="card-text text-muted mt-3">{{ .Summary | truncate 240 | safeHTML }}</p>
 						<div class="text-center mt-auto">
 							<a href="{{ .RelPermalink }}" class="btn btn-primary btn-lg px-4 "><i
-									class="fa fa-play fa-fw"></i> Read More...</a>
+									class="fa fa-play fa-fw"></i> Read More</a>
 						</div>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 					{{- $pages := after 1 (where .Site.RegularPages "Type" "portfolio") -}}
 
 					{{- range $pages -}}
-					<div class="card bg-white rounded border  my-4 w-100">
+					<div class="card bg-white rounded border  my-4 w-100" style="min-width: 45%">
 						<figure class="embed-responsive embed-responsive-16by9 my-0">
 							<a href="{{ .RelPermalink }}"><img loading="lazy"
 									src="https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg"
@@ -119,7 +119,7 @@
 					{{- partial "paginator.html" . -}}
 
 					{{/*  terzo post */}}
-					<div class="card bg-white rounded border  my-4 w-100">
+					{{/*  <div class="card bg-white rounded border  my-4 w-100">
 						<figure class="embed-responsive embed-responsive-16by9 my-0">
 							<a href="/courses/python-data-classes/"><img loading="lazy"
 									src="https://files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg"
@@ -169,7 +169,7 @@
 										class="fa fa-play fa-fw"></i> Get Started</a>
 							</div>
 						</div>
-					</div>
+					</div>  */}}
 				</div>
 
 				<div class="row justify-content-center w-100">
