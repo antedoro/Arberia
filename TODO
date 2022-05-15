@@ -1,7 +1,17 @@
 Todo:
   ☐ Landing page senza navbar
-  ✔ Post with sidebar @done(22-05-11 21:36)
-  ✔ Post without sidebar @done(22-05-11 21:36)
-  ☐ Video Grid view  
-  ✔ Video List View @started(22-05-11 21:36) @done(22-05-11 21:36) @lasted(40s)
-  
+  Gestione immagini: @critical
+    ☐ lazyload
+    ☐ controllare tutte le immagini
+  ☐ Portfolio card page
+  ☐ Single.html in base al type (sidebar-nosidebar-video)
+  ☐ Search engine @low 
+  ☐ Sidebar
+
+
+
+Archive:
+  ✔ Post with sidebar @done(22-05-11 21:36) @project(Todo)
+  ✔ Post without sidebar @done(22-05-11 21:36) @project(Todo)
+  ✔ Video Grid view @done(22-05-15 09:03) @project(Todo)
+  ✔ Video List View @started(22-05-11 21:36) @done(22-05-11 21:36) @lasted(40s) @project(Todo)
