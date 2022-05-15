@@ -3,48 +3,49 @@
 	<div class="row">
 		<div class="col-12">
 			{{/*  Grid Layout 2x2  */}}
-			
+
 			<div class="container main-content">
 
 				<h2 class="text-center h1" id="available">—&nbsp;{{.Page.Title | markdownify}}&nbsp;—</h2>
 				{{/*  First post  */}}
 				<div class="card bg-white rounded border shadow-sm my-4 w-100">
-			
+
 					<figure class="embed-responsive embed-responsive-16by9 my-0">
 						<a href="/courses/python-rock-paper-scissors-game/"><img loading="lazy"
 								src="https://files.realpython.com/media/Rock-Paper-Scissors-Make-Your-First-Python-Game_Watermarked.56df1d972560.jpg"
 								srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Rock-Paper-Scissors-Make-Your-First-Python-Game_Watermarked.56df1d972560.jpg&amp;w=480&amp;sig=c137fccfef506e69092828108c09b994822c091b 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Rock-Paper-Scissors-Make-Your-First-Python-Game_Watermarked.56df1d972560.jpg&amp;w=960&amp;sig=4036d7d4a6efe53c958e83378a155823bcc7e12d 960w, https://files.realpython.com/media/Rock-Paper-Scissors-Make-Your-First-Python-Game_Watermarked.56df1d972560.jpg 1920w"
-								class="embed-responsive-item card-img-top" alt="Make Your First Python Game: Rock, Paper, Scissors!"
-								sizes="66vw"></a>
+								class="embed-responsive-item card-img-top"
+								alt="Make Your First Python Game: Rock, Paper, Scissors!" sizes="66vw"></a>
 					</figure>
 
 					{{/*  Ciccia  */}}
-
 					{{- $pages := first 1 (where .Site.RegularPages "Type" "portfolio") -}}
 					{{- range $pages -}}
 					<div class="card-body d-flex flex-column">
-						<h2 class="card-title mt-0 "><a class="link-unstyled" href="/courses/python-rock-paper-scissors-game/">
-							{{ .Title | markdownify }}</a></h2>
+						<h2 class="card-title mt-0 "><a class="link-unstyled" href="{{ .RelPermalink }}">
+								{{ .Title | markdownify }}</a></h2>
 						<div class="container">
 							<div class="row">
 								<div class="col-2 col-md-1 p-0 align-self-center">
-									<a href="/courses/python-rock-paper-scissors-game/#team"><img loading="lazy"
+									<a href="{{ .RelPermalink }}"><img loading="lazy"
 											src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=96b4bd41ff3f90d880a4ab5acbbe43eaff81b1e5"
 											srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=125&amp;h=125&amp;mode=crop&amp;sig=c4c75cb8adbd6599d0712f39bb5b4d941952d04b 125w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=250&amp;h=250&amp;mode=crop&amp;sig=7f3333d3963c2ad741f41618a51e24e14ce2952b 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=96b4bd41ff3f90d880a4ab5acbbe43eaff81b1e5 500w"
-											sizes="10vw" class="rounded-circle img-fluid w-100" alt="Christopher Trudeau"></a>
+											sizes="10vw" class="rounded-circle img-fluid w-100"
+											alt="Christopher Trudeau"></a>
 								</div>
 								<div class="col pr-0 d-flex align-items-center">
 									<p class="my-0">
 										<span class="text-muted">
 											<span class="mr-2"><a class="text-muted"
-													href="/courses/python-rock-paper-scissors-game/#team">{{ .Params.author | markdownify }}</a></span>
+													href="{{ .Params.authorlink | urlize }}">{{ .Params.author | markdownify }}</a></span>
 											<span class="mr-2">5 Lessons</span>
 											<span class="mr-2"><i class="fa fa-clock-o"></i> 26m</span>
 											<br>
 											<span class="fa fa-tags" aria-hidden="true"></span>
-												{{ range .Params.tags }}
-												<a class="badge badge-light text-muted" target="_blank" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-												{{end}}
+											{{ range .Params.tags }}
+											<a class="badge badge-light text-muted" target="_blank"
+												href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+											{{end}}
 										</span>
 									</p>
 								</div>
@@ -55,95 +56,80 @@
 							<a href="{{ .RelPermalink }}" class="btn btn-primary btn-lg px-4 "><i
 									class="fa fa-play fa-fw"></i> Read More...</a>
 						</div>
-					</div> 
+					</div>
 				</div>
 				{{- end -}}
 
 
 
 
-
-
-
-				{{- $pages := where .Site.RegularPages "Type" "portfolio" -}}
-
-				{{- range $pages -}}
-				<li>{{ .Title }}</li>
-				<p>{{ .Params.author }}</p>
-					{{ range .Params.tags }}
-					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-					{{end}}
-
-				<p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>
-				<a class="small" href="{{ .RelPermalink }}">Read More…</a>
-				{{- end -}}
-
-				{{- partial "paginator.html" . -}}
-			
+				{{/*  Cardo dalla seconda in poi  */}}
 				<div class="card-deck">
-					{{/*  secondo post */}}
+					{{- $pages := after 1 (where .Site.RegularPages "Type" "portfolio") -}}
+
+					{{- range $pages -}}
 					<div class="card bg-white rounded border  my-4 w-100">
 						<figure class="embed-responsive embed-responsive-16by9 my-0">
-							<a href="/courses/pass-by-reference-python-best-practices/"><img loading="lazy"
+							<a href="{{ .RelPermalink }}"><img loading="lazy"
 									src="https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg"
 									srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=480&amp;sig=b14ca080ad6077fb0d7bea085792161830eb15e0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=960&amp;sig=5a418c32bd4939ed23f45c62f83397282f085b18 960w, https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg 1920w"
 									class="embed-responsive-item card-img-top"
 									alt="Pass by Reference in Python: Background and Best Practices" sizes="66vw"></a>
 						</figure>
+
 						<div class="card-body d-flex flex-column">
 							<h2 class="card-title mt-0 "><a class="link-unstyled"
-									href="/courses/pass-by-reference-python-best-practices/">Pass by Reference in Python: Best
-									Practices</a></h2>
+									href="{{ .RelPermalink }}">{{.Page.Title | markdownify}}</a></h2>
 							<div class="container">
 								<div class="row">
 									<div class="col-2 col-md-1 p-0 align-self-center">
-										<a href="/courses/pass-by-reference-python-best-practices/#team"><img loading="lazy"
+										<a href="/courses/pass-by-reference-python-best-practices/#team"><img
+												loading="lazy"
 												src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hfrancis.4b0e4c8624e3.jpg&amp;w=816&amp;h=816&amp;mode=crop&amp;sig=faeeac22936657e1162d0f56b1af3270a8bc77e5"
 												srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hfrancis.4b0e4c8624e3.jpg&amp;w=204&amp;h=204&amp;mode=crop&amp;sig=da6ccd5096754ead4ec3e376decc81a809615c93 204w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hfrancis.4b0e4c8624e3.jpg&amp;w=408&amp;h=408&amp;mode=crop&amp;sig=9829a0dc3335b44a770533d390506019593735cb 408w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/hfrancis.4b0e4c8624e3.jpg&amp;w=816&amp;h=816&amp;mode=crop&amp;sig=faeeac22936657e1162d0f56b1af3270a8bc77e5 816w"
-												sizes="10vw" class="rounded-circle img-fluid w-100" alt="Howard Francis"></a>
+												sizes="10vw" class="rounded-circle img-fluid w-100"
+												alt="Howard Francis"></a>
 									</div>
 									<div class="col pr-0 d-flex align-items-center">
 										<p class="my-0">
 											<span class="text-muted">
 												<span class="mr-2"><a class="text-muted"
-														href="/courses/pass-by-reference-python-best-practices/#team">Howard
-														Francis</a></span>
+														href="{{ .Params.authorlink | urlize }}">{{ .Params.author | markdownify }}</a></span>
 												<span class="mr-2">16 Lessons</span>
 												<span class="mr-2"><i class="fa fa-clock-o"></i> 1h&nbsp;17m</span>
 												<br>
 												<span class="fa fa-tags" aria-hidden="true"></span>
-												<a href="/tutorials/best-practices/" target="_blank"
-													class="badge badge-light text-muted">best-practices</a>
-												<a href="/tutorials/intermediate/" target="_blank"
-													class="badge badge-light text-muted">intermediate</a>
-												<a href="/tutorials/python/" target="_blank"
-													class="badge badge-light text-muted">python</a>
+												{{ range .Params.tags }}
+												<a class="badge badge-light text-muted" target="_blank"
+													href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+												{{end}}
 											</span>
 										</p>
 									</div>
 								</div>
 							</div>
-							<p class="card-text text-muted mt-3">In this course, you'll explore the concept of passing by reference
-								and learn how it relates to Python's own system for handling function arguments. You'll look at
-								several use cases for passing by reference and learn some best practices for implementing
-								pass-by-reference constructs in Python.</p>
+							<p class="card-text text-muted mt-3">{{ .Summary | truncate 240 | safeHTML }}</p>
 							<div class="text-center mt-auto">
-								<a href="/courses/pass-by-reference-python-best-practices/" class="btn btn-outline-dark "><i
-										class="fa fa-play fa-fw"></i> Get Started</a>
+								<a href="{{ .RelPermalink }}" class="btn btn-outline-dark "><i
+										class="fa fa-play fa-fw"></i> Read More</a>
 							</div>
 						</div>
 					</div>
-					{{/*  teszo post */}}
+					{{- end -}}
+					{{- partial "paginator.html" . -}}
+
+					{{/*  terzo post */}}
 					<div class="card bg-white rounded border  my-4 w-100">
 						<figure class="embed-responsive embed-responsive-16by9 my-0">
 							<a href="/courses/python-data-classes/"><img loading="lazy"
 									src="https://files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg"
 									srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg&amp;w=480&amp;sig=f90360ebf52a9ed604c464d9693ef4eda2d4b7e7 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg&amp;w=960&amp;sig=66bbdca5c7941e2abb3a554e5540934046f41a8f 960w, https://files.realpython.com/media/The-Ultimate-Guide-to-Data-Classes-in-Python-3.7_Watermarked.96432fedfe8f.jpg 1920w"
-									class="embed-responsive-item card-img-top" alt="Data Classes in Python 3.7 (And Above)"
-									sizes="66vw"></a>
+									class="embed-responsive-item card-img-top"
+									alt="Data Classes in Python 3.7 (And Above)" sizes="66vw"></a>
 						</figure>
 						<div class="card-body d-flex flex-column">
-							<h2 class="card-title mt-0 "><a class="link-unstyled" href="/courses/python-data-classes/">Using Data
+							<h2 class="card-title mt-0 "><a class="link-unstyled"
+									href="/courses/python-data-classes/">Using Data
 									Classes in Python</a></h2>
 							<div class="container">
 								<div class="row">
@@ -151,13 +137,15 @@
 										<a href="/courses/python-data-classes/#team"><img loading="lazy"
 												src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=1000&amp;h=1000&amp;mode=crop&amp;sig=43d60c8c8f74b18d9ad3ee11dde5489ba77c683b"
 												srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=250&amp;h=250&amp;mode=crop&amp;sig=16161dd4dc90081d38d6e050c84e042d5ffc9bd4 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=f8d4f5c9c08d30c16a427730edc41db01cd5fcb8 500w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=1000&amp;h=1000&amp;mode=crop&amp;sig=43d60c8c8f74b18d9ad3ee11dde5489ba77c683b 1000w"
-												sizes="10vw" class="rounded-circle img-fluid w-100" alt="Darren Jones"></a>
+												sizes="10vw" class="rounded-circle img-fluid w-100"
+												alt="Darren Jones"></a>
 									</div>
 									<div class="col pr-0 d-flex align-items-center">
 										<p class="my-0">
 											<span class="text-muted">
 												<span class="mr-2"><a class="text-muted"
-														href="/courses/python-data-classes/#team">Darren Jones</a></span>
+														href="/courses/python-data-classes/#team">Darren
+														Jones</a></span>
 												<span class="mr-2">12 Lessons</span>
 												<span class="mr-2"><i class="fa fa-clock-o"></i> 45m</span>
 												<br>
@@ -171,8 +159,10 @@
 									</div>
 								</div>
 							</div>
-							<p class="card-text text-muted mt-3">Data classes are one of the new features introduced in Python 3.7.
-								When using data classes, you don't have to write boilerplate code to get proper initialization,
+							<p class="card-text text-muted mt-3">Data classes are one of the new features introduced in
+								Python 3.7.
+								When using data classes, you don't have to write boilerplate code to get proper
+								initialization,
 								representation, and comparisons for your objects.</p>
 							<div class="text-center mt-auto">
 								<a href="/courses/python-data-classes/" class="btn btn-outline-dark "><i
@@ -181,186 +171,18 @@
 						</div>
 					</div>
 				</div>
-			
-				{{/*  ====================  */}}
-			
-				{{/*  <div class="card-deck"> 
-					<div class="card bg-white rounded border  my-4 w-100">
-						<figure class="embed-responsive embed-responsive-16by9 my-0">
-							<a href="/courses/graph-data-with-python-and-ggplot/"><img loading="lazy"
-									src="https://files.realpython.com/media/Data-Visualization-with-ggplot_Watermarked.55f8b3eb75d8.jpg"
-									srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Data-Visualization-with-ggplot_Watermarked.55f8b3eb75d8.jpg&amp;w=480&amp;sig=a2d8b1fae67b3974f027ffdb060e67a0270e81c6 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Data-Visualization-with-ggplot_Watermarked.55f8b3eb75d8.jpg&amp;w=960&amp;sig=8bcae8df615e21ce665697ea2d5e5da637f7556f 960w, https://files.realpython.com/media/Data-Visualization-with-ggplot_Watermarked.55f8b3eb75d8.jpg 1920w"
-									class="embed-responsive-item card-img-top"
-									alt="Using ggplot in Python: Visualizing Data With plotnine" sizes="66vw"></a>
-						</figure>
-						<div class="card-body d-flex flex-column">
-							<h2 class="card-title mt-0 "><a class="link-unstyled"
-									href="/courses/graph-data-with-python-and-ggplot/">Graph Your Data With Python and ggplot</a>
-							</h2>
-							<div class="container">
-								<div class="row">
-									<div class="col-2 col-md-1 p-0 align-self-center">
-										<a href="/courses/graph-data-with-python-and-ggplot/#team"><img loading="lazy"
-												src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/martin_breuss_python_square.efb2b07faf9f.jpg&amp;w=456&amp;h=456&amp;mode=crop&amp;sig=f73f6ae668249c7ab9ff74c61ea5ae7c5d360d54"
-												srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/martin_breuss_python_square.efb2b07faf9f.jpg&amp;w=114&amp;h=114&amp;mode=crop&amp;sig=1a2362c5f4fdf6550020fa2edf1cbed47bffdf53 114w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/martin_breuss_python_square.efb2b07faf9f.jpg&amp;w=228&amp;h=228&amp;mode=crop&amp;sig=83e21635985e51035377eed031afa8feae263333 228w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/martin_breuss_python_square.efb2b07faf9f.jpg&amp;w=456&amp;h=456&amp;mode=crop&amp;sig=f73f6ae668249c7ab9ff74c61ea5ae7c5d360d54 456w"
-												sizes="10vw" class="rounded-circle img-fluid w-100" alt="Martin Breuss"></a>
-									</div>
-									<div class="col pr-0 d-flex align-items-center">
-										<p class="my-0">
-											<span class="text-muted">
-			
-												<span class="mr-2"><a class="text-muted"
-														href="/courses/graph-data-with-python-and-ggplot/#team">Martin
-														Breuss</a></span>
-												<span class="mr-2">18 Lessons</span>
-												<span class="mr-2"><i class="fa fa-clock-o"></i> 59m</span>
-												<br>
-												<span class="fa fa-tags" aria-hidden="true"></span>
-												<a href="/tutorials/data-science/" target="_blank"
-													class="badge badge-light text-muted">data-science</a>
-												<a href="/tutorials/intermediate/" target="_blank"
-													class="badge badge-light text-muted">intermediate</a>
-											</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<p class="card-text text-muted mt-3">In this course, you'll learn how to use ggplot in Python to build
-								data visualizations with plotnine. You'll discover what a grammar of graphics is and how it can help
-								you create plots in a very concise and consistent way.</p>
-							<div class="text-center mt-auto">
-								<a href="/courses/graph-data-with-python-and-ggplot/" class="btn btn-outline-dark "><i
-										class="fa fa-play fa-fw"></i> Get Started</a>
-							</div>
-						</div>
-					</div>
-			
-					<div class="card bg-white rounded border  my-4 w-100">
-						<figure class="embed-responsive embed-responsive-16by9 my-0">
-							<a href="/courses/splitting-datasets-scikit-learn-train-test-split/"><img loading="lazy"
-									src="https://files.realpython.com/media/Splitting-Datasets-With-sklearns-train_test_split_Watermarked.e321471660be.jpg"
-									srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Splitting-Datasets-With-sklearns-train_test_split_Watermarked.e321471660be.jpg&amp;w=480&amp;sig=4fd493fd0579e0aae7b9bbf0ead9fc3aec03c304 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Splitting-Datasets-With-sklearns-train_test_split_Watermarked.e321471660be.jpg&amp;w=960&amp;sig=f5f83df8125278225fba5a16db9aea2a4eac467c 960w, https://files.realpython.com/media/Splitting-Datasets-With-sklearns-train_test_split_Watermarked.e321471660be.jpg 1920w"
-									class="embed-responsive-item card-img-top"
-									alt="Split Your Dataset With scikit-learn's train_test_split()" sizes="66vw"></a>
-						</figure>
-						<div class="card-body d-flex flex-column">
-							<h2 class="card-title mt-0 "><a class="link-unstyled"
-									href="/courses/splitting-datasets-scikit-learn-train-test-split/">Splitting Datasets With
-									scikit-learn and train_test_split()</a></h2>
-							<div class="container">
-								<div class="row">
-									<div class="col-2 col-md-1 p-0 align-self-center">
-										<a href="/courses/splitting-datasets-scikit-learn-train-test-split/#team"><img
-												loading="lazy"
-												src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=1000&amp;h=1000&amp;mode=crop&amp;sig=43d60c8c8f74b18d9ad3ee11dde5489ba77c683b"
-												srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=250&amp;h=250&amp;mode=crop&amp;sig=16161dd4dc90081d38d6e050c84e042d5ffc9bd4 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=f8d4f5c9c08d30c16a427730edc41db01cd5fcb8 500w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=1000&amp;h=1000&amp;mode=crop&amp;sig=43d60c8c8f74b18d9ad3ee11dde5489ba77c683b 1000w"
-												sizes="10vw" class="rounded-circle img-fluid w-100" alt="Darren Jones"></a>
-									</div>
-									<div class="col pr-0 d-flex align-items-center">
-										<p class="my-0">
-											<span class="text-muted">
-												<span class="mr-2"><a class="text-muted"
-														href="/courses/splitting-datasets-scikit-learn-train-test-split/#team">Darren
-														Jones</a></span>
-												<span class="mr-2">11 Lessons</span>
-												<span class="mr-2"><i class="fa fa-clock-o"></i> 29m</span>
-												<br>
-												<span class="fa fa-tags" aria-hidden="true"></span>
-												<a href="/tutorials/data-science/" target="_blank"
-													class="badge badge-light text-muted">data-science</a>
-												<a href="/tutorials/intermediate/" target="_blank"
-													class="badge badge-light text-muted">intermediate</a>
-												<a href="/tutorials/machine-learning/" target="_blank"
-													class="badge badge-light text-muted">machine-learning</a>
-											</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<p class="card-text text-muted mt-3">In this course, you'll learn why it's important to split your
-								dataset in supervised machine learning and how to do that with train_test_split() from scikit-learn.
-							</p>
-							<div class="text-center mt-auto">
-								<a href="/courses/splitting-datasets-scikit-learn-train-test-split/"
-									class="btn btn-outline-dark "><i class="fa fa-play fa-fw"></i> Get Started</a>
-							</div>
-						</div>
-					</div>
-			
-				</div>  */}}
-			
-			
-			
-			
-			{{/*  <div class="card bg-white rounded border  my-4 w-100">
-					<figure class="embed-responsive embed-responsive-16by9 my-0">
-						<a href="/courses/python-lambda-functions/"><img loading="lazy"
-								src="https://files.realpython.com/media/How-to-Use-Python-Lambda-Functions_Watermarked.2afa4f5ea5d4.jpg"
-								srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Python-Lambda-Functions_Watermarked.2afa4f5ea5d4.jpg&amp;w=480&amp;sig=d507d906bb722fb05738acc6c8cbd0616556badd 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/How-to-Use-Python-Lambda-Functions_Watermarked.2afa4f5ea5d4.jpg&amp;w=960&amp;sig=17b7b7999fb2b8f6d472106c83d096219ea1afb4 960w, https://files.realpython.com/media/How-to-Use-Python-Lambda-Functions_Watermarked.2afa4f5ea5d4.jpg 1920w"
-								class="embed-responsive-item card-img-top" alt="How to Use Python lambda Functions"
-								sizes="66vw"></a>
-					</figure>
-					<div class="card-body d-flex flex-column">
-						<h2 class="card-title mt-0 "><a class="link-unstyled" href="/courses/python-lambda-functions/">How to
-								Use Python Lambda Functions</a></h2>
-						<div class="container">
-							<div class="row">
-								<div class="col-2 col-md-1 p-0 align-self-center">
-									<a href="/courses/python-lambda-functions/#team"><img loading="lazy"
-											src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=1000&amp;h=1000&amp;mode=crop&amp;sig=43d60c8c8f74b18d9ad3ee11dde5489ba77c683b"
-											srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=250&amp;h=250&amp;mode=crop&amp;sig=16161dd4dc90081d38d6e050c84e042d5ffc9bd4 250w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=f8d4f5c9c08d30c16a427730edc41db01cd5fcb8 500w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/dj-profile-square-med.e9f478927b62.jpg&amp;w=1000&amp;h=1000&amp;mode=crop&amp;sig=43d60c8c8f74b18d9ad3ee11dde5489ba77c683b 1000w"
-											sizes="10vw" class="rounded-circle img-fluid w-100" alt="Darren Jones"></a>
-								</div>
-								<div class="col pr-0 d-flex align-items-center">
-									<p class="my-0">
-										<span class="text-muted">
-											<span class="mr-2"><a class="text-muted"
-													href="/courses/python-lambda-functions/#team">Darren Jones</a></span>
-											<span class="mr-2">10 Lessons</span>
-											<span class="mr-2"><i class="fa fa-clock-o"></i> 34m</span>
-											<br>
-											<span class="fa fa-tags" aria-hidden="true"></span>
-											<a href="/tutorials/best-practices/" target="_blank"
-												class="badge badge-light text-muted">best-practices</a>
-											<a href="/tutorials/intermediate/" target="_blank"
-												class="badge badge-light text-muted">intermediate</a>
-											<a href="/tutorials/python/" target="_blank"
-												class="badge badge-light text-muted">python</a>
-										</span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<p class="card-text text-muted mt-3">In this step-by-step course, you'll learn about Python lambda
-							functions. You'll see how they compare with regular functions and how you can use them in accordance
-							with best practices.</p>
-						<div class="text-center mt-auto">
-							<a href="/courses/python-lambda-functions/" class="btn btn-outline-dark "><i
-									class="fa fa-play fa-fw"></i> Get Started</a>
-						</div>
-					</div>
-				</div>   */}}
-			
-			{{/*  <div class="row justify-content-center w-100">  
+
+				<div class="row justify-content-center w-100">
 					<div class="col-md-10 col-lg-8 article">
 						<div class="article-body page-body">
-							<p class="text-center"><a
-									href="https://feedback.realpython.com/realpython-com/?d=eyJwIjoicmVhbHB5dGhvbi1jb20iLCJzaWciOiJlRytwUmo-cGFXdXFKTGhsKGA0RSNpP01CN0F3KUhYYHo_NlNUQWJvIiwidCI6IkNvdXJzZXMiLCJ1IjoiaHR0cHM6Ly9yZWFscHl0aG9uLmNvbS9jb3Vyc2VzLyJ9"
-									target="_blank"><i class="fas fa-comment" aria-hidden="true"></i> Got feedback on our
-									courses?</a></p>
+							<p class="text-center"><a href="../../contatti/" target="_blank"><i class="fas fa-comment"
+										aria-hidden="true"></i> Got feedback on some my project?</a></p>
 						</div>
 					</div>
-				</div>  */}}
-			
+				</div>
+
 			</div>
-
-
-
-
-
-
-
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 {{end}}
