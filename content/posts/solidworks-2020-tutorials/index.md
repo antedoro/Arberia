@@ -5,7 +5,7 @@ date: 2022-04-26T22:42:59+02:00
 lastmod: 2022-04-26T22:42:59+02:00
 draft: true
 type: "video"
-weight: 
+weight: 1 
 
 author: "Vincenzo Antedoro"
 avatar: "img/me.jpg"
