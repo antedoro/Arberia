@@ -10,7 +10,7 @@ type: "about"
 
 
 author: Vincenzo Antedoro
-avatar: "avatar.webp"
+avatar: "me.webp"
 website: "https://antedoro.it"
 twitter: "https://twitter.com/antedoro"
 github: "https://github.com/antedoro"

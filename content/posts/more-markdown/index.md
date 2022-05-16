@@ -3,6 +3,7 @@ title: "Test Markdown"
 subtitle: "Insert a subtitle here"
 date: 2022-04-26T18:26:24+02:00
 lastmod: 2022-04-26T18:26:24+02:00
+coverimage: "featured-image.png"
 draft: true
 author: "Vincenzo Antedoro"
 authorLink: ""

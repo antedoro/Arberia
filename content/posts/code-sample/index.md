@@ -3,6 +3,7 @@ title: "Code Sample"
 subtitle: "Insert a subtitle here"
 date: 2022-04-26T18:28:32+02:00
 lastmod: 2022-04-26T18:28:32+02:00
+coverimage: "featured-image.png"
 draft: true
 author: "author"
 authorLink: ""

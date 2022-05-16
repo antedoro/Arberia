@@ -1,6 +1,7 @@
 ---
 title: "Solidworks 2020 Tutorials"
 subtitle: "Impara Solidworks 2020 con 5 mini-tutorial"
+coverimage: "featured-image"
 date: 2022-04-26T22:42:59+02:00
 lastmod: 2022-04-26T22:42:59+02:00
 draft: true

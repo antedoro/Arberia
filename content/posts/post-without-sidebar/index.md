@@ -5,6 +5,7 @@ subtitle: Take your coding skills to the next level with Real Python’s acceler
   plans for beginner, intermediate, and advanced Python developers.
 date: 2022-04-26T19:05:23.331Z
 lastmod: 2021-10-15T20:58:53+02:00
+coverimage: "Real-Python-Learning-Paths_Watermarked.webp"
 draft: false
 author: Vincenzo Antedoro
 authorLink: ""

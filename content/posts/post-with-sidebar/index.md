@@ -5,6 +5,7 @@ subtitle: "Take your coding skills to the next level with Real Python’s
             accelerated study plans for beginner, intermediate, and advanced Python developers."
 date: 2020-10-15T20:58:53+02:00
 lastmod: 2020-10-15T20:58:53+02:00
+coverimage: "Real-Python-Learning-Paths_Watermarked.webp"
 draft: false
 author: "Vincenzo Antedoro"
 authorLink: ""

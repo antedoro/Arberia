@@ -17,6 +17,12 @@
                 sizes="75vw" alt="Real Python Learning Paths" data-asset="1092" width="1920" height="1080">
         </figure>
 
+        {{- /* Post Cover Image */ -}}
+        {{/*  {{ $img := (.Resources.ByType "image").GetMatch $params.coverimage }}
+        {{ with .Resources.GetMatch $params.coverimage }}
+        {{ partial "tools/img" (dict "img" . "alt" "cover_image") }}
+        {{ end }}  */}}
+
         {{ if .Params.toc }}
         {{- partial "component/toc.html"  -}}
         {{ end }}

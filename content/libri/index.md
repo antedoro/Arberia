@@ -4,7 +4,9 @@ subtitle: "Un elenco mai definitivo di tutti i libri che ho letto."
 description: "Descrizione da rivedere se è un doppione subtitle"
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
+coverimage: "book.webp"
 draft: true
+weight: 
 
 type: "books"
 
@@ -16,13 +18,6 @@ github: "https://github.com/antedoro"
 linkedin: "https://www.linkedin.com/in/antedoro/"
 instagram: "https://www.instagram.com/antedoro/"
 
-resources:
-- name: "featured-image"
-  src: "book.png"
-- name: "featured-image-preview"
-  src: "book.png"
-
-weight: 
 
 # tags: [tag1, tag2, tag3, tag4]
 # categories: [category]

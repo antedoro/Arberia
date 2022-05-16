@@ -3,6 +3,7 @@ title: "Blog"
 subtitle: "All blog post!"
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
+coverimage: "blog.jpg"
 draft: true
 author: "Vincenzo Antedoro"
 authorLink: ""
@@ -17,11 +18,6 @@ categories: [category]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
-resources:
-- name: "featured-image"
-  src: "blog.jpg"
-- name: "featured-image-preview"
-  src: "blog.jpg"
 
 featured: false
 sidebar: true

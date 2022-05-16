@@ -3,6 +3,7 @@ title: "Esempio1"
 subtitle: "Insert a subtitle here"
 date: 2022-05-10T23:07:28+02:00
 lastmod: 2022-05-10T23:07:28+02:00
+coverimage: "featured-image.png"
 draft: true
 weight: 
 

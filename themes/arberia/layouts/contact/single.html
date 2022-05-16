@@ -15,13 +15,17 @@
         {{ end }}
 
         {{- /* Featured image */ -}}
-        <figure class=""><img loading="lazy" class="img-fluid mx-auto d-block rounded" 
-          src="book.png" srcset="contact.jpg 480w, 
+        {{/*  <figure class=""><img loading="lazy" class="img-fluid mx-auto d-block rounded" 
+          src="contact.png" srcset="contact.jpg 480w, 
           contact.jpg 960w, 
           contact.jpg 1920w" 
-          sizes="75vw" alt="Contact" data-asset="1092"
-          width="1920" height="1080">
-        </figure>
+          sizes="75vw" alt="Contact" 
+          data-asset="1092" width="1920" height="1080">
+        </figure>  */}}
+
+        {{ with .Resources.GetMatch .Params.coverimage }}
+        {{ partial "tools/img" (dict "img" . "alt" "contact_image") }}
+        {{ end }}
 
         <div class="content">{{ .Content }}</div>
         <form method="POST" action="{{ .Site.Params.contact_form_action | safeURL}}" class="row">
