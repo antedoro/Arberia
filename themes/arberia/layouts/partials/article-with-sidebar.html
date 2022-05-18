@@ -28,7 +28,7 @@
             {{- /* Post Cover Image */ -}}
             {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
             {{ with $img }}
-            {{ partial "tools/img" (dict "img" . "alt" $img.Title) }}
+            {{ partial "tools/img" (dict "img" . "alt" $img.Title ) }}
             {{ end }}
 
 
