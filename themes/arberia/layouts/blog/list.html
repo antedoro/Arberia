@@ -4,29 +4,13 @@
     <div class="row justify-content-center">
         <!-- Sidebar -->
         {{ if .Params.sidebar }}
-        {{/*  <aside class="col-md-7 col-lg-4 order-first order-lg-last">
-            <div class="sidebar-sticky">
-                <p class="h4 text-center">Sidebar</p>
-
-            </div>
-        </aside>   */}}
-
         <aside class="col-md-7 col-lg-4 order-first order-lg-last">
             <div class="card sidebar-sticky mb-3" style="margin-top: 62px">
-                <p class="h4 text-left">CHI SONO</p>
-                <div class="textwidget">
-                    <p class="text-muted my-0 mt-1 small" style="text-align: justify;">
-                        <img class=" wp-image-667 size-thumbnail alignleft"
-                            title="vincenzo antedoro"
-                            src="http://antedoro.it/wp-content/uploads/2013/06/255ed6f-150x150.jpg"
-                            alt="ing. Vincenzo Antedoro" width="72" height="72"> Ciao, mi chiamo <strong>Vincenzo
-                            Antedoro</strong>. Sono un ingegnere che aiuta chi vuole investire nelle <em>rinnovabili</em>.
-                        Per il resto mi diverto insegnando col metodo del <em>learning by doing</em>. </p>
-                </div>
-            </div>
-        </aside> 
-        {{ end }}
+                <p class="h4 text-left">Sidebar</p>
 
+            </div>
+        </aside>
+        {{ end }}
 
         <!-- All Post List-->
         <div id="listArea" class="col-md-11 col-lg-8 article">
@@ -39,12 +23,15 @@
             <p class="text-center text-muted">{{ . | markdownify }}</p>
             {{ end }}
 
-            {{- /* Featured Image */ -}}
-            <figure class="mb-5">
-                <img loading="lazy" class="img-fluid mx-auto d-block rounded" src="blog.jpg" 
-                srcset="blog.jpg 480w, blog.jpg 960w, blog.jpg 1920w" 
-                sizes="75vw" alt="Blog" data-asset="1092" width="1920" height="1080">
-            </figure>
+
+            {{- /* Cover Image */ -}}
+            {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+            {{ with $img }}
+            {{ $imageName := $img.Title }}
+            {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+            {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+            {{ end }}
+
 
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
             {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
@@ -54,12 +41,20 @@
 
                     <div class="col-12 col-sm-4 align-self-top px-0 py-2">
                         <a href="{{.RelPermalink}}">
-                            <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
+                            {{/*  <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
                                     src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
                                     srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
                                     sizes="5vw" class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
                                     style="object-fit: contain;">
+                            </div>  */}}
+
+                            <div class="embed-responsive embed-responsive-16by9">
+                                {{- /* Post Cover Image */ -}}
+                                {{ with .Resources.GetMatch .Params.coverimage }}
+                                {{ partial "tools/img" (dict "img" . "alt" "book_image") }}
+                                {{ end }}
                             </div>
+
                         </a>
                     </div>
 
@@ -89,22 +84,22 @@
                 </div>
                 {{/*  <hr>  */}}
                 {{/*  <div>  */}}
-                    {{ end }}
+                {{ end }}
 
-                    {{/*  creare una css class per il paginator  */}}
-                    {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                {{ partial "pagination.html" . }}
-                </div> */}}
-                <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                    {{ partial "paginator.html" . }}
-                </div>
+                {{/*  creare una css class per il paginator  */}}
                 {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                {{ partial "pagination.html" . }}
+            </div> */}}
+            <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                {{ partial "paginator.html" . }}
+            </div>
+            {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
                     <!-- Hugo's default pagination template. -->
                         { template "_internal/pagination.html" . }}
-            </div> */}}
-        </div>
-
+        </div> */}}
     </div>
+
+</div>
 </div>
 </div>
 {{end}}

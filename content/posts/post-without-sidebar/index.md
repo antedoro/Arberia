@@ -25,8 +25,6 @@ hiddenFromSearch: false
 resources:
   - name: featured-image
     src: Real-Python-Learning-Paths_Watermarked.webp
-  - name: featured-image-preview
-    src: Real-Python-Learning-Paths_Watermarked.webp
 
 featured: false
 sidebar: false

@@ -21,8 +21,6 @@ hiddenFromSearch: false
 resources:
   - name: featured-image
     src: artwork.webp
-  - name: featured-image-preview
-    src: artwork.webp
 
 type: # Nothing for default, or video 
   null

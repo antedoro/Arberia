@@ -14,14 +14,13 @@
         <p class="text-center text-muted">{{ . | markdownify }}</p>
         {{ end }}
 
-        {{- /* Featured image */ -}}
-        <figure class=""><img loading="lazy" class="img-fluid mx-auto d-block rounded" 
-          src="book.png" srcset="contact.jpg 480w, 
-          contact.jpg 960w, 
-          contact.jpg 1920w" 
-          sizes="75vw" alt="Contact" data-asset="1092"
-          width="1920" height="1080">
-        </figure>
+        {{- /* Post Cover Image */ -}}
+        {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+        {{ with $img }}
+        {{ partial "tools/img" (dict "img" . "alt" $img.Title ) }}
+        {{ end }}
+
+
 
         <div class="content">{{ .Content }}</div>
         <form method="POST" action="{{ .Site.Params.contact_form_action | safeURL}}" class="row">

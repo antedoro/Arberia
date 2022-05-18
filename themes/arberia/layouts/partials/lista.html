@@ -1,7 +1,7 @@
 {{/*  <div class="container main-content">  */}}
-    <div class="row justify-content-center">
+<div class="row justify-content-center">
 
-        {{/*  <aside class="col-md-7 col-lg-4 order-first order-lg-last">
+    {{/*  <aside class="col-md-7 col-lg-4 order-first order-lg-last">
             <div class="sidebar-sticky">
                 <div class="custom-control custom-checkbox mt-3"><input type="checkbox" id="chkKindAny"
                         class="custom-control-input" disabled="disabled"> <label for="chkKindAny"
@@ -13,75 +13,76 @@
             </div>
         </aside>   */}}
 
-        <!-- Lista -->
-        <div id="listArea" class="col-md-11 col-lg-8 article">
-            <!-- Testata -->
-            <div class="mt-1 mb-4">
-                <div class="d-flex align-items-center justify-content-between">
-                        <h2>Blog Post</h2>
-                </div>
+    <!-- Lista -->
+    <div id="listArea" class="col-md-11 col-lg-8 article">
+        <!-- Testata -->
+        <div class="mt-1 mb-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <h2>Blog Post</h2>
             </div>
-
-            {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-            {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
-            <div class="container my-3">
-                {{ range $paginator.Pages.ByDate.Reverse }}
-                <div class="row">
-
-                    <div class="col-12 col-sm-4 align-self-top px-0">
-                        <a href="{{.RelPermalink}}">
-                            <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
-                                    src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
-                                    srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
-                                    sizes="5vw" class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
-                                    style="object-fit: contain;">
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0">
-                        <a href="{{.RelPermalink}}" class="stretched-link">
-                            <h2 class="my-0 h5">{{ .Title }}<span title="In-Progress" class="float-right">
-                                <i class="fas fa-circle-notch text-muted"></i></span></h2>
-                        </a>
-                        <p class="small text-muted my-0">
-                            <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
-                            <span aria-hidden="true" class="fa fa-tags"></span>
-                            {{ range .Params.tags }}
-                            <a class="badge badge-light text-muted mr-1"
-                                href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-                            {{end}}
-                        </p>
-                        <!-- Usare la funzione truncate -->
-                        <p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>
-                        <!-- Aggiunta da me -->
-                        <div>
-                            <a class="small" href="{{ .RelPermalink }}">Read More…</a>
-                            {{/*  <a class="small" style= "display: flex; justify-content: flex-end" href="{{ .RelPermalink }}">Read
-                            More…</a> */}}
-                        </div>
-                    </div>
-
-                </div>
-                <hr>
-                {{ end }}
-
-                    {{/*  creare una css class per il paginator  */}}
-                    {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        {{ partial "pagination.html" . }}
-                    </div>  */}}
-                    <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        {{ partial "paginator.html" . }}
-                    </div>
-                    {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                        <!-- Hugo's default pagination template. -->
-                        {{ template "_internal/pagination.html" . }}
-                    </div>  */}}
-
-                </div>
-            </div>
-
         </div>
 
-    </div>
+        {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+        {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
+        <div class="container my-3">
+            {{ range $paginator.Pages.ByDate.Reverse }}
+            <div class="row">
+
+                <div class="col-12 col-sm-4 align-self-top px-0">
+                    <a href="{{.RelPermalink}}">
+                        {{- /* Post Cover Image */ -}}
+                        {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+                        {{ with $img }}
+                        {{ $imageName := $img.Title }}
+                        {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+                        {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+                        {{ end }}
+                    </a>
+                </div>
+
+                <div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0">
+                    <a href="{{.RelPermalink}}" class="stretched-link">
+                        <h2 class="my-0 h5">{{ .Title }}<span title="In-Progress" class="float-right">
+                                <i class="fas fa-circle-notch text-muted"></i></span></h2>
+                    </a>
+                    <p class="small text-muted my-0">
+                        <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
+                        <span aria-hidden="true" class="fa fa-tags"></span>
+                        {{ range .Params.tags }}
+                        <a class="badge badge-light text-muted mr-1"
+                            href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                        {{end}}
+                    </p>
+                    <!-- Usare la funzione truncate -->
+                    <p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>
+                    <!-- Aggiunta da me -->
+                    <div>
+                        <a class="small" href="{{ .RelPermalink }}">Read More…</a>
+                        {{/*  <a class="small" style= "display: flex; justify-content: flex-end" href="{{ .RelPermalink }}">Read
+                        More…</a> */}}
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            {{ end }}
+
+            {{/*  creare una css class per il paginator  */}}
+            {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                        {{ partial "pagination.html" . }}
+        </div> */}}
+        <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+            {{ partial "paginator.html" . }}
+        </div>
+        {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                        <!-- Hugo's default pagination template. -->
+                        {{ template "_internal/pagination.html" . }}
+    </div> */}}
+
+</div>
+</div>
+
+</div>
+
+</div>
 {{/*  </div>  */}}

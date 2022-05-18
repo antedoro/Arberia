@@ -7,5 +7,146 @@
       "path": "[[workspace]]/content"
     }
   ],
-  "frontMatter.framework.startCommand": "hugo server -D"
+  "frontMatter.framework.startCommand": "hugo server -D",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Publishing date",
+          "name": "date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Content preview",
+          "name": "preview",
+          "type": "image"
+        },
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "boolean"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        },
+        {
+          "title": "weight",
+          "name": "weight",
+          "type": "datetime"
+        },
+        {
+          "title": "subtitle",
+          "name": "subtitle",
+          "type": "string"
+        },
+        {
+          "title": "lastmod",
+          "name": "lastmod",
+          "type": "datetime"
+        },
+        {
+          "title": "author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "authorLink",
+          "name": "authorLink",
+          "type": "string"
+        },
+        {
+          "title": "hiddenFromHomePage",
+          "name": "hiddenFromHomePage",
+          "type": "datetime"
+        },
+        {
+          "title": "hiddenFromSearch",
+          "name": "hiddenFromSearch",
+          "type": "datetime"
+        },
+        {
+          "title": "resources",
+          "name": "resources",
+          "type": "block",
+          "fields": [
+            {
+              "title": "0",
+              "name": "0",
+              "type": "fields",
+              "fields": [
+                {
+                  "title": "name",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "title": "src",
+                  "name": "src",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "featured",
+          "name": "featured",
+          "type": "datetime"
+        },
+        {
+          "title": "sidebar",
+          "name": "sidebar",
+          "type": "datetime"
+        },
+        {
+          "title": "toc",
+          "name": "toc",
+          "type": "datetime"
+        },
+        {
+          "title": "math",
+          "name": "math",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "enable",
+              "name": "enable",
+              "type": "datetime"
+            }
+          ]
+        },
+        {
+          "title": "lightgallery",
+          "name": "lightgallery",
+          "type": "datetime"
+        },
+        {
+          "title": "license",
+          "name": "license",
+          "type": "string"
+        }
+      ]
+    }
+  ]
 }
