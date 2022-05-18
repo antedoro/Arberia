@@ -1,7 +1,7 @@
 Todo:
   ☐ Landing page senza navbar
   Gestione immagini: @critical
-    ☐ lazyload
+    ✔ lazyload @done(22-05-18 22:46)
     ☐ controllare tutte le immagini
   ☐ Single.html in base al type (sidebar-nosidebar-video-portfolio)
   ☐ Search engine @low 
