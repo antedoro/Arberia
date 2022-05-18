@@ -1,76 +1,68 @@
 {{ define "main" }}
 
 <div class="container main-content">
-    <div class="row justify-content-center">
-      {{/*  Copertina  //FIXME: image  */}} 
-      <div class="col-12 mb-2">
-        <a href="{{ .RelPermalink }}">
-          <figure class="embed-responsive embed-responsive-16by9">
-            <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
-              alt="{{.Title}}"
-              src="python-data-classes.png"
-              srcset="python-data-classes.png 480w, 
-              python-data-classes.png 960w, 
-              python-data-classes.png 1920w"
-              sizes="75vw" width="1920" height="1080">
-              {{/*  Overlay  */}}
-            {{/*  <div class="card-img-overlay d-flex align-items-center rounded visible-hover"
-              style="background: rgba(0,0,0,0.3);">
-              <div class="mx-auto">
-                <span class="text-light" style="opacity: 0.90;"><i class="fa fa-4x fa-play"
-                    aria-hidden="true"></i></span>
-              </div>
-            </div>  */}}
-          </figure>
-        </a>
-      </div>
+  <div class="row justify-content-center">
+    {{/*  Copertina  //FIXME: image  */}}
+    <div class="col-12 mb-2">
+      <a href="{{ .RelPermalink }}">
+        {{- /* Post Cover Image */ -}}
+        {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+        {{ with $img }}
+        {{ $imageName := $img.Title }}
+        {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+        {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+        {{ end }} 
+      </a>
+    </div>
 
-      {{/*  Content  */}}
-      <div class="col-md-11 col-lg-8 article">
-        <div>
-          <h1>{{ .Title | markdownify }}</h1>
-          <div class="container">
-            <div class="row">
-              <div class="col-2 col-md-1 p-0 align-self-center">
-                <a href="#team"><img
-                    src="Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a.webp"
-                    srcset="Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a_011.webp 125w, Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a_013.webp 250w, Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a.webp 500w"
-                    sizes="10vw" class="rounded-circle img-fluid w-100" alt="{{ .Params.author | markdownify }}"></a>
-              </div>
-  
-              <div class="col pr-0 d-flex align-items-center">
-                <p>
-                  <span class="text-muted">
-                    {{/*  {{- $author := $params.author | default .Site.Author.name | default (T "author") -}} Controllare questa funzione
-                    {{- $authorLink := $params.authorlink | default .Site.Author.link | default .Site.Home.RelPermalink -}}  */}}
-
-                    <span class="mr-2"><a class="text-muted" href="{{.Params.authorLink | urlize }}" target="_blank">{{ .Params.author | markdownify }}</a></span>
-                    {{/*  <span class="mr-2">12 Lessons</span>  */}}
-                    {{/*  <span class="mr-2"><i class="fa fa-clock-o"></i> 1h&nbsp;39m</span>  */}}
-                    <br>
-                    {{ range .Params.tags }}
-                    <span class="fa fa-tags" aria-hidden="true"></span>
-					<a target="_blank"
-                    class="badge badge-light text-muted" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" target="_blank">{{ . }}</a>
-					{{end}}
-                  </span>
-                </p>
-              </div>
-  
+    {{/*  Content  */}}
+    <div class="col-md-11 col-lg-8 article">
+      <div>
+        <h1>{{ .Title | markdownify }}</h1>
+        <div class="container">
+          <div class="row">
+            <div class="col-2 col-md-1 p-0 align-self-center">
+              <a href="#team"><img
+                  src="Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a.webp"
+                  srcset="Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a_011.webp 125w, Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a_013.webp 250w, Binary,%20Bytes,%20and%20Bitwise%20Operators%20in%20Python%20%E2%80%93%20Real%20Python_files/a.webp 500w"
+                  sizes="10vw" class="rounded-circle img-fluid w-100" alt="{{ .Params.author | markdownify }}"></a>
             </div>
-          </div>
 
-          <div class="article-body mb-4">
-            {{ .Content }}          
+            <div class="col pr-0 d-flex align-items-center">
+              <p>
+                <span class="text-muted">
+                  {{/*  {{- $author := $params.author | default .Site.Author.name | default (T "author") -}} Controllare
+                  questa funzione
+                  {{- $authorLink := $params.authorlink | default .Site.Author.link | default .Site.Home.RelPermalink -}}
+                  */}}
+
+                  <span class="mr-2"><a class="text-muted" href="{{.Params.authorLink | urlize }}"
+                      target="_blank">{{ .Params.author | markdownify }}</a></span>
+                  {{/*  <span class="mr-2">12 Lessons</span>  */}}
+                  {{/*  <span class="mr-2"><i class="fa fa-clock-o"></i> 1h&nbsp;39m</span>  */}}
+                  <br>
+                  {{ range .Params.tags }}
+                  <span class="fa fa-tags" aria-hidden="true"></span>
+                  <a target="_blank" class="badge badge-light text-muted"
+                    href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" target="_blank">{{ . }}</a>
+                  {{end}}
+                </span>
+              </p>
+            </div>
+
           </div>
-  
         </div>
-        {{/*  //FIXME: href  */}}
-        <p class="mb-5"><a href="../../portfolio/">« Browse All Portfolio</a></p>
+
+        <div class="article-body mb-4">
+          {{ .Content }}
+        </div>
 
       </div>
+      {{/*  //FIXME: href  */}}
+      <p class="mb-5"><a href="../../portfolio/">« Browse All Portfolio</a></p>
+
     </div>
   </div>
+</div>
 
-  {{end}}
-  
+{{end}}

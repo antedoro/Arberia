@@ -13,9 +13,10 @@
                 <p class="text-center text-muted">{{ . | markdownify }}</p>
                 {{ end }}
 
-                {{- /* Cover image */ -}}
-                {{ with .Resources.GetMatch .Params.coverimage }}
-                {{ partial "tools/img" (dict "img" . "alt" "book_image") }}
+                {{- /* Post Cover Image */ -}}
+                {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+                {{ with $img }}
+                {{ partial "tools/img" (dict "img" . "alt" $img.Title ) }}
                 {{ end }}
 
                 {{ .Content }}

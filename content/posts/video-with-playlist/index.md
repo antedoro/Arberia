@@ -1,51 +1,52 @@
 ---
-title: "Solidworks 2020 Tutorials"
-subtitle: "Impara Solidworks 2020 con 5 mini-tutorial"
-coverimage: "featured-image"
+title: Solidworks 2020 Tutorials
+subtitle: Impara Solidworks 2020 con 5 mini-tutorial
 date: 2022-04-26T22:42:59+02:00
 lastmod: 2022-04-26T22:42:59+02:00
 draft: true
-type: "video"
+type: video
 weight: 5
 
-author: "Vincenzo Antedoro"
-avatar: "img/me.jpg"
-authorLink: "/about/"
-description: "Descrizione da rivedere se è un doppione subtitle"
+author: Vincenzo Antedoro
+avatar: img/me.jpg
+authorLink: /about/
+description: Descrizione da rivedere se è un doppione subtitle
 
-tags: [tag1, tag2, tag3, tag4]
-categories: [category]
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+categories:
+  - category
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 video:
-  title: "Titolo video"
-  link: "https://www.youtube.com/embed/taxItkTlY_0"
-  duration: "14:16"
+  title: Titolo video
+  link: https://www.youtube.com/embed/taxItkTlY_0
+  duration: 14:16
 
 playlist:
-  # total_duration : "9:38"
   item:
-    # video1
-    - title : "Solidworks: Modelliamo un supporto"
-      icon : "fa fa-fw fa-play"
-      link : "https://www.youtube.com/watch?v=taxItkTlY_0&list=PL4u4xn4ysGypW6MSxYvEMR81Thkw3vFP-&index=1"
-      duration : "14:16"
-    # video2
-    - title : "Solidworks: come creare una assieme"
-      icon : "far fa-circle"
-      link : "https://www.youtube.com/watch?v=93q2pPeHN0s&list=PL4u4xn4ysGypW6MSxYvEMR81Thkw3vFP-&index=3"
-      duration : "4:42"
-  
+    - title: "Solidworks: Modelliamo un supporto"
+      icon: fa fa-fw fa-play
+      link: https://www.youtube.com/watch?v=taxItkTlY_0&list=PL4u4xn4ysGypW6MSxYvEMR81Thkw3vFP-&index=1
+      duration: 14:16
+    - title: "Solidworks: come creare una assieme"
+      icon: far fa-circle
+      link: https://www.youtube.com/watch?v=93q2pPeHN0s&list=PL4u4xn4ysGypW6MSxYvEMR81Thkw3vFP-&index=3
+      duration: 4:42
 
 featured: false
 sidebar: false
-toc: true 
+toc: true
 math:
   enable: false
 lightgallery: false
 license: ""
+slug: solidworks-2020-tutorials
 ---
 
 Anche tu come me in questi giorni ti trovi bloccato a casa e sei in cerca di imparare qualcosa di nuovo? Allora vieni con me ad imparare la modellazione 3D con Solidworks. 

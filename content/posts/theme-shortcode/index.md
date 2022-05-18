@@ -1,7 +1,6 @@
 ---
 title: Theme Shortcode
 subtitle: Specific theme shortcode
-coverimage: "artwork.webp"
 date: 2022-05-01T18:19:27+02:00
 lastmod: 2022-05-01T20:05:50.953Z
 draft: true
@@ -21,8 +20,6 @@ hiddenFromSearch: false
 
 resources:
   - name: featured-image
-    src: artwork.webp
-  - name: featured-image-preview
     src: artwork.webp
 
 type: # Nothing for default, or video 

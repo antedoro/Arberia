@@ -10,25 +10,18 @@
         <p class="text-center text-muted">{{ . | markdownify }}</p>
         {{ end }}
 
-        {{- /* Featured image */ -}}
-        <figure class=""><img loading="lazy" class="img-fluid mx-auto d-block rounded"
-                src="Real-Python-Learning-Paths_Watermarked.webp"
-                srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg&amp;w=480&amp;sig=38c72a75dd9153f7459da5b6a588ca517a6cd5e2 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg&amp;w=960&amp;sig=ca5eedb3a732b54deb7151b21c5d90f043541904 960w, https://files.realpython.com/media/Real-Python-Learning-Paths_Watermarked.714b04cebe68.jpg 1920w"
-                sizes="75vw" alt="Real Python Learning Paths" data-asset="1092" width="1920" height="1080">
-        </figure>
-
         {{- /* Post Cover Image */ -}}
-        {{/*  {{ $img := (.Resources.ByType "image").GetMatch $params.coverimage }}
-        {{ with .Resources.GetMatch $params.coverimage }}
-        {{ partial "tools/img" (dict "img" . "alt" "cover_image") }}
-        {{ end }}  */}}
+        {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+        {{ with $img }}
+        {{ partial "tools/img" (dict "img" . "alt" $img.Title ) }}
+        {{ end }}
 
         {{ if .Params.toc }}
         {{- partial "component/toc.html"  -}}
         {{ end }}
-        
 
-        {{/*  {{- partial "component/search.html"  -}}  */}}
+
+        {{/*  {{- partial "component/search.html"  -}} */}}
 
         {{- /* Content */ -}}
         {{ .Content }}

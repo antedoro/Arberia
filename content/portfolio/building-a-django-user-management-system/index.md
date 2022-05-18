@@ -1,35 +1,39 @@
 ---
-title: "Building a Django User Management System"
-subtitle: "Insert a subtitle here"
+title: Building a Django User Management System
+subtitle: Insert a subtitle here
 date: 2022-05-15T16:24:00+02:00
 lastmod: 2022-05-15T16:24:00+02:00
 draft: true
-weight: 4 
+weight: 4
 
-author: "Darren Jones"
-authorLink: "../../about"
-description: "Descrizione da rivedere se è un doppione subtitle"
+author: Darren Jones
+authorLink: ../../about
+description: Descrizione da rivedere se è un doppione subtitle
 
-tags: [django, intermediate]
-categories: [portfolio]
+tags:
+  - django
+  - intermediate
+categories:
+  - portfolio
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "python-data-classes.png"
-- name: "featured-image-preview"
-  src: "python-data-classes.png"
+  - name: featured-image
+    src: python-data-classes.png
+  - name: featured-image-preview
+    src: python-data-classes.png
 
-type: portfolio  # Nothing for default, portfolio or video 
+type: portfolio
 featured: false
 sidebar: false
-toc: false 
+toc: false
 math:
   enable: false
 lightgallery: false
 license: ""
+slug: building-django-user-management-system
 ---
 
 If you’re building your own Django applications, you might decide to extend them with user accounts. In this video course, you’ll learn how to work with Django user management and add it to your program.

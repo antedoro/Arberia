@@ -1,36 +1,40 @@
 ---
-title: "Esempio4"
-subtitle: "Insert a subtitle here"
+title: Esempio4
+subtitle: Insert a subtitle here
 date: 2022-05-10T23:09:14+02:00
 lastmod: 2022-05-10T23:09:14+02:00
-coverimage: "featured-image.png"
 draft: true
-weight: 
+weight: null
 
-author: "author"
+author: author
 authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
+description: Descrizione da rivedere se è un doppione subtitle
 
-tags: [tag1, tag2, tag3, tag4]
-categories: [category]
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+categories:
+  - category
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
-- name: "featured-image-preview"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
+  - name: featured-image
+    src: featured-image.png
 
-type:  # Nothing for default, or video 
+type: # Nothing for default, or video 
+  null
 featured: false
 sidebar: true
-toc: true 
+toc: true
 math:
   enable: false
 lightgallery: false
 license: ""
+slug: esempio4
 ---
 
 The following is a code sample using the "highlight" shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.

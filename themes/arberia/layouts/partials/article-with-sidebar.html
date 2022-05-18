@@ -6,31 +6,13 @@
         {{/*  Article content  */}}
         <div class="col-md-11 col-lg-8 article with-headerlinks">
 
-            {{/*  <figure class="embed-responsive embed-responsive-16by9">
-                <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
-                    alt="Hosting a Django Project on Heroku"
-                    src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
-                    srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
-                    sizes="75vw" width="1920" height="1080">
-            </figure>   */}}
-
-            {{/*  {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}  */}}
-            {{/*  {{ with $img }}
-            <figure class="embed-responsive embed-responsive-16by9">
-                <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
-                    alt="Hosting a Django Project on Heroku" src="{{ .Permalink }}" 
-                    srcset="{{ .Permalink }}&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, 
-                    {{ .Permalink }}&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, 
-                    {{ .Permalink }} 1920w" sizes="75vw" width="1920" height="1080">
-            </figure>
-            {{ end }}   */}}
-
             {{- /* Post Cover Image */ -}}
             {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
             {{ with $img }}
-            {{ partial "tools/img" (dict "img" . "alt" $img.Title ) }}
+            {{ $imageName := $img.Title }}
+            {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+            {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
             {{ end }}
-
 
             <h1>{{ .Title | markdownify }}</h1>
 

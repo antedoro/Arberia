@@ -13,9 +13,19 @@
 				{{ end }}
 
 				{{- /* Cover image */ -}}
-				{{ with .Resources.GetMatch .Params.coverimage }}
+				{{/*  {{ with .Resources.GetMatch .Params.coverimage }}
 				{{ partial "tools/img" (dict "img" . "alt" "book_image") }}
+				{{ end }}  */}}
+
+				{{- /* Cover Image */ -}}
+				{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+				{{ with $img }}
+				{{ $imageName := $img.Title }}
+				{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+				{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
 				{{ end }}
+
+
 
 				{{ if .Content }}
 				<div>

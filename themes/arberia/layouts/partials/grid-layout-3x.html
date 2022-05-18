@@ -9,13 +9,23 @@
   <div class="col-12 col-md-6 col-lg-4 mb-5">
     <div class="card border-0">
       <a href="{{ .RelPermalink }}">
-        <div class="embed-responsive embed-responsive-16by9">
+        {{/*  <div class="embed-responsive embed-responsive-16by9">
           <img loading="lazy" class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
             alt="Hosting a Django Project on Heroku"
             src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
             srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
             sizes="25vw" width="1920" height="1080">
-        </div>
+
+        </div>  */}}
+
+        {{- /* Post Cover Image */ -}}
+        {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+        {{ with $img }}
+        {{ $imageName := $img.Title }}
+        {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+        {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+        {{ end }}
+
       </a>
       <div class="card-body m-0 p-0 mt-2">
         <a class=" " href="{{ .RelPermalink }}">
@@ -27,14 +37,15 @@
             <span class="fa fa-tags" aria-hidden="true"></span>
             {{/*  TAG Topics  */}}
             {{/*  {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" class="badge badge-light text-muted">{{ $name }}</a>
-            {{ end }}  */}}
+            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}"
+              class="badge badge-light text-muted">{{ $name }}</a>
+            {{ end }} */}}
 
             {{ range (.GetTerms "tags") }}
             <a class="badge badge-light text-muted" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
             {{ end }}
           </small>
-          {{/*  <small><p class="my-1">{{ .Summary | truncate 140 | safeHTML }}</p></small>  */}}
+          {{/*  <small><p class="my-1">{{ .Summary | truncate 140 | safeHTML }}</p></small> */}}
         </p>
       </div>
     </div>
@@ -42,7 +53,7 @@
   {{end}}
 
 
-{{/*  <div class="w-100" hx-get="/api/v1/frontpage_tutorials/1632146400/" hx-trigger="revealed" hx-swap="outerHTML">
+  {{/*  <div class="w-100" hx-get="/api/v1/frontpage_tutorials/1632146400/" hx-trigger="revealed" hx-swap="outerHTML">
   <div class="mb-4 text-center text-dark htmx-indicator">
     <img class="img-fluid mx-auto d-block rounded-circle fa-spin mb-2" style="width: 4rem;"
       src="Python%20Tutorials%20%E2%80%93%20Real%20Python_files/real-python-logo-square.webp" alt="Real Python Logo"

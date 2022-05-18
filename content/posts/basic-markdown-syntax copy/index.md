@@ -1,36 +1,40 @@
 ---
-title: "Markdown Syntax"
-subtitle: "Insert a subtitle here"
+title: Markdown Syntax
+subtitle: Insert a subtitle here
 date: 2019-12-01T21:57:40+08:00
 lastmod: 2020-01-01T16:45:40+08:00
-coverimage: "featured-image.png"
+coverimage: featured-image.png
 draft: true
 weight: 4
 
-author: "author"
+author: author
 authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
+description: Descrizione da rivedere se è un doppione subtitle
 
-tags: ["Markdown", "HTML"]
-categories: ["Markdown"]
+tags:
+  - Markdown
+  - HTML
+categories:
+  - Markdown
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "featured-image.png"
-- name: "featured-image-preview"
-  src: "featured-image.png"
+  - name: featured-image
+    src: featured-image.png
+  - name: featured-image-preview
+    src: featured-image.png
 
-type:  "" # Nothing for default, or video 
+type: ""
 featured: false
 sidebar: true
-toc: true 
+toc: true
 math:
   enable: false
 lightgallery: false
 license: ""
+slug: markdown-syntax
 ---
 
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files.

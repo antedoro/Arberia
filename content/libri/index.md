@@ -1,30 +1,33 @@
 ---
-title: "Tutti i libri consigliati"
-subtitle: "Un elenco mai definitivo di tutti i libri che ho letto."
-description: "Descrizione da rivedere se è un doppione subtitle"
+title: Tutti i libri consigliati
+subtitle: Un elenco mai definitivo di tutti i libri che ho letto.
+description: Descrizione da rivedere se è un doppione subtitle
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
-coverimage: "book.webp"
-draft: true
-weight: 
 
-type: "books"
+draft: true
+weight: null
+
+resources:
+  - name: featured-image
+    src: book.webp
+
+type: books
 
 author: Vincenzo Antedoro
-avatar: "avatar.webp"
-website: "https://antedoro.it"
-twitter: "https://twitter.com/antedoro"
-github: "https://github.com/antedoro"
-linkedin: "https://www.linkedin.com/in/antedoro/"
-instagram: "https://www.instagram.com/antedoro/"
-
+avatar: avatar.webp
+website: https://antedoro.it
+twitter: https://twitter.com/antedoro
+github: https://github.com/antedoro
+linkedin: https://www.linkedin.com/in/antedoro/
+instagram: https://www.instagram.com/antedoro/
 
 # tags: [tag1, tag2, tag3, tag4]
 # categories: [category]
-
 hiddenFromHomePage: false
-# hiddenFromSearch: false
+slug: tutti-libri-consigliati
 
+# hiddenFromSearch: false
 # featured: false
 # sidebar: false
 # toc: false

@@ -25,7 +25,7 @@
     {{ range after 4 .card }}
     <div class="card bg-dark border-0">
         <div class="card-body text-center highlight-hover-dark rounded">
-            <a class="btn stretched-link" href="https://realpython.com/community/"
+            <a class="btn stretched-link" href="{{ .link | absURL }}"
                 style="color: #e5c6ab; line-height: 110%;"><i class="{{ .icon }}"></i>{{ .title }}
                 <br>
                 <small class="text-secondary">{{ .description }}</small></a>

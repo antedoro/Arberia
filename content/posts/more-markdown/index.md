@@ -1,34 +1,37 @@
 ---
-title: "Test Markdown"
-subtitle: "Insert a subtitle here"
+title: Test Markdown
+subtitle: Insert a subtitle here
 date: 2022-04-26T18:26:24+02:00
 lastmod: 2022-04-26T18:26:24+02:00
-coverimage: "featured-image.png"
 draft: true
-author: "Vincenzo Antedoro"
+author: Vincenzo Antedoro
 authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
-weight: 
+description: Descrizione da rivedere se è un doppione subtitle
+weight: null
 
-tags: [tag1, tag2, tag3, tag4]
-categories: [category]
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+categories:
+  - category
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
-- name: "featured-image-preview"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
+  - name: featured-image
+    src: Python-Projects-for-Intermediate-Developers_Watermarked.png
 
 featured: false
 sidebar: true
-toc: true 
+toc: true
 math:
   enable: false
 lightgallery: false
 license: ""
+slug: test-markdown
 ---
 
 

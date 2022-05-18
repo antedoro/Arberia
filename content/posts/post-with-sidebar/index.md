@@ -1,24 +1,30 @@
 ---
 weight: 1
-title: "Post with sidebar"
-subtitle: "Take your coding skills to the next level with Real Python’s
-            accelerated study plans for beginner, intermediate, and advanced Python developers."
+title: Post with sidebar
+subtitle: Take your coding skills to the next level with Real Python’s accelerated study
+  plans for beginner, intermediate, and advanced Python developers.
 date: 2020-10-15T20:58:53+02:00
 lastmod: 2020-10-15T20:58:53+02:00
 draft: false
-author: "Vincenzo Antedoro"
+author: Vincenzo Antedoro
 authorLink: ""
-description: "Abbiamo selezionato alcuni accesori indispensabili se decidi di acquistare un portabici per automobile"
+description: Abbiamo selezionato alcuni accesori indispensabili se decidi di acquistare un
+  portabici per automobile
 
-tags: [tag1, tag2, tag3, tag4]
-categories: [lesson-path]
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+categories:
+  - lesson-path
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
+  - name: featured-image
+    src: Real-Python-Learning-Paths_Watermarked.webp
 
 featured: true
 sidebar: true
@@ -27,6 +33,7 @@ math:
   enable: false
 lightgallery: false
 license: ""
+slug: post-sidebar
 ---
 
 As a novice [web developer](https://antedoro.it), you’ve built your portfolio app and shared your code on GitHub. Perhaps, you’re hoping to attract technical recruiters to land your first programming job. 

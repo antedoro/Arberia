@@ -9,7 +9,7 @@
                 <p class="h4 text-left">Sidebar</p>
 
             </div>
-        </aside> 
+        </aside>
         {{ end }}
 
         <!-- All Post List-->
@@ -23,12 +23,16 @@
             <p class="text-center text-muted">{{ . | markdownify }}</p>
             {{ end }}
 
-            {{- /* Cover image */ -}}
-            {{ with .Resources.GetMatch .Params.coverimage }}
-            {{ partial "tools/img" (dict "img" . "alt" "book_image") }}
+
+            {{- /* Cover Image */ -}}
+            {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+            {{ with $img }}
+            {{ $imageName := $img.Title }}
+            {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+            {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
             {{ end }}
 
-            
+
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
             {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
             <div class="container my-3">
@@ -45,12 +49,12 @@
                             </div>  */}}
 
                             <div class="embed-responsive embed-responsive-16by9">
-                            {{- /* Post Cover Image */ -}}
-                            {{ with .Resources.GetMatch .Params.coverimage }}
-                            {{ partial "tools/img" (dict "img" . "alt" "book_image") }}
-                            {{ end }}
+                                {{- /* Post Cover Image */ -}}
+                                {{ with .Resources.GetMatch .Params.coverimage }}
+                                {{ partial "tools/img" (dict "img" . "alt" "book_image") }}
+                                {{ end }}
                             </div>
-                            
+
                         </a>
                     </div>
 
@@ -80,22 +84,22 @@
                 </div>
                 {{/*  <hr>  */}}
                 {{/*  <div>  */}}
-                    {{ end }}
+                {{ end }}
 
-                    {{/*  creare una css class per il paginator  */}}
-                    {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                {{ partial "pagination.html" . }}
-                </div> */}}
-                <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                    {{ partial "paginator.html" . }}
-                </div>
+                {{/*  creare una css class per il paginator  */}}
                 {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                {{ partial "pagination.html" . }}
+            </div> */}}
+            <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
+                {{ partial "paginator.html" . }}
+            </div>
+            {{/*  <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
                     <!-- Hugo's default pagination template. -->
                         { template "_internal/pagination.html" . }}
-            </div> */}}
-        </div>
-
+        </div> */}}
     </div>
+
+</div>
 </div>
 </div>
 {{end}}

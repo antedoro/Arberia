@@ -1,36 +1,37 @@
 ---
-title: "Markdown Syntax"
-subtitle: "Insert a subtitle here"
+title: Markdown Syntax
+subtitle: Insert a subtitle here
 date: 2019-12-01T21:57:40+08:00
 lastmod: 2020-01-01T16:45:40+08:00
-coverimage: "featured-image.png"
 draft: true
 weight: 4
 
-author: "author"
+author: author
 authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
+description: Descrizione da rivedere se è un doppione subtitle
 
-tags: ["Markdown", "HTML"]
-categories: ["Markdown"]
+tags:
+  - Markdown
+  - HTML
+categories:
+  - Markdown
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "featured-image.png"
-- name: "featured-image-preview"
-  src: "featured-image.png"
+  - name: featured-image
+    src: featured-image.png
 
-type:  "" # Nothing for default, or video 
+type: ""
 featured: false
 sidebar: true
-toc: true 
+toc: true
 math:
   enable: false
 lightgallery: false
 license: ""
+slug: markdown-syntax
 ---
 
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files.
@@ -583,20 +584,20 @@ grunt.initConfig({
 Tables are created by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
 
 ```markdown
-| Option | Description |
-| ------ | ----------- |
+| Option | Description                                                               |
+| ------ | ------------------------------------------------------------------------- |
 | data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+| engine | engine to be used for processing templates. Handlebars is the default.    |
+| ext    | extension to be used for dest files.                                      |
 ```
 
 The rendered output looks like this:
 
-| Option | Description |
-| ------ | ----------- |
+| Option | Description                                                               |
+| ------ | ------------------------------------------------------------------------- |
 | data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+| engine | engine to be used for processing templates. Handlebars is the default.    |
+| ext    | extension to be used for dest files.                                      |
 
 The HTML looks like this:
 
@@ -631,20 +632,20 @@ Adding a colon on the right side of the dashes below any heading will right alig
 Adding colons on both sides of the dashes below any heading will center align text for that column.
 
 ```markdown
-| Option | Description |
-|:------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+| Option |                                                               Description |
+| :----: | ------------------------------------------------------------------------: |
+|  data  | path to data files to supply the data that will be passed into templates. |
+| engine |    engine to be used for processing templates. Handlebars is the default. |
+|  ext   |                                      extension to be used for dest files. |
 ```
 
 The rendered output looks like this:
 
-| Option | Description |
-|:------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+| Option |                                                               Description |
+| :----: | ------------------------------------------------------------------------: |
+|  data  | path to data files to supply the data that will be passed into templates. |
+| engine |    engine to be used for processing templates. Handlebars is the default. |
+|  ext   |                                      extension to be used for dest files. |
 {{< /admonition >}}
 
 ## 11 Links {#links}

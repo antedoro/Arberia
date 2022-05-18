@@ -3,7 +3,6 @@ title: "Code Sample"
 subtitle: "Insert a subtitle here"
 date: 2022-04-26T18:28:32+02:00
 lastmod: 2022-04-26T18:28:32+02:00
-coverimage: "featured-image.png"
 draft: true
 author: "author"
 authorLink: ""
@@ -18,9 +17,7 @@ hiddenFromSearch: false
 
 resources:
 - name: "featured-image"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
-- name: "featured-image-preview"
-  src: "Real-Python-Learning-Paths_Watermarked.webp"
+  src: "featured-image.png"
 
 featured: false
 sidebar: true
