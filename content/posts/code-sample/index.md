@@ -45,7 +45,6 @@ The following is a code sample using triple backticks ( ``` ) code fencing provi
     alert("Sum = " + sum)  // "+" means combine into a string
 ```
 
-
 The following is a code sample using the "highlight" shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.
 
 {{< highlight javascript >}}
@@ -55,7 +54,6 @@ The following is a code sample using the "highlight" shortcode provided in Hugo.
     sum = parseInt(num1) + parseInt(num2) // "+" means "add"
     alert("Sum = " + sum)  // "+" means combine into a string
 {{</ highlight >}}
-
 
 And here is the same code with line numbers:
 

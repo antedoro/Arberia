@@ -14,8 +14,8 @@
                     sizes="75vw" width="1920" height="1080">
             </figure>   */}}
 
-            {{/*  {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
-            {{ with $img }}
+            {{/*  {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}  */}}
+            {{/*  {{ with $img }}
             <figure class="embed-responsive embed-responsive-16by9">
                 <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
                     alt="Hosting a Django Project on Heroku" src="{{ .Permalink }}" 
@@ -26,9 +26,9 @@
             {{ end }}   */}}
 
             {{- /* Post Cover Image */ -}}
-            {{ $img := (.Resources.ByType "image").GetMatch (.Params.coverimage) }}
-            {{ with (.Resources.ByType "image").GetMatch "featured-image.png" }}
-            {{ partial "tools/img" (dict "img" . "alt" "cover_image") }}
+            {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+            {{ with $img }}
+            {{ partial "tools/img" (dict "img" . "alt" $img.Title) }}
             {{ end }}
 
 
