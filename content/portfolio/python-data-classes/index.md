@@ -7,7 +7,8 @@ draft: true
 weight: 2
 
 author: Vincenzo Antedoro
-authorLink: ../../about
+authorLink: /about
+avatar: /img/me.jpg
 description: Descrizione da rivedere se è un doppione subtitle
 
 tags:

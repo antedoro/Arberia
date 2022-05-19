@@ -6,8 +6,9 @@ lastmod: 2022-05-15T16:13:53+02:00
 draft: true
 weight: 1
 
-author: Christopher Trudeau
-authorLink: https://realpython.com/courses/python-rock-paper-scissors-game/#team
+author: Vincenzo Antedoro
+authorLink: /about
+avatar: /img/me.jpg
 description: Descrizione da rivedere se è un doppione subtitle
 
 tags:
