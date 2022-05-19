@@ -56,11 +56,18 @@
         <div class="container">
           <div class="row">
             <div class="col-2 col-md-1 p-0 align-self-center">
-              <a href="/courses/python-basics-first-program/#team">
+              {{/*  <a href="/courses/python-basics-first-program/#team">
                 <img
                   src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=1770&amp;h=1770&amp;mode=crop&amp;sig=ce02935882c3c09ed67bdf4e7dc7475b792d05a9"
-                  srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=442&amp;h=442&amp;mode=crop&amp;sig=180ec8ab6c852c98d93730288807684d021103cb 442w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=885&amp;h=885&amp;mode=crop&amp;sig=895b3b2fdb680d1ccde0b87482270d5abcfa6f78 885w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=1770&amp;h=1770&amp;mode=crop&amp;sig=ce02935882c3c09ed67bdf4e7dc7475b792d05a9 1770w"
-                  sizes="10vw" class="rounded-circle img-fluid w-100" alt="{{ .Params.author }}"></a>
+                  srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=442&amp;h=442&amp;mode=crop&amp;sig=180ec8ab6c852c98d93730288807684d021103cb 442w, 
+                  https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=885&amp;h=885&amp;mode=crop&amp;sig=895b3b2fdb680d1ccde0b87482270d5abcfa6f78 885w, 
+                  https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/IMG_1250.b2eeb8f803ea.jpeg&amp;w=1770&amp;h=1770&amp;mode=crop&amp;sig=ce02935882c3c09ed67bdf4e7dc7475b792d05a9 1770w"
+                  sizes="10vw" class="rounded-circle img-fluid w-100" alt="{{ .Params.author }}"></a>  */}}
+
+                  <a href="{{.Params.authorLink | urlize }}">
+                    <img loading="lazy" src="{{ .Params.avatar }}"
+                      class="rounded-circle img-fluid w-100" sizes="10vw"
+                      alt="{{ .Params.author | markdownify }}"></a>
             </div>
 
 
@@ -70,7 +77,7 @@
                   <strong><a class="text-muted"
                       href="{{ .Permalink }}">{{ .Params.subtitle  | markdownify }}</a></strong>
                   <br>
-                  <a class="text-muted" href="{{ .Params.authorLink }}"
+                  <a class="text-muted" href="{{ .Params.authorLink | urlize }}"
                     target="_blank">{{ .Params.author  | markdownify }}</a>
                   {{ with .Params.video }}
                   <span class="ml-2 fa fa-clock-o"></span> {{ .duration  | markdownify }}
