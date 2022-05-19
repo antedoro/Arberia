@@ -6,8 +6,9 @@ lastmod: 2022-05-15T16:24:00+02:00
 draft: true
 weight: 4
 
-author: Darren Jones
-authorLink: ../../about
+author: Vincenzo Antedoro
+authorLink: /about
+avatar: /img/me.jpg
 description: Descrizione da rivedere se è un doppione subtitle
 
 tags:
