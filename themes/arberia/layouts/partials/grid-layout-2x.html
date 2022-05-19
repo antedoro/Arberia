@@ -9,7 +9,6 @@
 
 					{{- $pages := first 1 (where .Site.RegularPages "Type" "portfolio") -}}
 					{{- range $pages -}}
-
 					{{- /* Post Cover Image */ -}}
 					{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
 					{{ with $img }}
