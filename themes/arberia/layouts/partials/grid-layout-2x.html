@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container main-content"> 
 	<div class="row">
 		<div class="col-12">
@@ -68,6 +69,75 @@
 
 
 
+=======
+<div class="container main-content">
+	<div class="row">
+		<div class="col-12">
+			{{/*  Grid Layout 2x2  */}}
+			<div class="container main-content">
+				<h2 class="text-center h1" id="available">—&nbsp;Card List Post&nbsp;—</h2>
+				{{/*  First post  */}}
+				<div class="card bg-white rounded border shadow-sm my-4 w-100">
+
+					{{- $pages := first 1 (where .Site.RegularPages "Type" "portfolio") -}}
+					{{- range $pages -}}
+					{{- /* Post Cover Image */ -}}
+					{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+					{{ with $img }}
+					{{ $imageName := $img.Title }}
+					{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+					{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+					{{ end }}
+
+					<div class="card-body d-flex flex-column">
+						<h2 class="card-title mt-0 "><a class="link-unstyled" href="{{ .RelPermalink }}">
+								{{.Page.Title | markdownify}}</a></h2>
+						<div class="container">
+							<div class="row">
+								<div class="col-2 col-md-1 p-0 align-self-center">
+
+									<a href="{{ .RelPermalink }}">
+										{{/*  <img loading="lazy"
+											src="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=96b4bd41ff3f90d880a4ab5acbbe43eaff81b1e5"
+											srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=125&amp;h=125&amp;mode=crop&amp;sig=c4c75cb8adbd6599d0712f39bb5b4d941952d04b 125w, 
+											https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=250&amp;h=250&amp;mode=crop&amp;sig=7f3333d3963c2ad741f41618a51e24e14ce2952b 250w, 
+											https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/headshot_2018_x500_sharpen_compress.198bfb04d7f9.JPG&amp;w=500&amp;h=500&amp;mode=crop&amp;sig=96b4bd41ff3f90d880a4ab5acbbe43eaff81b1e5 500w"
+											sizes="10vw" class="rounded-circle img-fluid w-100"
+											alt="Christopher Trudeau"></a>  */}}
+										<a href="{{.Params.authorLink | urlize }}">
+											<img loading="lazy" src="{{ .Params.avatar }}"
+												class="rounded-circle img-fluid w-100" sizes="10vw"
+												alt="{{ .Params.author | markdownify }}"></a>
+								</div>
+								<div class="col pr-0 d-flex align-items-center">
+									<p class="my-0">
+										<span class="text-muted">
+											<span class="mr-2"><a class="text-muted"
+													href="{{ .Params.authorlink | urlize }}">{{ .Params.author | markdownify }}</a></span>
+											<span class="mr-2">5 Lessons</span>
+											<span class="mr-2"><i class="fa fa-clock-o"></i> 26m</span>
+											<br>
+											{{/*  Tag list  */}}
+											{{ partial "component/tag.html" . }}
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<p class="card-text text-muted mt-3">{{ .Summary | truncate 240 | safeHTML }}</p>
+						<div class="text-center mt-auto">
+							<a href="{{ .RelPermalink }}" class="btn btn-primary btn-lg px-4 "><i
+									class="fa fa-play fa-fw"></i> Read More</a>
+						</div>
+					</div>
+					{{- end -}}
+				</div>
+
+
+
+
+
+>>>>>>> dev
 				{{/*  Cardo dalla seconda in poi  */}}
 				<div class="card-deck">
 					{{- $pages := after 1 (where .Site.RegularPages "Type" "portfolio") -}}
@@ -193,4 +263,9 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+
+>>>>>>> dev
