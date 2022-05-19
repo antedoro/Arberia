@@ -39,7 +39,6 @@ slug: tutti-libri-consigliati
 
 E allora ecco i libri di cui ho parlato nelle puntate dei podcast, più qualche extra. Ho lasciato fuori certe ovvietà e ho tolto i titoli che a distanza di tempo ricordo con meno entusiasmo; quelli con il trattino rosso, invece, mi sono piaciuti di più. I link portano all'affiliazione di Amazon perché questo mi aiuta a campare.
 
-
 ## STO LEGGENDO
 
 [Delitto e castigo](https://amzn.to/3P7Jyvm), di Fëdor Dostoevskij.

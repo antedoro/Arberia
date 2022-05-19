@@ -13,12 +13,11 @@ authorLink: /about/
 description: Descrizione da rivedere se è un doppione subtitle
 
 tags:
-  - tag1
-  - tag2
-  - tag3
-  - tag4
+  - tutorial
+  - solidworks
+
 categories:
-  - category
+  - video-tutorial
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
