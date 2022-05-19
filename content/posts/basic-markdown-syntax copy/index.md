@@ -23,8 +23,6 @@ hiddenFromSearch: false
 resources:
   - name: featured-image
     src: featured-image.png
-  - name: featured-image-preview
-    src: featured-image.png
 
 type: ""
 featured: false
