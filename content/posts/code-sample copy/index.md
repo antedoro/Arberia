@@ -1,27 +1,32 @@
 ---
-title: "Code Sample"
-subtitle: "Insert a subtitle here"
+title: Code Sample
+subtitle: Insert a subtitle here
 date: 2022-04-26T18:28:32+02:00
 lastmod: 2022-04-26T18:28:32+02:00
 draft: true
-author: "author"
+author: Vincenzo Antedoro
 authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
-weight: 
+description: Descrizione da rivedere se è un doppione subtitle
+weight: null
 
-tags: [tag1, tag2, tag3, tag4]
-categories: [category]
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+categories:
+  - category
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
 resources:
-- name: "featured-image"
-  src: "featured-image.png"
+  - name: featured-image
+    src: featured-image.png
 
 featured: false
 sidebar: true
-toc: true 
+toc: false
 math:
   enable: false
 lightgallery: false
