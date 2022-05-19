@@ -24,13 +24,9 @@
                             class="disqus-comment-count"
                             data-disqus-identifier="https://realpython.com/django-hosting-on-heroku/">0
                             Comments</span></a>
-                    <span class="ml-2 fa fa-tags" aria-hidden="true"></span>
 
                     {{/*  Tag list  */}}
-                    {{ range .Params.tags }}
-                    <a class="badge badge-light text-muted"
-                        href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-                    {{ end }}
+                    {{ partial "component/tag.html" . }}
 
                     <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
                         {{/*  {{ partial "component/completed-mark" . }} Mark as completed  */}}
