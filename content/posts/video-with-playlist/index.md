@@ -7,9 +7,10 @@ draft: true
 type: video
 weight: 5
 
+
 author: Vincenzo Antedoro
-avatar: img/me.jpg
-authorLink: /about/
+avatar: /img/me.jpg
+authorLink: /about
 description: Descrizione da rivedere se è un doppione subtitle
 
 tags:
