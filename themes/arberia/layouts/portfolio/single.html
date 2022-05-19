@@ -41,11 +41,8 @@
                   {{/*  <span class="mr-2">12 Lessons</span>  */}}
                   {{/*  <span class="mr-2"><i class="fa fa-clock-o"></i> 1h&nbsp;39m</span>  */}}
                   <br>
-                  {{ range .Params.tags }}
-                  <span class="fa fa-tags" aria-hidden="true"></span>
-                  <a target="_blank" class="badge badge-light text-muted"
-                    href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" target="_blank">{{ . }}</a>
-                  {{end}}
+            {{/*  Tag list  */}}
+            {{ partial "component/tag.html" . }}
                 </span>
               </p>
             </div>

@@ -11,3 +11,15 @@
     {{- end }}
 {{- end }}
 {{- end }}
+
+{{/*  Metodo 2  */}}
+{{/*  {{ range .Params.tags }}
+<span aria-hidden="true" class="fa fa-tags"></span>
+<a class="badge badge-light text-muted mr-1"
+    href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+{{end}}  */}}
+
+{{/*  Metodo 3  */}}
+{{/*  {{ range (.GetTerms "tags") }}
+<a class="badge badge-light text-muted" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+{{ end }}  */}}

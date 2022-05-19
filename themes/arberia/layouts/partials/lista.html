@@ -47,11 +47,8 @@
                     </a>
                     <p class="small text-muted my-0">
                         <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
-                        <span aria-hidden="true" class="fa fa-tags"></span>
-                        {{ range .Params.tags }}
-                        <a class="badge badge-light text-muted mr-1"
-                            href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-                        {{end}}
+                        {{/*  Tag list  */}}
+                        {{ partial "component/tag.html" . }}
                     </p>
                     <!-- Usare la funzione truncate -->
                     <p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>

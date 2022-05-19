@@ -50,11 +50,15 @@
 				</a>
 				<p class="small text-muted my-0">
 					<span class="mr-2"><time>{{ .PublishDate.Format "2 January 2006 15:04" }}</time></span>
-					{{ range .Params.tags }}
+					{{/*  {{ range .Params.tags }}
 					<span aria-hidden="true" class="fa fa-tags"></span>
 					<a class="badge badge-light text-muted mr-1"
 						href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-					{{end}}
+					{{end}}  */}}
+					
+					{{/*  Tag list  */}}
+					{{- partial "component/tag.html"  -}}
+
 				</p>
 
 				<p class="text-muted my-0 mt-1 small">{{ .Summary }}

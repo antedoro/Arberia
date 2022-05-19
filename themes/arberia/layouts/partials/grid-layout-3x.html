@@ -34,16 +34,8 @@
         <p class="card-text">
           <small class="text-muted">
             <span class="mr-2">{{ .PublishDate.Format "January 2, 2006" }}</span>
-            <span class="fa fa-tags" aria-hidden="true"></span>
-            {{/*  TAG Topics  */}}
-            {{/*  {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-            <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}"
-              class="badge badge-light text-muted">{{ $name }}</a>
-            {{ end }} */}}
-
-            {{ range (.GetTerms "tags") }}
-            <a class="badge badge-light text-muted" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
-            {{ end }}
+            {{/*  Tag list  */}}
+            {{ partial "component/tag.html" . }}
           </small>
           {{/*  <small><p class="my-1">{{ .Summary | truncate 140 | safeHTML }}</p></small> */}}
         </p>

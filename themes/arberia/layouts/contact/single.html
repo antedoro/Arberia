@@ -17,10 +17,10 @@
         {{- /* Post Cover Image */ -}}
         {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
         {{ with $img }}
-        {{ partial "tools/img" (dict "img" . "alt" $img.Title ) }}
+        {{ $imageName := $img.Title }}
+        {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+        {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
         {{ end }}
-
-
 
         <div class="content">{{ .Content }}</div>
         <form method="POST" action="{{ .Site.Params.contact_form_action | safeURL}}" class="row">

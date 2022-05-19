@@ -23,7 +23,6 @@
             <p class="text-center text-muted">{{ . | markdownify }}</p>
             {{ end }}
 
-
             {{- /* Cover Image */ -}}
             {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
             {{ with $img }}
@@ -32,29 +31,21 @@
             {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
             {{ end }}
 
-
             {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
             {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
             <div class="container my-3">
                 {{ range $paginator.Pages.ByDate.Reverse }}
                 <div class="row py-3" style="border-bottom: 1px solid #dee2e6;">
 
+                    {{- /* Post Cover Image */ -}}
                     <div class="col-12 col-sm-4 align-self-top px-0 py-2">
                         <a href="{{.RelPermalink}}">
-                            {{/*  <div class="embed-responsive embed-responsive-16by9"><img loading="lazy"
-                                    src="https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg"
-                                    srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=480&amp;sig=9deb63cee9b6c61e20ce456e2897b28794f6a1bc 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg&amp;w=960&amp;sig=3cffe540acd2053dd47801d4a9cbcdaf4e4d6279 960w, https://files.realpython.com/media/Project-based-How-to-Host-Your-Django-Project-on-Heroku_Watermarked.76ec0c4a54c8.jpeg 1920w"
-                                    sizes="5vw" class="embed-responsive-item rounded img-fluid w-100 my-0 bg-light"
-                                    style="object-fit: contain;">
-                            </div>  */}}
-
-                            <div class="embed-responsive embed-responsive-16by9">
-                                {{- /* Post Cover Image */ -}}
-                                {{ with .Resources.GetMatch .Params.coverimage }}
-                                {{ partial "tools/img" (dict "img" . "alt" "book_image") }}
-                                {{ end }}
-                            </div>
-
+                            {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+                            {{ with $img }}
+                            {{ $imageName := $img.Title }}
+                            {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+                            {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+                            {{ end }}
                         </a>
                     </div>
 
@@ -65,11 +56,15 @@
                         </a>
                         <p class="small text-muted my-0">
                             <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
-                            <span aria-hidden="true" class="fa fa-tags"></span>
+                            {{/*  <span aria-hidden="true" class="fa fa-tags"></span>
                             {{ range .Params.tags }}
                             <a class="badge badge-light text-muted mr-1"
                                 href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-                            {{end}}
+                            {{end}} */}}
+
+                            {{/*  Tag list  */}}
+                            {{ partial "component/tag.html" . }}
+
                         </p>
                         <!-- Usare la funzione truncate -->
                         <p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>

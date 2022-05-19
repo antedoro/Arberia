@@ -41,11 +41,8 @@
 											<span class="mr-2">5 Lessons</span>
 											<span class="mr-2"><i class="fa fa-clock-o"></i> 26m</span>
 											<br>
-											<span class="fa fa-tags" aria-hidden="true"></span>
-											{{ range .Params.tags }}
-											<a class="badge badge-light text-muted" target="_blank"
-												href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-											{{end}}
+											{{/*  Tag list  */}}
+											{{ partial "component/tag.html" . }}
 										</span>
 									</p>
 								</div>
@@ -72,19 +69,19 @@
 					<div class="card bg-white rounded border  my-4 w-100" style="min-width: 45%">
 						{{/*  <figure class="embed-responsive embed-responsive-16by9 my-0">
 							<a href="{{ .RelPermalink }}"><img loading="lazy"
-									src="https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg"
-									srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=480&amp;sig=b14ca080ad6077fb0d7bea085792161830eb15e0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=960&amp;sig=5a418c32bd4939ed23f45c62f83397282f085b18 960w, https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg 1920w"
-									class="embed-responsive-item card-img-top"
-									alt="Pass by Reference in Python: Background and Best Practices" sizes="66vw"></a>
-						</figure>  */}}
+							src="https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg"
+							srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=480&amp;sig=b14ca080ad6077fb0d7bea085792161830eb15e0 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg&amp;w=960&amp;sig=5a418c32bd4939ed23f45c62f83397282f085b18 960w, https://files.realpython.com/media/Pass-by-Reference-in-Python_Watermarked.15e180bf1d43.jpg 1920w"
+							class="embed-responsive-item card-img-top"
+							alt="Pass by Reference in Python: Background and Best Practices" sizes="66vw"></a>
+						</figure> */}}
 
-											{{- /* Post Cover Image */ -}}
-					{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
-					{{ with $img }}
-					{{ $imageName := $img.Title }}
-					{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
-					{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
-					{{ end }}
+						{{- /* Post Cover Image */ -}}
+						{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+						{{ with $img }}
+						{{ $imageName := $img.Title }}
+						{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+						{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+						{{ end }}
 
 						<div class="card-body d-flex flex-column">
 							<h2 class="card-title mt-0 "><a class="link-unstyled"
@@ -107,11 +104,8 @@
 												<span class="mr-2">16 Lessons</span>
 												<span class="mr-2"><i class="fa fa-clock-o"></i> 1h&nbsp;17m</span>
 												<br>
-												<span class="fa fa-tags" aria-hidden="true"></span>
-												{{ range .Params.tags }}
-												<a class="badge badge-light text-muted" target="_blank"
-													href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-												{{end}}
+												{{/*  Tag list  */}}
+												{{ partial "component/tag.html" . }}
 											</span>
 										</p>
 									</div>
