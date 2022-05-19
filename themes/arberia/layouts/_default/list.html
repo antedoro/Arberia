@@ -25,8 +25,6 @@
 				{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
 				{{ end }}
 
-
-
 				{{ if .Content }}
 				<div>
 					{{ with .Content }}<div>{{ . }}</div>{{ end }}
@@ -38,7 +36,6 @@
 				{{ end }}
 				<div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
 					<div>{{ partial "paginator.html" . }}</div>
-
 				</div>
 				{{ partial "sidebar.html" . }}
 

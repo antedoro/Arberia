@@ -11,11 +11,6 @@ weight: 1
 
 type: portfolio
 
-tags:
-  - tag1
-  - tag2
-  - tag3
-  - tag4
 categories:
   - category
 

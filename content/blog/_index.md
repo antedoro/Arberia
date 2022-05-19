@@ -15,11 +15,6 @@ resources:
   - name: featured-image
     src: blog.jpg
 
-tags:
-  - tag1
-  - tag2
-  - tag3
-  - tag4
 categories:
   - category
 
