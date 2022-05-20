@@ -29,7 +29,7 @@ hiddenFromSearch: false
 
 video:
   title: 01 - Fusion360 | Supporto staffa
-  link: https://www.youtube.com/watch?v=SWCSc1VGjuI
+  link: https://youtu.be/SWCSc1VGjuI
   duration: 14:16
 
 playlist:
@@ -58,7 +58,7 @@ math:
   enable: false
 lightgallery: false
 license: ""
-slug: solidworks-2020-tutorials
+slug: fusion-360–modelliamo-una-staffa-di-supporto
 ---
 
 Primo video della serie su Autodesk Fusion 360. Questo software lo puoi provare liberamente per due anni se sei uno studente oppure un insegnante oppure un maker. In pratica Autodesk ti consente di usarlo per usi non commerciali.
@@ -79,4 +79,4 @@ Iscriviti anche al mio canale e clicca sulla campanella 🔔
 Iscriviti al canale!
 
 Fammi sapere nei commenti cosa ne pensi.
-A presto, ciao! 
+A presto, ciao!

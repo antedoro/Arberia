@@ -145,6 +145,160 @@
           "title": "license",
           "name": "license",
           "type": "string"
+        },
+        {
+          "title": "type",
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "title": "avatar",
+          "name": "avatar",
+          "type": "string"
+        },
+        {
+          "title": "video",
+          "name": "video",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "title",
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "title": "link",
+              "name": "link",
+              "type": "string"
+            },
+            {
+              "title": "duration",
+              "name": "duration",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "title": "playlist",
+          "name": "playlist",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "item",
+              "name": "item",
+              "type": "block",
+              "fields": [
+                {
+                  "title": "0",
+                  "name": "0",
+                  "type": "fields",
+                  "fields": [
+                    {
+                      "title": "title",
+                      "name": "title",
+                      "type": "string"
+                    },
+                    {
+                      "title": "icon",
+                      "name": "icon",
+                      "type": "string"
+                    },
+                    {
+                      "title": "link",
+                      "name": "link",
+                      "type": "string"
+                    },
+                    {
+                      "title": "duration",
+                      "name": "duration",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "title": "1",
+                  "name": "1",
+                  "type": "fields",
+                  "fields": [
+                    {
+                      "title": "title",
+                      "name": "title",
+                      "type": "string"
+                    },
+                    {
+                      "title": "icon",
+                      "name": "icon",
+                      "type": "string"
+                    },
+                    {
+                      "title": "link",
+                      "name": "link",
+                      "type": "string"
+                    },
+                    {
+                      "title": "duration",
+                      "name": "duration",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "title": "2",
+                  "name": "2",
+                  "type": "fields",
+                  "fields": [
+                    {
+                      "title": "title",
+                      "name": "title",
+                      "type": "string"
+                    },
+                    {
+                      "title": "icon",
+                      "name": "icon",
+                      "type": "string"
+                    },
+                    {
+                      "title": "link",
+                      "name": "link",
+                      "type": "string"
+                    },
+                    {
+                      "title": "duration",
+                      "name": "duration",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "title": "3",
+                  "name": "3",
+                  "type": "fields",
+                  "fields": [
+                    {
+                      "title": "title",
+                      "name": "title",
+                      "type": "string"
+                    },
+                    {
+                      "title": "icon",
+                      "name": "icon",
+                      "type": "string"
+                    },
+                    {
+                      "title": "link",
+                      "name": "link",
+                      "type": "string"
+                    },
+                    {
+                      "title": "duration",
+                      "name": "duration",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
