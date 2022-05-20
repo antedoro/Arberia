@@ -5,7 +5,7 @@
 		{{- if eq .Params.sidebar true -}}
 			{{ partial "article-with-sidebar.html" . }}
 		{{else}}
-			{{ partial "article-without-sidebar.html" . }}
+			{{ partial "article-no-sidebar.html" . }}
 		{{- end -}}
 
 		{{ with .Site.DisqusShortname }}
