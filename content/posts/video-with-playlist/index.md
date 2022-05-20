@@ -7,7 +7,6 @@ draft: true
 type: video
 weight: 5
 
-
 author: Vincenzo Antedoro
 avatar: /img/me.jpg
 authorLink: /about

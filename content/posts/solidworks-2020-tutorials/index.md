@@ -19,6 +19,10 @@ tags:
 categories:
   - video-tutorial
 
+resources:
+  - name: featured-image
+    src: featured-image.png
+
 hiddenFromHomePage: false
 hiddenFromSearch: false
 
