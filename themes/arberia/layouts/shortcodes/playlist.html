@@ -31,9 +31,9 @@ Edit playlist file and add {{< playlist >}}  shortcode in index.md  */}}
             {{ range  $index, $item :=  .item }}
             {{ $index :=add $index 1 }}
             <div class="row">
-                <div class="col-1 p-0 align-self-center mr-1">
+                <div class="col-1 p-1 align-self-center mr-1">
                     <a href="{{ .link | absURL }}">
-                        <i class="{{ .icon }} text-muted fa-2x fa-fw text-center w-100"></i>
+                        <i class="{{ .icon | markdownify }} text-muted fa-2x fa-fw text-center w-100"></i>
                     </a>
                 </div>
                 <div class="col pr-0 d-flex align-items-center">
