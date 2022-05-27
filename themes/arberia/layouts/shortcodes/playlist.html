@@ -32,8 +32,9 @@ Edit playlist file and add {{< playlist >}}  shortcode in index.md  */}}
             {{ $index :=add $index 1 }}
             <div class="row">
                 <div class="col-1 p-0 align-self-center mr-1">
-                    <a href="{{ .link | absURL }}"><i
-                            class="fa fa-film text-muted fa-2x fa-fw text-center w-100"></i></a>
+                    <a href="{{ .link | absURL }}">
+                        <i class="{{ .icon }} text-muted fa-2x fa-fw text-center w-100"></i>
+                    </a>
                 </div>
                 <div class="col pr-0 d-flex align-items-center">
                     <p class="h5 mb-0"><a href="{{ .link | absURL }}" class=""><span>{{$index}}.

@@ -13,3 +13,11 @@ playlist:
       icon : "fa fa-film"
       link : "python-tutorials/"
       duration : "2:04"
+      # item2
+    - title : "Python Tutorials"
+      icon : "fa fa-lock"
+      link : "python-tutorials/"
+      duration : "2:04"
+
+
+
