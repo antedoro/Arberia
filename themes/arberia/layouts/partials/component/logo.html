@@ -1,6 +1,6 @@
 		{{/*  Logo + site name  */}}
 		{{ with site.Params }}
-		<a class="navbar-brand" href="{{ .Site.BaseURL }}">
+		<a class="navbar-brand" href="{{ print `/` | relLangURL }}">
 			<img src="{{ .logo | relURL }}" class="d-inline-block align-top" alt="{{.Site.Title}}" width="165"
 				height="40">
 		</a>

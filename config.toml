@@ -103,14 +103,14 @@ safari_pinned_tab = "favicon/safari-pinned-tab.svg>"
 
 
 #  Menu
-[[menu.main]]
-identifier = "home"
-pre = ""
-post = ""
-name = "Home"
-url = "/"
-title = ""
-weight = 1
+# [[menu.main]]
+# identifier = "home"
+# pre = ""
+# post = ""
+# name = "Home"
+# url = "/"
+# title = ""
+# weight = 1
 
 [[menu.main]]
 identifier = "portfolio"

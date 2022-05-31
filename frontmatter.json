@@ -302,5 +302,6 @@
         }
       ]
     }
-  ]
+  ],
+  "frontMatter.templates.enabled": true
 }
