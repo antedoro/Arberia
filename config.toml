@@ -1,3 +1,4 @@
+title = "Arberia Theme"
 baseURL = "https://example.com/"
 relativeURLs = "True"
 languageName = "En"
@@ -7,7 +8,7 @@ theme = "arberia"
 [outputs]
  home = ["HTML", "AMP", "RSS", "JSON"]
 
-title = "Arberia Theme"
+
 
 #################### default parameters ################################
 [params]
