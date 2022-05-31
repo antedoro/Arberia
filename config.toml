@@ -12,9 +12,19 @@ theme = "arberia"
 
 #################### default parameters ################################
 [params]
-  logo = "img/real-python-logo.svg"
+  ######################################
+  # Brand Bar (inside header)
+  siteBrand = true
+  BrandLogo = "img/real-python-logo.svg"
   # logo = "img/kodra-logo.jpg"
-  logo_width = "200px"
+  siteBrandWidth = 165
+  siteBrandHeight = 40
+  siteBrandFill = "#fff"
+  # Unit: em
+  siteBrandFontSize = 1
+  siteBrandFont = "Arial"
+  siteBrandFontColor = "white"
+
   tagline = "New way of sound!"
   description = "Learn Python online: Python tutorials for developers of all skill levels, Python books and courses, Python news, code examples, articles, and more."
   keywords = "python, tutorials, video"
@@ -103,6 +113,7 @@ safari_pinned_tab = "favicon/safari-pinned-tab.svg>"
 
 
 
+######################################
 #  Menu
 # [[menu.main]]
 # identifier = "home"
