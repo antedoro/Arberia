@@ -9,7 +9,7 @@ theme = "arberia"
 #  home = ["HTML", "AMP", "RSS", "JSON"]
 
 
- [outputs]
+[outputs]
   home = ["HTML", "JSON", "RSS"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
