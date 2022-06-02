@@ -32,3 +32,9 @@ lightgallery: false
 license: ""
 slug: portfolio
 ---
+
+**Il portfolio dei miei lavori di progettazione più significativi.**
+
+Di seguito troverai un elenco di alcuni dei lavori che ho realizzato nel corso della mia carriera di ingegnere ed insegnante negli ultimi anni e che costituiscono il mio personale portfolio. Ho dovuto scegliere fra quelli più significativi e che non compromettessero la privacy del committente.
+
+Sentiti libero di chiedere qualsiasi chiarimento nel caso sei incuriosito e vuoi approfondire qualcosa. Bye!

@@ -6,7 +6,16 @@
 
 			<div class="container main-content">
 
-				<h2 class="text-center h1" id="available">—&nbsp;{{.Page.Title | markdownify}}&nbsp;—</h2>
+				<h1 class="text-center" id="">{{ .Page.Title | markdownify }}<a class="headerlink"
+					href="{{- .RelPermalink -}}" title="Permanent link"></a></h1>
+
+				{{/*  Sottotitolo */}}
+				{{ with .Params.subtitle }}
+				<p class="text-center text-muted mb-5">{{ . | markdownify }}</p>
+				{{ end }}
+
+				<p>{{ .Content }}</p>
+
 				{{/*  First post  */}}
 				<div class="card bg-white rounded border shadow-sm my-4 w-100">
 
