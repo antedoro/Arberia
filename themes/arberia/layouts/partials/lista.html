@@ -48,7 +48,7 @@
                     <p class="small text-muted my-0">
                         <span class="mr-2">{{ .PublishDate.Format "2 January 2006" }}</span>
                         {{/*  Tag list  */}}
-                        {{ partial "component/tag.html" . }}
+                        {{ partial "components/tag.html" . }}
                     </p>
                     <!-- Usare la funzione truncate -->
                     <p class="text-muted my-0 mt-1 small">{{ .Summary | truncate 240 | safeHTML }}</p>

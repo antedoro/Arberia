@@ -1,9 +1,0 @@
-User-agent: *
-Disallow: 
-Disallow: /search
-Disallow: *?q=*
-Disallow: /api/*
-Disallow: /practice/*
-Disallow: /preview/*
-
-Sitemap: https://realpython.com/sitemap.xml

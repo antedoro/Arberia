@@ -5,8 +5,16 @@ languageName = "En"
 languageCode = "en-us"
 theme = "arberia"
 
-[outputs]
- home = ["HTML", "AMP", "RSS", "JSON"]
+# [outputs]
+#  home = ["HTML", "AMP", "RSS", "JSON"]
+
+
+ [outputs]
+  home = ["HTML", "JSON", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML", "RSS"]
 
 
 

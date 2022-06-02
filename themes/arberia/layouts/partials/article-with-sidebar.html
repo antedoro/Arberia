@@ -26,11 +26,11 @@
                             Comments</span></a>
 
                     {{/*  Tag list  */}}
-                    {{ partial "component/tag.html" . }}
+                    {{ partial "components/tag.html" . }}
 
                     <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
-                        {{/*  {{ partial "component/completed-mark" . }} Mark as completed  */}}
-                        {{/*  {{ partial "component/share-button" . }} Share button  */}}
+                        {{/*  {{ partial "components/completed-mark" . }} Mark as completed  */}}
+                        {{/*  {{ partial "components/share-button" . }} Share button  */}}
                     </div>
                 </span>
             </div>
@@ -38,10 +38,10 @@
             <div class="article-body">
                 {{/*  Table of Contents  */}}
                 {{ if .Params.toc }}
-                {{- partial "component/toc.html" . -}}
+                {{- partial "components/toc.html" . -}}
                 {{ end }}
 
-                {{/*  {{- partial "component/adv-lg.html" . -}}  */}}
+                {{/*  {{- partial "components/adv-lg.html" . -}}  */}}
 
                 {{- /* Content */ -}}
                 {{ .Content }}
@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            {{- partial "component/author.html" . -}} {{/* Author box  */}}
+            {{- partial "components/author.html" . -}} {{/* Author box  */}}
 
             {{/*  <div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
                 <div class="col-12 text-center d-block d-md-none">
@@ -221,9 +221,9 @@
 
         {{/*  Sidebar  */}}
         <aside class="col-md-7 col-lg-4">
-            {{- partial "component/mailchimp.html"  -}} {{/*  Email Subscription  */}}
-            {{/*  {{- partial "component/email-subscription.html"  -}}Email Subscription  */}}
-            {{/*  {{- partial "component/tag-collection.html"  -}} TAG Topics */}}
+            {{- partial "components/mailchimp.html"  -}} {{/*  Email Subscription  */}}
+            {{/*  {{- partial "components/email-subscription.html"  -}}Email Subscription  */}}
+            {{/*  {{- partial "components/tag-collection.html"  -}} TAG Topics */}}
 
             {{/*  TAG Topics  */}}
             <div class="sidebar-module sidebar-module-inset border">
@@ -237,11 +237,11 @@
             <div class="sidebar-sticky ">
                 {{/*  Table of Contents on sidebar  */}}
                 {{ if .Params.toc }}
-                {{- partial "component/toc.html" . -}}
+                {{- partial "components/toc.html" . -}}
                 {{ end }}
-                {{/*  {{- partial "component/completed-mark.html" . -}}   */}}
-                {{/*  {{- partial "component/share-button.html"  -}} Share button  */}}
-                {{/*  {{- partial "component/adv-sd.html"  -}} ADV Image  */}}
+                {{/*  {{- partial "components/completed-mark.html" . -}}   */}}
+                {{/*  {{- partial "components/share-button.html"  -}} Share button  */}}
+                {{/*  {{- partial "components/adv-sd.html"  -}} ADV Image  */}}
             </div>
         </aside>
 
