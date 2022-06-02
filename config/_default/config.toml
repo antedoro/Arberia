@@ -18,28 +18,7 @@ theme = "arberia"
 
 
 
-#################### default parameters ################################
-[params]
-  ######################################
-  # Brand Bar (inside header)
-  siteBrand = true
-  BrandLogo = "img/real-python-logo.svg"
-  # logo = "img/kodra-logo.jpg"
-  siteBrandWidth = 165
-  siteBrandHeight = 40
-  siteBrandFill = "#fff"
-  # Unit: em
-  siteBrandFontSize = 1
-  siteBrandFont = "Arial"
-  siteBrandFontColor = "white"
-
-  tagline = "New way of sound!"
-  description = "Learn Python online: Python tutorials for developers of all skill levels, Python books and courses, Python news, code examples, articles, and more."
-  keywords = "python, tutorials, video"
-  author = "Vincenzo Antedoro"
-  author_resume = "Vincenzo Antedoro è un ingegnere che aiuta chi vuole investire nelle rinnovabili. Per il resto si diverte insegnando col metodo del learning by doing."
-  YTChannelID = "UClA8GwWzurVCprEY6OsCvhw"
-  contact_form_action = "https://formspree.io/f/mvovbvga"
+# #################### default parameters ################################
 
 
 # post pagination
