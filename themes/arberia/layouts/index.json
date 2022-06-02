@@ -1,5 +1,7 @@
-{{- $.Scratch.Add "index" slice -}}
-{{- range where .Site.Pages ".Params.skip" "ne" "true" -}}
-{{- $.Scratch.Add "index" (dict "uri" .Permalink "title" (cond (eq .Site.Params.titlecase true) (.Title | title | markdownify | htmlUnescape) (.Title | markdownify | htmlUnescape)) "categories" .Params.categories "keywords" .Params.keywords "content"  (.Summary | plainify | htmlUnescape )) -}}
-{{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+{{- $pages := slice }}
+{{- range .Site.Pages }}
+{{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
+{{- $pages = $pages | append (dict "uri" .RelPermalink "title" .Title "tags" .Params.tags "description" .Description "content" (.Plain | htmlUnescape)) }}
+{{- end }}
+{{- end }}
+{{- $pages | jsonify (dict "indent" "  ") }}

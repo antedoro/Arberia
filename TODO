@@ -1,7 +1,6 @@
 Todo:
   ☐ Landing page senza navbar
   Gestione immagini: @critical
-    ✔ lazyload @done(22-05-18 22:46)
     ☐ controllare tutte le immagini
   ☐ Single.html in base al type (sidebar-nosidebar-video-portfolio)
   ☐ Search engine @low 
@@ -9,6 +8,7 @@ Todo:
   ☐ Contact Form
 
 Archive:
+  ✔ lazyload @done(22-05-18 22:46) @project(Todo.Gestione immagini)
   ✔ Portfolio card page @started(22-05-15 10:01) %50 @done(22-05-18 15:43) @lasted(3d5h42m29s) @project(Todo)
   ✔ Post with sidebar @done(22-05-11 21:36) @project(Todo)
   ✔ Post without sidebar @done(22-05-11 21:36) @project(Todo)
