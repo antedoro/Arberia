@@ -14,14 +14,14 @@
 
 
 
-<div class="d-flex mt-3 mb-4">
-    <form class="form-inline col pl-0 ">
+<div class="searchBoxContainer">
+    {{/*  <div class="d-flex mt-3 mb-4">  */}}
+    <form class="form-inline col">
         {{/*  <a class="js-search-form-submit position-absolute" href="/search" title="Search"><i
                 class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>  */}}
-
+        <i class="position-absolute fa fa-search fa-fw text-muted pt-3  pl-2" aria-hidden="true"></i>
         <input id="searchBox" type="text" class="form-control form-control-lg w-100" style="padding-left: 2rem;" placeholder="Search..." >
-        <i class="js-search-form-submit position-absolute fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i>
-        <div id="searchResults" class="searchResults"></div>
+        <div id="searchResults" class="searchResults" ></div>
     </form>
 
 </div>
