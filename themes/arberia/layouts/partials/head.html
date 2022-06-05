@@ -14,7 +14,8 @@
 
 	<title>{{ .Site.Title }} | {{ .Title | markdownify }}</title>
 	<link rel="canonical" href="{{ .Permalink }}" />
-	<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{else}}{{ .Description }}{{ end }}">
+	<meta name="description"
+		content="{{ if .IsHome }}{{ .Site.Params.description }}{{else}}{{ .Description }}{{ end }}">
 
 	<meta name="author" content="{{ site.Params.author | safeHTML }}" />
 	<meta name="keywords" content="{{ site.Params.keywords | safeHTML }}">
@@ -114,5 +115,21 @@
 	{{ template "_internal/google_analytics_async.html" . }}
 
 	{{ template "_internal/disqus.html" . }}
+	{{- end -}}
+
+
+	{{/*  Search function  */}}
+	{{- if (eq .Layout `search`) -}}
+	{{ $flexsearch := resources.Get "js/flexsearch.bundle.js" }}
+	<script defer crossorigin="anonymous" src="{{ $flexsearch.RelPermalink }}"
+		integrity="{{ $flexsearch.Data.Integrity }}"></script>
+
+	{{ $mark := resources.Get "js/mark.min.js" }}
+	{{ $basesearch := resources.Get "js/search.js" }}
+
+	{{ $searchJSFile := printf "js/%s.search.js" .Language.Lang }}
+	{{ $search := (slice $mark $basesearch) | resources.Concat "js/search.js" | resources.ExecuteAsTemplate $searchJSFile . | resources.Fingerprint }}
+	<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}">
+	</script>
 	{{- end -}}
 </head>

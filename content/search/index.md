@@ -9,7 +9,9 @@ authorLink: antedoro.it
 description: Descrizione da rivedere se è un doppione subtitle
 weight: 1
 
-layout: search
+type: search
+
+layout: "search"
 
 categories:
   - category
@@ -34,3 +36,5 @@ slug: search
 ---
 
 Ecco l'elenco di ricerca
+
+
