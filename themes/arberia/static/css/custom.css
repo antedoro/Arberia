@@ -59,5 +59,6 @@ input.searchBox {
 }
 
 mark {
+    padding: 0;
     background-color: #eeff00;
 }
