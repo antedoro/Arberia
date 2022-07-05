@@ -4,17 +4,37 @@ subtitle: "Insert a subtitle here"
 date: {{ .Date }}
 lastmod: {{ .Date }}
 draft: true
-weight: 
+type:  # Nothing for default, or video 
+weight: null 
 
-author: "author"
-authorLink: ""
-description: "Descrizione da rivedere se è un doppione subtitle"
-
-tags: [tag1, tag2, tag3, tag4]
-categories: [category]
+featured: false
+sidebar: false
+toc: true
+math:
+  enable: false
+lightgallery: false
+license: ""
+slug:  # slug exemple: solidworks-2020-tutorial
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
+
+author: "author"
+avatar: /img/me.jpg  # link to avatar file
+authorLink: ""
+description: "Descrizione da rivedere se è un doppione subtitle"
+
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+categories:
+  - category
+
+# resources:
+#   - name: featured-image
+#     src: featured-image.png
 
 resources:
 - name: "featured-image"
@@ -22,13 +42,21 @@ resources:
 - name: "featured-image-preview"
   src: "Real-Python-Learning-Paths_Watermarked.webp"
 
-type:  # Nothing for default, or video 
-featured: false
-sidebar: true
-toc: true 
-math:
-  enable: false
-lightgallery: false
-license: ""
----
 
+# If its a video post compile below
+video:
+  title: "YouTube Video Title"
+  link: # YouTube Video Link for example: https://www.youtube.com/embed/taxItkTlY_0
+  duration: # Example 14:16
+
+playlist:
+  item:
+    - title: "YouTube Video Title"
+      icon: fa fa-fw fa-play
+      link:  # YouTube Video Link for example: https://www.youtube.com/embed/taxItkTlY_0
+      duration: # Example 14:16
+    - title: "YouTube Video Title"
+      icon: far fa-circle
+      link: # YouTube Video Link for example: https://www.youtube.com/embed/taxItkTlY_0
+      duration: # Example 4:42
+---
