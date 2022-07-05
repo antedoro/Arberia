@@ -1,5 +1,5 @@
 ---
-title: "Policy & Pryvacy"
+title: "Policy & Privacy"
 subtitle: "Insert a subtitle here"
 date: 2022-05-19T21:02:46+02:00
 lastmod: 2022-05-19T21:02:46+02:00
@@ -42,26 +42,27 @@ We use your data to provide and improve the Service. By using the Service, you a
 
 ### Table of Contents
 
-  Definitions
-  Information Collection And Use
-      Types of Data Collected
-  Use of Data
-  Legal Basis for Processing Personal Data Under General Data Protection Regulation (GDPR)
-  Retention of Data
-  Transfer Of Data
-  Disclosure Of Data
-      Business Transaction
-      Disclosure for Law Enforcement
-      Legal Requirements
-  Security Of Data
-  Your Data Protection Rights Under General Data Protection Regulation (GDPR)
-  Service Providers
-      Analytics
-      Payments
-  Links To Other Sites
-  Children’s Privacy
-  Changes To This Privacy Policy
-  Contact Us
+Definitions
+
+Information Collection And Use
+  Types of Data Collected 
+Use of Data
+Legal Basis for Processing Personal Data Under General Data Protection Regulation (GDPR)
+Retention of Data
+Transfer Of Data
+Disclosure Of Data
+    Business Transaction
+    Disclosure for Law Enforcement
+    Legal Requirements
+Security Of Data
+Your Data Protection Rights Under General Data Protection Regulation (GDPR)
+Service Providers
+    Analytics
+    Payments
+Links To Other Sites
+Children’s Privacy
+Changes To This Privacy Policy
+Contact Us
 
 ## Definitions
 

@@ -71,14 +71,26 @@
 
 					<input type="hidden" name="_from" value="nav">
 				</form>  */}}
-				
-				<form class="form-inline">
+
+				{{/*  Questo è quello originale  */}}
+				{{/*  <form class="form-inline">
 					<a class="js-search-form-submit position-absolute" href="/search"
 						title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
 					<input id="search-by" class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" 
 					maxlength="50" data-search-input type="search" placeholder="Search" aria-label="Search" name="q">
 					<input type="hidden" name="_from" value="nav">
+				</form>  */}}
+
+
+				<form  action="/search" method="GET" target="_self"  class="form-inline">
+					<a class="js-search-form-submit position-absolute" href="/search"
+						title="Search"><i class="fa fa-search fa-fw text-muted pl-2" aria-hidden="true"></i></a>
+					<input id="search-by" class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" 
+					style="padding-left: 2rem;" maxlength="50" data-search-input type="search" 
+					placeholder="Search" aria-label="Search" name="q">
+					<input type="hidden" name="_from" value="nav">
 				</form>
+				  
 			</div>
 
 			{{/*  Menu Utente  */}}
