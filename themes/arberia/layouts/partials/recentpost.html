@@ -6,9 +6,9 @@
     font-size: 24px;
     line-height: 1;
     color: #17181e
-}
+  }
 
-.widget__title::before {
+  .widget__title::before {
     content: "";
     top: 0;
     left: 0;
@@ -17,9 +17,9 @@
     width: 50px;
     height: 1px;
     background-color: #17181e
-}
+  }
 
-.widget__title::after {
+  .widget__title::after {
     content: "";
     width: 100%;
     height: 1px;
@@ -27,7 +27,7 @@
     left: 0;
     position: absolute;
     background: #e6e6e6
-}
+  }
 
 
   .recent-posts {
@@ -35,23 +35,23 @@
     display: flex;
     margin-left: 4px;
     margin-bottom: 20px
-}
+  }
 
-.recent-posts:last-child {
+  .recent-posts:last-child {
     margin-bottom: 0
-}
+  }
 
-.recent-posts:hover .recent-posts__title a {
+  .recent-posts:hover .recent-posts__title a {
     color: #17181e;
     opacity: 1;
     box-shadow: 0 -1px #fff inset, 0 -3px #ffe66a inset
-}
+  }
 
-.recent-posts__header {
+  .recent-posts__header {
     margin-right: 15px
-}
+  }
 
-.recent-posts__image {
+  .recent-posts__image {
     position: relative;
     display: block;
     margin-right: 15px;
@@ -61,14 +61,14 @@
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat
-}
+  }
 
-.recent-posts__image:hover::after {
+  .recent-posts__image:hover::after {
     opacity: 1;
     visibility: visible
-}
+  }
 
-.recent-posts__image::after {
+  .recent-posts__image::after {
     content: "";
     display: block;
     position: absolute;
@@ -81,21 +81,21 @@
     background-color: rgba(0, 0, 0, .1);
     opacity: 0;
     visibility: hidden
-}
+  }
 
-.recent-posts__title {
+  .recent-posts__title {
     margin-bottom: 0;
     font-size: 16px;
     line-height: 24px
-}
+  }
 
-.recent-posts__date {
+  .recent-posts__date {
     margin-bottom: 5px;
     font-size: 12px;
     line-height: 16px
-}
+  }
 
-.recent-posts__count {
+  .recent-posts__count {
     position: absolute;
     top: -11px;
     left: -4px;
@@ -110,79 +110,83 @@
     background-color: #17181e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
     transition: all .3s
-}
-
+  }
 </style>
 
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-8 article">
       <div class="article-body page-body">
-  
 
-<div class="widget widget-recent">
-  <div class="widget__head">
-    <h3 class="widget__title">Recent Posts</h3>
-  </div>
-  <div class="recent-posts">
 
-    
-    <a class="recent-posts__image" href="/posts/that-which-does-not-kill-us-makes-us-stronger/" style="background-image: url('https://hally-hugo.netlify.app/images/02.jpg')" aria-label="That which does not kill us makes us stronger"></a>
-    
+        <div class="widget widget-recent">
 
-    <span class="recent-posts__count">1</span>
+          <div class="d-flex justify-content-between align-items-center w-100 mt-0 mb-2">
+            <h2 class="my-0"><a href="" class="text-body">Recent Posts</a></h2>
+          </div>
 
-    <div class="recent-posts__content">
-      <div class="recent-posts__date">
-        <time datetime="2018-11-13T15:01:35+03:00">Nov 13, 2018</time>
+          <div class="card-deck" style="margin: 15px">
+            <a class="recent-posts__image" href="/posts/that-which-does-not-kill-us-makes-us-stronger/"
+              style="background-image: url('https://hally-hugo.netlify.app/images/02.jpg')"
+              aria-label="That which does not kill us makes us stronger"></a>
+            <span class="recent-posts__count">1</span>
+
+            <div class="card-text">
+              <h4 class="small text-muted my-0">
+                <a href="/fusion-360-messa-in-tavola-2d/">Fusion 360: Come renderizzare</a></h4>
+              <small class="text-muted">
+                <span class="small mr-2">Nov 13, 2018</span>
+              </small>
+              <p class="small text-muted my-0">Come funziona la messa in tavola in Fusion 360? Ti mostro come...</p>
+            </div>
+          </div>
+
+
+          <div class="card-deck" style="margin: 15px">
+            <a class="recent-posts__image" href="/posts/that-which-does-not-kill-us-makes-us-stronger/"
+              style="background-image: url('https://hally-hugo.netlify.app/images/02.jpg')"
+              aria-label="That which does not kill us makes us stronger"></a>
+            <span class="recent-posts__count">1</span>
+
+            <div class="card-text">
+              <h4 class="small text-muted my-0">
+                <a href="/fusion-360-messa-in-tavola-2d/">Fusion 360: Come renderizzare</a></h4>
+              <small class="text-muted">
+                <span class="small mr-2">Nov 13, 2018</span>
+              </small>
+              <p class="small text-muted my-0">Come funziona la messa in tavola in Fusion 360? Ti mostro come...</p>
+            </div>
+          </div>
+
+          <div class="card-deck" style="margin: 15px">
+            <a class="recent-posts__image" href="/posts/that-which-does-not-kill-us-makes-us-stronger/"
+              style="background-image: url('https://hally-hugo.netlify.app/images/02.jpg')"
+              aria-label="That which does not kill us makes us stronger"></a>
+            <span class="recent-posts__count">3</span>
+
+            <div class="card-text">
+              <h4 class="small text-muted my-0">
+                <a href="/fusion-360-messa-in-tavola-2d/">Fusion 360: Come renderizzare</a></h4>
+              <small class="text-muted">
+                <span class="small mr-2">Nov 13, 2018</span>
+              </small>
+              <p class="small text-muted my-0">Come funziona la messa in tavola in Fusion 360? Ti mostro come...</p>
+            </div>
+          </div>
+
+
+
+
+
+
+
+        </div>
       </div>
-      <h4 class="recent-posts__title"><a href="/posts/that-which-does-not-kill-us-makes-us-stronger/">That which does not kill us makes us stronger</a></h4>
+      <hr style="border: 0; border-color: #dee2e6">
+
     </div>
-
   </div>
-  
-  
-  <div class="recent-posts">
-
-    
-    <a class="recent-posts__image" href="/posts/do-what-you-can-with-what-you-have-where-you-are/" style="background-image: url('https://hally-hugo.netlify.app/images/03.jpg')" aria-label="Do what you can, with what you have, where you are"></a>
-    
-
-    <span class="recent-posts__count">2</span>
-
-    <div class="recent-posts__content">
-      <div class="recent-posts__date">
-        <time datetime="2018-11-12T15:01:35+03:00">Nov 12, 2018</time>
-      </div>
-      <h4 class="recent-posts__title"><a href="/posts/do-what-you-can-with-what-you-have-where-you-are/">Do what you can, with what you have, where you are</a></h4>
-    </div>
-
-  </div>
-  
-  
-  <div class="recent-posts">
-
-    
-    <a class="recent-posts__image" href="/posts/if-you-cannot-do-great-things-do-small-things-in-a-great-way/" style="background-image: url('https://hally-hugo.netlify.app/images/04.jpg')" aria-label="If you cannot do great things, do small things in a great way"></a>
-    
-
-    <span class="recent-posts__count">3</span>
-
-    <div class="recent-posts__content">
-      <div class="recent-posts__date">
-        <time datetime="2018-11-11T15:01:35+03:00">Nov 11, 2018</time>
-      </div>
-      <h4 class="recent-posts__title"><a href="/posts/if-you-cannot-do-great-things-do-small-things-in-a-great-way/">If you cannot do great things, do small things in a great way</a></h4>
-    </div>
-
-  </div>
-  
-
-</div>
-  </div>
-
-</div>
-</div>
+  <hr style="border: 0; border-color: #dee2e6">
 
 </div>
 </div>
