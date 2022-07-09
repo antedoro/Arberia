@@ -1,5 +1,5 @@
 Todo:
-  ☐ Landing page senza navbar
+  ✔ Landing page senza navbar @done(22-07-10 00:29)
   Gestione immagini: @critical
     ☐ controllare tutte le immagini
   ✔ Single.html in base al type (standard-view(sidebar-nosidebar) - courses - video - landingpage) @done(22-07-10 00:29)
