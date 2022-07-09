@@ -1,7 +1,7 @@
 {{- if ne .Params.footer.enable false -}}
 <footer class="footer">
   <div class="container">
-    <p class="text-center text-muted w-75 mx-auto">&copy 2012–{{ now.Year }} {{ .Site.Title}}&nbsp;⋅
+    <p class="small text-center text-muted w-75 mx-auto">&copy 2012–{{ now.Year }} {{ .Site.Title}}&nbsp;⋅
       {{ $len := len .Site.Menus.footer }}
       {{ range $i, $e :=  .Site.Menus.footer }}
         {{ if ne (add $i 1) $len }}
