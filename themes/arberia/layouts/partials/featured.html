@@ -1,21 +1,8 @@
 {{/*  {{- $params := .Scratch.Get "params" -}}  */}}
 
 <div class="row mb-4">
-    {{/*  Esperimento  */}}
-    {{ if isset .Params "featured" }}
-    {{ with .Site.GetPage .Params.featured }}{{ .Title }}{{ end }}
-    {{ end }}
-
-    {{- $pages := (where .Site.RegularPages .Params.featured true) -}}
-    {{ range first 1 $pages }}
-    <a href="{{ .Permalink | absURL }}">
-        <h2 class="card-title h2 my-0 py-0">{{ .Title | markdownify }}</h2>
-    </a>
-    <p class="my-1">{{ .Summary }}</p>
-    {{end}}
-    {{/*  Fine esperimento  */}}
-
-    {{ range first 1 (where (where .Site.RegularPages "Type" "in" site.Params.mainSections) ".Params.featured" "=" true) }}
+    {{- $featured := (where (where .Site.RegularPages "Section" "posts" ) "Params.featured" "=" true) -}}
+    {{ range first 1 $featured }}
     <div class="col-md-12 col-lg-8">
         <div class="row">
             <div class="col-12 mb-3">

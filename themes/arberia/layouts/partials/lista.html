@@ -22,7 +22,9 @@
             </div>
         </div>
 
-        {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+        {{/*  {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}  */}}
+        {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
+
         {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
         <div class="container my-3">
             {{ range $paginator.Pages.ByDate.Reverse }}
