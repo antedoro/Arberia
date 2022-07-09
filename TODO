@@ -2,7 +2,7 @@ Todo:
   ☐ Landing page senza navbar
   Gestione immagini: @critical
     ☐ controllare tutte le immagini
-  ☐ Single.html in base al type (sidebar-nosidebar-video-portfolio)
+  ☐ Single.html in base al type (standard-view(sidebar-nosidebar) - courses - video - landingpage)
   ☐ Search engine @low 85% rivedere custom.css
   ☐ Sidebar
   ☐ Contact Form (usare implementazione php thema Zen https://github.com/frjo/hugo-theme-zen  )
