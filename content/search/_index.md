@@ -2,7 +2,7 @@
 title: Search
 subtitle: Search index
 date: 2022-04-26T21:28:23+02:00
-lastmod: 2022-04-26T21:28:23+02:00
+lastmod: 2022-04-27T21:28:23+02:00
 draft: true
 author: Vincenzo Antedoro
 authorLink: antedoro.it

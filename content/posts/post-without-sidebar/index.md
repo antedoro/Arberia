@@ -4,7 +4,7 @@ title: Post without sidebar
 subtitle: Take your coding skills to the next level with Real Python’s accelerated study
   plans for beginner, intermediate, and advanced Python developers.
 date: 2022-04-26T19:05:23.331Z
-lastmod: 2021-10-15T20:58:53+02:00
+lastmod: 2022-04-27T20:58:53+02:00
 draft: false
 type: standard-view
 

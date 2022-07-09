@@ -1,8 +1,8 @@
 ---
 title: Esempio2
 subtitle: Insert a subtitle here
-date: 2022-05-10T23:08:01+02:00
-lastmod: 2022-05-10T23:08:01+02:00
+date: 2022-07-07T22:08:01+02:00
+lastmod: 2022-07-07T22:08:01+02:00
 draft: true
 weight: null
 type: # Nothing for default, or video 

@@ -5,11 +5,16 @@ languageName = "En"
 languageCode = "en-us"
 theme = "arberia"
 
+
+# To list the most relevant pages on the front page or similar, 
+# you should use the site.Params.mainSections list instead of comparing 
+# section names to hard-coded values like "posts" or "post".
+[params]
+  mainSections = ['posts',]
+
+
 # [outputs]
 #  home = ["HTML", "AMP", "RSS", "JSON"]
-
-
-
 
 [outputs]
   home = ["HTML", "JSON", "RSS"]
