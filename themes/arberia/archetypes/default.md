@@ -4,15 +4,15 @@ subtitle: "Insert a subtitle here"
 date: {{ .Date }}
 lastmod: {{ .Date }}
 draft: true
-type:  # Nothing for default, or video 
+type:  # Use standard-view on nothing for default or courses - video - landingpage
 weight: null 
 
 featured: false
-sidebar: false
-toc: true
+sidebar: false # Works only with standard-view
+toc: true # Works only with standard-view
 math:
-  enable: false
-lightgallery: false
+  enable: false # Actualy not implemented
+lightgallery: false # Actualy not implemented
 license: ""
 slug:  # slug exemple: solidworks-2020-tutorial
 
