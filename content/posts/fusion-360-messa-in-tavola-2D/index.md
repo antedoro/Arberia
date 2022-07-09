@@ -4,7 +4,7 @@ subtitle: "Insert a subtitle here"
 date: 2022-07-05T22:50:29+02:00
 lastmod: 2022-07-05T22:50:29+02:00
 draft: true
-type:  # Nothing for default, or video 
+type:  video # Use standard-view on nothing for default or courses - video - landingpage
 weight: null 
 
 featured: false

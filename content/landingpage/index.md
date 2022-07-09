@@ -4,8 +4,8 @@ subtitle: Insert a subtitle here
 date: 2022-05-20T21:26:12+02:00
 lastmod: 2022-05-20T21:26:12+02:00
 draft: true
-type:  landingpage # Nothing for default, or video 
 weight: null 
+type:  landingpage # Nothing for default, or video 
 
 author: author
 authorLink: ""

@@ -5,6 +5,8 @@ date: 2022-05-10T23:08:01+02:00
 lastmod: 2022-05-10T23:08:01+02:00
 draft: true
 weight: null
+type: # Nothing for default, or video 
+  null
 
 author: author
 authorLink: ""
@@ -25,8 +27,6 @@ resources:
   - name: featured-image
     src: Monthly-Python-News_Blue_Watermarked.png
 
-type: # Nothing for default, or video 
-  null
 featured: false
 sidebar: true
 toc: false

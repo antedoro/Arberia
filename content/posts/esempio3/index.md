@@ -5,6 +5,7 @@ date: 2022-05-10T23:09:14+02:00
 lastmod: 2022-05-10T23:09:14+02:00
 draft: true
 weight: null
+type: 
 
 author: author
 authorLink: ""

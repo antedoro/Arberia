@@ -5,6 +5,7 @@ date: 2022-05-10T23:07:28+02:00
 lastmod: 2022-05-10T23:07:28+02:00
 draft: true
 weight: null
+type: null
 
 author: author
 authorLink: ""
@@ -25,8 +26,6 @@ resources:
   - name: featured-image
     src: featured-image.png
 
-type: # Nothing for default, or video 
-  null
 featured: false
 sidebar: true
 toc: false

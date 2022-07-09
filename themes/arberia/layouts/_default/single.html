@@ -1,11 +1,13 @@
 {{ define "main" }}
 
-<div class="container main-content">
-	<div class="row justify-content-center">
+{{- $type := .Params.type | default "standard-view" -}}
+
+{{- if eq $type "standard-view" -}}
+
 		{{- if eq .Params.sidebar true -}}
-			{{ partial "article-with-sidebar.html" . }}
+		{{ partial "with-sidebar-layout.html" . }}
 		{{else}}
-			{{ partial "article-no-sidebar.html" . }}
+		{{ partial "no-sidebar-layout.html" . }}
 		{{- end -}}
 
 		{{ with .Site.DisqusShortname }}
@@ -13,7 +15,6 @@
 			{{ template "_internal/disqus.html" . }}
 		</div>
 		{{ end }}
-	</div>
-</div>
 
+{{ end }}
 {{ end }}

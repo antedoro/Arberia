@@ -6,6 +6,8 @@ subtitle: Take your coding skills to the next level with Real Python’s acceler
 date: 2022-04-26T19:05:23.331Z
 lastmod: 2021-10-15T20:58:53+02:00
 draft: false
+type: standard-view
+
 author: Vincenzo Antedoro
 authorLink: ""
 description: Abbiamo selezionato alcuni accesori indispensabili se decidi di acquistare un
