@@ -9,8 +9,8 @@ theme = "arberia"
 # To list the most relevant pages on the front page or similar, 
 # you should use the site.Params.mainSections list instead of comparing 
 # section names to hard-coded values like "posts" or "post".
-[params]
-  mainSections = ['posts',]
+# [params]
+#   mainSections = ['posts',]
 
 
 # [outputs]
@@ -123,7 +123,7 @@ identifier = "portfolio"
 pre = "fal fa-drafting-compass"
 post = ""
 name = "Portfolio"
-url = "/portfolio/"
+url = "/portfolio"
 title = ""
 weight = 2
 
@@ -203,7 +203,7 @@ identifier = "libri"
 pre = ""
 post = ""
 name = "Libri"
-url = "/libri/"
+url = "/libri"
 title = ""
 weight = 9
 

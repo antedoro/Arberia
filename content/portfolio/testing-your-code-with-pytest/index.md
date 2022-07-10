@@ -25,7 +25,7 @@ resources:
   - name: featured-image
     src: python-data-classes.png
 
-type: portfolio
+type: cover-view
 featured: false
 sidebar: false
 toc: false

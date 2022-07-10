@@ -7,7 +7,7 @@ lastmod: 2022-04-26T21:28:23+02:00
 draft: true
 weight: 
 
-type: "books"
+type: null
 
 author: Vincenzo Antedoro
 avatar: "avatar.webp"
@@ -29,7 +29,7 @@ resources:
     src: book.png
 
 # featured: false
-# sidebar: false
+# sidebar: true
 # toc: false
 # math:
 #   enable: false

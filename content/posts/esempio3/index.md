@@ -5,7 +5,7 @@ date: 2022-07-06T21:08:01+02:00
 lastmod: 2022-07-06T21:08:01+02:00
 draft: true
 weight: null
-type: 
+type: cover-view
 
 author: author
 authorLink: ""
@@ -26,8 +26,7 @@ resources:
   - name: featured-image
     src: featured-image.png
 
-type: # Nothing for default, or video 
-  null
+
 featured: false
 sidebar: true
 toc: false

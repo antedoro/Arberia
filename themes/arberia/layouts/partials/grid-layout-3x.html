@@ -9,7 +9,7 @@
   {{/*  {{ range first 6 .Site.RegularPages.ByDate.Reverse}}  */}}
   {{/*  {{ range ( first 6 ( where .Site.RegularPages "Type" "posts" ).ByDate.Reverse ) }}  */}}
 
-  {{ range first 6 (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{ range first 6 (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}  
   <div class="col-12 col-md-6 col-lg-4 mb-5">
     <div class="card border-0">
       <a href="{{ .RelPermalink }}">
