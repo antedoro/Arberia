@@ -1,6 +1,6 @@
-{{/*  {{- $params := .Scratch.Get "params" -}}  */}}
+{{/*  {{- $params := .Scratch.Get "params" -}} */}}
 
-<div class="row mb-4">
+<div class="row mb-5">
     {{- $featured := (where (where .Site.RegularPages "Section" "posts" ) "Params.featured" "=" true) -}}
     {{ range first 1 $featured }}
     <div class="col-md-12 col-lg-8">
@@ -13,8 +13,7 @@
                         {{ with $img }}
                         <div class="embed-responsive embed-responsive-16by9">
                             <img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;"
-                                src="{{ .Permalink }}" alt="{{ $.Title }}" 
-                                srcset="{{ .Permalink }}480w, 
+                                src="{{ .Permalink }}" alt="{{ $.Title }}" srcset="{{ .Permalink }}480w, 
                                 {{ .Permalink }} 960w, 
                                 {{ .Permalink }} 1920w" sizes="75vw" width="1920" height="1080">
                             <div class="shadow-sm p-0 bg-dark rounded-left border-left border-top border-bottom border-light 
@@ -31,7 +30,7 @@
                     {{ $imageName := $img.Title }}
                     {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
                     {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
-                    {{ end }}  */}}
+                    {{ end }} */}}
 
                     <div class="card-body m-0 p-0 pt-3">
                         <a href="{{ .Permalink | absURL }}">
@@ -52,9 +51,6 @@
                                     href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
                                 {{end}}
 
-
-
-
                             </small>
                         </p>
                     </div>
@@ -65,52 +61,11 @@
 
     {{/*  Sidebar  */}}
     <div class="col-12 col-lg-4">
-        <div class="row">
-
-            <div class="col-12">
-                {{/*  <div class="card mb-3">    */}}
-                <div class="card-body">
-                    {{- partial "components/yt-banner.html"  -}}
-                </div>
-                {{/*  </div>   */}}
-            </div>
-
-            <div class="col-12">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <p class="h4 text-center">Welcome Back, Vincenzo!</p>
-                        <hr>
-                        <p class="mb-0"><i class="fa fa-fw fa-bell text-muted" aria-hidden="true"></i> <a
-                                href="https://realpython.com/account/notifications/">Notifications &amp; Updates</a></p>
-                        <p class="mb-0"><i class="fa fa-fw fa-bookmark text-muted" aria-hidden="true"></i> <a
-                                href="https://realpython.com/account/bookmarks/">Your Bookmarks</a></p>
-                        <p class="mb-0"><i class="fa fa-fw fa-question-circle text-muted" aria-hidden="true"></i> <a
-                                href="https://support.realpython.com/"> Support</a></p>
-                        <hr>
-                        <a href="https://realpython.com/account/join/"><i class="fa fa-fw fa-star text-warning mr-1"
-                                aria-hidden="true"></i>Unlock All Content</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <!-- {{- partial "components/tag-collection.html"  -}}  -->
-
-                {{/*  TAG Topics  */}}
-                <div class="sidebar-module sidebar-module-inset border">
-                    <p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial
-                            Topics</a></p>
-                    {{range $name, $taxonomy := .Site.Taxonomies.tags}} {{ $cnt := .Count }}
-                    {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
-                    <a href="{{ .RelPermalink }} " class="badge badge-light text-muted">{{$name}}</a>
-                    <!-- <sup>{{$cnt}}</sup> -->
-                    {{end}}
-                    {{end}}
-                </div>
-
-            </div>
-        </div>
+        {{- partial "components/author-sb.html" . -}} {{/* Author box  */}}
+        {{- partial "components/yt-banner.html" . -}} {{/* YouTube Banner  */}}
+        {{ partial "components/tag-collection.html" . }} {{/* TAG Collection  */}}
     </div>
-    {{ end }}
 
+</div>
+{{ end }}
 </div>
