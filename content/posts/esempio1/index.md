@@ -19,7 +19,7 @@ tags:
 categories:
   - category
 
-hiddenFromHomePage: false
+hiddenFromHomePage: true
 hiddenFromSearch: false
 
 resources:

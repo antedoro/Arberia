@@ -17,7 +17,7 @@ license: ""
 slug:  # slug exemple: solidworks-2020-tutorial
 
 hiddenFromHomePage: false
-hiddenFromSearch: false
+hiddenFromSearch: false # da implementare
 
 author: "author"
 avatar: /img/me.jpg  # link to avatar file
