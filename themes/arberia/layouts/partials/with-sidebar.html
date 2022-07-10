@@ -221,18 +221,22 @@
 
         {{/*  Sidebar  */}}
         <aside class="col-md-7 col-lg-4">
-            {{- partial "components/mailchimp.html"  -}} {{/*  Email Subscription  */}}
-            {{/*  {{- partial "components/email-subscription.html"  -}}Email Subscription  */}}
-            {{/*  {{- partial "components/tag-collection.html"  -}} TAG Topics */}}
+        {{- partial "components/author-sb.html" . -}} {{/* Author box  */}}
+        {{- partial "components/yt-banner.html" . -}} {{/* YouTube Banner  */}}
+        {{- partial "components/mailchimp.html" . -}} {{/*  Email Subscription  */}}
+        {{/*  {{- partial "components/email-subscription.html"  -}}Email Subscription  */}}
+        {{/*  {{- partial "components/tag-collection.html"  -}} TAG Topics */}}
+
 
             {{/*  TAG Topics  */}}
-            <div class="sidebar-module sidebar-module-inset border">
+            {{/*  <div class="sidebar-module sidebar-module-inset border">
                 <p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial
                         Topics</a></p>
                 {{ range (.GetTerms "tags") }}
                 <a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title | markdownify }}</a>
                 {{ end }}
-            </div>
+            </div>  */}}
+            {{- partial "components/tag-collection.html" . -}}
 
             <div class="sidebar-sticky ">
                 {{/*  Table of Contents on sidebar  */}}
