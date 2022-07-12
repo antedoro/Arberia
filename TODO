@@ -4,12 +4,12 @@ Todo:
     ☐ controllare tutte le immagini
   ✔ Single.html in base al type (standard-view(sidebar-nosidebar) - courses - video - landingpage) @done(22-07-10 00:29)
   ☐ Search engine @low 85% rivedere custom.css
-  ☐ Sidebar
+  ✔ Sidebar @done(22-07-12 13:17)
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
   ☐ Controllare {{summary}} in lista.html
-  ☐ Controllare schema.og di tutte le schede ad esempio author
+  ☐ Controllare schema.rg di tutte le schede ad esempio author
   ☐ YouTube channel ID
-  ☐ Post recenti nella sidebar
+  ✔ Post recenti nella sidebar @done(22-07-12 13:17)
   
 
 Bug:
