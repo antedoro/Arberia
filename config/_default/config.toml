@@ -26,8 +26,6 @@ theme = "arberia"
 
 
 # #################### default parameters ################################
-
-
 # post pagination
 paginate = "5"
 # post excerpt

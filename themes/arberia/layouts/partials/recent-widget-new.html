@@ -7,7 +7,7 @@
     <div class="card-body" style="max-height: 86px; border-bottom: 1px solid rgba(0,0,0,.125)">
         <div class="row" style="margin-top: -8px">
     
-            {{- $type := .Params.type | default "{{.Title}}" -}}
+            {{- $type := .Params.type | default "standard-view" -}}
             <div class="col-3 align-items-start">
                 {{- if eq $type "video" -}}
                 <a href="{{ .RelPermalink }}" alt="{{.Title}}" class="text-muted">
