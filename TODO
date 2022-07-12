@@ -9,7 +9,13 @@ Todo:
   ☐ Shortcode {{< learning-path >}}
   ☐ Shortcode alert e alert-dark 
   ☐ Inserire altri shortcode
-  ☐ sistemare sidebar.html
+  ☐ Sistemare sidebar.html
+  ☐ Sistemare share-button.html
+  ☐ Sistemare logo.html
+  ☐ Sistemare completed-mark.html
+  ☐ Loading css and js
+  ☐ Sistemare component.tag.html
+  ☐ Render del summary <!--more-->
 
 
   {{< learning-path >}}
