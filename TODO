@@ -5,6 +5,18 @@ Todo:
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
   ☐ Controllare {{summary}} in lista.html
   ☐ Controllare schema.org di tutte le schede ad esempio author
+  ☐ Sistemare mailchimp "Python Tricks" sui post
+  ☐ Shortcode {{< learning-path >}}
+  ☐ Shortcode alert e alert-dark 
+  ☐ Inserire altri shortcode
+  ☐ sistemare sidebar.html
+
+
+  {{< learning-path >}}
+  {{< learning-path >}}
+  {{< learning-path >}}
+  
+  {{< alert-dark >}}
   
 Bug:
   ☐ Pagina ricerca: quando il risultato della ricerca è lungo il testo fa overflow nel footer
