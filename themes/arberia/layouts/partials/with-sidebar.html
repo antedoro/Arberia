@@ -224,7 +224,8 @@
         {{- partial "components/author-sb.html" . -}} {{/* Author box  */}}
         {{- partial "components/yt-banner.html" . -}} {{/* YouTube Banner  */}}
         {{- partial "components/mailchimp.html" . -}} {{/*  Email Subscription  */}}
-        {{ partial "recent-widget.html" . }} {{/* TAG Collection  */}}
+        {{ partial "recent-widget-new.html" . }} {{/* TAG Collection  */}}
+        {{/*  {{ partial "recent-widget.html" . }} Recent Post Collection  */}}
         {{/*  {{- partial "components/email-subscription.html"  -}}Email Subscription  */}}
         {{/*  {{- partial "components/tag-collection.html"  -}} TAG Topics */}}
 
@@ -237,6 +238,7 @@
                 <a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title | markdownify }}</a>
                 {{ end }}
             </div>  */}}
+            
             {{- partial "components/tag-collection.html" . -}}
 
             <div class="sidebar-sticky ">
