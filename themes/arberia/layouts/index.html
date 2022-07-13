@@ -1,6 +1,7 @@
 {{ define "main" }}
+
 <div class="container main-content"> {{/*  Aggiunte da me ma non funge  */}}
-	<div class="row">
+	<div class="row justify-content-center">
 		<div class="col-12">
 
 			{{/*  Featured article  */}}
@@ -14,24 +15,12 @@
 			{{ partial "explore.html" . }} <!-- dashboard -->
 
 			{{/*  Grid Layout 2x2  */}}
-			{{ partial "grid-layout-2x.html" . }}
+			{{ partial "gridview.html" . }}
 
-			{{/*  List with search  */}}
-			{{/*  {{ partial "list-with-search.html" . }}  */}}
+			{{/*  Listview Layout 2x2  */}}
+			{{ partial "listview.html" . }}
 
-			{{ partial "listpost.html" . }}
-
-			{{/*  {{ partial "lista2.html" . }}   */}}
-			{{/*  {{ partial "recentpost.html" . }}   */}}
-
-			{{/*  <main>
-				{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-				{{ range $paginator.Pages }}
-				{{ .Render "summary" }}
-				{{ end }}
-				{{ partial "pagination.html" . }}
-			</main>  */}}
-			{{/*  {{ partial "sidebar.html" . }}  */}}
+			{{/*  {{ partial "recentpost.html" . }}  da implemetare */}}
 
 		</div>
 	</div>

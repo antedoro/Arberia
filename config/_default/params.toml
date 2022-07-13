@@ -20,5 +20,16 @@ author_resume = "<strong>Vincenzo Antedoro</strong> è un ingegnere che aiuta ch
 YTChannelID = "UClA8GwWzurVCprEY6OsCvhw"
 contact_form_action = "https://formspree.io/f/mvovbvga"
 
+# #################### default parameters ################################
+# post pagination
+paginate = "5"
+# post excerpt
+summaryLength = "225"
+# disqus short name
+disqusShortname = "" # get your shortname form here : https://disqus.com
+# google analytics
+googleAnalytics = "UA-74607909-1" # example : UA-123-45
+# unsafe html
+
 
 disableSearch = false # default is false

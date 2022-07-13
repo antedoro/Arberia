@@ -8,7 +8,7 @@ type:  # Use standard-view on nothing for default or courses - video - landingpa
 weight: null 
 
 featured: false
-sidebar: true # Works only with standard-view or list pages
+sidebar: false # Works only with standard-view or list pages
 toc: false # Works only with standard-view
 math:
   enable: false # Actualy not implemented

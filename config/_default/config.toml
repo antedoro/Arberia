@@ -23,18 +23,6 @@ theme = "arberia"
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML", "RSS"]
 
-
-
-# #################### default parameters ################################
-# post pagination
-paginate = "5"
-# post excerpt
-summaryLength = "20"
-# disqus short name
-disqusShortname = "" # get your shortname form here : https://disqus.com
-# google analytics
-googleAnalytics = "UA-74607909-1" # example : UA-123-45
-# unsafe html
 [markup.goldmark.renderer] # Controllare cosa faccia
 unsafe = true
 
@@ -43,6 +31,8 @@ unsafe = true
 
 [minify]
   minifyOutput = true
+
+
 
 ############################# Plugins ##############################
 # CSS Plugins

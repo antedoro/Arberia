@@ -4,6 +4,7 @@ Todo:
   ☐ Search engine @low 85% rivedere custom.css
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
   ☐ Controllare {{summary}} in lista.html
+  ☐ .Params.paginate
   ☐ Controllare schema.org di tutte le schede ad esempio author
   ☐ Sistemare mailchimp "Python Tricks" sui post
   ☐ Shortcode {{< learning-path >}}

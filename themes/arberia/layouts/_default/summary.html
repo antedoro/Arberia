@@ -1,21 +1,3 @@
-{{/*  <article>
-	<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-<time>{{ .Date.Format "02.01.2006 15:04" }}</time>
-<time>{{ .PublishDate.Format "January 2, 2006 15:04" }}</time>
-
-{{ range .Params.tags }}
-<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-{{ end }}
-<div>
-	{{ .Summary }}
-	{{ if .Truncated }}
-	<a href="{{ .Permalink }}">Read more...</a>
-	{{ end }}
-</div>
-</article> */}}
-
-
-{{/*  Esperimento  */}}
 <article>
 	<div class="container my-3">
 		<div class="row">
@@ -58,10 +40,9 @@
 					{{end}}  
 					{{/*  Tag list  */}}
 					{{/*  {{- partial "components/tag.html"  -}}  */}}
-
 				</p>
 
-				<p class="text-muted my-0 mt-1 small">{{ .Summary }}
+				<p class="text-muted my-0 mt-1 small">{{ .Summary | truncate (.Site.Params.summaryLength | default 225) | safeHTML }}
 					{{ if .Truncated }}
 					<a href="{{ .Permalink }}">Read more...</a>
 					{{ end }}</p>
