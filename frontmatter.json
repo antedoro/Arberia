@@ -303,5 +303,8 @@
       ]
     }
   ],
-  "frontMatter.templates.enabled": true
+  "frontMatter.templates.enabled": true,
+  "frontMatter.taxonomy.tags": [
+    "Markdown"
+  ]
 }

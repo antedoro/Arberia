@@ -13,7 +13,7 @@ type: blog
 
 resources:
   - name: featured-image
-    src: blog.jpg
+    src: blog.webp
 
 categories:
   - category

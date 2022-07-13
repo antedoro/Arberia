@@ -5,6 +5,12 @@
 
             <div class="textwidget">
                 <p class="small text-muted" style="text-align: justify;">
+
+                    {{/*  {{ $avatar := (.Resources.GetMatch "/img/me.jpg") }}
+                    {{ if ($avatar)}}
+                        {{ $avatar:= ($avatar.Fit "72x72").RelPermalink}}
+                    {{end}}  */}}
+
                     <img class="float-left rounded m-1"
                         title="{{ .Params.author | markdownify }}"
                         src="/img/me.jpg"

@@ -1,47 +1,18 @@
 {{ define "main" }}
-<main>
+{{/*  <main>  */}}
 	<div class="container main-content">
 		<div class="row justify-content-center">
-			<div id="listArea" class="col-md-11 col-lg-8 article">
-				{{/*  Title  */}}
-				<h1 class="text-center mt-5">{{ .Title | markdownify }}
-					<a class="headerlink" href="{{- .RelPermalink -}}" title="Permanent link"></a></h1>
 
-				{{/*  Subtitle */}}
-				{{ with .Params.subtitle }}
-				<p class="text-center text-muted">{{ . | markdownify }}</p>
-				{{ end }}
+			<!-- List Area -->
+			{{- partial "listpost.html" . -}}
 
-				{{- /* Cover image */ -}}
-				{{/*  {{ with .Resources.GetMatch .Params.coverimage }}
-				{{ partial "tools/img" (dict "img" . "alt" "book_image") }}
-				{{ end }}  */}}
+			<!-- Sidebar -->
+			{{ if .Params.sidebar }}
+			{{- partial "sidebar.html" . -}}
+			{{ end }}
 
-				{{- /* Cover Image */ -}}
-				{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
-				{{ with $img }}
-				{{ $imageName := $img.Title }}
-				{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
-				{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
-				{{ end }}
-
-				{{ if .Content }}
-				<div>
-					{{ with .Content }}<div>{{ . }}</div>{{ end }}
-				</div>
-				{{ end }}
-
-				{{ range .Paginator.Pages }}
-				{{ .Render "summary" }}
-				{{ end }}
-				<div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-					<div>{{ partial "paginator.html" . }}</div>
-				</div>
-				{{ partial "sidebar.html" . }}
-
-			</div>
 		</div>
 	</div>
-</main>
+{{/*  </main>  */}}
 
 {{ end }}

@@ -12,6 +12,16 @@
 {{- end }}
 {{- end }}
 
+
+{{/*  TAG Topics  */}}
+{{/*  <div class="sidebar-module sidebar-module-inset border">
+    <p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial
+            Topics</a></p>
+    {{ range (.GetTerms "tags") }}
+<a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title | markdownify }}</a>
+{{ end }}
+</div>  */}}
+
 {{/*  Metodo 2  */}}
 {{/*  {{ range .Params.tags }}
 <span aria-hidden="true" class="fa fa-tags"></span>
