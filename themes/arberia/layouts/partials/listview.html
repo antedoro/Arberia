@@ -1,7 +1,7 @@
 <!-- List Post Area -->
 <div id="listArea" class="col-md-11 col-lg-8 article">
 
-{{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
+{{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") (.Site.Params.paginate | default 5) }}
 
     {{/*  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} */}}
     <div class="container my-3">

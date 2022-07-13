@@ -21,15 +21,14 @@ YTChannelID = "UClA8GwWzurVCprEY6OsCvhw"
 contact_form_action = "https://formspree.io/f/mvovbvga"
 
 # #################### default parameters ################################
-# post pagination
+# numbero of post on pagination list
 paginate = "5"
-# post excerpt
+# summary lenght on list post 
 summaryLength = "225"
+# default is false
+disableSearch = false 
 # disqus short name
 disqusShortname = "" # get your shortname form here : https://disqus.com
 # google analytics
 googleAnalytics = "UA-74607909-1" # example : UA-123-45
 # unsafe html
-
-
-disableSearch = false # default is false
