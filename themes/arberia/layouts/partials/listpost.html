@@ -16,11 +16,11 @@
     <!-- Lista -->
     <div id="listArea" class="col-md-11 col-lg-8 article">
         <!-- Testata -->
-        <div class="mt-1 mb-4">
+        {{/*  <div class="mt-1 mb-4">
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Blog Post</h2>
             </div>
-        </div>
+        </div>  */}}
 
         {{/*  {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}  */}}
         {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}

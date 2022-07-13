@@ -19,7 +19,7 @@ slug:  # slug exemple: solidworks-2020-tutorial
 
 resources:
 - name: "featured-image"
-  src: "blog.jpg"
+  src: "blog.webp"
 - name: "featured-image-preview"
-  src: "blog.jpg"
+  src: "blog.webp"
 ---

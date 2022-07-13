@@ -26,7 +26,7 @@
                 {{ $attributes = printf `%s %s="%s"` $attributes $v . }}
             {{ end }}
         {{ end }}
-        <img loading="lazy" class="img-fluid mx-auto d-block rounded" src="{{.RelPermalink}}" height="{{.Height}}" width="{{.Width}}"
+        <img loading="lazy" class="img-fluid mx-auto d-block rounded mb-4" src="{{.RelPermalink}}" height="{{.Height}}" width="{{.Width}}"
             type="{{.MediaType}}" {{$attributes|safeHTMLAttr}} />
     </picture>
 {{ end }}
