@@ -22,7 +22,7 @@ contact_form_action = "https://formspree.io/f/mvovbvga"
 
 # #################### default parameters ################################
 # numbero of post on pagination list
-paginate = "5"
+paginate = "6"
 # summary lenght on list post 
 summaryLength = "225"
 # default is false
