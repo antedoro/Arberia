@@ -14,3 +14,17 @@
                 class="mr-1 fa fa-envelope text-light"></i>Email</a>
     </span>
 </div>
+
+
+{{ with .Site.Params.share }}
+{{ if .enable }}
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+    {{ with .Facebook }}
+    <p>Facebook</p>
+    {{ end }}
+    {{ with .Linkedin }}
+    <p>Linkedin</p>
+    {{ end }}
+</div>
+{{ end }}
+{{end}}
