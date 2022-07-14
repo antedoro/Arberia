@@ -56,8 +56,6 @@
 
 	{{ "<!-- CSS -->" | safeHTML }}
 	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | absURL }}"> */}}
-
-
 	{{ $style := resources.Get "css/realpython.css" }}
 	{{ $components := resources.Match "css/" }}
 	{{ range $components }}
