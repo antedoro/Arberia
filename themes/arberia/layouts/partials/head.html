@@ -46,11 +46,14 @@
 	<meta name="msapplication-TileColor" content="#2e2e33">
 
 
-	<!-- CSS only -->
+	<!-- CSS Library only -->
 	<link rel="stylesheet" type="text/css" href={{"lib/bootstrap/css/bootstrap.min.css" | relURL}}>
+	<link rel="stylesheet" type="text/css" href={{"font-awesome-4.7.0/css/font-awesome.min.css" | relURL}}>
+	<link rel="stylesheet" type="text/css" href={{"gfonts/gfont.css" | relURL}}>
+	<link rel="stylesheet" type="text/css" href={{"lib/glightbox/css/glightbox.css" | relURL}}>
 
 	{{ "<!-- CSS -->" | safeHTML }}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | absURL }}"> */}}
+	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | relURL }}"> */}}
 	{{ $style := resources.Get "css/realpython.css" }}
 	{{ $components := resources.Match "css/" }}
 	{{ range $components }}
