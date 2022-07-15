@@ -67,7 +67,6 @@ You’re going to create a bare-bones Django project and deploy it to the cloud 
 
 Here’s a one-minute video demonstrating the necessary steps, from initializing an empty Git repository to viewing your finished project in the browser. Hang on and watch till the end for a quick preview of what you’re about to find in this tutorial:
 
-![Real-Python-Learning-Paths_Watermarked.webp](immagine)
 
 In addition to the steps shown in the screencast above, you’ll find a few more later on, but this should be enough to give you a general idea about how you’ll be working with Heroku in this tutorial.
 

@@ -1,25 +1,26 @@
 ---
-title: "Posts"
-subtitle: "All blog posts"
+title: Posts
+subtitle: All blog posts
 date: 2022-07-12T16:56:19+02:00
 lastmod: 2022-07-12T16:56:19+02:00
 draft: true
-type:  # Use standard-view on nothing for default or courses - video - landingpage 
-weight: null 
+type: # Use standard-view on nothing for default or courses - video - landingpage 
+  null
+weight: null
 
 featured: false
-sidebar: true # Works only with standard-view or list pages
-toc: false # Works only with standard-view
+sidebar: true
+toc: false
 math:
-  enable: false # Actualy not implemented
-lightgallery: false # Actualy not implemented
+  enable: false
+lightgallery: false
 license: ""
-slug:  # slug exemple: solidworks-2020-tutorial
-
+slug: # slug exemple: solidworks-2020-tutorial
+  posts
 
 resources:
-- name: "featured-image"
-  src: "blog.jpg"
-- name: "featured-image-preview"
-  src: "blog.jpg"
+  - name: featured-image
+    src: blog.jpg
+  - name: featured-image-preview
+    src: blog.jpg
 ---

@@ -1,21 +1,8 @@
 <!-- LIBRARY JS -->
-<script type="text/javascript" src="{{ "lib/jquery/jquery.js" | absURL }}"></script>
-<!-- Pooper.js -->
-<script  type="text/javascript" src={{"lib/popper/popper.min.js" | absURL }}></script>
-{{/*  <script type="text/javascript" src="{{ "lib/popper/popper.js" | absURL }}"></script>  */}}
-<script type="text/javascript" src="{{ "lib/bootstrap/bootstrap.js" | absURL }}"></script> 
-
-
-{{/*  <script type="text/javascript" src="{{ "lib/repl-toggle/repl-toggle.js" | relURL }}"></script>  */}}
-<script type="text/plain" src="{{ "lib/lightbox/js/lightbox.js" | relURL }}"></script>
-
-{{/*  <script type="text/javascript" src="{{ "lib/tag/tag.js" | relURL }}"></script>  */}}
-{{/*  <script type="text/javascript" src="{{ "lib/vendor/vendor.js" | relURL }}"></script>  */}}
-{{/*  <script type="text/javascript" src="{{ "lib/htmx/htmx.js" | relURL }}"></script>  */}}
-{{/*  {<script type="text/javascript" src="{{ "lib/main/main.js" | relURL }}"></script>   */}}
-{{/*  <script type="text/javascript" src="{{ "lib/analytics/analytics.js" | relURL }}"></script>  */}}
-{{/*  <script type="text/javascript" src="{{ "lib/invisible/invisible.js" | relURL }}"></script>  */}}
-
+<script type="text/javascript" src="{{ "lib/jquery/jquery.js" | relURL }}"></script>
+<script  type="text/javascript" src={{"lib/popper/popper.js" | relURL }}></script>
+<script type="text/javascript" src="{{ "lib/bootstrap/js/bootstrap.min.js" | relURL }}"></script> 
+<script type="text/plain" src="{{ "lib/glightbox/js/glightbox.js" | relURL }}"></script>
 
 <!-- CUSTOM JS -->
 {{ range .Site.Params.customJS -}}
