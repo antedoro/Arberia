@@ -5,7 +5,7 @@ features:
   card:
     # card
     - title : "All Blog Post"
-      icon : "fas mr-1 fa-blog"
+      icon : "fa mr-1 fa-rss"
       link : "blog/"
       description : "View all site post ordered by time"
     # card
@@ -15,7 +15,7 @@ features:
       description : "In-depth step-by-step video courses"
     # card
     - title : "Portfolio"
-      icon : "fas fa-fw mr-1 fa-drafting-compass"
+      icon : "fa fa-fw mr-1 fa-map-o"
       link : "portfolio/"
       description : "Some projects I was involved"
       # card

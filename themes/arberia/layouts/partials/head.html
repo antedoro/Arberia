@@ -52,10 +52,10 @@
 	<link rel="stylesheet" type="text/css" href={{"lib/bootstrap/css/bootstrap.min.css" | relURL}}>
 	<link rel="stylesheet" type="text/css" href={{"font-awesome-4.7.0/css/font-awesome.min.css" | relURL}}>
 	<link rel="stylesheet" type="text/css" href={{"lib/glightbox/css/glightbox.css" | relURL}}>
-	{{/*  <link rel="stylesheet" type="text/css" href={{"gfonts/gfont.css" | relURL}}>  */}}
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" type="text/css" href={{"gfonts/font.css" | relURL}}>
+	{{/*  <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">   */}}
 
 	{{ "<!-- Main CSS -->" | safeHTML }}
 	{{ $style := resources.Get "css/realpython.css" }}
@@ -63,10 +63,10 @@
 	{{ range $components }}
 	{{ $style = slice $style . | resources.Concat .Name }}
 	{{ end }}
-	{{ $style = slice $style | resources.Concat "all.css" | toCSS | minify | fingerprint }}
+	{{ $style = slice $style | resources.Concat "main.css" | toCSS | minify | fingerprint }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-	<link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}>
+	{{/*  <link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}>  */}}
 
 	{{ "<!-- Custom CSS -->" | safeHTML }}
 	{{ range site.Params.plugins.customCSS }}
