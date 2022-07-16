@@ -66,8 +66,6 @@
 	{{ $style = slice $style | resources.Concat "main.css" | toCSS | minify | fingerprint }}
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-	{{/*  <link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}>  */}}
-
 	{{ "<!-- Custom CSS -->" | safeHTML }}
 	{{ range site.Params.plugins.customCSS }}
 	<link rel="stylesheet" href="{{ .link | absURL }} ">
