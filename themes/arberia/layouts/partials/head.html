@@ -20,6 +20,8 @@
 	<meta name="author" content="{{ site.Params.author | safeHTML }}" />
 	<meta name="keywords" content="{{ site.Params.keywords | safeHTML }}">
 
+	{{ partial "schema.html" . }}
+
 	{{ "<!-- RSS controllare -->" | safeHTML }}
 	{{ range .AlternativeOutputFormats -}}
 	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
@@ -49,11 +51,13 @@
 	<!-- CSS Library only -->
 	<link rel="stylesheet" type="text/css" href={{"lib/bootstrap/css/bootstrap.min.css" | relURL}}>
 	<link rel="stylesheet" type="text/css" href={{"font-awesome-4.7.0/css/font-awesome.min.css" | relURL}}>
-	<link rel="stylesheet" type="text/css" href={{"gfonts/gfont.css" | relURL}}>
 	<link rel="stylesheet" type="text/css" href={{"lib/glightbox/css/glightbox.css" | relURL}}>
+	{{/*  <link rel="stylesheet" type="text/css" href={{"gfonts/gfont.css" | relURL}}>  */}}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet"> 
 
-	{{ "<!-- CSS -->" | safeHTML }}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ "css/realpython.css" | relURL }}"> */}}
+	{{ "<!-- Main CSS -->" | safeHTML }}
 	{{ $style := resources.Get "css/realpython.css" }}
 	{{ $components := resources.Match "css/" }}
 	{{ range $components }}
@@ -63,17 +67,6 @@
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
 	<link rel="stylesheet" type="text/css" href={{"css/all.css" | absURL}}>
-	<link rel="stylesheet" type="text/css" href={{"css/custom.css" | absURL}}>
-
-
-	<!--load all styles -->
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/brands.css" | absURL }}"> */}}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ "fontawesome/css/solid.css" | absURL }}"> */}}
-	{{/*  <script src="https://kit.fontawesome.com/43e283368b.js" crossorigin="anonymous"></script>  */}}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{"gfonts/font.08e909e5f3d4.css" | absURL}}">
-	<link rel="stylesheet" type="text/css" href="{{ "css/glightbox.css" | absURL }}"> */}}
-
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ "lib/bootstrap/bootstrap.min.css" | absURL }}"> */}}
 
 	{{ "<!-- Custom CSS -->" | safeHTML }}
 	{{ range site.Params.plugins.customCSS }}
@@ -110,7 +103,6 @@
 	{{ template "_internal/google_news.html" . }}
 	{{ template "_internal/google_analytics.html" . }}
 	{{ template "_internal/google_analytics_async.html" . }}
-
 	{{ template "_internal/disqus.html" . }}
 	{{- end -}}
 

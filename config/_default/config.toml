@@ -24,7 +24,7 @@ theme = "arberia"
   taxonomyTerm = ["HTML", "RSS"]
 
 [markup.goldmark.renderer] # Controllare cosa faccia
-unsafe = true
+  unsafe = true
 
 [permalinks]
   posts = "/:title/"
@@ -37,39 +37,14 @@ unsafe = true
 ############################# Plugins ##############################
 # CSS Plugins
 # [[params.plugins.css]]
-# link = "css/realpython.css"
-# [[params.plugins.css]]
-# link = "css/font.css"
-# [[params.plugins.css]]
-# link = "css/glightbox.css"
-# [[params.plugins.css]]
-# link = "css/all.css"
-# [[params.plugins.css]]
-# link = "gfonts/font.08e909e5f3d4.css"
-# [[params.plugins.css]]
-# link = "gfonts/glightbox.min.f69035b3cab2.css"
-# [[params.plugins.css]]
-# link = "css/style.css"
+# link = "css/Custom.css"
 # [[params.plugins.css]]
 # link = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 
 # JS Plugins
 # [[params.plugins.js]]
-# link = "js/jquery.js"
-# [[params.plugins.js]]
-# link = "js/bootstrap.js"
-# [[params.plugins.js]]
-# link = "js/main.js"
-# [[params.plugins.js]]
-# link = "js/vendor.js"
-# [[params.plugins.js]]
-# link = "js/analytics.js"
-# [[params.plugins.js]]
-# link = "js/invisible.js"
-# [[params.plugins.js]]
-# link = "js/tag.js"
-# [[params.plugins.js]]
-# link = "js/popper.js"
+# link = "js/customJS.js"
+
 
 [assets]
   favicon = "favicon/favicon.ico"
