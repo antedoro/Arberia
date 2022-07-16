@@ -3,7 +3,6 @@ Todo:
     ☐ controllare tutte le immagini
   ☐ Search engine @low 85% rivedere custom.css
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
-  ☐ Controllare schema.org di tutte le schede ad esempio author
   ☐ Sistemare mailchimp "Python Tricks" sui post
   ☐ Shortcode {{< learning-path >}}
   ☐ Shortcode alert e alert-dark 
@@ -19,6 +18,7 @@ Bug:
   ☐ Pagina ricerca: quando il risultato della ricerca è lungo il testo fa overflow nel footer
 
 Archive:
+  ✔ Controllare schema.org di tutte le schede ad esempio author @done(22-07-16 15:27) @project(Todo)
   ✔ Sistemare sidebar.html @done(22-07-13 18:20) @project(Todo)
   ✔ .Params.paginate . params.summaryLenght @done(22-07-13 18:19) @project(Todo)
   ✔ Controllare {{summary}} in lista.html @done(22-07-13 18:19) @project(Todo)
