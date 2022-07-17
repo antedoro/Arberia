@@ -20,6 +20,9 @@
 	<meta name="author" content="{{ site.Params.author | safeHTML }}" />
 	<meta name="keywords" content="{{ site.Params.keywords | safeHTML }}">
 
+	<link href="{{ .Permalink }}/atom.xml" rel="alternate" title="{{ .Title }}" type="application/atom+xml">
+	<link rel="manifest" href="{{ .Permalink }}/manifest.json"> */}}
+
 	{{ partial "schema.html" . }}
 
 	{{ "<!-- RSS controllare -->" | safeHTML }}
@@ -72,23 +75,6 @@
 	{{/*  <link rel="stylesheet" href="{{ "/css/" | relURL }}{{ . }}"> */}}
 	{{ end }}
 
-
-	<!-- Styles & Scripts Unire CSS-->
-	{{/*  {{ $app_css := resources.Get "app.css" }}
-	<!---->
-	{{ $custom_css := resources.Get "custom.css" }}
-	<!---->
-	{{ $css := slice $app_css $custom_css | resources.Concat "app.css" | minify }}
-	<link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}" /> */}}
-
-
-	{{/*  {{ $css := resources.Match "css/*.css" | resources.Concat "main.css" | minify | fingerprint }} */}}
-	{{/*  <link rel="stylesheet" href="{{ $css.Permalink }}"> */}}
-	{{/*  <link rel="stylesheet" type="text/css" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}"
-	media='all' />
-
-	<link href="https://realpython.com/atom.xml" rel="alternate" title="{{ .Title }}" type="application/atom+xml">
-	<link rel="manifest" href="https://realpython.com/manifest.json"> */}}
 
 	{{ "<!-- OpenGraph + Twitter + Analytics + Disqus -->" | safeHTML }}
 	{{- if hugo.IsProduction | or (eq .Site.Params.env "production") }}
