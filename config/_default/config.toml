@@ -46,12 +46,17 @@ theme = "arberia"
 # link = "js/customJS.js"
 
 
+# Generate favicon with https://realfavicongenerator.net/
+# and copy favicon folder (name it facicon) to static/ folder
 [assets]
   favicon = "favicon/favicon.ico"
   favicon16x16 = "favicon/favicon-16x16.png>"
   favicon32x32 = "favicon/favicon-32x32.png"
   apple_touch_icon = "favicon/apple-touch-icon.png"
-  safari_pinned_tab = "favicon/safari-pinned-tab.svg>"
+  safari_pinned_tab = "favicon/safari-pinned-tab.svg"
+  # safari_color = "18354c"
+  # theme_color = "#18354c"
+  # msapplication_TileColor = "#ffc40d"
 
 
 

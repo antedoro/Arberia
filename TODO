@@ -1,7 +1,7 @@
 Todo:
   Gestione immagini: @critical
     ☐ controllare tutte le immagini
-  ☐ Search engine @low 85% vedi thema stack
+  ☐ Search engine @low 85% vedi thema stack oppure https://www.sametbh.com/docs/64-programming/static-site-generators/hugo/implementing-search-hugo/
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
   ☐ Sistemare mailchimp "Python Tricks" sui post
   ☐ Shortcode {{< learning-path >}}
