@@ -1,7 +1,7 @@
 		{{/*  Logo + site name  */}}
 		{{ $Title := .Site.Title }}
         {{ with site.Params }}
-        {{/*  {{ if .siteBrand }}
+        {{ if .siteBrand }}
         <a class="navbar-brand" href="{{ print `/` | relLangURL }}">
             <img src="{{ .BrandLogo | relURL }}" class="d-inline-block align-top" alt="{{ $Title }}" width="{{ .siteBrandWidth }}"
                 height="{{ .siteBrandHeight }}">
@@ -9,7 +9,7 @@
         {{ else }}
 		<a class="navbar-brand" style="color:{{.siteBrandFontColor}}" href="{{ print `/` | relLangURL }}">{{ $Title }}</a>
         <a class="navbar-brand" style="color: #ccc" href="">{{ .Site.Title }}</a>
-        {{ end }}  */}}
+        {{ end }}
 
 		
 
@@ -58,14 +58,14 @@
 		</style>
 
 
-		<a class="nav-item float-left" href="{{ .Site.relURL }}">
+		{{/*  <a class="nav-item float-left" href="{{ .Site.relURL }}">
 		<img class="brand-logo shadow-lg d-inline-block align-top" width=""
 		height="72" src="{{ .logo | relURL }}" alt="logo">
 		<div class="brand ml-2 mt-1" style="margin-right: 10px">
 		    <div class="brand-name d-inline-block align-top">Arberia Theme</div>
 		    <div class="brand-tagline">TECH INSIDE!</div>
 		</div>
-		</a>
+		</a>  */}}
 
 
 		{{end}} 

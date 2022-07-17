@@ -2,7 +2,7 @@
 
 # Brand Bar (inside header)
 siteBrand = true
-# BrandLogo = "img/real-python-logo.svg"
+BrandLogo = "img/arberia-theme-logo.svg"
 # BrandLogo = ""
 logo = "img/kodra-logo.jpg"
 siteBrandWidth = 165
