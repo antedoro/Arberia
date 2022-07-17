@@ -106,11 +106,11 @@ title = ""
 weight = 3
 
 [[menu.main]]
-identifier = "python_tutorials"
-pre = "fa fa-graduation-cap"
-post = "In deep articles and tutorials"
-name = "Python Tutorials"
-url = "/python-tutorials/"
+identifier = "list_view"
+pre = "fa fa-list"
+post = "Post list view of all posts"
+name = "List View →"
+url = "/posts/"
 title = ""
 weight = 4
 parent = "tutorial"
@@ -118,11 +118,11 @@ parent = "tutorial"
   color = "#ff7e73"
 
 [[menu.main]]
-identifier = "python_topics"
-pre = "fa fa-tag"
-post = "Focus on specific area level"
-name = "Python Topics →"
-url = "/python-topics/"
+identifier = "grid_view"
+pre = "fa fa-th"
+post = "Post grid view of all posts"
+name = "Grid View →"
+url = "/portfolio/"
 title = ""
 weight = 5
 parent = "tutorial"
@@ -130,23 +130,23 @@ parent = "tutorial"
   color = "#abe5b1"
 
 [[menu.main]]
-identifier = "video"
-pre = "fa fa-film"
-post = "Step-by-step video lesson"
-name = "Video Tutorial"
-url = "/portfolio/"
+identifier = "post_view_sidebar"
+pre = "fa fa-file-text-o"
+post = "Single post view with sidebar"
+name = "Single Post View With Sidebar"
+url = "/post-with-sidebar/"
 title = ""
 weight = 6
 parent = "tutorial"
 [menu.main.params]
-  color = "#abe0e5"
+  color = "#ffc873"
 
 [[menu.main]]
-identifier = "quizzies"
-pre = "fa fa-trophy"
-post = "Check your learning progress"
-name = "Quizzies→"
-url = "/quizzies/"
+identifier = "post_view_no_sidebar"
+pre = "fa fa-file-text-o"
+post = "Single post view without sidebar"
+name = "Single Post View Without Sidebar"
+url = "/post-without-sidebar/"
 title = ""
 weight = 7
 parent = "tutorial"
@@ -154,26 +154,50 @@ parent = "tutorial"
   color = "#ffc873"
 
 [[menu.main]]
-identifier = "unlock"
-pre = "fa fa-star text-warning"
-post = ""
-name = "Unlock All Content"
-url = "/quizzies/"
+identifier = "post_view_cover"
+pre = "fa fa-picture-o"
+post = "Single post view with cover image"
+name = "Single Post View with Cover"
+url = "/post-with-cover-image/"
 title = ""
 weight = 8
+parent = "tutorial"
+[menu.main.params]
+  color = "#abe0e5"
+
+[[menu.main]]
+identifier = "video_post"
+pre = "fa fa-film"
+post = "Single post view of video post"
+name = "Video Post"
+url = "/solidworks-2020-tutorials/"
+title = ""
+weight = 9
+parent = "tutorial"
+[menu.main.params]
+  color = "#abe0e5"
+
+[[menu.main]]
+identifier = "landinpage"
+pre = "fa fa-star text-warning"
+post = "Insert html on index.md file"
+name = "Landing Page"
+url = "/landingpage/"
+title = ""
+weight = 10
 parent = "tutorial"
 [menu.main.params]
   color = ""
   bordertop = true
 
 [[menu.main]]
-identifier = "libri"
+identifier = "books"
 pre = ""
 post = ""
 name = "Libri"
 url = "/libri"
 title = ""
-weight = 9
+weight = 11
 
 [[menu.main]]
 identifier = "contact"
@@ -182,7 +206,7 @@ post = ""
 name = "Contatti"
 url = "/contatti/"
 title = ""
-weight = 10
+weight = 12
 
 [[menu.main]]
 identifier = "about"
@@ -191,7 +215,7 @@ post = ""
 name = "About "
 url = "/about/"
 title = ""
-weight = 11
+weight = 13
 
 
 # [[menu.main]]

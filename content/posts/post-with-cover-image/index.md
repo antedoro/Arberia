@@ -1,11 +1,11 @@
 ---
-title: Esempio4
+title: Post with Cover Image
 subtitle: Insert a subtitle here
-date: 2022-07-05T22:08:01+02:00
-lastmod: 2022-07-05T22:08:01+02:00
+date: 2022-07-06T21:08:01+02:00
+lastmod: 2022-07-06T21:08:01+02:00
 draft: true
 weight: null
-type: standard-view
+type: cover-view
 
 author: author
 authorLink: ""
@@ -26,14 +26,15 @@ resources:
   - name: featured-image
     src: featured-image.png
 
+
 featured: false
-sidebar: false
+sidebar: true
 toc: false
 math:
   enable: false
 lightgallery: false
 license: ""
-slug: esempio4
+slug: post-with-cover-image
 ---
 
 The following is a code sample using the "highlight" shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.
