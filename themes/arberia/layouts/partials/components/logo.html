@@ -1,37 +1,39 @@
 		{{/*  Logo + site name  */}}
-        {{ $Title := .Site.Title }}
+		{{ $Title := .Site.Title }}
         {{ with site.Params }}
-        {{ if .siteBrand }}
+        {{/*  {{ if .siteBrand }}
         <a class="navbar-brand" href="{{ print `/` | relLangURL }}">
             <img src="{{ .BrandLogo | relURL }}" class="d-inline-block align-top" alt="{{ $Title }}" width="{{ .siteBrandWidth }}"
                 height="{{ .siteBrandHeight }}">
         </a>
         {{ else }}
-        <a class="navbar-brand" style="color:{{.siteBrandFontColor}}" href="{{ print `/` | relLangURL }}">{{ $Title }}</a>
-        {{ end }}
+		<a class="navbar-brand" style="color:{{.siteBrandFontColor}}" href="{{ print `/` | relLangURL }}">{{ $Title }}</a>
+        <a class="navbar-brand" style="color: #ccc" href="">{{ .Site.Title }}</a>
+        {{ end }}  */}}
 
+		
 
 
 
 		<style>
 		    .nav-brand {
-		        /* margin: 30px; */
-		        /*  margin-top: 26px;  */
-		        padding: 20px 15px 15px;
-		        vertical-align: middle;
+				position: absolute;
+		        margin-left: 5px; 
+		        margin-top: 20px; 
+		        padding: 0;
+		        vertical-align: left;
 		        box-sizing: content-box;
 		        transform: scale(1.);
 		        transform-origin: left;
-		        overflow: hidden;
-		        position: absolute;
+		        overflow: hidden;		        
 		    }
 
 		    .brand-logo {
-		        border: 4px solid white;
+		        border: 3px solid white;
 		        border-radius: 50%;
 		        padding: 1px;
-		        max-width: 78px;
-		        max-height: 78px;
+		        max-width: 72px;
+		        max-height: 72px;
 		    }
 
 		    .brand {
@@ -49,18 +51,33 @@
 		    }
 
 		    .brand-tagline {
-		        font-size: 1.115rem;
+		        font-size: .75rem;
 		        font-weight: 400;
 		        line-height: 1.2;
 		    }
 		</style>
 
 
-		{{/*  <a class="nav-brand" href="{{ .Site.relURL }}">
-		<img class="brand-logo shadow-lg" class="d-inline-block align-top" src="{{ .logo | relURL }}" alt="logo">
-		<div class="brand">
-		    <div class="brand-name">ANTEDORODESIGN</div>
+		<a class="nav-item float-left" href="{{ .Site.relURL }}">
+		<img class="brand-logo shadow-lg d-inline-block align-top" width=""
+		height="72" src="{{ .logo | relURL }}" alt="logo">
+		<div class="brand ml-2 mt-1" style="margin-right: 10px">
+		    <div class="brand-name d-inline-block align-top">Arberia Theme</div>
 		    <div class="brand-tagline">TECH INSIDE!</div>
 		</div>
-		</a> */}}
-		{{end}}
+		</a>
+
+
+		{{end}} 
+
+		{{/*  <div class="nav-link">
+			<p class="text-muted" style="">
+				<img class="brand-logo float-left shadow-lg"
+					title="{{ .Title | markdownify }}"
+					src="/img/kodra-logo.jpg"
+					srcset="/img/kodra-logo.jpg 250w, 
+					/img/kodra-logo.jpg 450w, 
+					/img/kodra-logo.jpg 900w" sizes="25vw"
+					alt="{{- .Title  | markdownify -}}" width="72" height="72"> 
+					<div class="brand-name text-white"> Testo qualsiasi</div> </p>
+		</div>  */}}
