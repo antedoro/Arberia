@@ -22,7 +22,7 @@ YTChannelID = "UClA8GwWzurVCprEY6OsCvhw"
 contact_form_action = "https://formspree.io/f/mvovbvga"
 
 # #################### default parameters ################################
-# numbero of post on pagination list
+# number of post on pagination list
 paginate = "6"
 # summary lenght on list post 
 summaryLength = "225"

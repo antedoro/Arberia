@@ -38,7 +38,7 @@ playlist:
       link: https://www.youtube.com/watch?v=taxItkTlY_0&list=PL4u4xn4ysGypW6MSxYvEMR81Thkw3vFP-&index=1
       duration: 14:16
     - title: "Solidworks: come creare una assieme"
-      icon: far fa-circle
+      icon: fa fa-circle-o
       link: https://www.youtube.com/watch?v=93q2pPeHN0s&list=PL4u4xn4ysGypW6MSxYvEMR81Thkw3vFP-&index=3
       duration: 4:42
 
