@@ -30,7 +30,7 @@ tags:
   - tag3
   - tag4
 categories:
-  - category
+  - video-tutorial
 
 resources:
 - name: "featured-image"
