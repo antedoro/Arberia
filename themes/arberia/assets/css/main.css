@@ -6804,6 +6804,23 @@ a.badge-linkedin:focus {
     box-shadow: 0 0 0 .2rem rgba(0, 119, 181, .5)
 }
 
+.badge-pocket {
+    color: #212529;
+    background-color: green
+}
+
+a.badge-pocket:focus,
+a.badge-pocket:hover {
+    color: #212529;
+    background-color: green
+}
+
+a.badge-pocket.focus,
+a.badge-:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(85, 172, 238, .5)
+}
+
 .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;

@@ -35,28 +35,16 @@ googleAnalytics = "UA-74607909-1" # example : UA-123-45
 # unsafe html
 
 
-[share]
+[social.share]
     enable = true
     Twitter = true
     Facebook = true
-    Linkedin = false
+    Linkedin = true
     Whatsapp = false
+    Telegram = false
+    Email = true
     Pinterest = false
-    Tumblr = false
-    HackerNews = true
     Reddit = false
-    VK = false
-    Buffer = false
-    Xing = false
-    Line = true
-    Instapaper = false
     Pocket = false
-    Flipboard = false
-    Weibo = true
-    Blogger = false
-    Baidu = false
-    Odnoklassniki = false
-    Evernote = false
-    Skype = false
-    Trello = false
-    Mix = false
+    Instapaper = false
+

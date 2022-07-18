@@ -1,6 +1,6 @@
 {{/*  {{- $params := .Scratch.Get "params" -}} */}}
 
-<div class="row mb-5">
+<div class="row mb-4">
     {{- $featured := (where (where .Site.RegularPages "Section" "posts" ) "Params.featured" "=" true) -}}
     {{ range first 1 $featured }}
     <div class="col-md-12 col-lg-8">
