@@ -13,6 +13,15 @@ theme = "arberia"
 #   mainSections = ['posts',]
 
 
+
+# New "examples" taxonomy available
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  example = "examples"
+
+
+
 # [outputs]
 #  home = ["HTML", "AMP", "RSS", "JSON"]
 

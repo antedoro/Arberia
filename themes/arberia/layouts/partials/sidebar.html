@@ -7,12 +7,12 @@
 		{{/*  {{- partial "recent-widget.html" . -}} Recent Post Collection */}}
 		{{/*  {{- partial "components/email-subscription.html"  -}}Email Subscription */}}
 		{{/*  {{- partial "components/tag.html"  -}} TAG Topics  */}}
-		{{- partial "components/tag-collection.html"  -}} {{/* TAG Collection  */}}
+		{{ partial "components/tag-cloud.html" . }}
 		{{ with .Params.toc }}  {{/*  Table of Contents on sidebar  */}}
 		{{- partial "components/toc.html" . -}}
 		{{ end }}
 		{{/*  {{- partial "components/completed-mark.html" . -}} */}}
-		{{- partial "components/share-button.html"  -}} 
+		{{/*  {{- partial "components/share-button.html"  -}}   */}}
 		{{/*  {{- partial "components/adv-sd.html"  -}} ADV Image */}}
 	</div>
 </aside>
