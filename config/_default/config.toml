@@ -18,7 +18,6 @@ theme = "arberia"
 [taxonomies]
   tag = "tags"
   category = "categories"
-  example = "examples"
 
 
 
