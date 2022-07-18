@@ -25,7 +25,9 @@
                     {{/*  Tag list  */}}
                     {{ partial "components/tag.html" . }}
                     {{/*  {{- partial "components/share-button.html"  -}}  */}}
-                    {{ partial "share-buttons.html" . }}
+                    <div class="float-right my-3">
+                        {{ partial "components/share-buttons.html" . }}
+                    </div>
 
                     <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
                         {{/*  {{ partial "components/completed-mark" . }} Mark as completed */}}
