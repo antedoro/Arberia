@@ -7,7 +7,6 @@ Todo:
   ☐ Shortcode {{< learning-path >}}
   ☐ Shortcode alert e alert-dark 
   ☐ Inserire altri shortcode
-  ☐ Sistemare share-button.html
   ☐ Sistemare logo.html @started(22-07-17 22:33) 30%
   ☐ Sistemare completed-mark.html
   ☐ Sistemare component/tag.html
@@ -18,6 +17,7 @@ Bug:
   ☐ Pagina ricerca: quando il risultato della ricerca è lungo il testo fa overflow nel footer
 
 Archive:
+  ✔ Sistemare share-button.html @done(22-07-18 19:25) @project(Todo)
   ✔ Loading css and js @started(22-07-12 15:49) @done(22-07-16 23:58) @lasted(4d8h9m44s) @project(Todo)
   ✔ Controllare schema.org di tutte le schede ad esempio author @done(22-07-16 15:27) @project(Todo)
   ✔ Sistemare sidebar.html @done(22-07-13 18:20) @project(Todo)
