@@ -39,7 +39,7 @@
 						href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{end}}  
 					{{/*  Tag list  */}}
-					{{/*  {{- partial "components/tag.html"  -}}  */}}
+					{{- partial "components/tag.html"  -}}
 				</p>
 
 				<p class="text-muted my-0 mt-1 small">{{ .Summary | truncate (.Site.Params.summaryLength | default 225) | safeHTML }}

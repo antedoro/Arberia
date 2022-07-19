@@ -14,10 +14,10 @@ description: Abbiamo selezionato alcuni accesori indispensabili se decidi di acq
   portabici per automobile
 
 tags:
-  - tag1
-  - tag2
-  - tag3
-  - tag4
+  - pippo
+  - pluto
+  - paperino
+  - qui
 categories:
   - lesson-path
 
