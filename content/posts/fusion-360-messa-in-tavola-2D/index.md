@@ -52,7 +52,7 @@ playlist:
       link:  # YouTube Video Link for example: https://www.youtube.com/embed/taxItkTlY_0
       duration: # Example 14:16
     - title: "YouTube Video Title"
-      icon: far fa-circle
+      icon: fa fa-circle-o
       link: # YouTube Video Link for example: https://www.youtube.com/embed/taxItkTlY_0
       duration: # Example 4:42
 ---

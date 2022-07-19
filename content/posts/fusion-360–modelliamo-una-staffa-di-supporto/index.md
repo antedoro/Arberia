@@ -39,15 +39,15 @@ playlist:
       link: https://youtu.be/SWCSc1VGjuI
       duration: 6:28
     - title: "02 - Fusion360 | Modelliamo una biella"
-      icon: far fa-circle
+      icon: fa fa-circle-o
       link: https://youtu.be/UVO_DqfUtaA
       duration: 4:50
     - title: "03 - Fusion360 | Biella a forcella"
-      icon: far fa-circle
+      icon: fa fa-circle-o
       link: https://youtu.be/lEi2hY2qczI
       duration: 7:45
     - title: "03 - Fusion360 | Biella a forcella"
-      icon: far fa-circle
+      icon: fa fa-circle-o
       link: https://youtu.be/spQXbQOV_lQ
       duration: 6:45
 

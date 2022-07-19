@@ -65,42 +65,9 @@
                                 </div>
                                 {{ .Content }}
                         </div>
+                        {{- partial "components/mailchimp.html" . -}}
                 </div>
 
-                {{/*  {<aside class="col-md-7 col-lg-4">
-                        <div class="card mb-3 bg-secondary">
-                                <form class="card-body" action="/optins/process/" method="post">
-                                        <div class="form-group">
-                                                <p class="h5 text-muted text-center">— FREE Email Series —</p>
-                                                <p class="h3 text-center">🐍 Python Tricks 💌</p>
-                                                <p><img class="img-fluid rounded"
-                                                                src="https://cdn.realpython.com/static/pytrick-dict-merge.4201a0125a5e.png"
-                                                                alt="Python Tricks Dictionary Merge" width="738"
-                                                                height="490"></p>
-                                        </div>
-                                        <div class="form-group">
-                                                <input type="hidden" name="csrfmiddlewaretoken"
-                                                        value="DYJEp7bKdvF9dzXfnNOB0zj51bcAls297GcQVDjbqb946LhFd4f08N49aRcl8aZZ">
-                                                <input type="hidden" name="slug" value="static-python-tricks-sidebar">
-                                                <div class="fx-relay-email-input-wrapper"><input type="email"
-                                                                class="form-control form-control-md" name="email"
-                                                                placeholder="Email…" required=""
-                                                                style="padding-right: 42px;">
-                                                        <div class="fx-relay-icon" style="top: 0px; bottom: 0px;">
-                                                                <button class="fx-relay-button" id="fx-relay-button"
-                                                                        type="button" title="Genera nuovo alias"
-                                                                        style="background-image: url(&quot;moz-extension://092266e3-5a46-4449-afd0-4a33e78788d9/icons/make-new-alias.png&quot;);"></button>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get
-                                                Python Tricks
-                                                »</button>
-                                        <p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.
-                                        </p>
-                                </form>
-                        </div>
-                </aside>    */}}
 
         </div>
 </div>
