@@ -45,11 +45,12 @@
                                 <span class="mr-2"> {{ .PublishDate.Format "January 2, 2006" }}</span>
 
                                 {{/*  Tag list  */}}
-                                <span class="ml-2 fa fa-tags" aria-hidden="true"></span>
+                                {{/*  <span class="ml-2 fa fa-tags" aria-hidden="true"></span>
                                 {{ range .Params.tags }}
                                 <a class="badge badge-light text-muted"
                                     href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-                                {{end}}
+                                {{end}}  */}}
+                                {{ partial "components/tag.html" . }}
 
                             </small>
                         </p>

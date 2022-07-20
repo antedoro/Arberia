@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="col-12 col-sm-8 px-0 pl-sm-3 pt-2 pt-sm-0">
-				<a href="{{ .Permalink }}" class="stretched-link">
+				<a href="{{ .Permalink }}" class="">
 					<h2 class="my-0 h5">{{ .Title }}<span title="In-Progress" class="float-right">
 							<i class="fas fa-circle-notch text-muted mx-1"></i></span></h2>
 				</a>
@@ -37,15 +37,14 @@
 					<span aria-hidden="true" class="fa fa-tags"></span>
 					<a class="badge badge-light text-muted mr-1"
 						href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-					{{end}}  
-					{{/*  Tag list  */}}
-					{{- partial "components/tag.html"  -}}
-				</p>
+					{{end}}
 
-				<p class="text-muted my-0 mt-1 small">{{ .Summary | truncate (.Site.Params.summaryLength | default 225) | safeHTML }}
-					{{ if .Truncated }}
-					<a href="{{ .Permalink }}">Read more...</a>
-					{{ end }}</p>
+					<p class="text-muted my-0 mt-1 small">
+						{{ .Summary | truncate (.Site.Params.summaryLength | default 225) | safeHTML }}
+						{{ if .Truncated }}
+						<a href="{{ .Permalink }}">Read more...</a>
+						{{ end }}
+					</p>
 			</div>
 		</div>
 	</div>

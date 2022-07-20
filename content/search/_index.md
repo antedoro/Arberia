@@ -5,7 +5,7 @@ date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-27T21:28:23+02:00
 draft: true
 author: Vincenzo Antedoro
-authorLink: antedoro.it
+authorLink: 
 description: Descrizione da rivedere se è un doppione subtitle
 weight: 1
 
@@ -14,10 +14,10 @@ type: search
 layout: "search"
 
 categories:
-  - category
+  - search
 
-hiddenFromHomePage: false
-hiddenFromSearch: false
+hiddenFromHomePage: true
+hiddenFromSearch: true
 
 resources:
   - name: featured-image
