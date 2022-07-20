@@ -4,9 +4,8 @@ Todo:
   ☐ Search engine @low 85% vedi thema stack oppure https://www.sametbh.com/docs/64-programming/static-site-generators/hugo/implementing-search-hugo/
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
   ☐ Tags and categories 30% @started(22-07-18 23:57)
-  ☐ Favicon @started(22-07-17 22:33) 50%
   ☐ Sistemare logo.html @started(22-07-17 22:33) 30%
-  ☐ Sistemare component/tag.html @started(22-07-16 23:58)
+  ☐ /tags e /categories rendering @started(22-07-20 17:59)
   ☐ Cookie law
   ☐ Shortcode {{< learning-path >}}
   ☐ Shortcode alert e alert-dark 
@@ -14,11 +13,12 @@ Todo:
   ☐ Sistemare completed-mark.html
   ☐ Render del summary <!--more-->
   
-  
 Bug:
   ☐ Pagina ricerca: quando il risultato della ricerca è lungo il testo fa overflow nel footer
 
 Archive:
+  ✔ Favicon @started(22-07-17 22:33) 50% @done(22-07-20 17:58) @lasted(2d19h25m57s) @project(Todo)
+  ✔ Sistemare component/tag.html @started(22-07-16 23:58) @done(22-07-20 17:58) @lasted(3d18h9s) @project(Todo)
   ✔ Sistemare mailchimp "Python Tricks" sui post @done(22-07-18 23:56) @project(Todo)
   ✔ Sistemare share-button.html @done(22-07-18 19:25) @project(Todo)
   ✔ Loading css and js @started(22-07-12 15:49) @done(22-07-16 23:58) @lasted(4d8h9m44s) @project(Todo)
