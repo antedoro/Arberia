@@ -1,10 +1,14 @@
-{{/*  <div class="searchbox default-animation">
-  <label for="search-by"><i class="fas fa-search"></i></label>
-  <input data-search-input id="search-by" type="search" placeholder="{{ T "Search-placeholder" }}">
-  <span data-search-clear=""><i class="fas fa-times"></i></span>
-</div>
-{{- $assetBusting := not .Site.Params.disableAssetsBusting }}
-<script src="{{"js/lunr.min.js" | relURL}}"></script>
-<script src="{{"js/auto-complete.js" | relURL}}"></script>
-<script src="{{ "js/search.js" | relURL }}"></script>  */}}
+{{/*  Search function - It's important to insert this script at the end of head.tml */}}
+{{- if (eq .Layout `search`) -}}
+{{ $flexsearch := resources.Get "js/flexsearch.bundle.js" }}
+<script defer crossorigin="anonymous" src="{{ $flexsearch.RelPermalink }}"
+  integrity="{{ $flexsearch.Data.Integrity }}"></script>
 
+{{ $mark := resources.Get "js/mark.min.js" }}
+{{ $basesearch := resources.Get "js/search.js" }}
+
+{{ $searchJSFile := printf "js/%s.search.js" .Language.Lang }}
+{{ $search := (slice $mark $basesearch) | resources.Concat "js/search.js" | resources.ExecuteAsTemplate $searchJSFile . | resources.Fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}">
+</script>
+{{- end -}}

@@ -12,24 +12,23 @@ theme = "arberia"
 # [params]
 #   mainSections = ['posts',]
 
-
-
-# New "examples" taxonomy available
 [taxonomies]
   tag = "tags"
   category = "categories"
 
-
-
-# [outputs]
-#  home = ["HTML", "AMP", "RSS", "JSON"]
-
 [outputs]
-  home = ["HTML", "JSON", "RSS"]
+  home = ["HTML", "JSON", "RSS", "AMP"]
   page = ["HTML"]
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML", "RSS"]
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 5
+    ordered = false
+    tocMinWordCount = 100 # Minimum word count to display the Table of Contents
 
 [markup.goldmark.renderer] # Controllare cosa faccia
   unsafe = true
@@ -40,6 +39,7 @@ theme = "arberia"
 [minify]
   minifyOutput = true
 
+enableRobotsTXT= true
 
 
 ############################# Plugins ##############################
@@ -67,19 +67,6 @@ theme = "arberia"
   # msapplication_TileColor = "#ffc40d"
 
 
-
-[markup]
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 5
-    ordered = false
-    tocMinWordCount = 100 # Minimum word count to display the Table of Contents
-
-# [tableOfContents]
-#   startLevel = 2
-#   endLevel = 5
-#   ordered = false
-#   tocMinWordCount = 500
 
 
 

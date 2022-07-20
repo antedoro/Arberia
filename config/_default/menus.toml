@@ -1,5 +1,13 @@
 # ################### Menu ###################
 
+# Elenco colori da usare nel  menu 
+    # "color: #ff7e73;
+    # "color: #abe5b1;
+    # "color: #abe0e5;
+    # "color: #ffc873;
+    # "color: #e5c6ab;
+    # "color: #b8abe5; 
+
 # # [[menu.main]]
 # # identifier = "home"
 # # pre = ""
