@@ -3,73 +3,46 @@
 <div class="container main-content">
     <div class="row justify-content-center">
 
-        <h1>All posts for {{ .Type | singularize }} "{{ .Title }}"</h1>
-        <ul>
-            {{ range .Data.Pages }}
-            <li>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-            </li>
-            {{ end }}
-        </ul>
-    </div>
-</div>
-</div>
+        <div class="col-md-11 col-lg-10 article">
+            <div class="article-body page-body">
 
-<div class="container main-content">
-    <div class="row justify-content-center">
+                {{/*  Title  */}}
+                <h1 class="text-center mt-5" id="page-title">All {{ .Type | singularize }} "{{ .Title }}"
+                    <a class="headerlink" href="{{- .RelPermalink -}}" title="Permanent link"></a>
+                </h1>
 
-        {{/*  Title  */}}
-        <h1 class="text-center" id="page-title">All posts for {{ .Type | singularize }} "{{ .Title }}"
-            <a class="headerlink" href="{{- .RelPermalink -}}" title="Permanent link"></a>
-        </h1>
-
-        {{/*  Subtitle */}}
-        {{ with .Params.subtitle }}
-        <p class="text-center text-muted">{{ . | markdownify }}</p>
-        {{ end }}
-
-        {{- /* Cover Image */ -}}
-        {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
-        {{ with $img }}
-        {{ $imageName := $img.Title }}
-        {{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
-        {{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
-        {{ end }}
-
-        <div id="listArea" class="col-md-11 col-lg-10 article">
-            {{ $paginator := .Paginate (.Data.Pages ) (.Site.Params.paginate | default 5) }}
-            <div class="container my-3">
-                {{ range $paginator.Pages.ByDate.Reverse }}
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-                <hr style="border: 0; border-color: #dee2e6">
+                {{/*  Subtitle */}}
+                {{ with .Params.subtitle }}
+                <p class="text-center text-muted">{{ . | markdownify }}</p>
                 {{ end }}
-            </div>
 
-            {{/*  Paginator style 2  */}}
-            <div class="text-muted my-0 mt-1" style="display: flex; justify-content: center;">
-                {{ partial "paginator.html" . }}
-            </div>
 
+                <div class="container text-center my-3">
+                    {{ if ne (len $.Site.Taxonomies.tags) 0 }}
+                    {{ $largestFontSize := 1.4 }}
+                    {{ $smallestFontSize := 1.0 }}
+                    {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+                    {{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
+                    {{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+                    {{ $spread := sub $max $min }}
+                    {{ $fontStep := div $fontSpread $spread }}
+                    {{ range $name, $taxonomy := $.Site.Taxonomies.tags }}
+                    {{ $tagCount := len $taxonomy.Pages }}
+                    {{ $currentFontSize := (add $smallestFontSize (mul (sub $tagCount $min) $fontStep) ) }}
+                    {{ $weigth := div (sub (math.Log $tagCount) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+                    {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth)) }}
+                    <a href="{{ "/tags/" | relURL }}{{ $name | urlize }}"
+                        class="badge badge-light text-muted m-1"
+                        style="font-size: {{ $currentFontSize }}rem;">
+                        {{ $name }}<sup>{{ $tagCount }}</sup>
+                    </a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
-
-
-{{/*  <section>
-    {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-      {{ if eq "categories" $taxonomyname }}
-        {{ range $key, $value := $taxonomy }}
-          <div>{{ $key }}</div>
-          <ul>
-          {{ range $value.Pages }}
-            <li>{{ .Date }} {{ .Title }}</li>
-          {{ end }}
-          </ul>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  </section>  */}}
-  
-    
 
 {{ end}}

@@ -24,14 +24,12 @@
 
                     {{/*  Tag list  */}}
                     {{ partial "components/tag.html" . }}
-                    {{/*  {{- partial "components/share-button.html"  -}}  */}}
                     <div class="float-right mt-2">
                         {{ partial "components/share-buttons.html" . }}
                     </div>
 
                     <div class="d-sm-flex flex-row justify-content-between my-3 text-center">
                         {{/*  {{ partial "components/completed-mark" . }} Mark as completed */}}
-                        {{/*  {{ partial "components/share-button" . }} Share button */}}
                     </div>
                 </span>
             </div>
@@ -56,24 +54,15 @@
             {{ partial "recent-widget-new.html" . }} {{/* TAG Collection  */}}
             {{/*  {{ partial "recent-widget.html" . }} Recent Post Collection */}}
             {{/*  {{- partial "components/email-subscription.html"  -}}Email Subscription */}}
-            {{/*  {{- partial "components/tag-collection.html"  -}} TAG Topics */}}
-
-            {{/*  TAG Topics  */}}
-            {{/*  <div class="sidebar-module sidebar-module-inset border">
-            <p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial
-                    Topics</a></p>
-            {{ range (.GetTerms "tags") }}
-            <a href="{{ .Permalink }}" class="badge badge-light text-muted">{{ .Page.Title | markdownify }}</a>
+            {{/*  {{- partial "components/completed-mark.html" . -}} */}}
+            {{/*  {{- partial "components/adv-sd.html"  -}} ADV Image */}}
+            {{/*  Table of Contents on sidebar  */}}
+            {{- partial "components/tag-cloud.html" . -}}
+            {{ if .Params.toc }}
+            {{- partial "components/toc.html" . -}}
             {{ end }}
-    </div> */}}
+    </div>
 
-    {{- partial "components/tag-collection.html" . -}}
-    {{/*  Table of Contents on sidebar  */}}
-    {{ if .Params.toc }}
-    {{- partial "components/toc.html" . -}}
-    {{ end }}
-    {{/*  {{- partial "components/completed-mark.html" . -}} */}}
-    {{/*  {{- partial "components/adv-sd.html"  -}} ADV Image */}}
     </aside>
 
 </div>
