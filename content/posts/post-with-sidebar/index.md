@@ -88,11 +88,5 @@ You should also have a Git client installed and configured so that you can inter
 
 You should also have a Git client installed and configured so that you can interact conveniently with the Heroku platform from the command line. Finally, you should seriously consider using a virtual environment for your project. If you don’t already have a specific virtual environment tool in mind, you’ll find some options in this tutorial soon.
 
-{{< alert "[**Click here to get the companion Django project as well as snapshots of the individual steps**](https://realpython.com/bonus/django-hosting-heroku-project-code/) followed in this tutorial.">}}
+___
 
-
-{{< learning-path >}}
-{{< learning-path >}}
-{{< learning-path >}}
-
-{{< alert-dark >}}
