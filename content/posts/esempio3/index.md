@@ -17,7 +17,7 @@ tags:
   - tag3
   - tag4
 categories:
-  - category
+  - markdown
 
 hiddenFromHomePage: false
 hiddenFromSearch: false

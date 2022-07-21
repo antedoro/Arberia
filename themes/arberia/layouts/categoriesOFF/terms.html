@@ -1,0 +1,62 @@
+
+
+{{ define "main"}}
+
+<!-- Main Content -->
+<div class="container main-content">
+    <div class="row justify-content-center">
+
+        {{/*  Title  */}}
+        <h1 class="text-center" id="page-title">All posts for {{ .Type | singularize }} "{{ .Title }}"
+            <a class="headerlink" href="{{- .RelPermalink -}}" title="Permanent link"></a>
+        </h1>
+
+        {{/*  Subtitle */}}
+        {{ with .Params.subtitle }}
+        <p class="text-center text-muted">{{ . | markdownify }}</p>
+        {{ end }}
+
+            <a name="top"></a>
+            {{ if not (eq (len $.Data.Terms) 0) }}
+            <div>
+                <div class="tagcloud03">
+                    <ul>
+                        {{ range .Data.Terms.Alphabetical }}
+                        <li>
+                            <a href="#{{ .Page.Title | urlize}}">{{ .Page.Title }}
+                                <span class="badge badge-primary">{{ .Count }}</span>
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                
+                <div>
+                    {{ range .Data.Terms.Alphabetical }}
+                    <h3>
+                        {{/*  <a name="{{ .Page.Title | urlize }}"></a>{{ .Page.Title}}  */}}
+                        <a href="{{ .Page.Title | urlize}}">{{ .Page.Title }}
+                        <i class="badge badge-linkedin">{{ .Count }}</i>
+                    </h3>
+                    <ul class="list-group striped-list">
+                        {{ range .Pages }}
+                        <li class="list-group-item">
+                            <a href="{{ .RelPermalink }}">
+                                {{ .Title }} {{ if .Params.subheadline }} ({{ .Params.subheadline }}){{ end }} -
+                                <small>{{ .PublishDate.Format "Jan 02, 2006" }}</small></a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                    <a href="#top">
+                        <small>back to top</small>
+                    </a>
+                    {{ end }}
+                </div>
+
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+{{ end }}
