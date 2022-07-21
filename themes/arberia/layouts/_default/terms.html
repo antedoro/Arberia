@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{/*  <div class="container main-content">
+<div class="container main-content">
     <div class="row justify-content-center">
 
         <h1>All posts for {{ .Type | singularize }} "{{ .Title }}"</h1>
@@ -13,7 +13,7 @@
         </ul>
     </div>
 </div>
-</div>  */}}
+</div>
 
 <div class="container main-content">
     <div class="row justify-content-center">
@@ -55,7 +55,7 @@
 </div>
 
 
-<section>
+{{/*  <section>
     {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
       {{ if eq "categories" $taxonomyname }}
         {{ range $key, $value := $taxonomy }}
@@ -68,7 +68,7 @@
         {{ end }}
       {{ end }}
     {{ end }}
-  </section>
+  </section>  */}}
   
     
 
