@@ -1,5 +1,5 @@
 <!-- List Post Area -->
-<div id="listArea" class="col-md-11 col-lg-8 article">
+<div id="listArea" class="article">
 
 {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") (.Site.Params.paginate | default 5) }}
 
