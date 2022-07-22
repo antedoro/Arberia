@@ -34,13 +34,21 @@ license: ""
 slug: theme-shortcode
 ---
 
-## Alert 
+## Alert
 
-{{< alert-primary "[**Click here to get an example of primary alert**](https://antedoro.it/) followed in this tutorial.">}}
+Shortcode to inset varius alert on markdown post use this code:
 
-{{< alert-success"[**Click here to get an example of success alert**](https://antedoro.it/) followed in this tutorial.">}}
+```markdown
+{{</* alert-info "[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial."*/>}}
+{{</* alert-success "[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial."*/>}}
+{{</* alert-warning "[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial."*/>}}
+{{</* alert-danger "[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial."*/>}}
+{{</* alert-dark "[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial."*/>}}
+```
 
 {{< alert-info "[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial.">}}
+
+{{< alert-success"[**Click here to get an example of success alert**](https://antedoro.it/) followed in this tutorial.">}}
 
 {{< alert-warning"[**Click here to get an example of warning alert**](https://antedoro.it/) followed in this tutorial.">}}
 
@@ -52,7 +60,6 @@ slug: theme-shortcode
 {{< learning-path >}}
 
 {{< list-element  title="Who I am?"  link="/about/" photo="artwork.webp" summary="My name is Vincenzo Antedoro. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.">}}
-
 
 {{< playlist >}}
 

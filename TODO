@@ -6,7 +6,6 @@ Todo:
   ☐ Sistemare logo.html @started(22-07-17 22:33) 30%
   ☐ Cookie law
   ☐ Shortcode {{< learning-path >}}
-  ☐ Shortcode alert e alert-dark 
   ☐ Inserire altri shortcode
   ☐ Sistemare completed-mark.html
   ☐ Render del summary <!--more-->
@@ -16,6 +15,7 @@ Bug:
   ☐ Pagina /posts sistemare titolo e sottotitolo
 
 Archive:
+  ✔ Shortcode alert e alert-dark @done(22-07-21 22:01) @project(Todo)
   ✔ Tags and categories 100% @started(22-07-18 23:57) @done(22-07-21 14:22) @lasted(2d14h25m32s) @project(Todo)
   ✔ Favicon @started(22-07-17 22:33) 50% @done(22-07-20 17:58) @lasted(2d19h25m57s) @project(Todo)
   ✔ Sistemare component/tag.html @started(22-07-16 23:58) @done(22-07-20 17:58) @lasted(3d18h9s) @project(Todo)
