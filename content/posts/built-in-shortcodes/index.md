@@ -1,6 +1,6 @@
 ---
 title: Build in Shortcodes
-subtitle: Insert a subtitle here
+subtitle: Build in Hugo shortcodes
 date: 2022-07-22T08:53:46+02:00
 lastmod: 2022-06-24T18:28:32+02:00
 draft: true
@@ -16,7 +16,7 @@ tags:
   - hugo
 
 categories:
-  - category
+  - theme-usage
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
@@ -26,7 +26,7 @@ resources:
     src: featured-image.png
 
 featured: false
-sidebar: true
+sidebar: false
 toc: true
 math:
   enable: false
