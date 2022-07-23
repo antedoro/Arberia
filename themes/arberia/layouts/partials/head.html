@@ -66,7 +66,7 @@
 
 	{{ "<!-- Custom CSS -->" | safeHTML }}
 	{{ range site.Params.plugins.customCSS }}
-	<link rel="stylesheet" href="{{ .link | absURL }} ">
+	<link rel="stylesheet" href="{{ .link | relURL }} ">
 	{{/*  <link rel="stylesheet" href="{{ "/css/" | relURL }}{{ . }}"> */}}
 	{{ end }}
 
