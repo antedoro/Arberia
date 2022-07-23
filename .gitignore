@@ -35,8 +35,8 @@ $RECYCLE.BIN/
 .directory
 
 # Hugo default output directory
-public/
-/exampleSite/resources/
+# public/
+# ss/exampleSite/resources/
 
 node_modules/
 build/
