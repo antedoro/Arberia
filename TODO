@@ -5,9 +5,7 @@ Todo:
   ☐ Contact Form (usare implementazione php tema Zen https://github.com/frjo/hugo-theme-zen  )
   ☐ Sistemare logo.html @started(22-07-17 22:33) 30%
   ☐ Cookie law
-  ☐ Shortcode {{< learning-path >}}
   ☐ Inserire altri shortcode
-  ☐ Sistemare completed-mark.html
   ☐ Render del summary <!--more-->
   ☐ BackToTop button /components/bactotop.html
   
@@ -16,6 +14,8 @@ Bug:
   ☐ Pagina /posts sistemare titolo e sottotitolo
 
 Archive:
+  ✘ Sistemare completed-mark.html @cancelled(22-07-23 22:42) @project(Todo)
+  ✔ Shortcode {{< learning-path >}} @done(22-07-23 22:42) @project(Todo)
   ✔ Shortcode alert e alert-dark @done(22-07-21 22:01) @project(Todo)
   ✔ Tags and categories 100% @started(22-07-18 23:57) @done(22-07-21 14:22) @lasted(2d14h25m32s) @project(Todo)
   ✔ Favicon @started(22-07-17 22:33) 50% @done(22-07-20 17:58) @lasted(2d19h25m57s) @project(Todo)
