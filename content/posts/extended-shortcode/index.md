@@ -60,12 +60,9 @@ Shortcode to inset varius alert on markdown post use this code:
 
 {{< alert-dark "[**Click here to get an example of dark alert**](https://antedoro.it/) followed in this tutorial.">}}
 
-## Learning Path
+## List Element
 
-{{< learning-path >}}
-{{< learning-path >}}
-
-{{< list-element  title="Who I am?"  link="/about/" photo="artwork.webp" summary="My name is Vincenzo Antedoro. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.">}}
+{{< list-element  title="Who I am?"  link="/about/" photo="featured-image.png" summary="My name is Vincenzo Antedoro. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.">}}
 
 ## Playlist of videos
 

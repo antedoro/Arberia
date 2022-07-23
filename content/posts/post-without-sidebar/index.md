@@ -91,11 +91,6 @@ You should also have a Git client installed and configured so that you can inter
 
 {{< alert-info"[**Click here to get the companion Django project as well as snapshots of the individual steps**](https://realpython.com/bonus/django-hosting-heroku-project-code/) followed in this tutorial.">}}
 
+{{< list-element  title="Who I am?"  link="/about/" photo="Real-Python-Learning-Paths_Watermarked.webp" summary="My name is Vincenzo Antedoro. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.">}}
 
-{{< learning-path >}}
-{{< learning-path >}}
-{{< learning-path >}}
 
-{{< list-element >}}
-
-{{< alert-dark >}}
