@@ -1,5 +1,5 @@
 title = "Arberia Theme"
-baseURL = "https://example.com/"
+baseURL = "https://hugoarberiatheme.netlify.app/"
 relativeURLs = "True"
 languageName = "En"
 languageCode = "en-us"
