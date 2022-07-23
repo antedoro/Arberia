@@ -3,7 +3,7 @@
 <h4 align=center>☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive</h4>
 <br>
 
-> Hugo Arberia is a theme based on [hugo-paper](https://realpython.com).
+> Hugo Arberia is a theme based on [realpython](https://realpython.com).
 > The goal of this project is to add more features and customization to the og theme.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dc64f98b-7bd0-4167-a97d-35ce36551da6/deploy-status)](https://app.netlify.com/sites/hugoarberiatheme/deploys)
