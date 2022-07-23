@@ -1,12 +1,12 @@
 {{ define "main" }}
 {{/*  <main>  */}}
 <div class="container main-content">
-	<div class="col-md-12">
+	{{/*  <div class="col-md-12">  */}}
 		<div class="row justify-content-center">
 			<!-- Sidebar -->
-			{{ if .Params.sidebar }}
+			{{/*  {{ if .Params.sidebar }}
 			{{- partial "sidebar.html" . -}}
-			{{ end }}
+			{{ end }}  */}}
 
 			{{/*  Title  */}}
 			<h1 class="text-center" id="page-title">{{ .Title | markdownify }}
@@ -29,7 +29,7 @@
 			<!-- List Post Area -->
 			{{- partial "listview.html" . -}}
 		</div>
-	</div>
+	{{/*  </div>  */}}
 </div>
 {{/*  </main>  */}}
 

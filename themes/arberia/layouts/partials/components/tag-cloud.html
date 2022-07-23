@@ -2,7 +2,7 @@
 <div class="sidebar-module sidebar-module-inset border">
     <p class="h4"><a class="link-unstyled" href="/tags">All Tag
             Topics</a></p>
-<div id="theme-tagcloud" class="col-sm-12 " style="margin-bottom: 10px;">
+<div id="theme-tagcloud" style="margin-bottom: 10px;">
     {{ $tags := $.Site.Taxonomies.tags.ByCount }}
     {{ $v1 := where $tags "Count" ">=" 3 }}
     {{ $v2 := where $v1 "Term" "not in" (slice "tags" "rss") }}

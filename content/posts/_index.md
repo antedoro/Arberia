@@ -9,7 +9,7 @@ type: # Use standard-view or nothing for default or courses - video - landingpag
 weight: null
 
 featured: false
-sidebar: true
+sidebar: false
 toc: false
 math:
   enable: false
