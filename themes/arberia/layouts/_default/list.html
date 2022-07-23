@@ -19,12 +19,20 @@
 			{{ end }}
 
 			{{- /* Cover Image */ -}}
-			{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+			<div class="row justify-content-center mx-2">
+				{{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
+				{{ with $img }}
+				{{ $imageName := $img.Title }}
+				{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
+				{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
+				{{ end }}				
+			</div>
+			{{/*  {{ $img := (.Resources.ByType "image").GetMatch "featured-image" }}
 			{{ with $img }}
 			{{ $imageName := $img.Title }}
 			{{ $imageName = $imageName | strings.TrimSuffix (path.Ext $imageName )}}
 			{{ partial "tools/img" (dict "img" . "alt" $imageName ) }}
-			{{ end }}
+			{{ end }}  */}}
 
 			<!-- List Post Area -->
 			{{- partial "listview.html" . -}}
