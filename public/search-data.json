@@ -5,7 +5,7 @@
         
             {
                 "id": 0,
-                "href": "https://hugoarberiatheme.netlify.app/solidworks-2020-tutorials/",
+                "href": "https://arberiatheme.netlify.app/solidworks-2020-tutorials/",
                 "title": "Solidworks 2020 Tutorials",
                 "section": "posts",
                 "date" : "2022.07.09",
@@ -15,7 +15,7 @@
         ,
             {
                 "id": 1,
-                "href": "https://hugoarberiatheme.netlify.app/portfolio/python-rock-paper-scissors-game/",
+                "href": "https://arberiatheme.netlify.app/portfolio/python-rock-paper-scissors-game/",
                 "title": "Python Rock Paper Scissors Game",
                 "section": "portfolio",
                 "date" : "2022.05.15",
@@ -25,7 +25,7 @@
         ,
             {
                 "id": 2,
-                "href": "https://hugoarberiatheme.netlify.app/about/",
+                "href": "https://arberiatheme.netlify.app/about/",
                 "title": "About Me",
                 "section": "",
                 "date" : "2022.04.26",
@@ -35,7 +35,7 @@
         ,
             {
                 "id": 3,
-                "href": "https://hugoarberiatheme.netlify.app/post-without-sidebar/",
+                "href": "https://arberiatheme.netlify.app/post-without-sidebar/",
                 "title": "Post without sidebar",
                 "section": "posts",
                 "date" : "2022.04.26",
@@ -45,7 +45,7 @@
         ,
             {
                 "id": 4,
-                "href": "https://hugoarberiatheme.netlify.app/post-with-sidebar/",
+                "href": "https://arberiatheme.netlify.app/post-with-sidebar/",
                 "title": "Post with sidebar",
                 "section": "posts",
                 "date" : "2020.10.15",
@@ -55,7 +55,7 @@
         ,
             {
                 "id": 5,
-                "href": "https://hugoarberiatheme.netlify.app/portfolio/data-classes-python/",
+                "href": "https://arberiatheme.netlify.app/portfolio/data-classes-python/",
                 "title": "Using Data Classes in Python",
                 "section": "portfolio",
                 "date" : "2022.05.15",
@@ -65,7 +65,7 @@
         ,
             {
                 "id": 6,
-                "href": "https://hugoarberiatheme.netlify.app/portfolio/testing-code-pytest/",
+                "href": "https://arberiatheme.netlify.app/portfolio/testing-code-pytest/",
                 "title": "Testing Your Code With pytest",
                 "section": "portfolio",
                 "date" : "2022.05.15",
@@ -75,7 +75,7 @@
         ,
             {
                 "id": 7,
-                "href": "https://hugoarberiatheme.netlify.app/portfolio/building-django-user-management-system/",
+                "href": "https://arberiatheme.netlify.app/portfolio/building-django-user-management-system/",
                 "title": "Building a Django User Management System",
                 "section": "portfolio",
                 "date" : "2022.05.15",
@@ -85,7 +85,7 @@
         ,
             {
                 "id": 8,
-                "href": "https://hugoarberiatheme.netlify.app/markdown-syntax-2/",
+                "href": "https://arberiatheme.netlify.app/markdown-syntax-2/",
                 "title": "Markdown Syntax 2",
                 "section": "posts",
                 "date" : "2019.12.03",
@@ -95,7 +95,7 @@
         ,
             {
                 "id": 9,
-                "href": "https://hugoarberiatheme.netlify.app/markdown-syntax-1/",
+                "href": "https://arberiatheme.netlify.app/markdown-syntax-1/",
                 "title": "Markdown Syntax 1",
                 "section": "posts",
                 "date" : "2019.12.01",
@@ -105,7 +105,7 @@
         ,
             {
                 "id": 10,
-                "href": "https://hugoarberiatheme.netlify.app/fusion-360-modelliamo-una-staffa-di-supporto/",
+                "href": "https://arberiatheme.netlify.app/fusion-360-modelliamo-una-staffa-di-supporto/",
                 "title": "Fusion 360 – Modelliamo una staffa di supporto",
                 "section": "posts",
                 "date" : "2020.04.17",
@@ -115,7 +115,7 @@
         ,
             {
                 "id": 11,
-                "href": "https://hugoarberiatheme.netlify.app/tutti-video-tutorial/",
+                "href": "https://arberiatheme.netlify.app/tutti-video-tutorial/",
                 "title": "Tutti Video Tutorial",
                 "section": "posts",
                 "date" : "2022.07.17",
@@ -125,7 +125,7 @@
         ,
             {
                 "id": 12,
-                "href": "https://hugoarberiatheme.netlify.app/build-in-shortcodes/",
+                "href": "https://arberiatheme.netlify.app/build-in-shortcodes/",
                 "title": "Build in Shortcodes",
                 "section": "posts",
                 "date" : "2022.07.22",
@@ -135,7 +135,7 @@
         ,
             {
                 "id": 13,
-                "href": "https://hugoarberiatheme.netlify.app/esempio1/",
+                "href": "https://arberiatheme.netlify.app/esempio1/",
                 "title": "Esempio1",
                 "section": "posts",
                 "date" : "2022.07.08",
@@ -145,7 +145,7 @@
         ,
             {
                 "id": 14,
-                "href": "https://hugoarberiatheme.netlify.app/esempio2/",
+                "href": "https://arberiatheme.netlify.app/esempio2/",
                 "title": "Esempio2",
                 "section": "posts",
                 "date" : "2022.07.07",
@@ -155,7 +155,7 @@
         ,
             {
                 "id": 15,
-                "href": "https://hugoarberiatheme.netlify.app/post-with-cover-image/",
+                "href": "https://arberiatheme.netlify.app/post-with-cover-image/",
                 "title": "Post with Cover Image",
                 "section": "posts",
                 "date" : "2022.07.06",
@@ -165,7 +165,7 @@
         ,
             {
                 "id": 16,
-                "href": "https://hugoarberiatheme.netlify.app/fusion-360-messa-in-tavola-2d/",
+                "href": "https://arberiatheme.netlify.app/fusion-360-messa-in-tavola-2d/",
                 "title": "Fusion 360 Messa in Tavola 2D",
                 "section": "posts",
                 "date" : "2022.07.05",
@@ -175,7 +175,7 @@
         ,
             {
                 "id": 17,
-                "href": "https://hugoarberiatheme.netlify.app/esempio-3/",
+                "href": "https://arberiatheme.netlify.app/esempio-3/",
                 "title": "Esempio 3",
                 "section": "posts",
                 "date" : "2022.07.05",
@@ -185,7 +185,7 @@
         ,
             {
                 "id": 18,
-                "href": "https://hugoarberiatheme.netlify.app/code-sample-3/",
+                "href": "https://arberiatheme.netlify.app/code-sample-3/",
                 "title": "Code Sample 3",
                 "section": "posts",
                 "date" : "2022.06.26",
@@ -195,7 +195,7 @@
         ,
             {
                 "id": 19,
-                "href": "https://hugoarberiatheme.netlify.app/code-sample-2/",
+                "href": "https://arberiatheme.netlify.app/code-sample-2/",
                 "title": "Code Sample 2",
                 "section": "posts",
                 "date" : "2022.06.25",
@@ -205,7 +205,7 @@
         ,
             {
                 "id": 20,
-                "href": "https://hugoarberiatheme.netlify.app/code-sample-1/",
+                "href": "https://arberiatheme.netlify.app/code-sample-1/",
                 "title": "Code Sample 1",
                 "section": "posts",
                 "date" : "2022.06.24",
@@ -215,7 +215,7 @@
         ,
             {
                 "id": 21,
-                "href": "https://hugoarberiatheme.netlify.app/landingpage/",
+                "href": "https://arberiatheme.netlify.app/landingpage/",
                 "title": "Landingpage",
                 "section": "",
                 "date" : "2022.05.20",
@@ -225,7 +225,7 @@
         ,
             {
                 "id": 22,
-                "href": "https://hugoarberiatheme.netlify.app/policy/",
+                "href": "https://arberiatheme.netlify.app/policy/",
                 "title": "Policy \u0026 Privacy",
                 "section": "",
                 "date" : "2022.05.19",
@@ -235,7 +235,7 @@
         ,
             {
                 "id": 23,
-                "href": "https://hugoarberiatheme.netlify.app/extended-shortcode/",
+                "href": "https://arberiatheme.netlify.app/extended-shortcode/",
                 "title": "Extended Shortcode",
                 "section": "posts",
                 "date" : "2022.05.01",
@@ -245,7 +245,7 @@
         ,
             {
                 "id": 24,
-                "href": "https://hugoarberiatheme.netlify.app/contatti/",
+                "href": "https://arberiatheme.netlify.app/contatti/",
                 "title": "Contatti",
                 "section": "",
                 "date" : "2022.04.26",
@@ -255,7 +255,7 @@
         ,
             {
                 "id": 25,
-                "href": "https://hugoarberiatheme.netlify.app/libri/",
+                "href": "https://arberiatheme.netlify.app/libri/",
                 "title": "Tutti i libri consigliati",
                 "section": "",
                 "date" : "2022.04.26",
@@ -265,7 +265,7 @@
         ,
             {
                 "id": 26,
-                "href": "https://hugoarberiatheme.netlify.app/test-markdown/",
+                "href": "https://arberiatheme.netlify.app/test-markdown/",
                 "title": "Test Markdown",
                 "section": "posts",
                 "date" : "2022.04.26",
