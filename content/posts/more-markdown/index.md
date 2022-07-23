@@ -3,7 +3,7 @@ title: Test Markdown
 subtitle: Insert a subtitle here
 date: 2022-04-26T18:26:24+02:00
 lastmod: 2022-04-26T18:26:24+02:00
-draft: true
+draft: false
 author: Vincenzo Antedoro
 authorLink: ""
 description: Descrizione da rivedere se è un doppione subtitle

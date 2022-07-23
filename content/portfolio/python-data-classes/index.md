@@ -3,7 +3,7 @@ title: Using Data Classes in Python
 subtitle: Insert a subtitle here
 date: 2022-05-15T16:24:00+02:00
 lastmod: 2022-05-15T16:24:00+02:00
-draft: true
+draft: false
 weight: 2
 
 author: Vincenzo Antedoro

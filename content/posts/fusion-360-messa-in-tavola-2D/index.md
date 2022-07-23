@@ -3,7 +3,7 @@ title: "Fusion 360 Messa in Tavola 2D"
 subtitle: "Insert a subtitle here"
 date: 2022-07-05T22:50:29+02:00
 lastmod: 2022-07-05T22:50:29+02:00
-draft: true
+draft: false
 type:  video # Use standard-view on nothing for default or courses - video - landingpage
 weight: null 
 

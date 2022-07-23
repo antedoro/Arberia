@@ -3,7 +3,7 @@ title: Code Sample 1
 subtitle: Insert a subtitle here
 date: 2022-06-24T18:28:32+02:00
 lastmod: 2022-06-24T18:28:32+02:00
-draft: true
+draft: false
 author: author
 authorLink: ""
 description: Descrizione da rivedere se è un doppione subtitle

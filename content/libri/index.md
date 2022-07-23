@@ -4,7 +4,7 @@ subtitle: "Un elenco mai definitivo di tutti i libri che ho letto."
 description: "Descrizione da rivedere se è un doppione subtitle"
 date: 2022-04-26T21:28:23+02:00
 lastmod: 2022-04-26T21:28:23+02:00
-draft: true
+draft: false
 weight: 
 
 type: null

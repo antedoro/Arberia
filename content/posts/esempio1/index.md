@@ -3,7 +3,7 @@ title: Esempio1
 subtitle: Insert a subtitle here
 date: 2022-07-08T23:08:01+02:00
 lastmod: 2022-07-08T23:08:01+02:00
-draft: true
+draft: false
 weight: null
 type: 
 

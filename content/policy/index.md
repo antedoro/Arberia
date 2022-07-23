@@ -3,7 +3,7 @@ title: "Policy & Privacy"
 subtitle: "Insert a subtitle here"
 date: 2022-05-19T21:02:46+02:00
 lastmod: 2022-05-19T21:02:46+02:00
-draft: true
+draft: false
 weight: 
 
 author: "author"

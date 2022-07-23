@@ -3,7 +3,7 @@ title: "Tutti Video Tutorial"
 subtitle: "Elenco di tutti i video tutoria pubblicati"
 date: 2022-07-17T22:20:48+02:00
 lastmod: 2022-07-17T22:20:48+02:00
-draft: true
+draft: false
 type:  # Use standard-view on nothing for default or courses - video - landingpage null for list view
 weight: 12 
 

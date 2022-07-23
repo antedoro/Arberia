@@ -3,7 +3,7 @@ title: Posts
 subtitle: All blog posts
 date: 2022-07-12T16:56:19+02:00
 lastmod: 2022-07-12T16:56:19+02:00
-draft: true
+draft: false
 type: # Use standard-view or nothing for default or courses - video - landingpage 
   null
 weight: null

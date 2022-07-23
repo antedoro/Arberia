@@ -3,7 +3,7 @@ title: Solidworks 2020 Tutorials
 subtitle: Impara Solidworks 2020 con 5 mini-tutorial
 date: 2022-07-09T23:08:01+02:00
 lastmod: 2022-07-09T23:08:01+02:00
-draft: true
+draft: false
 type: video
 weight: 1
 

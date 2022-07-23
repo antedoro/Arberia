@@ -3,7 +3,7 @@ title: Fusion 360 – Modelliamo una staffa di supporto
 subtitle: Impara Solidworks 2020 con 5 mini-tutorial
 date: 2020-04-17T22:42:59+02:00
 lastmod: 2020-04-17T22:42:59+02:00
-draft: true
+draft: false
 type:  video # Use standard-view on nothing for default or courses - video - landingpage
 weight: 5
 

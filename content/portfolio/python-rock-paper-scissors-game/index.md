@@ -3,7 +3,7 @@ title: Python Rock Paper Scissors Game
 subtitle: Insert a subtitle here
 date: 2022-05-15T16:13:53+02:00
 lastmod: 2022-05-15T16:13:53+02:00
-draft: true
+draft: false
 weight: 1
 
 author: Vincenzo Antedoro

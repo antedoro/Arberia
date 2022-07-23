@@ -3,7 +3,7 @@ title: Post with Cover Image
 subtitle: Insert a subtitle here
 date: 2022-07-06T21:08:01+02:00
 lastmod: 2022-07-06T21:08:01+02:00
-draft: true
+draft: false
 weight: null
 type: cover-view
 
