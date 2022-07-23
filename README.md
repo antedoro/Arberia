@@ -8,6 +8,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dc64f98b-7bd0-4167-a97d-35ce36551da6/deploy-status)](https://app.netlify.com/sites/hugoarberiatheme/deploys)
 
+
+
 <!-- The [demo]() includes a lot of documentation about Installation, Features with a few more stuff. Make sure you visit it, to get an awesome hands-on experience and get to know about the features ...
 
 **ExampleSite** can be found here: [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite). Demo is built up with [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite) as source. -->
@@ -21,7 +23,7 @@
 
 ---
 
-![static/img/arberia_homepage.jpg](static/img/arberia_homepage.jpg)
+![homepage](themes/arberia/static/img/homepage.jpg)
 
 <!-- <p align="center">
   <kbd><img src="https://user-images.githubusercontent.com/21258296/114303440-bfc0ae80-9aeb-11eb-8cfa-48a4bb385a6d.png" alt="Mockup image" title="Mockup"/></kbd>

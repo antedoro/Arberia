@@ -3,6 +3,8 @@
 <h4 align=center>☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive</h4>
 <br>
 
+
+
 > Hugo Arberia is a theme based on [RealPython](https://realpython.com).
 > The goal of this project is to add more features and customization to the og theme.
 
@@ -19,7 +21,7 @@
 
 ---
 
-![static/img/arberia_homepage.jpg](static/img/arberia_homepage.jpg)
+![Homepage](static/img/arberia_homepage.jpg)
 
 <!-- <p align="center">
   <kbd><img src="https://user-images.githubusercontent.com/21258296/114303440-bfc0ae80-9aeb-11eb-8cfa-48a4bb385a6d.png" alt="Mockup image" title="Mockup"/></kbd>
