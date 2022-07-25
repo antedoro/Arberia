@@ -1,35 +1,29 @@
-<h1 align=center>Arberia Theme for Hugo | <a href="https://hugoarberiatheme.netlify.app/" rel="nofollow">Demo</a></h1>
+<h1 align=center>Arberia Theme for Hugo | <a href="https://arberiatheme.netlify.app/" rel="nofollow">Demo</a></h1>
 
 **Alfa Version**
 
 <h4 align=center>☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive</h4>
 <br>
 
-> Hugo Arberia is a theme based on [realpython](https://realpython.com).
-> The goal of this project is to add more features and customization to the og theme.
+Arberia Theme is a clean and responsive Hugo theme for tecnical teachers, engineers and tutorial youtubers. At least I think this since I thought this theme for my blog. But of course you can use it for whatever you want.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/dc64f98b-7bd0-4167-a97d-35ce36551da6/deploy-status)](https://app.netlify.com/sites/hugoarberiatheme/deploys)
+The [demo](https://arberiatheme.netlify.app/) includes a lot of documentation about Installation, Features with a few more stuff. Make sure you visit it, to get an awesome hands-on experience and get to know about the features (working progress this is an alfa version readme)... 
 
-
-
-<!-- The [demo]() includes a lot of documentation about Installation, Features with a few more stuff. Make sure you visit it, to get an awesome hands-on experience and get to know about the features ...
-
-**ExampleSite** can be found here: [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite). Demo is built up with [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite) as source. -->
-
-<!-- [![Minimum Hugo Version](https://img.shields.io/static/v1?label=min-HUGO-version&message=0.83.0&color=blue&logo=hugo)](https://github.com/gohugoio/hugo/releases/tag/v0.83.0)
+[![Minimum Hugo Version](https://img.shields.io/static/v1?label=min-HUGO-version&message=0.101.0&color=blue&logo=hugo)](https://github.com/gohugoio/hugo/releases/tag/v0.101.0)
 [![Build GH-Pages](https://github.com/adityatelange/hugo-PaperMod/workflows/Build%20GH-Pages/badge.svg)](https://github.com/adityatelange/hugo-PaperMod/deployments/activity_log?environment=github-pages)
 [![GitHub](https://img.shields.io/github/license/adityatelange/hugo-PaperMod)](https://github.com/adityatelange/hugo-PaperMod/blob/master/LICENSE)
 [![hugo-papermod](https://img.shields.io/badge/Hugo--Themes-@PaperMod-blue)](https://themes.gohugo.io/themes/hugo-papermod/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=adityatelange_hugo-PaperMod&metric=alert_status)](https://sonarcloud.io/dashboard?id=adityatelange_hugo-PaperMod)
-![code-size](https://img.shields.io/github/languages/code-size/adityatelange/hugo-PaperMod) -->
-
----
+![code-size](https://img.shields.io/github/languages/code-size/adityatelange/hugo-PaperMod) 
 
 ![homepage](themes/arberia/static/img/homepage.jpg)
 
-<!-- <p align="center">
-  <kbd><img src="https://user-images.githubusercontent.com/21258296/114303440-bfc0ae80-9aeb-11eb-8cfa-48a4bb385a6d.png" alt="Mockup image" title="Mockup"/></kbd>
-</p> -->
+
+> Hugo Arberia is a theme inspired by [realpython](https://realpython.com).
+> The goal of this project is to add more features and customization.
+
+<!--**ExampleSite** can be found here: [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite). Demo is built up with [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite) as source.-->
+
 
 ---
 
