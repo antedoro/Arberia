@@ -9,13 +9,15 @@ Arberia Theme is a clean and responsive Hugo theme for tecnical teachers, engine
 
 The [demo](https://arberiatheme.netlify.app/) includes a lot of documentation about Installation, Features with a few more stuff. Make sure you visit it, to get an awesome hands-on experience and get to know about the features (working progress this is an alfa version readme)... 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dc64f98b-7bd0-4167-a97d-35ce36551da6/deploy-status)](https://app.netlify.com/sites/arberiatheme/deploys)
 [![Minimum Hugo Version](https://img.shields.io/static/v1?label=min-HUGO-version&message=0.101.0&color=blue&logo=hugo)](https://github.com/gohugoio/hugo/releases/tag/v0.101.0)
-[![Build GH-Pages](https://github.com/adityatelange/hugo-PaperMod/workflows/Build%20GH-Pages/badge.svg)](https://github.com/adityatelange/hugo-PaperMod/deployments/activity_log?environment=github-pages)
+
+<!--[![Build GH-Pages](https://github.com/adityatelange/hugo-PaperMod/workflows/Build%20GH-Pages/badge.svg)](https://github.com/adityatelange/hugo-PaperMod/deployments/activity_log?environment=github-pages)
 [![GitHub](https://img.shields.io/github/license/adityatelange/hugo-PaperMod)](https://github.com/adityatelange/hugo-PaperMod/blob/master/LICENSE)
 [![hugo-papermod](https://img.shields.io/badge/Hugo--Themes-@PaperMod-blue)](https://themes.gohugo.io/themes/hugo-papermod/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=adityatelange_hugo-PaperMod&metric=alert_status)](https://sonarcloud.io/dashboard?id=adityatelange_hugo-PaperMod)
 ![code-size](https://img.shields.io/github/languages/code-size/adityatelange/hugo-PaperMod) 
-
+-->
 ![homepage](themes/arberia/static/img/homepage.jpg)
 
 
@@ -25,8 +27,8 @@ The [demo](https://arberiatheme.netlify.app/) includes a lot of documentation ab
 <!--**ExampleSite** can be found here: [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite). Demo is built up with [exampleSite](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite) as source.-->
 
 
----
 
+<!--
 ## Features/Mods 💥
 
 - Uses Hugo's asset generator with pipelining, fingerprinting, bundling and minification by default.
@@ -79,7 +81,7 @@ Release ChangeLog has info about stuff added: **[Releases](https://github.com/ad
 
 ---
 
-## [Pagespeed Insights (100% ?)](https://pagespeed.web.dev/report?url=https://adityatelange.github.io/hugo-PaperMod/) 👀
+## [Pagespeed Insights (91% ?)](https://pagespeed.web.dev/report?url=https%3A%2F%2Farberiatheme.netlify.app%2F) 👀
 
 ---
 
@@ -91,3 +93,4 @@ Release ChangeLog has info about stuff added: **[Releases](https://github.com/ad
 - [**Simple Icons**](https://github.com/simple-icons/simple-icons)
 - **All Contributors and Supporters**
 
+-->
