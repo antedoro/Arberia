@@ -1,5 +1,5 @@
 ---
-title: Test Markdown
+title: More on Markdown
 subtitle: Insert a subtitle here
 date: 2022-04-26T18:26:24+02:00
 lastmod: 2022-04-26T18:26:24+02:00
@@ -31,7 +31,7 @@ math:
   enable: false
 lightgallery: false
 license: ""
-slug: test-markdown
+slug: more-on-markdown
 ---
 
 

@@ -1,10 +1,10 @@
 ---
-title: Code Sample 3
+title: Code Sample
 subtitle: Insert a subtitle here
-date: 2022-06-26T18:28:32+02:00
-lastmod: 2022-06-26T18:28:32+02:00
-draft: true
-author: Vincenzo Antedoro
+date: 2022-06-24T18:28:32+02:00
+lastmod: 2022-06-24T18:28:32+02:00
+draft: false
+author: author
 authorLink: ""
 description: Descrizione da rivedere se è un doppione subtitle
 weight: null
@@ -31,6 +31,7 @@ math:
   enable: false
 lightgallery: false
 license: ""
+slug: code-sample
 ---
 
 The following are two code samples using syntax highlighting.
@@ -47,7 +48,6 @@ The following is a code sample using triple backticks ( ``` ) code fencing provi
     alert("Sum = " + sum)  // "+" means combine into a string
 ```
 
-
 The following is a code sample using the "highlight" shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.
 
 {{< highlight javascript >}}
@@ -57,7 +57,6 @@ The following is a code sample using the "highlight" shortcode provided in Hugo.
     sum = parseInt(num1) + parseInt(num2) // "+" means "add"
     alert("Sum = " + sum)  // "+" means combine into a string
 {{</ highlight >}}
-
 
 And here is the same code with line numbers:
 

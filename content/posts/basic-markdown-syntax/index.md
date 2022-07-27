@@ -1,5 +1,5 @@
 ---
-title: Markdown Syntax 1
+title: Markdown Syntax
 subtitle: Insert a subtitle here
 date: 2019-12-01T21:57:40+08:00
 lastmod: 2020-01-01T16:45:40+08:00

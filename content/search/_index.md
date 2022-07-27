@@ -35,6 +35,3 @@ license: ""
 slug: search
 ---
 
-Ecco l'elenco di ricerca
-
-

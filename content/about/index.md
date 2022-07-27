@@ -8,7 +8,6 @@ draft: false
 
 type: "about"
 
-
 author: Vincenzo Antedoro
 avatar: "me.webp"
 website: "https://antedoro.it"

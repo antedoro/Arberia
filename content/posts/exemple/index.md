@@ -1,5 +1,5 @@
 ---
-title: Esempio2
+title: Exemple
 subtitle: Insert a subtitle here
 date: 2022-07-07T22:08:01+02:00
 lastmod: 2022-07-07T22:08:01+02:00
@@ -34,7 +34,7 @@ math:
   enable: false
 lightgallery: false
 license: ""
-slug: esempio2
+slug: exemple
 ---
 
 The following is a code sample using the "highlight" shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.
