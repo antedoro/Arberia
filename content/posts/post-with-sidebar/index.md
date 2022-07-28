@@ -17,9 +17,8 @@ tags:
   - pippo
   - pluto
   - paperino
-  - qui
 categories:
-  - lesson-path
+  - arberia
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
