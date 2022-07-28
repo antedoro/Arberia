@@ -15,16 +15,6 @@
         ,
             {
                 "id": 1,
-                "href": "https://arberiatheme.netlify.app/portfolio/python-rock-paper-scissors-game/",
-                "title": "Python Rock Paper Scissors Game",
-                "section": "portfolio",
-                "date" : "2022.05.15",
-                "body": "Game programming is a great way to learn how to program. You use many tools that you’ll see in the real world, plus you get to play a game to test your results! An ideal game to start your Python game programming journey is rock paper scissors.\nIn this course, you’ll learn how to:\nCode your own rock paper scissors game Take in user input with input() Play several games in a row using a while loop Clean up your code with Enum objects and functions Define more complex rules with a dictionary "
-            }
-    
-        ,
-            {
-                "id": 2,
                 "href": "https://arberiatheme.netlify.app/about/",
                 "title": "About Me",
                 "section": "",
@@ -34,7 +24,7 @@
     
         ,
             {
-                "id": 3,
+                "id": 2,
                 "href": "https://arberiatheme.netlify.app/post-without-sidebar/",
                 "title": "Post without sidebar",
                 "section": "posts",
@@ -44,7 +34,7 @@
     
         ,
             {
-                "id": 4,
+                "id": 3,
                 "href": "https://arberiatheme.netlify.app/post-with-sidebar/",
                 "title": "Post with sidebar",
                 "section": "posts",
@@ -54,37 +44,7 @@
     
         ,
             {
-                "id": 5,
-                "href": "https://arberiatheme.netlify.app/portfolio/data-classes-python/",
-                "title": "Using Data Classes in Python",
-                "section": "portfolio",
-                "date" : "2022.05.15",
-                "body": "One new and exciting feature that came out in Python 3.7 was the data class. A data class is a class typically containing mainly data, although there aren’t really any restrictions.\nWith data classes, you don’t have to write boilerplate code to get proper initialization, representation, and comparisons for your objects.\nIn this course, you’ll learn how to:\nDefine your own data classes Add default values to the fields in your data class Customize the ordering of data class objects Work with immutable data classes "
-            }
-    
-        ,
-            {
-                "id": 6,
-                "href": "https://arberiatheme.netlify.app/portfolio/testing-code-pytest/",
-                "title": "Testing Your Code With pytest",
-                "section": "portfolio",
-                "date" : "2022.05.15",
-                "body": "Testing your code brings a wide variety of benefits. It increases your confidence that the code behaves as you expect and ensures that changes to your code won’t cause regressions. Writing and maintaining tests is hard work, so you should leverage all the tools at your disposal to make it as painless as possible. pytest is one of the best tools you can use to boost your testing productivity.\nIn this video course, you’ll learn:\nWhat benefits pytest offers How to ensure your tests are stateless How to make repetitious tests more comprehensible How to run subsets of tests by name or custom groups How to create and maintain reusable testing utilities "
-            }
-    
-        ,
-            {
-                "id": 7,
-                "href": "https://arberiatheme.netlify.app/portfolio/building-django-user-management-system/",
-                "title": "Building a Django User Management System",
-                "section": "portfolio",
-                "date" : "2022.05.15",
-                "body": "If you’re building your own Django applications, you might decide to extend them with user accounts. In this video course, you’ll learn how to work with Django user management and add it to your program.\nBy the end of this video course, you’ll be able to:\nCreate an application where users can register, log in, and reset and change passwords on their own Edit the default Django templates responsible for user management Send password reset emails to actual email addresses Authenticate using an external service You may find it useful to complete Get Started With Django: Build a Portfolio App before beginning this course. However, you can also apply Django user management to any Django apps that you’ve created.\n"
-            }
-    
-        ,
-            {
-                "id": 8,
+                "id": 4,
                 "href": "https://arberiatheme.netlify.app/markdown-syntax/",
                 "title": "Markdown Syntax",
                 "section": "posts",
@@ -94,7 +54,7 @@
     
         ,
             {
-                "id": 9,
+                "id": 5,
                 "href": "https://arberiatheme.netlify.app/fusion-360-modelliamo-una-staffa-di-supporto/",
                 "title": "Fusion 360 – Modelliamo una staffa di supporto",
                 "section": "posts",
@@ -104,7 +64,7 @@
     
         ,
             {
-                "id": 10,
+                "id": 6,
                 "href": "https://arberiatheme.netlify.app/tutti-video-tutorial/",
                 "title": "Tutti Video Tutorial",
                 "section": "posts",
@@ -114,7 +74,7 @@
     
         ,
             {
-                "id": 11,
+                "id": 7,
                 "href": "https://arberiatheme.netlify.app/arberia-features/",
                 "title": "Arberia Features",
                 "section": "posts",
@@ -124,7 +84,7 @@
     
         ,
             {
-                "id": 12,
+                "id": 8,
                 "href": "https://arberiatheme.netlify.app/arberia-installation-update/",
                 "title": "Arberia Installation | Update",
                 "section": "posts",
@@ -134,7 +94,7 @@
     
         ,
             {
-                "id": 13,
+                "id": 9,
                 "href": "https://arberiatheme.netlify.app/build-in-shortcodes/",
                 "title": "Build in Shortcodes",
                 "section": "posts",
@@ -144,17 +104,7 @@
     
         ,
             {
-                "id": 14,
-                "href": "https://arberiatheme.netlify.app/exemple/",
-                "title": "Exemple",
-                "section": "posts",
-                "date" : "2022.07.07",
-                "body": "The following is a code sample using the \u0026ldquo;highlight\u0026rdquo; shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.\nvar num1, num2, sum num1 = prompt(\u0026#34;Enter first number\u0026#34;) num2 = prompt(\u0026#34;Enter second number\u0026#34;) sum = parseInt(num1) + parseInt(num2) // \u0026#34;+\u0026#34; means \u0026#34;add\u0026#34; alert(\u0026#34;Sum = \u0026#34; + sum) // \u0026#34;+\u0026#34; means combine into a string "
-            }
-    
-        ,
-            {
-                "id": 15,
+                "id": 10,
                 "href": "https://arberiatheme.netlify.app/post-with-cover-image/",
                 "title": "Post with Cover Image",
                 "section": "posts",
@@ -164,7 +114,7 @@
     
         ,
             {
-                "id": 16,
+                "id": 11,
                 "href": "https://arberiatheme.netlify.app/fusion-360-messa-in-tavola-2d/",
                 "title": "Fusion 360 Messa in Tavola 2D",
                 "section": "posts",
@@ -174,7 +124,7 @@
     
         ,
             {
-                "id": 17,
+                "id": 12,
                 "href": "https://arberiatheme.netlify.app/code-sample/",
                 "title": "Code Sample",
                 "section": "posts",
@@ -184,17 +134,7 @@
     
         ,
             {
-                "id": 18,
-                "href": "https://arberiatheme.netlify.app/landingpage/",
-                "title": "Landingpage",
-                "section": "",
-                "date" : "2022.05.20",
-                "body": "Sign InSign UpRestaurants and more, delivered to your doorSign in for saved addressBecome a DasherAs a delivery driver, you'll make reliable money—working anytime, anywhere.Start earningBecome a PartnerGrow your business and reach new customers by partnering with us.Sign up your storeTry the AppExperience the best your neighborhood has to offer, all in one app.Get the appIt’s all here. All in one app.Discover local, on-demand delivery or Pickup from restaurants, nearby grocery and convenience stores, and more.Get the appEvery Flavor WelcomeFrom your neighborhood sushi spot to the burger and fries you crave, choose from over 300,000 local and national favorites across the U.S., Canada and Australia.Find restaurantsTop CitiesNew York CityLos AngelesTorontoChicagoHoustonBrooklynSan DiegoLas VegasSan FranciscoSeattleAtlantaQueensVancouver, BCMiamiSan AntonioPhoenixDenverAustinWashington, DCDallasMelbourneSydneyMontrealAll CitiesTop Cuisines Near YouPizza Near MeChinese Food Near MeSushi Near MeCafe Near MeMexican Food Near MeThai Food Near MeLunch Near MeSeafood Near MeIndian Food Near MeDessert Near MeBurgers Near MeAsian Food Near MeItalian Food Near MeVegan Food Near MeSandwiches Near MeRestaurants Near MeGet to Know UsAbout UsCareersInvestorsCompany BlogEngineering BlogMerchant BlogGift CardsDasher CentralDoorDash StoriesLinkedInGlassdoorAccessibilityLet Us Help YouAccount DetailsOrder HistoryHelpDoing BusinessBecome a DasherBe a Partner RestaurantGet Dashers for DeliveriesGet DoorDash for WorkTerms of ServicePrivacyNotice At CollectionDelivery Locations© 2022 DoorDash"
-            }
-    
-        ,
-            {
-                "id": 19,
+                "id": 13,
                 "href": "https://arberiatheme.netlify.app/policy/",
                 "title": "Policy \u0026 Privacy",
                 "section": "",
@@ -204,17 +144,7 @@
     
         ,
             {
-                "id": 20,
-                "href": "https://arberiatheme.netlify.app/extended-shortcode/",
-                "title": "Extended Shortcode",
-                "section": "posts",
-                "date" : "2022.05.01",
-                "body": "Arberia Theme provides multiple built-in shortcodes for author convenience and to keep your markdown content clean. To expand your possibility this is an example list of all provided shortcodes.\nAlert Shortcode to inset varius alert on markdown post use this code:\n{{\u0026lt; alert-info \u0026#34;[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial.\u0026#34;\u0026gt;}} {{\u0026lt; alert-success \u0026#34;[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial.\u0026#34;\u0026gt;}} {{\u0026lt; alert-warning \u0026#34;[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial.\u0026#34;\u0026gt;}} {{\u0026lt; alert-danger \u0026#34;[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial.\u0026#34;\u0026gt;}} {{\u0026lt; alert-dark \u0026#34;[**Click here to get an example of info alert**](https://antedoro.it/) followed in this tutorial.\u0026#34;\u0026gt;}} Click here to get an example of info alert followed in this tutorial.\nClick here to get an example of success alert followed in this tutorial.\nClick here to get an example of warning alert followed in this tutorial.\nClick here to get an example of danger alert followed in this tutorial.\nClick here to get an example of dark alert followed in this tutorial.\nList Element Topic\nWho I am? My name is Vincenzo Antedoro. I was born and grew up in south of Italy. In my challenge of creativity, I was ispired from near ancient greek culture and mediterranean in general.\nPlaylist of videos Tutorial Solidworks 9 Lessons 9:38\n1. Solidworks: Modelliamo un supporto 7:34 2. Solidworks: Modelliamo un supporto a guscio 2:04 3. Solidworks: Come creare una assieme 2:04 4. Solidworks: Messa in tavola guscio inferiore 7:34 5. Solidworks: Messa in tavola del supporto superiore 2:04 6. Solidworks: Modelliamo una Biella 2:04 7. SOLIDWORKS BONUS TUTORIAL: Modelliamo il Cappello di Biella 7:34 8. Solidworks: Modelliamo un Pistone 2:04 9. Solidworks: Progettazione un albero motore in Solidworks 2:04 Collapsable FAQ Menu What time is it?Show/Hide\nOffice Hours is a weekly Zoom-based online hangout with experts from the Real Python Team, where you can get help and discuss your Python questions with us and other community members. If you want to join, you can register at the link above to get a Zoom link. Hoew do I join?Show/Hide\nOffice Hours are available to all Real Python Members. Just click the button above under Upcoming Events where you can sign up for the next event. How often I can partecipate?Show/Hide\nAs often as you want! We have several regulars that come every week! Do I have to say everithing??Show/Hide\nNo, you’re more than welcome to join even if you just want to listen and leave your camera and microphone turned off. If you have a question you can ask it via Zoom’s text-based chat or post it in the #office-hours channel in the RP Community Slack. Downlodable File Link Download\nCourse Slides (.pdf)\n1.3 MB\n"
-            }
-    
-        ,
-            {
-                "id": 21,
+                "id": 14,
                 "href": "https://arberiatheme.netlify.app/contatti/",
                 "title": "Contatti",
                 "section": "",
@@ -224,7 +154,7 @@
     
         ,
             {
-                "id": 22,
+                "id": 15,
                 "href": "https://arberiatheme.netlify.app/libri/",
                 "title": "Tutti i libri consigliati",
                 "section": "",
@@ -234,7 +164,7 @@
     
         ,
             {
-                "id": 23,
+                "id": 16,
                 "href": "https://arberiatheme.netlify.app/more-on-markdown/",
                 "title": "More on Markdown",
                 "section": "posts",
