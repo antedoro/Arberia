@@ -37,8 +37,6 @@
                             <h2 class="card-title h2 my-0 py-0">{{ .Title | markdownify }}</h2>
                         </a>
 
-                        <p class="my-1">{{ .Summary }}</p>
-
                         <p class="card-text">
                             <small class="text-muted">
                                 <span class="ml-2 fa fa-clock-o" aria-hidden="true"></span>
@@ -54,6 +52,7 @@
 
                             </small>
                         </p>
+                        <p class="text-muted my-1">{{ .Summary }}</p>
                     </div>
                 </div>
             </div>
